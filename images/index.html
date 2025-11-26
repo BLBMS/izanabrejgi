@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Iža na brejgi</title>
+    <style>
+        @font-face {
+            font-family: 'TT2020StyleE';
+            src: url('fonts/TT2020StyleE-Regular.woff2') format('woff2'),
+                url('fonts/TT2020StyleE-Regular.woff') format('woff'),
+                url('fonts/TT2020StyleE-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'TT2020StyleE', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            color: rgba(255, 255, 0, 0.8);
+            padding: 0.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
+        .logo-text {
+            font-size: 2.0rem;
+            font-weight: bold;
+        }
+
+        .nav-main {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color:  rgba(255, 255, 0, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .language-flags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-flags a {
+            display: block;
+            width: 30px;
+            height: 20px;
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid white;
+            transition: transform 0.3s;
+        }
+
+        .language-flags a:hover {
+            transform: scale(1.1);
+        }
+
+        .flag {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 70px auto 0;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .slideshow-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay background za boljšo berljivost */
+        .overlay-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 90;
+            display: none;
+        }
+
+        .overlay-background.active {
+            display: block;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgba(255, 255, 0, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 2rem;
+            z-index: 100;
+            width: 90%;
+            max-width: 800px;
+            display: none;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 0, 0.3);
+        }
+
+        .text-overlay.active {
+            display: block;
+        }
+
+        .contact-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgba(255, 255, 0, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 2rem;
+            z-index: 100;
+            width: 90%;
+            max-width: 600px;
+            display: none;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 0, 0.3);
+        }
+
+        .contact-overlay.active {
+            display: block;
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .close-overlay {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 0, 0.9);
+            font-size: 2rem;
+            cursor: pointer;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            z-index: 110;
+        }
+
+        .hero-text {
+            margin-top: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c5530;
+        }
+
+        .section {
+            background: white;
+            padding: 3rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: #2c5530;
+            color: rgba(255, 255, 0, 0.8);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-main {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .container {
+                margin-top: 120px;
+                padding: 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .slideshow {
+                height: 50vh;
+            }
+
+            .text-overlay {
+                font-size: 1.4rem;
+                padding: 1.5rem;
+            }
+
+            .contact-overlay {
+                font-size: 1.3rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo-section">
+                <img src="logos/logo_Iza_na_brejgi.jpg" alt="Iža na brejgi" class="logo-img">
+                <div class="logo-text">Iža na brejgi</div>
+            </div>
+
+            <div class="nav-main">
+                <ul class="nav-links">
+                    <li><a href="#domov" onclick="showHome()">Domov</a></li>
+                    <li><a href="#omeni" onclick="showAbout()">O meni</a></li>
+                    <li><a href="#kontakt" onclick="showContact()">Kontakt</a></li>
+                    <li><a href="https://airbnb.com/..." target="_blank">Airbnb</a></li>
+                    <li><a href="https://booking.com/..." target="_blank">Booking</a></li>
+                </ul>
+
+                <div class="language-flags">
+                    <a href="index.html" title="Slovenščina">
+                        <img src="logos/si.png" alt="Slovenija" class="flag">
+                    </a>
+                    <a href="en.html" title="English">
+                        <img src="logos/gb.png" alt="English" class="flag">
+                    </a>
+                    <a href="en.html" title="English">
+                        <img src="logos/us.png" alt="English" class="flag">
+                    </a>
+                    <a href="de.html" title="Deutsch">
+                        <img src="logos/at.png" alt="English" class="flag">
+                    </a>
+                    <a href="de.html" title="Deutsch">
+                        <img src="logos/de.png" alt="Deutsch" class="flag">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero" id="domov">
+            <div class="slideshow" id="slideshow-container">
+                <div class="slideshow-track" id="slideshow-track">
+                    <!-- Slike se bodo dinamično naložile tu -->
+                </div>
+                
+                <!-- Overlay background za blur efekt -->
+                <div class="overlay-background" id="overlay-background"></div>
+                
+                <!-- Overlay za O meni -->
+                <div class="text-overlay" id="about-overlay">
+                    <button class="close-overlay" onclick="hideAllOverlays()">×</button>
+                    Vrnite se v čase vaših dedkov in babic v prijetno hiško na mirni lokaciji med vinogradi, vendar na
+                    sodoben način z vsem udobjem današnjega časa. Zaspite v tišini in v soju lune, zbudite se s ptičjim
+                    petjem.
+                </div>
+
+                <!-- Overlay za Kontakt -->
+                <div class="contact-overlay" id="contact-overlay">
+                    <button class="close-overlay" onclick="hideAllOverlays()">×</button>
+                    <h2>Kontakt</h2>
+                    <div class="contact-section">
+                        <div class="contact-item">
+                            <span class="contact-label">Telefon:</span>
+                            <span class="contact-value">+386 41 563 873</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Email:</span>
+                            <span class="contact-value">iza.na.breigi@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Naslov:</span>
+                            <div class="contact-value address">
+                                <div>Rumičev breg 71</div>
+                                <div>9226 Moravske Toplice</div>
+                                <div>Goričko, Prekmurje, Slovenija</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Iža na brejgi. Vse pravice pridržane.</p>
+    </footer>
+
+    <script>
+        const imageFiles = [
+            "images/dnevna.jpg",
+            "images/dnevna1.jpg",
+            "images/dnevna2.jpg",
+            "images/dvor-poletje.jpg",
+            "images/dvor-pozimi.jpg",
+            "images/jedilnica.jpg",
+            "images/kopalnica.jpg",
+            "images/pogled-jed-sever.jpg",
+            "images/pogled-kuh-sever.jpg",
+            "images/pogled-sp-jug.jpg",
+            "images/pogled-sp-vzhod.jpg",
+            "images/sceste-bozic.jpg",
+            "images/sceste-pozimi.jpg",
+            "images/spalnica.jpg",
+            "images/wc.jpg",
+            "images/zunaj-lagev.jpg",
+            "images/zunaj-mici.jpg"
+        ];
+
+        let currentSlide = 0;
+        const slideshowTrack = document.getElementById('slideshow-track');
+        const aboutOverlay = document.getElementById('about-overlay');
+        const contactOverlay = document.getElementById('contact-overlay');
+        const overlayBackground = document.getElementById('overlay-background');
+
+        // Funkcija za mešanje
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function loadSlides() {
+            const shuffledImages = shuffleArray([...imageFiles]);
+
+            shuffledImages.forEach((imageSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = `Iža na brejgi ${index + 1}`;
+                img.className = 'slide';
+                slideshowTrack.appendChild(img);
+            });
+
+            // Dodaj še prvo sliko na konec za neskončni efekt
+            const firstSlide = slideshowTrack.children[0].cloneNode(true);
+            slideshowTrack.appendChild(firstSlide);
+        }
+
+        function showNextSlide() {
+            currentSlide++;
+            const track = document.getElementById('slideshow-track');
+            const slideWidth = track.children[0].offsetWidth;
+
+            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+
+            // Neskončni efekt - ko pridemo do klona, skočimo nazaj na začetek
+            if (currentSlide >= imageFiles.length) {
+                setTimeout(() => {
+                    track.style.transition = 'none';
+                    currentSlide = 0;
+                    track.style.transform = `translateX(0)`;
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                }, 500);
+            }
+        }
+
+        function hideAllOverlays() {
+            aboutOverlay.classList.remove('active');
+            contactOverlay.classList.remove('active');
+            overlayBackground.classList.remove('active');
+        }
+
+        function showHome() {
+            hideAllOverlays();
+            // Scrollaj na vrh
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAbout() {
+            hideAllOverlays();
+            overlayBackground.classList.add('active');
+            aboutOverlay.classList.add('active');
+            // Scrollaj na vrh
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showContact() {
+            hideAllOverlays();
+            overlayBackground.classList.add('active');
+            contactOverlay.classList.add('active');
+            // Scrollaj na vrh
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Inicializacija
+        loadSlides();
+
+        // Začni avtomatsko menjavo
+        setInterval(showNextSlide, 4000);
+
+        // Dodaj event listener za klik zunaj overlayjev
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('slideshow') || event.target.classList.contains('overlay-background')) {
+                hideAllOverlays();
+            }
+        });
+    </script>
+</body>
+</html>
