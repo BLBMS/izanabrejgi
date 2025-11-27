@@ -29,6 +29,28 @@
             color: #333;
             background-color: #ddeadc;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        footer {
+            background: #2c5530;
+            color: rgba(255, 255, 0, 0.8);
+            text-align: center;
+            padding: 0.8rem;
+            margin-top: auto;
+            /* DODAJ TO */
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.3;
         }
 
         header {
@@ -49,36 +71,51 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0;
+            padding: 0 1rem;
         }
 
         .logo-section {
             display: flex;
             align-items: center;
             gap: 15px;
+            flex-shrink: 0;
+            min-width: 0;
         }
 
         .logo-img {
-            height: 50px;
+            height: 40px;
             width: auto;
             border-radius: 0;
+            flex-shrink: 0;
         }
 
         .logo-text {
-            font-size: 2.0rem;
+            font-size: 1.6rem;
             font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 0;
         }
 
         .nav-main {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            flex: 1;
+            min-width: 0;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
@@ -86,41 +123,58 @@
             text-decoration: none;
             transition: color 0.3s;
             cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            padding: 0.25rem 0.5rem;
         }
 
         .nav-links a:hover {
-            color: #ffd700;
+            font-weight: bold;
+            color: #ffa200;
         }
 
         .language-flags {
             display: flex;
-            gap: 10px;
+            gap: 6px;
+            flex-shrink: 0;
+            align-items: center;
+            height: 100%;
         }
 
         .language-flags a {
-            display: block;
+            display: flex;
             width: 30px;
-            height: 20px;
-            border-radius: 3px;
+            height: 16px;
+            border-radius: 2px;
             overflow: hidden;
             border: 1px solid white;
             transition: transform 0.3s;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
         }
 
         .language-flags a:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            filter: brightness(100%);
         }
 
         .flag {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 70px auto 0;
-            padding: 2rem;
+        /* Aktivna zastava v črno-beli barvi */
+        .language-flags .active-flag .flag {
+            filter: grayscale(100%) brightness(40%);
+            border-color: #cccccc1f;
+        }
+
+        .language-flags .active-flag:hover .flag {
+            filter: grayscale(100%) brightness(40%);
+            border-color: #ffffff1f;
         }
 
         .hero {
@@ -178,11 +232,11 @@
             text-align: left;
             color: rgba(255, 255, 0, 0.9);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            padding: 2rem;
+            padding: 1.5rem;
             z-index: 100;
-            width: 90%;
+            width: 95%;
             max-width: 800px;
             max-height: 80vh;
             overflow-y: auto;
@@ -204,12 +258,12 @@
             text-align: left;
             color: rgba(255, 255, 0, 0.9);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            padding: 2rem;
+            padding: 1.5rem;
             z-index: 100;
-            width: 90%;
-            max-width: 600px;
+            width: 95%;
+            max-width: 500px;
             display: none;
             background: transparent;
             border: none;
@@ -221,12 +275,12 @@
         }
 
         .contact-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .contact-label {
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
         .hero-text {
@@ -234,14 +288,14 @@
         }
 
         .hero-text h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: #2c5530;
         }
 
         .about-text p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
         }
 
         .about-text p:last-child {
@@ -251,95 +305,167 @@
         .about-text ul {
             text-align: left;
             margin: 1rem 0;
-            padding-left: 2rem;
+            padding-left: 1.5rem;
         }
 
         .about-text li {
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
         }
 
         .description-text {
             text-align: left;
-            font-size: 1.2rem;
-            line-height: 1.7;
-            max-height: 60vh;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-height: 70vh;
             overflow-y: auto;
-            padding: 1rem;
+            padding: 0.5rem;
         }
 
         .description-text p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .description-text p:last-child {
             margin-bottom: 0;
         }
 
-        .section {
-            background: white;
-            padding: 3rem;
-            margin: 2rem 0;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        footer {
-            background: #2c5530;
-            color: rgba(255, 255, 0, 0.8);
-            text-align: center;
-            padding: 1rem;
-            margin-top: 0;
-            position: relative;
-        }
-
+        /* Mobile styles ---------------------------------------------*/
         @media (max-width: 768px) {
+            header {
+                padding: 0.3rem 0;
+            }
+
             nav {
                 flex-direction: column;
-                gap: 1rem;
-                padding: 0 1rem;
+                gap: 0.8rem;
+                padding: 0 0.5rem;
             }
 
             .logo-section {
-                flex-direction: column;
+                flex-direction: row;
                 text-align: center;
+                gap: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .logo-img {
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 1.4rem;
+                white-space: nowrap;
             }
 
             .nav-main {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
+                width: 100%;
             }
 
             .nav-links {
-                gap: 1rem;
+                gap: 0.8rem;
+                justify-content: center;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.2rem 0.4rem;
+            }
+
+            .language-flags {
+                gap: 5px;
+                justify-content: center;
+                margin-top: 1px;
+            }
+
+            .language-flags a {
+                width: 28px;
+                height: 15px;
             }
 
             .container {
                 margin-top: 120px;
                 padding: 0;
-            }
-
-            .hero-text h1 {
-                font-size: 2rem;
+                flex: 1;
             }
 
             .slideshow {
-                height: 50vh;
+                height: 60vh;
             }
 
             .text-overlay {
-                font-size: 1.2rem;
-                padding: 1.5rem;
+                font-size: 1rem;
+                padding: 1rem;
+                width: 98%;
             }
 
             .contact-overlay {
-                font-size: 1.1rem;
-                padding: 1.5rem;
+                font-size: 0.95rem;
+                padding: 1rem;
+                width: 98%;
             }
 
             .description-text {
-                font-size: 1.1rem;
-                padding: 0.5rem;
+                font-size: 0.9rem;
+                padding: 0.3rem;
+            }
+
+            footer {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Small mobile styles -----------------------------------------*/
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 0.15rem 0.3rem;
+            }
+
+            .language-flags a {
+                width: 26px;
+                height: 14px;
+                margin-top: 1px;
+            }
+
+            .text-overlay {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+
+            .contact-overlay {
+                font-size: 0.85rem;
+                padding: 0.8rem;
+            }
+        }
+
+        /* Desktop responsive - prepreči lomljenje logotipa */
+        @media (min-width: 769px) and (max-width: 1100px) {
+            .logo-text {
+                font-size: 1.4rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.2rem 0.4rem;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
             }
         }
     </style>
@@ -349,7 +475,7 @@
     <header>
         <nav>
             <div class="logo-section">
-                <img src="logos/logo_Iza_na_brejgi.png" alt="logo Iža" class="logo-img">
+                <img src="logos/logo_Iza_na_brejgi.png" alt="Iža na brejgi" class="logo-img">
                 <div class="logo-text">Iža na brejgi</div>
             </div>
 
@@ -364,20 +490,14 @@
                 </ul>
 
                 <div class="language-flags">
-                    <a href="index.html" title="Slovenščina">
-                        <img src="logos/si.png" alt="Slovenija" class="flag">
+                    <a href="index.html" title="Slovenščina" class="active-flag">
+                        <img src="logos/flag_si.png" alt="Slovenija" class="flag">
                     </a>
                     <a href="en.html" title="English">
-                        <img src="logos/gb.png" alt="English" class="flag">
-                    </a>
-                    <a href="en.html" title="English">
-                        <img src="logos/us.png" alt="English" class="flag">
+                        <img src="logos/flag_us_gb.png" alt="English" class="flag">
                     </a>
                     <a href="de.html" title="Deutsch">
-                        <img src="logos/at.png" alt="English" class="flag">
-                    </a>
-                    <a href="de.html" title="Deutsch">
-                        <img src="logos/de.png" alt="Deutsch" class="flag">
+                        <img src="logos/flag_de_at.png" alt="Deutsch" class="flag">
                     </a>
                 </div>
             </div>
@@ -594,4 +714,3 @@
 </body>
 
 </html>
-
