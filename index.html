@@ -191,20 +191,39 @@
             height: 70vh;
             margin: 0;
             overflow: hidden;
-            background: #e0e6df;
+            background: #ddeadc;
+            /* VRNI ZELENO OZADJE */
             border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slideshow-track {
             display: flex;
             height: 100%;
             transition: transform 0.5s ease-in-out;
+            align-items: center;
         }
 
         .slide {
             min-width: 100%;
-            height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            /* VEDNO CONTAIN - NE OREŽE SLIK */
+            object-position: center;
+            max-height: 100%;
+            height: auto;
+            background: #ddeadc;
+            /* ZELENO OZADJE TUDI ZA SLIKE */
+        }
+
+        /* Za boljši prikaz portretnih slik - z zelenim ozadjem */
+        .portrait-slide {
+            max-height: 85%;
+            max-width: 70%;
+            width: auto;
+            height: auto;
+            background: #ddeadc;
         }
 
         .overlay-background {
@@ -244,16 +263,6 @@
             background: transparent;
             border: none;
             border-radius: 0;
-            /* DODAJ TE VRSTICE ZA BOLJŠI SCROLL NA MOBILNIH */
-            -webkit-overflow-scrolling: touch;
-            /* SMOOTH SCROLL NA iOS */
-            scrollbar-width: none;
-            /* SKRIJI SCROLLBAR NA FIREFOX */
-        }
-
-        .text-overlay::-webkit-scrollbar {
-            display: none;
-            /* SKRIJI SCROLLBAR NA CHROME/SAFARI */
         }
 
         .text-overlay.active {
@@ -365,8 +374,7 @@
             }
 
             .logo-text {
-                font-size: 1.2rem;
-                /* ZMANJŠANO IZ 1.4rem */
+                font-size: 1.4rem;
                 white-space: nowrap;
             }
 
@@ -377,200 +385,117 @@
             }
 
             .nav-links {
-                gap: 0.5rem;
-                /* ZMANJŠANO IZ 0.8rem */
+                gap: 0.8rem;
                 justify-content: center;
                 width: 100%;
                 flex-wrap: wrap;
             }
 
             .nav-links a {
-                font-size: 0.75rem;
-                /* ZMANJŠANO IZ 0.85rem */
-                padding: 0.15rem 0.3rem;
-                /* ZMANJŠANO */
+                font-size: 0.85rem;
+                padding: 0.2rem 0.4rem;
             }
 
             .language-flags {
-                gap: 4px;
-                /* ZMANJŠANO IZ 5px */
+                gap: 5px;
                 justify-content: center;
+                margin-top: 1px;
             }
 
             .language-flags a {
-                width: 24px;
-                /* ZMANJŠANO IZ 28px */
-                height: 13px;
-                /* ZMANJŠANO IZ 15px */
+                width: 28px;
+                height: 15px;
             }
 
             .container {
-                margin-top: 110px;
-                /* ZMANJŠANO IZ 120px */
+                margin-top: 120px;
                 padding: 0;
                 flex: 1;
             }
 
             .slideshow {
-                height: 50vh;
-                /* ZMANJŠANO IZ 60vh */
+                height: 60vh;
+                background: #ddeadc;
+                /* ZELENO OZADJE TUDI NA MOBILNIH */
+            }
+
+            .slide {
+                background: #ddeadc;
+            }
+
+            .portrait-slide {
+                max-height: 80%;
+                max-width: 65%;
             }
 
             .text-overlay {
-                font-size: 0.9rem;
-                /* ZMANJŠANO IZ 1rem */
-                padding: 0.8rem;
-                /* ZMANJŠANO IZ 1rem */
+                font-size: 1rem;
+                padding: 1rem;
                 width: 98%;
-                max-height: 85vh;
-                /* POVEČANO ZA BOLJŠI SCROLL */
             }
 
             .contact-overlay {
-                font-size: 0.85rem;
-                /* ZMANJŠANO IZ 0.95rem */
-                padding: 0.8rem;
-                /* ZMANJŠANO IZ 1rem */
+                font-size: 0.95rem;
+                padding: 1rem;
                 width: 98%;
             }
 
             .description-text {
-                font-size: 0.8rem;
-                /* ZMANJŠANO IZ 0.9rem */
-                padding: 0.2rem;
-                /* ZMANJŠANO IZ 0.3rem */
-                line-height: 1.5;
-                /* ZMANJŠANO ZA BOLJŠO BRANLJIVOST */
-            }
-
-            .about-text p {
                 font-size: 0.9rem;
-                /* DODAJ ZA MOBILNE */
-                line-height: 1.4;
-                margin-bottom: 1rem;
-            }
-
-            .about-text ul {
-                padding-left: 1rem;
-                /* ZMANJŠANO IZ 1.5rem */
-                margin: 0.8rem 0;
-            }
-
-            .about-text li {
-                font-size: 0.8rem;
-                line-height: 1.3;
-                margin-bottom: 0.3rem;
+                padding: 0.3rem;
             }
 
             footer {
-                padding: 0.5rem;
-                /* ZMANJŠANO IZ 0.6rem */
-                font-size: 0.75rem;
-                /* ZMANJŠANO IZ 0.8rem */
-            }
-
-            .slide {
-                min-width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center;
-                /* DODAJ TO ZA BOLJŠO PORAVNAVO */
+                padding: 0.6rem;
+                font-size: 0.8rem;
             }
         }
 
         /* Small mobile styles -----------------------------------------*/
         @media (max-width: 480px) {
             .logo-text {
-                font-size: 1.1rem;
-                /* ZMANJŠANO IZ 1.2rem */
+                font-size: 1.2rem;
             }
 
             .nav-links {
-                gap: 0.3rem;
-                /* ZMANJŠANO IZ 0.5rem */
+                gap: 0.5rem;
             }
 
             .nav-links a {
-                font-size: 0.7rem;
-                /* ZMANJŠANO IZ 0.8rem */
-                padding: 0.1rem 0.2rem;
-                /* ZMANJŠANO */
+                font-size: 0.8rem;
+                padding: 0.15rem 0.3rem;
             }
 
             .language-flags a {
-                width: 22px;
-                /* ZMANJŠANO IZ 26px */
-                height: 12px;
-                /* ZMANJŠANO IZ 14px */
-            }
-
-            .container {
-                margin-top: 100px;
-                /* ZMANJŠANO ZA ZELO MAJHNE ZASLONE */
-            }
-
-            .slideshow {
-                height: 45vh;
-                /* ZMANJŠANO IZ 50vh */
+                width: 26px;
+                height: 14px;
+                margin-top: 1px;
             }
 
             .text-overlay {
-                font-size: 0.8rem;
-                /* ZMANJŠANO IZ 0.9rem */
-                padding: 0.6rem;
-                /* ZMANJŠANO IZ 0.8rem */
+                font-size: 0.9rem;
+                padding: 0.8rem;
             }
 
             .contact-overlay {
-                font-size: 0.75rem;
-                /* ZMANJŠANO IZ 0.85rem */
-                padding: 0.6rem;
-                /* ZMANJŠANO IZ 0.8rem */
-            }
-
-            .description-text {
-                font-size: 0.75rem;
-                /* ZMANJŠANO IZ 0.8rem */
-                padding: 0.1rem;
-            }
-
-            .about-text p {
-                font-size: 0.8rem;
-            }
-
-            .about-text ul {
-                padding-left: 0.8rem;
-            }
-
-            .about-text li {
-                font-size: 0.75rem;
-            }
-
-            .slide {
-                object-fit: contain;
-                /* SPREMENI IZ cover V contain NA MOBILNIH */
-                background: #000;
-                /* ČRNA OZADINA ČE JE SLIKA MANJŠA */
+                font-size: 0.85rem;
+                padding: 0.8rem;
             }
         }
 
-        /* Extra small mobile styles -----------------------------*/
-        @media (max-width: 360px) {
+        /* Desktop responsive - prepreči lomljenje logotipa */
+        @media (min-width: 769px) and (max-width: 1100px) {
             .logo-text {
-                font-size: 1rem;
-            }
-
-            .nav-links {
-                gap: 0.2rem;
+                font-size: 1.4rem;
             }
 
             .nav-links a {
-                font-size: 0.65rem;
-                padding: 0.08rem 0.15rem;
+                font-size: 0.85rem;
+                padding: 0.2rem 0.4rem;
             }
 
-            .slideshow {
-                height: 40vh;
+            .nav-links {
+                gap: 0.8rem;
             }
         }
     </style>
@@ -801,6 +726,57 @@
             contactOverlay.classList.add('active');
             // Scrollaj na vrh
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Funkcija za zaznavanje orientacije slik
+        function detectImageOrientation() {
+            const slides = document.querySelectorAll('.slide');
+
+            slides.forEach(slide => {
+                if (slide.complete && slide.naturalWidth > 0) {
+                    if (slide.naturalHeight > slide.naturalWidth) {
+                        // Portretna slika - dodaj poseben class
+                        slide.classList.add('portrait-slide');
+                    } else {
+                        // Landscape slika - odstrani class
+                        slide.classList.remove('portrait-slide');
+                    }
+                } else {
+                    slide.addEventListener('load', function () {
+                        if (this.naturalHeight > this.naturalWidth) {
+                            this.classList.add('portrait-slide');
+                        } else {
+                            this.classList.remove('portrait-slide');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Posodobi loadSlides funkcijo
+        function loadSlides() {
+            const shuffledImages = shuffleArray([...imageFiles]);
+
+            shuffledImages.forEach((imageSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = `Iža na brejgi ${index + 1}`;
+                img.className = 'slide';
+
+                // Dodaj event listener za orientacijo
+                img.addEventListener('load', function () {
+                    if (this.naturalHeight > this.naturalWidth) {
+                        this.classList.add('portrait-slide');
+                    }
+                });
+
+                slideshowTrack.appendChild(img);
+            });
+
+            const firstSlide = slideshowTrack.children[0].cloneNode(true);
+            slideshowTrack.appendChild(firstSlide);
+
+            setTimeout(detectImageOrientation, 100);
         }
 
         // Inicializacija
