@@ -54,6 +54,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 1rem;
+            flex-wrap: wrap;
+            /* Dodano za mobilno */
         }
 
         .logo-section {
@@ -62,6 +64,8 @@
             gap: 15px;
             flex-shrink: 0;
             min-width: 0;
+            order: 1;
+            /* Logo prvi */
         }
 
         .logo-img {
@@ -88,6 +92,8 @@
             justify-content: flex-end;
             flex: 1;
             min-width: 0;
+            order: 3;
+            /* Navigacija zadnja */
         }
 
         .nav-links {
@@ -95,7 +101,8 @@
             list-style: none;
             gap: 1rem;
             flex-wrap: wrap;
-            justify-content: flex-end;
+            justify-content: center;
+            /* Center na desktopu */
             margin: 0;
             padding: 0;
         }
@@ -120,6 +127,8 @@
             gap: 6px;
             flex-shrink: 0;
             align-items: center;
+            order: 2;
+            /* Zastave v sredini */
         }
 
         .language-flags a {
@@ -156,173 +165,6 @@
             border-color: #ffffff1f;
         }
 
-        /* MAIN CONTENT */
-        .container {
-            max-width: 1200px;
-            margin: 80px auto 0;
-            padding: 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .slideshow-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ddeadc;
-            position: relative;
-            min-height: 400px;
-        }
-
-        .slideshow {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slideshow-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            object-fit: contain;
-            object-position: center;
-        }
-
-        /* OVERLAYS */
-        .overlay-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 90;
-            display: none;
-        }
-
-        .overlay-background.active {
-            display: block;
-        }
-
-        .text-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: left;
-            color: rgba(255, 255, 0, 0.9);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 1.5rem;
-            z-index: 100;
-            width: 95%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            display: none;
-            background: transparent;
-            border-radius: 0;
-        }
-
-        .text-overlay.active {
-            display: block;
-        }
-
-        .contact-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: left;
-            color: rgba(255, 255, 0, 0.9);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
-            font-size: 1.2rem;
-            font-weight: bold;
-            padding: 1.5rem;
-            z-index: 100;
-            width: 95%;
-            max-width: 800px;
-            display: none;
-            background: transparent;
-            border-radius: 0;
-        }
-
-        .contact-overlay.active {
-            display: block;
-        }
-
-        .contact-item {
-            margin-bottom: 12px;
-        }
-
-        .contact-label {
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-        }
-
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .about-text ul {
-            text-align: left;
-            margin: 0.8rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .about-text li {
-            margin-bottom: 0.4rem;
-            line-height: 1.4;
-        }
-
-        .description-text {
-            text-align: left;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-height: 70vh;
-            overflow-y: auto;
-            padding: 0.5rem;
-        }
-
-        .description-text p {
-            margin-bottom: 1.2rem;
-        }
-
-        .description-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #2c5530;
-            color: rgba(255, 255, 0, 0.8);
-            text-align: center;
-            padding: 1rem;
-            font-size: 0.9rem;
-            line-height: 1.3;
-        }
-
         /* MOBILE STYLES - PORTRAIT */
         @media (max-width: 768px) and (orientation: portrait) {
             header {
@@ -332,15 +174,17 @@
             }
 
             nav {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.5rem;
                 padding: 0.5rem;
+                justify-content: space-between;
             }
 
             .logo-section {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
+                order: 1;
+                flex: 0 0 auto;
+                justify-content: flex-start;
             }
 
             .logo-img {
@@ -351,17 +195,24 @@
                 font-size: 1.4rem;
             }
 
+            .language-flags {
+                order: 2;
+                flex: 0 0 auto;
+                justify-content: flex-end;
+                margin-left: auto;
+            }
+
             .nav-main {
-                flex-direction: column;
+                order: 3;
                 width: 100%;
-                gap: 1rem;
+                margin-top: 0.5rem;
+                justify-content: center;
             }
 
             .nav-links {
-                flex-direction: row;
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 0.8rem;
+                gap: 0.5rem;
+                width: 100%;
             }
 
             .nav-links a {
@@ -371,18 +222,12 @@
                 border-radius: 4px;
             }
 
-            .language-flags {
-                justify-content: center;
-                margin-top: 0.5rem;
-            }
-
             .container {
                 margin-top: 0;
             }
 
             .slideshow-container {
                 min-height: calc(100vh - 200px - 60px);
-                /* viewport - header - footer */
             }
 
             .slide {
@@ -393,32 +238,65 @@
 
         /* MOBILE LANDSCAPE */
         @media (max-width: 768px) and (orientation: landscape) {
-            .slideshow-container {
-                min-height: calc(100vh - 80px - 60px);
+            nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
-        }
 
-        /* DESKTOP */
-        @media (min-width: 769px) {
-            .slideshow-container {
-                min-height: calc(100vh - 80px - 60px);
-                /* viewport - header - footer */
+            .nav-main {
+                order: 3;
+                width: 100%;
+                margin-top: 0.5rem;
+                justify-content: center;
+            }
+
+            .nav-links {
+                justify-content: center;
             }
         }
 
         /* EXTRA SMALL PHONES */
-        @media (max-width: 360px) and (orientation: portrait) {
+        @media (max-width: 480px) and (orientation: portrait) {
+            .logo-section {
+                flex: 1;
+                min-width: 0;
+            }
+
             .logo-text {
                 font-size: 1.2rem;
+                max-width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .language-flags {
+                flex: 0 0 auto;
             }
 
             .nav-links {
-                gap: 0.5rem;
+                gap: 0.3rem;
             }
 
             .nav-links a {
                 font-size: 0.75rem;
                 padding: 0.2rem 0.4rem;
+            }
+        }
+
+        @media (max-width: 360px) and (orientation: portrait) {
+            .logo-text {
+                font-size: 1rem;
+                max-width: 120px;
+            }
+
+            .nav-links a {
+                font-size: 0.7rem;
+                padding: 0.15rem 0.3rem;
+            }
+
+            .language-flags a {
+                width: 25px;
+                height: 14px;
             }
         }
     </style>
