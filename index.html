@@ -34,7 +34,25 @@
             min-height: 100vh;
         }
 
-        /* HEADER */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        footer {
+            background: #2c5530;
+            color: rgba(255, 255, 0, 0.8);
+            text-align: center;
+            padding: 0.8rem;
+            margin-top: auto;
+            /* DODAJ TO */
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
         header {
             background: linear-gradient(135deg, #2c5530, #4a7c59);
             color: rgba(255, 255, 0, 0.8);
@@ -54,8 +72,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 1rem;
-            flex-wrap: wrap;
-            /* Dodano za mobilno */
         }
 
         .logo-section {
@@ -64,8 +80,6 @@
             gap: 15px;
             flex-shrink: 0;
             min-width: 0;
-            order: 1;
-            /* Logo prvi */
         }
 
         .logo-img {
@@ -92,8 +106,6 @@
             justify-content: flex-end;
             flex: 1;
             min-width: 0;
-            order: 3;
-            /* Navigacija zadnja */
         }
 
         .nav-links {
@@ -101,8 +113,7 @@
             list-style: none;
             gap: 1rem;
             flex-wrap: wrap;
-            justify-content: center;
-            /* Center na desktopu */
+            justify-content: flex-end;
             margin: 0;
             padding: 0;
         }
@@ -127,8 +138,7 @@
             gap: 6px;
             flex-shrink: 0;
             align-items: center;
-            order: 2;
-            /* Zastave v sredini */
+            height: 100%;
         }
 
         .language-flags a {
@@ -146,6 +156,7 @@
 
         .language-flags a:hover {
             transform: scale(1.2);
+            filter: brightness(100%);
         }
 
         .flag {
@@ -155,6 +166,7 @@
             display: block;
         }
 
+        /* Aktivna zastava v črno-beli barvi */
         .language-flags .active-flag .flag {
             filter: grayscale(100%) brightness(40%);
             border-color: #cccccc1f;
@@ -165,138 +177,235 @@
             border-color: #ffffff1f;
         }
 
-        /* MOBILE STYLES - PORTRAIT */
-        @media (max-width: 768px) and (orientation: portrait) {
-            header {
-                padding: 0.5rem 0;
-                position: relative;
-                height: auto;
-            }
+        .hero {
+            text-align: center;
+            margin-bottom: 0;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
 
-            nav {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                padding: 0.5rem;
-                justify-content: space-between;
-            }
+        /* Osnovni slogi za vse naprave */
+        .slideshow {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: #ddeadc;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-            .logo-section {
-                order: 1;
-                flex: 0 0 auto;
-                justify-content: flex-start;
-            }
+        .slideshow-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+            align-items: center;
+        }
 
-            .logo-img {
-                height: 35px;
-            }
+        .slide {
+            min-width: 100%;
+            object-fit: contain;
+            object-position: center;
+            background: #ddeadc;
+        }
 
-            .logo-text {
-                font-size: 1.4rem;
-            }
-
-            .language-flags {
-                order: 2;
-                flex: 0 0 auto;
-                justify-content: flex-end;
-                margin-left: auto;
-            }
-
-            .nav-main {
-                order: 3;
-                width: 100%;
-                margin-top: 0.5rem;
-                justify-content: center;
-            }
-
-            .nav-links {
-                justify-content: center;
-                gap: 0.5rem;
-                width: 100%;
-            }
-
-            .nav-links a {
-                font-size: 0.85rem;
-                padding: 0.3rem 0.6rem;
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 4px;
-            }
-
-            .container {
-                margin-top: 0;
-            }
-
-            .slideshow-container {
-                min-height: calc(100vh - 200px - 60px);
+        /* DESKTOP in LANDSCAPE TABLETI (širina > višina) */
+        @media (min-width: 769px),
+        (orientation: landscape) and (min-width: 481px) {
+            .slideshow {
+                height: 70vh;
             }
 
             .slide {
-                width: 100%;
                 height: 100%;
+                max-height: 100%;
             }
         }
 
-        /* MOBILE LANDSCAPE */
+        /* Za boljši prikaz portretnih slik - z zelenim ozadjem */
+        .portrait-slide {
+            max-height: 85%;
+            max-width: 70%;
+            width: auto;
+            height: auto;
+            background: #ddeadc;
+        }
+
+        .overlay-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 90;
+            display: none;
+        }
+
+        .overlay-background.active {
+            display: block;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: left;
+            color: rgba(255, 255, 0, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1.5rem;
+            z-index: 100;
+            width: 95%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+        }
+
+        .text-overlay.active {
+            display: block;
+        }
+
+        .contact-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: left;
+            color: rgba(255, 255, 0, 0.9);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 1.5rem;
+            z-index: 100;
+            width: 95%;
+            max-width: 500px;
+            display: none;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+        }
+
+        .contact-overlay.active {
+            display: block;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .hero-text {
+            margin-top: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c5530;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text ul {
+            text-align: left;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .about-text li {
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .description-text {
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .description-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .description-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Mobile styles ---------------------------------------------*/
+        /* MOBILNI TELEFONI v PORTRAIT (višina > širina) */
+        @media (max-width: 768px) and (orientation: portrait) {
+            .slideshow {
+                height: 50vh;
+                /* MANJŠA VIŠINA ZA PORTRAIT */
+            }
+
+            .slide {
+                height: auto;
+                max-height: 95%;
+                max-width: 95%;
+            }
+        }
+
+        /* MOBILNI TELEFONI v LANDSCAPE */
         @media (max-width: 768px) and (orientation: landscape) {
-            nav {
-                flex-wrap: wrap;
-                gap: 0.5rem;
+            .slideshow {
+                height: 60vh;
             }
 
-            .nav-main {
-                order: 3;
-                width: 100%;
-                margin-top: 0.5rem;
-                justify-content: center;
-            }
-
-            .nav-links {
-                justify-content: center;
+            .slide {
+                height: 100%;
+                max-height: 100%;
             }
         }
 
-        /* EXTRA SMALL PHONES */
-        @media (max-width: 480px) and (orientation: portrait) {
-            .logo-section {
-                flex: 1;
-                min-width: 0;
+        /* TABLETI v PORTRAIT */
+        @media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+            .slideshow {
+                height: 55vh;
             }
 
-            .logo-text {
-                font-size: 1.2rem;
-                max-width: 150px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .language-flags {
-                flex: 0 0 auto;
-            }
-
-            .nav-links {
-                gap: 0.3rem;
-            }
-
-            .nav-links a {
-                font-size: 0.75rem;
-                padding: 0.2rem 0.4rem;
+            .slide {
+                height: auto;
+                max-height: 90%;
+                max-width: 90%;
             }
         }
 
+        /* ZELO MAJHNI EKRANI (iphone SE, starejši telefoni) */
         @media (max-width: 360px) and (orientation: portrait) {
-            .logo-text {
-                font-size: 1rem;
-                max-width: 120px;
+            .slideshow {
+                height: 45vh;
             }
 
-            .nav-links a {
-                font-size: 0.7rem;
-                padding: 0.15rem 0.3rem;
-            }
-
-            .language-flags a {
-                width: 25px;
-                height: 14px;
+            .slide {
+                max-height: 85%;
+                max-width: 85%;
             }
         }
     </style>
@@ -337,69 +446,76 @@
 
     <div class="container">
         <section class="hero" id="domov">
-            <div class="slideshow-container">
-                <div class="slideshow" id="slideshow-container">
-                    <div class="slideshow-track" id="slideshow-track">
-                        <!-- Slike se bodo dinamično naložile tu -->
+            <div class="slideshow" id="slideshow-container">
+                <div class="slideshow-track" id="slideshow-track">
+                    <!-- Slike se bodo dinamično naložile tu -->
+                </div>
+
+                <!-- Overlay background za blur efekt -->
+                <div class="overlay-background" id="overlay-background"></div>
+
+                <!-- Overlay za Opis -->
+                <div class="text-overlay" id="description-overlay">
+                    <div class="description-text">
+                        <p>Vrnite se v čase vaših dedkov in babic v prijetno hiško na mirni lokaciji med vinogradi,
+                            vendar na sodoben način z vsem udobjem današnjega časa.</p>
+
+                        <p>Zaspite v tišini in v soju lune, zbudite se s ptičjim petjem.</p>
+
+                        <p>Lahko uživate v naravi na lastnem dvorišču, lahko raziskujete okolico peš ali s kolesom po
+                            označenih poteh, lahko pa tudi uživate v bližnjih termalnih kopališčih.</p>
+
+                        <p>Prva omemba hiše datira v leto 1864 in je že označena na prvih kartah.</p>
+
+                        <p>Hiša je opremljena z restavriranim stilnim pohištvom takratnega časa in veliko kosov presega
+                            častitljivo starost 100 let.</p>
+
+                        <p>Potrudili smo se, da vas popeljemo na potovanje v preteklost, da si vzamete čas za sebe in
+                            svoje najbližje ter mogoče tudi za razmislek o nekdanjih vrednotah, ki v tem prehitrem svetu
+                            vedno bolj izginjajo.</p>
+
+                        <p>Prosimo da hišo in pohištvo uporabljate skrbno in pazljivo, da ga bomo čez naslednjih 100 let
+                            lahko predali našim vnukom in pravnukom v takem stanju, kot so nam ga predali naši predniki.
+                        </p>
                     </div>
+                </div>
 
-                    <div class="overlay-background" id="overlay-background"></div>
+                <!-- Overlay za Ponujamo -->
+                <div class="text-overlay" id="about-overlay">
+                    <div class="about-text">
+                        <p>Ponujamo počitniško hišo za 4 osebe z:</p>
+                        <ul>
+                            <li>ločeno spalnico</li>
+                            <li>dodatnim ležiščem v dnevnem prostoru</li>
+                            <li>jedilnico</li>
+                            <li>celotno opremljeno kuhinjo</li>
+                            <li>kopalnico s tušem</li>
+                            <li>dodatnim straniščem</li>
+                            <li>pokrito teraso</li>
+                            <li>prostor za shranjevanje koles</li>
+                            <li>dvema parkirnima mestoma</li>
+                        </ul>
+                    </div>
+                </div>
 
-                    <div class="text-overlay" id="description-overlay">
-                        <div class="description-text">
-                            <p>Vrnite se v čase vaših dedkov in babic v prijetno hiško na mirni lokaciji med vinogradi,
-                                vendar na sodoben način z vsem udobjem današnjega časa.</p>
-                            <p>Zaspite v tišini in v soju lune, zbudite se s ptičjim petjem.</p>
-                            <p>Lahko uživate v naravi na lastnem dvorišču, lahko raziskujete okolico peš ali s kolesom
-                                po
-                                označenih poteh, lahko pa tudi uživate v bližnjih termalnih kopališčih.</p>
-                            <p>Prva omemba hiše datira v leto 1864 in je že označena na prvih kartah.</p>
-                            <p>Hiša je opremljena z restavriranim stilnim pohištvom takratnega časa in veliko kosov
-                                presega častitljivo starost 100 let.</p>
-                            <p>Potrudili smo se, da vas popeljemo na potovanje v preteklost, da si vzamete čas za sebe
-                                in svoje najbližje ter mogoče tudi za razmislek o nekdanjih vrednotah, ki v tem
-                                prehitrem svetu vedno bolj izginjajo.</p>
-                            <p>Prosimo da hišo in pohištvo uporabljate skrbno in pazljivo, da ga bomo čez naslednjih 100
-                                let lahko predali našim vnukom in pravnukom v takem stanju, kot so nam ga predali naši
-                                predniki.</p>
+                <!-- Overlay za Kontakt -->
+                <div class="contact-overlay" id="contact-overlay">
+                    <h2>Kontakti</h2>
+                    <div class="contact-section">
+                        <div class="contact-item">
+                            <span class="contact-label">Telefon:</span>
+                            <span class="contact-value">+386 41 563 873 Tanja</span>
                         </div>
-                    </div>
-
-                    <div class="text-overlay" id="about-overlay">
-                        <div class="about-text">
-                            <p>Ponujamo počitniško hišo za 4 osebe z:</p>
-                            <ul>
-                                <li>ločeno spalnico</li>
-                                <li>dodatnim ležiščem v dnevnem prostoru</li>
-                                <li>jedilnico</li>
-                                <li>celotno opremljeno kuhinjo</li>
-                                <li>kopalnico s tušem</li>
-                                <li>dodatnim straniščem</li>
-                                <li>pokrito teraso</li>
-                                <li>prostor za shranjevanje koles</li>
-                                <li>dvema parkirnima mestoma</li>
-                            </ul>
+                        <div class="contact-item">
+                            <span class="contact-label">Email:</span>
+                            <span class="contact-value">iza.na.breigi@gmail.com</span>
                         </div>
-                    </div>
-
-                    <div class="contact-overlay" id="contact-overlay">
-                        <h2>Kontakti</h2>
-                        <div class="contact-section">
-                            <div class="contact-item">
-                                <span class="contact-label">Telefon:</span>
-                                <span class="contact-value">+386 41 563 873 Tanja</span>
-                            </div>
-                            <div class="contact-item">
-                                <span class="contact-label">Email:</span>
-                                <span class="contact-value">iza.na.breigi@gmail.com</span>
-                            </div>
-                            <div class="contact-item">
-                                <span class="contact-label">Naslov:</span>
-                                <div class="contact-value address">
-                                    <div>Rumičev breg 71</div>
-                                    <div>9226 Moravske Toplice</div>
-                                    <div>Goričko, Prekmurje, Slovenija</div>
-                                </div>
+                        <div class="contact-item">
+                            <span class="contact-label">Naslov:</span>
+                            <div class="contact-value address">
+                                <div>Rumičev breg 71</div>
+                                <div>9226 Moravske Toplice</div>
+                                <div>Goričko, Prekmurje, Slovenija</div>
                             </div>
                         </div>
                     </div>
@@ -456,34 +572,12 @@
                 img.src = imageSrc;
                 img.alt = `Iža na brejgi ${index + 1}`;
                 img.className = 'slide';
-                img.onload = function () {
-                    adjustImageToScreen(this);
-                };
                 slideshowTrack.appendChild(img);
             });
 
             // Dodaj še prvo sliko na konec za neskončni efekt
             const firstSlide = slideshowTrack.children[0].cloneNode(true);
             slideshowTrack.appendChild(firstSlide);
-        }
-
-        // Funkcija za prilagajanje slik glede na zaslon
-        function adjustImageToScreen(img) {
-            const slideshow = document.querySelector('.slideshow');
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight - 80 - 60; // minus header in footer
-
-            if (img.naturalWidth > img.naturalHeight) {
-                // Landscape slika - polni širino
-                img.style.width = '100%';
-                img.style.height = 'auto';
-                img.style.maxHeight = '100%';
-            } else {
-                // Portrait slika - prilagodi višini
-                img.style.height = '100%';
-                img.style.width = 'auto';
-                img.style.maxWidth = '100%';
-            }
         }
 
         function showNextSlide() {
@@ -493,6 +587,7 @@
 
             track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
 
+            // Neskončni efekt - ko pridemo do klona, skočimo nazaj na začetek
             if (currentSlide >= imageFiles.length) {
                 setTimeout(() => {
                     track.style.transition = 'none';
@@ -514,6 +609,7 @@
 
         function showHome() {
             hideAllOverlays();
+            // Scrollaj na vrh
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -521,6 +617,7 @@
             hideAllOverlays();
             overlayBackground.classList.add('active');
             descriptionOverlay.classList.add('active');
+            // Scrollaj na vrh
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -528,6 +625,7 @@
             hideAllOverlays();
             overlayBackground.classList.add('active');
             aboutOverlay.classList.add('active');
+            // Scrollaj na vrh
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -535,38 +633,97 @@
             hideAllOverlays();
             overlayBackground.classList.add('active');
             contactOverlay.classList.add('active');
+            // Scrollaj na vrh
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Prilagodi vse slike ob spremembi velikosti
-        function adjustAllImages() {
+        // Funkcija za prilagajanje višine glede na orientacijo
+        function adjustSlideshowHeight() {
+            const slideshow = document.getElementById('slideshow-container');
+            const isPortrait = window.innerHeight > window.innerWidth;
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile && isPortrait) {
+                // Mobilni telefon v portrait
+                slideshow.style.height = '50vh';
+            } else if (isMobile && !isPortrait) {
+                // Mobilni telefon v landscape
+                slideshow.style.height = '60vh';
+            } else {
+                // Desktop ali tablet
+                slideshow.style.height = '70vh';
+            }
+        }
+
+        // Funkcija za prilagajanje velikosti slik
+        function adjustImageSizes() {
             const slides = document.querySelectorAll('.slide');
+            const isPortrait = window.innerHeight > window.innerWidth;
+            const isMobile = window.innerWidth <= 768;
+
             slides.forEach(slide => {
-                if (slide.complete) {
-                    adjustImageToScreen(slide);
+                if (isMobile && isPortrait) {
+                    // Na portrait mobilnih - manjše slike
+                    slide.style.maxHeight = '95%';
+                    slide.style.maxWidth = '95%';
+                    slide.style.height = 'auto';
+                } else {
+                    // Na vseh ostalih - polna velikost
+                    slide.style.maxHeight = '100%';
+                    slide.style.maxWidth = '100%';
+                    slide.style.height = '100%';
                 }
             });
         }
 
-        // Event listenerji
+        // Event listenerji za spremembe velikosti in orientacije
         window.addEventListener('load', function () {
-            adjustAllImages();
+            adjustSlideshowHeight();
+            adjustImageSizes();
         });
 
         window.addEventListener('resize', function () {
-            adjustAllImages();
+            adjustSlideshowHeight();
+            adjustImageSizes();
         });
 
         window.addEventListener('orientationchange', function () {
+            // Počakaj malo da se orientacija konča
             setTimeout(function () {
-                adjustAllImages();
+                adjustSlideshowHeight();
+                adjustImageSizes();
             }, 100);
         });
 
+
+        // Posodobi loadSlides funkcijo
+        function loadSlides() {
+            const shuffledImages = shuffleArray([...imageFiles]);
+
+            shuffledImages.forEach((imageSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = `Iža na brejgi ${index + 1}`;
+                img.className = 'slide';
+                slideshowTrack.appendChild(img);
+            });
+
+            const firstSlide = slideshowTrack.children[0].cloneNode(true);
+            slideshowTrack.appendChild(firstSlide);
+
+            // Po nalaganju slik prilagodi velikosti
+            setTimeout(function () {
+                adjustImageSizes();
+            }, 500);
+        }
+
         // Inicializacija
         loadSlides();
+
+        // Začni avtomatsko menjavo
         setInterval(showNextSlide, 4000);
 
+        // Dodaj event listener za klik zunaj overlayjev
         document.addEventListener('click', function (event) {
             if (event.target.classList.contains('slideshow') || event.target.classList.contains('overlay-background')) {
                 hideAllOverlays();
