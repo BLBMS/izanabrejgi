@@ -6,459 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Iža na brejgi</title>
-    <style>
-        @font-face {
-            font-family: 'TT2020StyleE';
-            src: url('fonts/TT2020StyleE-Regular.woff2') format('woff2'),
-                url('fonts/TT2020StyleE-Regular.woff') format('woff'),
-                url('fonts/TT2020StyleE-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        :root {
-            --background-color: #2e3d2d;
-            --overlay-background: rgba(0, 0, 0, 0.7);
-            --text-color: #333333;
-            --header-bg: linear-gradient(135deg, #123415, #36844d);
-            --header-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --font-color: rgba(208, 255, 0, 0.811);
-            --font-shadow: 4px 4px 6px rgba(0, 0, 0, 0.9);
-            --hover-color: rgba(234, 255, 0, 0.8);
-            --font-size-overlay: 1.0rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'TT2020StyleE', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: var(--background-color);
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: calc(100vh - 80px);
-        }
-
-        header {
-            background: var(--header-bg);
-            color: var(--font-color);
-            padding: 0.5rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--header-box-shadow);
-            border-radius: 0;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-            flex-wrap: wrap;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-shrink: 0;
-            min-width: 0;
-            order: 1;
-        }
-
-        .language-flags {
-            display: flex;
-            gap: 6px;
-            flex-shrink: 0;
-            align-items: center;
-            order: 3;
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            border-radius: 0;
-            flex-shrink: 0;
-        }
-
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex-shrink: 0;
-        }
-
-        .nav-main {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            flex: 1;
-            min-width: 0;
-            order: 2;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 0.1rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
-            color: var(--font-color);
-            text-decoration: none;
-            transition: color 0.3s;
-            cursor: pointer;
-            white-space: nowrap;
-            font-size: 0.9rem;
-            padding: 0.25rem 0.5rem;
-        }
-
-        .nav-links a:hover {
-            font-weight: bold;
-            color: var(--hover-color);
-        }
-
-        .language-flags a {
-            display: flex;
-            width: 30px;
-            height: 16px;
-            border-radius: 2px;
-            overflow: hidden;
-            border: 1px solid white;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .language-flags a:hover {
-            transform: scale(1.2);
-            filter: brightness(100%);
-        }
-
-        .flag {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .language-flags .active-flag .flag {
-            filter: grayscale(100%) brightness(40%);
-            border-color: #cccccc1f;
-        }
-
-        .language-flags .active-flag:hover .flag {
-            filter: grayscale(100%) brightness(40%);
-            border-color: #ffffff1f;
-        }
-
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            margin: 0;
-            padding: 0;
-        }
-
-        .slideshow-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--background-color);
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-
-        .slideshow {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-        .slideshow-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-            gap: 0;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-            margin: 0;
-            padding: 0;
-        }
-
-        footer {
-            background: var(--header-bg);
-            color: var(--font-color);
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 0.8rem;
-            margin: 0;
-            width: 100%;
-            flex-shrink: 0;
-        }
-
-        @media (min-width: 901px) {
-            nav {
-                flex-wrap: nowrap;
-            }
-
-            .logo-section {
-                order: 1;
-            }
-
-            .nav-main {
-                order: 2;
-                justify-content: center;
-            }
-
-            .nav-links {
-                justify-content: center;
-            }
-
-            .language-flags {
-                order: 3;
-                margin-left: auto;
-            }
-        }
-
-        @media (max-width: 900px) {
-            nav {
-                flex-wrap: wrap;
-                align-items: center;
-            }
-
-            .logo-section {
-                order: 1;
-                flex: 1;
-                min-width: 0;
-            }
-
-            .language-flags {
-                order: 3;
-                flex-shrink: 0;
-                margin-left: 0;
-            }
-
-            .nav-main {
-                order: 4;
-                flex: 1 0 100%;
-                margin-top: 0.5rem;
-                justify-content: center;
-            }
-
-            .nav-links {
-                justify-content: center;
-                width: 100%;
-                gap: 0.5rem;
-            }
-
-            .nav-links a {
-                font-size: 0.85rem;
-                padding: 0.3rem 0.6rem;
-                border-radius: 4px;
-            }
-
-            .logo-text {
-                font-size: 1.4rem;
-            }
-
-            .logo-img {
-                height: 35px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo-text {
-                font-size: 1.2rem;
-                max-width: 150px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .nav-links {
-                gap: 0.3rem;
-            }
-
-            .nav-links a {
-                font-size: 0.75rem;
-                padding: 0.2rem 0.4rem;
-            }
-
-            .language-flags a {
-                width: 25px;
-                height: 14px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .logo-text {
-                font-size: 1rem;
-                max-width: 120px;
-            }
-
-            .nav-links a {
-                font-size: 0.7rem;
-                padding: 0.15rem 0.3rem;
-            }
-        }
-
-        .overlay-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--overlay-background);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 90;
-            display: none;
-        }
-
-        .overlay-background.active {
-            display: block;
-        }
-
-        .text-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: left;
-            color: var(--font-color);
-            text-shadow: var(--font-shadow);
-            font-size: var(--font-size-overlay);
-            padding: 1.5rem;
-            z-index: 100;
-            width: 95%;
-            max-width: 800px;
-            max-height: 60vh;
-            overflow-y: auto;
-            display: none;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-        }
-
-        .text-overlay.active {
-            display: block;
-        }
-
-        .contact-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: left;
-            color: var(--font-color);
-            text-shadow: var(--font-shadow);
-            font-size: var(--font-size-overlay);
-            padding: 1.5rem;
-            z-index: 100;
-            width: 95%;
-            max-width: 800px;
-            max-height: 60vh;
-            display: none;
-            background: transparent;
-            border: none;
-            border-radius: 0;
-        }
-
-        .contact-overlay.active {
-            display: block;
-        }
-
-        .contact-item {
-            margin-bottom: 12px;
-        }
-
-        .contact-label {
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .about-text p {
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-        }
-
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
-
-        .about-text ul {
-            text-align: left;
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .about-text li {
-            margin-bottom: 0.4rem;
-            line-height: 1.4;
-        }
-
-        .description-text {
-            text-align: justify;
-            font-size: var(--font-size-overlay);
-            line-height: 1.6;
-            max-height: 70vh;
-            padding: 0.5rem;
-        }
-
-        .description-text p {
-            margin-bottom: 1.2rem;
-        }
-
-        .description-text p:last-child {
-            margin-bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
         <nav>
             <div class="logo-section">
-                <img src="logos/logo_Iza_na_brejgi.png" alt="Iža on the Hill" class="logo-img">
+                <img src="logos/logo_Iza_na_brejgi.png" alt="Iža na brejgi" class="logo-img">
                 <div class="logo-text">Iža na brejgi</div>
             </div>
 
@@ -466,8 +21,8 @@
                 <ul class="nav-links">
                     <li><a href="#home" onclick="showHome()">Home</a></li>
                     <li><a href="#description" onclick="showDescription()">Description</a></li>
-                    <li><a href="#offer" onclick="showAbout()">What we offer</a></li>
-                    <li><a href="#contact" onclick="showContact()">Contact</a></li>
+                    <li><a href="#offer" onclick="showAbout()">We offer</a></li>
+                    <li><a href="#contact" onclick="showContact()">Contacts</a></li>
                 </ul>
             </div>
 
@@ -495,40 +50,64 @@
 
                     <div class="overlay-background" id="overlay-background"></div>
 
+                    <!-- ChatGPT -->
                     <div class="text-overlay" id="description-overlay">
                         <div class="description-text">
                             <h2>Description</h2>
-                            <p>Return to the times of your grandparents in a pleasant little house in a quiet location among vineyards, but in a modern way with all the comforts of today.</p>
+                            <p>Return to the times of your grandparents in a cosy little house in a peaceful location
+                                among the vineyards - but in a modern way, with all the comfort of today.</p>
 
-                            <p>Fall asleep in silence and in the moonlight, wake up with birdsong.</p>
+                            <p>Fall asleep in silence under the moonlight and wake up to the singing of birds.</p>
 
-                            <p>You can enjoy nature in your own yard, explore the surroundings on foot or by bicycle on marked trails, or also enjoy the nearby thermal baths.</p>
+                            <p>You can enjoy nature in your own yard, explore the surroundings on foot or by bike along
+                                marked trails, or relax in the nearby thermal spas.</p>
 
-                            <p>The translation from Prekmurje dialect is "House on the Hill". The word "hill" is not used locally, instead the word "breg" is used, which means small hill, or dialectally "brejg". For the inhabitants of Spodnje Moravče (this is the lower, flatter part of present-day Moravske Toplice), the first elevation in the hinterland of the village was primarily useful for vineyards. The more flat areas near farms were used as agricultural land.</p>
+                            <p>The translation from the local Prekmurje dialect is “House on the Hill”. The word grič
+                                (“hill”)
+                                is not used locally; instead, people use breg, which also means a hill, or the dialect
+                                version brejg.
+                                For the inhabitants of Spodnje Moravce (the lower part of today's Moravske Toplice), the
+                                first
+                                elevation behind the village was mainly used for vineyards. The flatter areas near the
+                                farms
+                                were used as agricultural land.</p>
 
-                            <p>The first mention of the house dates back to 1864 and is already marked on the first maps. The original purpose of the building was a vineyard cottage, where workers lived with their families and took care of these vineyards. The vineyards and buildings were owned by wealthier farmers from the lower part of the village.</p>
+                            <p>The first mention of the house dates back to 1864, and it is already marked on the
+                                earliest maps.
+                                The original purpose of the building was a viničarija - a vintner's house where workers
+                                and their
+                                families lived while taking care of the vineyards. The vineyards and the buildings were
+                                owned by
+                                the wealthier farmers from the lower part of the village.</p>
 
-                            <p>The house is furnished with restored stylish furniture from that time, and many pieces exceed the venerable age of 100 years.</p>
+                            <p>The house is furnished with restored period furniture, and many pieces are more than 100
+                                years old.</p>
 
-                            <p>We have made an effort to take you on a journey into the past, so you can take time for yourself and your loved ones and perhaps also reflect on former values that are disappearing more and more in this fast-paced world.</p>
+                            <p>We have made an effort to take you on a journey into the past - to allow you to take time
+                                for yourself
+                                and your loved ones, and perhaps to reflect on the old values that are increasingly
+                                disappearing in
+                                today's fast-paced world.</p>
 
-                            <p>Please use the house and furniture carefully and attentively, so that we can pass it on to our grandchildren and great-grandchildren in the next 100 years in the same condition as it was passed on to us by our ancestors.</p>
+                            <p>Please use the house and furniture with care, so that we can pass them on to our
+                                grandchildren and
+                                great-grandchildren in the same condition in which they were handed down to us.</p>
                         </div>
                     </div>
 
                     <div class="text-overlay" id="about-overlay">
                         <div class="about-text">
-                            <h2>What we offer</h2>
-                            <p>Holiday house for 2-4 people with:</p>
+                            <h2>We offer</h2>
+                            <p>A holiday house for 2-4 people with:</p>
                             <ul>
-                                <li>separate bedroom</li>
-                                <li>additional bed in the living area</li>
-                                <li>dining room</li>
-                                <li>fully equipped kitchen</li>
-                                <li>bathroom with shower</li>
-                                <li>additional toilet</li>
-                                <li>covered terrace</li>
-                                <li>storage space for bicycles</li>
+                                <li>a separate bedroom</li>
+                                <li>an additional bed in the living room</li>
+                                <li>a dining area</li>
+                                <li>a fully equipped kitchen</li>
+                                <li>a bathroom with shower</li>
+                                <li>an extra toilet</li>
+                                <li>a covered terrace</li>
+                                <li>a storage space for bicycles</li>
                                 <li>two parking spaces</li>
                                 <li>television, WiFi, ...</li>
                             </ul>
@@ -536,7 +115,7 @@
                     </div>
 
                     <div class="contact-overlay" id="contact-overlay">
-                        <h2>Contact</h2>
+                        <h2>Contacts</h2>
                         <div class="contact-section">
                             <div class="contact-item">
                                 <span class="contact-label">Phone:</span>
@@ -565,207 +144,7 @@
         <p>&copy; 2025 Iža na brejgi. All rights reserved.</p>
     </footer>
 
-<script>
-        const imageFiles = [
-            "images/dnevna1.jpg",
-            "images/dnevna1.jpg",
-            "images/dnevna3.jpg",
-            "images/dvor-poletje.jpg",
-            "images/dvor-pozimi.jpg",
-            "images/jedilnica1.jpg",
-            "images/kopalnica1.jpg",
-            "images/pogled-jed-sever.jpg",
-            "images/pogled-sp-jug.jpg",
-            "images/pogled-sp-vzhod.jpg",
-            "images/sceste-bozic.jpg",
-            "images/sceste-pozimi.jpg",
-            "images/spalnica.jpg",
-            "images/wc1.jpg",
-            "images/zunaj-lagev1.jpg",
-            "images/zunaj-mici1.jpg"
-        ];
-
-        let currentSlide = 0;
-        const slideshowTrack = document.getElementById('slideshow-track');
-        const aboutOverlay = document.getElementById('about-overlay');
-        const contactOverlay = document.getElementById('contact-overlay');
-        const descriptionOverlay = document.getElementById('description-overlay');
-        const overlayBackground = document.getElementById('overlay-background');
-
-        // Funkcija za mešanje
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        function showNextSlide() {
-            currentSlide++;
-            const track = document.getElementById('slideshow-track');
-            const slideWidth = track.children[0].offsetWidth;
-
-            track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-
-            // Neskončni efekt - ko pridemo do klona, skočimo nazaj na začetek
-            if (currentSlide >= imageFiles.length) {
-                setTimeout(() => {
-                    track.style.transition = 'none';
-                    currentSlide = 0;
-                    track.style.transform = `translateX(0)`;
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.75s ease-in-out';
-                    }, 50);
-                }, 500);
-            }
-        }
-
-        function hideAllOverlays() {
-            aboutOverlay.classList.remove('active');
-            contactOverlay.classList.remove('active');
-            descriptionOverlay.classList.remove('active');
-            overlayBackground.classList.remove('active');
-        }
-
-        function showHome() {
-            hideAllOverlays();
-            // Scrollaj na vrh
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showDescription() {
-            hideAllOverlays();
-            overlayBackground.classList.add('active');
-            descriptionOverlay.classList.add('active');
-            // Scrollaj na vrh
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showAbout() {
-            hideAllOverlays();
-            overlayBackground.classList.add('active');
-            aboutOverlay.classList.add('active');
-            // Scrollaj na vrh
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showContact() {
-            hideAllOverlays();
-            overlayBackground.classList.add('active');
-            contactOverlay.classList.add('active');
-            // Scrollaj na vrh
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Funkcija za prilagajanje višine glede na orientacijo
-        function adjustSlideshowHeight() {
-            const slideshow = document.getElementById('slideshow-container');
-            const isPortrait = window.innerHeight > window.innerWidth;
-            const isMobile = window.innerWidth <= 768;
-
-            if (isMobile && isPortrait) {
-                // Mobilni telefon v portrait
-                slideshow.style.height = '50vh';
-            } else if (isMobile && !isPortrait) {
-                // Mobilni telefon v landscape
-                slideshow.style.height = '60vh';
-            } else {
-                // Desktop ali tablet
-                slideshow.style.height = '70vh';
-            }
-        }
-
-        // Funkcija za prilagajanje velikosti slik
-        function adjustImageSizes() {
-            const slides = document.querySelectorAll('.slide');
-            const isPortrait = window.innerHeight > window.innerWidth;
-            const isMobile = window.innerWidth <= 768;
-
-            slides.forEach(slide => {
-                if (isMobile && isPortrait) {
-                    // Na portrait mobilnih - manjše slike
-                    slide.style.maxHeight = '95%';
-                    slide.style.maxWidth = '95%';
-                    slide.style.height = 'auto';
-                } else {
-                    // Na vseh ostalih - polna velikost
-                    slide.style.maxHeight = '100%';
-                    slide.style.maxWidth = '100%';
-                    slide.style.height = '100%';
-                }
-            });
-        }
-
-        // Event listenerji za spremembe velikosti in orientacije
-        window.addEventListener('load', function () {
-            adjustSlideshowHeight();
-            adjustImageSizes();
-        });
-
-        window.addEventListener('resize', function () {
-            adjustSlideshowHeight();
-            adjustImageSizes();
-        });
-
-        window.addEventListener('orientationchange', function () {
-            // Počakaj malo da se orientacija konča
-            setTimeout(function () {
-                adjustSlideshowHeight();
-                adjustImageSizes();
-            }, 100);
-        });
-
-        // Posodobi loadSlides funkcijo
-        function loadSlides() {
-            const shuffledImages = shuffleArray([...imageFiles]);
-
-            shuffledImages.forEach((imageSrc, index) => {
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = `Iža na brejgi ${index + 1}`;
-                img.className = 'slide';
-                slideshowTrack.appendChild(img);
-            });
-
-            const firstSlide = slideshowTrack.children[0].cloneNode(true);
-            slideshowTrack.appendChild(firstSlide);
-
-            // Po nalaganju slik prilagodi velikosti
-            setTimeout(function () {
-                adjustImageSizes();
-            }, 500);
-        }
-
-        // Inicializacija
-        loadSlides();
-
-        // Začni avtomatsko menjavo
-        setInterval(showNextSlide, 4000);
-
-        // Dodaj event listener za klik zunaj overlayjev
-        document.addEventListener('click', function (event) {
-            if (event.target.classList.contains('slideshow') || event.target.classList.contains('overlay-background')) {
-                hideAllOverlays();
-            }
-        });
-
-        // Funkcija za dinamično prilagajanje višine containerja glede na header
-        function adjustContainerHeight() {
-            const header = document.querySelector('header');
-            const container = document.querySelector('.container');
-            const headerHeight = header.offsetHeight;
-
-            // Vedno uporabi enako formulo
-            container.style.minHeight = `calc(100vh - ${headerHeight}px)`;
-        }
-
-        // Klic ob nalaganju in spremembi velikosti
-        window.addEventListener('load', adjustContainerHeight);
-        window.addEventListener('resize', adjustContainerHeight);
-        window.addEventListener('orientationchange', function () {
-            setTimeout(adjustContainerHeight, 100);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
