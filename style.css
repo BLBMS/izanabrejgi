@@ -164,12 +164,12 @@ nav {
 }
 
 .language-flags .active-flag .flag {
-    filter: grayscale(100%) brightness(70%);
+    filter: grayscale(100%) brightness(100%);
     border-color: #cccccc1f;
 }
 
 .language-flags .active-flag:hover .flag {
-    filter: grayscale(100%) brightness(70%);
+    filter: grayscale(100%) brightness(100%);
     border-color: #ffffff1f;
 }
 
