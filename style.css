@@ -163,7 +163,6 @@ nav {
     display: block;
 }
 
-/* Aktivna zastava v črno-beli barvi */
 .language-flags .active-flag .flag {
     filter: grayscale(100%) brightness(40%);
     border-color: #cccccc1f;
@@ -174,7 +173,6 @@ nav {
     border-color: #ffffff1f;
 }
 
-/* Slideshow sekcija */
 .hero {
     flex: 1;
     display: flex;
@@ -229,7 +227,6 @@ footer {
     flex-shrink: 0;
 }
 
-/* DESKTOP STILI - širina večja od 907px - preskok menu navzdol*/
 @media (min-width: 901px) {
     nav {
         flex-wrap: nowrap;
@@ -254,14 +251,12 @@ footer {
     }
 }
 
-/* MOBILNI STILI - širina manjša od 900px*/
 @media (max-width: 900px) {
     nav {
         flex-wrap: wrap;
         align-items: center;
     }
 
-    /* Prva vrstica: logo + naslov + zastave */
     .logo-section {
         order: 1;
         flex: 1;
@@ -274,7 +269,6 @@ footer {
         margin-left: 0;
     }
 
-    /* Druga vrstica: meni */
     .nav-main {
         order: 4;
         flex: 1 0 100%;
@@ -303,7 +297,6 @@ footer {
     }
 }
 
-/* ZELO MAJHNI TELEFONI */
 @media (max-width: 480px) {
     .logo-text {
         font-size: 1.2rem;
@@ -365,7 +358,6 @@ footer {
     color: var(--font-color);
     text-shadow: var(--font-shadow);
     font-size: var(--font-size-overlay);
-    /*font-weight: bold;*/
     padding: 1.5rem;
     z-index: 100;
     width: 95%;
@@ -391,7 +383,6 @@ footer {
     color: var(--font-color);
     text-shadow: var(--font-shadow);
     font-size: var(--font-size-overlay);
-    /*font-weight: bold;*/
     padding: 1.5rem;
     z-index: 100;
     width: 95%;
@@ -439,10 +430,8 @@ footer {
 .description-text {
     text-align: justify;
     font-size: var(--font-size-overlay);
-    /*1rem;*/
     line-height: 1.6;
     max-height: 70vh;
-    /*overflow-y: auto;*/
     padding: 0.5rem;
 }
 
