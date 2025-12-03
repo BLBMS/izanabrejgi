@@ -1,3 +1,4 @@
+// 019
 const imageFiles = [
     "images/dnevna1.jpg",
     "images/dnevna1.jpg",
