@@ -10,7 +10,7 @@
 }
 
 :root {
-    --background-color: #2e3d2d;
+    --background-color: #123415;
     --overlay-background: rgba(0, 0, 0, 0.7);
     --text-color: #333333;
     --header-bg: linear-gradient(135deg, #123415, #36844d);
@@ -910,4 +910,5 @@ footer p {
 .compact-overlay .contact-item {
     margin-bottom: 0.8rem;
     padding-bottom: 0.8rem;
+
 }
