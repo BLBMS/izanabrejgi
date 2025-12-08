@@ -74,9 +74,9 @@
             "price_sat_sun": "__ €"
         },
         {
-            "period-sl": "zimske/prvomajske/jesenske počitnice",
-            "period-en": "winter/May Day/autumn holidays",
-            "period-de": "Winter-/Maifeiertag-/Herbstferien",
+            "period-sl": "zimske/ prvomajske/ jesenske počitnice",
+            "period-en": "winter/ May Day/ autumn holidays",
+            "period-de": "Winter-/ Maifeiertag-/ Herbstferien",
             "min_nights-sl": "3 nočitve",
             "min_nights-en": "3 nights",
             "min_nights-de": "3 Nächte",
@@ -119,4 +119,5 @@
             "Alle Preise sind in EUR. Wir akzeptieren kein Bargeld."
         ]
     }
+
 }
