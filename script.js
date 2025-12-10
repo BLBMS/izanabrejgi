@@ -543,11 +543,11 @@ function adjustContainerHeight() {
 }
 
 // INICIALIZACIJA --------------------------------------------------------------------
-
-document.addEventListener('DOMContentLoaded', function () {
+// V funkciji DOMContentLoaded dodaj initDropdowns()
+document.addEventListener('DOMContentLoaded', function() {
     // Naloži jezikovne podatke
     loadLanguageData();
-
+    
     // Preveri localStorage za shranjen jezik
     const savedLang = localStorage.getItem('preferredLanguage');
     if (savedLang && savedLang !== currentLanguage) {
@@ -557,27 +557,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, 100);
     }
-
+    
+    // Inicializiraj dropdown menije
+    initDropdowns();
+    
     // Inicializiraj slideshow
     setTimeout(() => {
         createSlideshowDots();
     }, 500);
-
-    // Inicializiraj dropdown menije
-    const dropdowns = document.querySelectorAll('.dropdown');
-    dropdowns.forEach(dropdown => {
-        const toggle = dropdown.querySelector('.dropdown-toggle');
-        toggle.addEventListener('click', function (e) {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            }
-        });
-    });
-
+    
     // Blokiraj event propagation znotraj overlayjev
     document.querySelectorAll('.text-overlay, .contact-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function (e) {
+        overlay.addEventListener('click', function(e) {
             e.stopPropagation();
         });
     });
@@ -614,3 +605,69 @@ window.addEventListener('orientationchange', function () {
 // Začni avtomatsko menjavo
 loadSlides();
 setInterval(showNextSlide, 4000);
+
+// Funkcija za inicializacijo spustnega menija
+function initDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (!toggle || !menu) return;
+        
+        // Zapri vse ostale dropdown menije
+        function closeOtherDropdowns() {
+            dropdowns.forEach(otherDropdown => {
+                if (otherDropdown !== dropdown && otherDropdown.classList.contains('active')) {
+                    otherDropdown.classList.remove('active');
+                }
+            });
+        }
+        
+        // Event listener za desktop (hover) in mobile (click)
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Zapri ostale dropdown menije
+                closeOtherDropdowns();
+                
+                // Preklapi trenutni dropdown
+                dropdown.classList.toggle('active');
+            }
+        });
+        
+        // Prepreči zaprtje dropdowna ob kliku znotraj menija
+        menu.addEventListener('click', function(e) {
+            if (window.innerWidth <= 900) {
+                e.stopPropagation();
+            }
+        });
+    });
+    
+    // Zapri dropdown menije ob kliku kjerkoli drugje
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 900) {
+            const isDropdown = e.target.closest('.dropdown');
+            if (!isDropdown) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }
+    });
+    
+    // Zapri dropdown menije ob tapu kjerkoli drugje (za touch devices)
+    document.addEventListener('touchstart', function(e) {
+        if (window.innerWidth <= 900) {
+            const isDropdown = e.target.closest('.dropdown');
+            if (!isDropdown) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        }
+    });
+}
