@@ -1,0 +1,122 @@
+{
+    "pricing-version": "024",
+    "translations": {
+        "price_table_title": {
+            "sl": "Cenik",
+            "en": "Price List",
+            "de": "Preisliste"
+        },
+        "additional_info_title": {
+            "sl": "Dodatne informacije",
+            "en": "Additional Information",
+            "de": "Zusätzliche Informationen"
+        },
+        "period": {
+            "sl": "obdobje",
+            "en": "period",
+            "de": "Zeitraum"
+        },
+        "min_nights": {
+            "sl": "min. nočitev",
+            "en": "min. nights",
+            "de": "min. Nächte"
+        },
+        "mon_fri": {
+            "sl": "pon-pet",
+            "en": "mon-fri",
+            "de": "Mo-Fr"
+        },
+        "sat_sun": {
+            "sl": "sob-ned",
+            "en": "sat-sun",
+            "de": "Sa-So"
+        }
+    },
+    "pricing": [
+        {
+            "period-sl": "November - Marec",
+            "period-en": "November - March",
+            "period-de": "November - März",
+            "min_nights-sl": "3 nočitve",
+            "min_nights-en": "3 nights",
+            "min_nights-de": "3 Nächte",
+            "price_mon_fri": "__ €",
+            "price_sat_sun": "__ €"
+        },
+        {
+            "period-sl": "April - Junij",
+            "period-en": "April - June",
+            "period-de": "April - Juni",
+            "min_nights-sl": "3 nočitve",
+            "min_nights-en": "3 nights",
+            "min_nights-de": "3 Nächte",
+            "price_mon_fri": "__ €",
+            "price_sat_sun": "__ €"
+        },
+        {
+            "period-sl": "Julij - Avgust",
+            "period-en": "July - August",
+            "period-de": "Juli - August",
+            "min_nights-sl": "3 nočitve",
+            "min_nights-en": "3 nights",
+            "min_nights-de": "3 Nächte",
+            "price_mon_fri": "__ €",
+            "price_sat_sun": "__ €"
+        },
+        {
+            "period-sl": "September - Oktober",
+            "period-en": "September - October",
+            "period-de": "September - Oktober",
+            "min_nights-sl": "3 nočitve",
+            "min_nights-en": "3 nights",
+            "min_nights-de": "3 Nächte",
+            "price_mon_fri": "__ €",
+            "price_sat_sun": "__ €"
+        },
+        {
+            "period-sl": "zimske/prvomajske/jesenske počitnice",
+            "period-en": "winter/May Day/autumn holidays",
+            "period-de": "Winter-/Maifeiertag-/Herbstferien",
+            "min_nights-sl": "3 nočitve",
+            "min_nights-en": "3 nights",
+            "min_nights-de": "3 Nächte",
+            "price_mon_fri": "__ €",
+            "price_sat_sun": "__ €"
+        }
+    ],
+    "notes": {
+        "sl": [
+            "Cenik velja za najem za 1 do 2 osebi na nočitev.",
+            "Za 3. do 4. osebo doplačilo 20% na osnovno ceno.",
+            "Hišni ljubljenčki niso dovoljeni",
+            "Kajenje ni dovoljeno",
+            "Turistična taksa se plača posebej:",
+            "  - polnoletne osebe 2,50 € na noč",
+            "  - otroci od 7 do 18 let 1,25 € na noč",
+            "  - Otroci do 7 let in invalidi so opravičeni do plačila turistične takse",
+            "Vse cene so v EUR. Ne poslujemo z gotovino."
+        ],
+        "en": [
+            "Price list applies to rental for 1 to 2 persons per night.",
+            "For 3rd to 4th person: 20% surcharge on basic price.",
+            "Pets are not allowed",
+            "Smoking is not permitted",
+            "Tourist tax is paid separately:",
+            "  - adults 2.50 € per night",
+            "  - children from 7 to 18 years 1.25 € per night",
+            "  - Children up to 7 years and disabled persons are exempt from tourist tax",
+            "All prices are in EUR. We do not accept cash."
+        ],
+        "de": [
+            "Preisliste gilt für Vermietung für 1 bis 2 Personen pro Nacht.",
+            "Für 3. bis 4. Person: 20% Aufschlag auf den Grundpreis.",
+            "Haustiere sind nicht erlaubt",
+            "Rauchen ist nicht gestattet",
+            "Tourismusabgabe wird separat bezahlt:",
+            "  - Erwachsene 2,50 € pro Nacht",
+            "  - Kinder von 7 bis 18 Jahren 1,25 € pro Nacht",
+            "  - Kinder bis 7 Jahre und behinderte Personen sind von der Tourismusabgabe befreit",
+            "Alle Preise sind in EUR. Wir akzeptieren kein Bargeld."
+        ]
+    }
+}
