@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="sl">
+<!-- 024.005 - na OPNsense -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Iža na brejgi</title>
+
+    <link rel="stylesheet" href="style.css?version=244">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo-section">
+                <img src="logos/logo_Iza_na_brejgi.png" alt="Iža na brejgi" class="logo-img">
+                <div class="logo-text" id="logo-text">Iža na brejgi</div>
+            </div>
+
+            <div class="nav-main">
+                <ul class="nav-links">
+                    <li><a href="#domov" id="nav-home">Domov</a></li>
+                    <li><a href="#opis" id="nav-description">Opis</a></li>
+                    <li><a href="#ponujamo" id="nav-about">Ponujamo</a></li>
+                    <li><a href="#cenik" id="nav-pricing">Cenik</a></li>
+
+                    <li class="dropdown">
+                        <a href="#rezerviraj" class="dropdown-toggle" id="nav-reserve">Rezerviraj ▼</a>
+                        <div class="dropdown-menu">
+                            <a href="#" id="nav-direct" onclick="showDirectBooking()">Neposredna rezervacija</a>
+                            <a href="https://airbnb.com/h/tvoj-listing" target="_blank" id="nav-airbnb">Airbnb.com</a>
+                            <a href="https://booking.com/h/tvoj-listing" target="_blank"
+                                id="nav-booking">Booking.com</a>
+                        </div>
+                    </li>
+
+                    <li><a href="#kontakt" id="nav-contact">Kontakti</a></li>
+                </ul>
+            </div>
+
+            <div class="language-flags">
+                <a href="#" title="Slovenščina" class="language-flag" data-lang="sl">
+                    <img src="logos/flag_si.png" alt="Slovenija" class="flag">
+                </a>
+                <a href="#" title="English" class="language-flag" data-lang="en">
+                    <img src="logos/flag_us_gb.png" alt="English" class="flag">
+                </a>
+                <a href="#" title="Deutsch" class="language-flag" data-lang="de">
+                    <img src="logos/flag_de_at.png" alt="Deutsch" class="flag">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero" id="domov">
+            <div class="slideshow-container">
+                <div class="slideshow" id="slideshow-container">
+                    <div class="slideshow-track" id="slideshow-track">
+                        <!-- Slike se bodo dinamično naložile tu -->
+                    </div>
+
+                    <!-- Kontrole za slideshow-->
+                    <button class="slideshow-arrow prev" id="prev-slide" aria-label="Prejšnja slika">❮</button>
+                    <button class="slideshow-arrow next" id="next-slide" aria-label="Naslednja slika">❯</button>
+
+                    <div class="slideshow-dots" id="slideshow-dots">
+                        <!-- Dots se bodo dinamično generirali -->
+                    </div>
+
+                    <!-- Overlay background za blur efekt -->
+                    <div class="overlay-background" id="overlay-background"></div>
+
+                    <!-- Overlay za Opis -->
+                    <div class="text-overlay" id="description-overlay">
+                        <div class="description-text">
+                            <h2 id="description-title">Opis</h2>
+                            <div id="description-content">
+                                <!-- Vsebina se naloži dinamično -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overlay za Ponujamo -->
+                    <div class="text-overlay" id="about-overlay">
+                        <div class="about-text">
+                            <h2 id="about-title">Ponujamo</h2>
+                            <div id="about-content">
+                                <!-- Vsebina se naloži dinamično -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Overlay za Kontakt -->
+                    <div class="contact-overlay" id="contact-overlay">
+                        <h2 id="contact-title">Kontakti</h2>
+                        <div class="contact-section" id="contact-content">
+                            <!-- Vsebina se naloži dinamično -->
+                        </div>
+                    </div>
+
+                    <!-- Overlay za Cenik -->
+                    <div class="text-overlay" id="pricing-overlay">
+                        <div class="pricing-text">
+                            <h2 id="pricing-title">Cenik</h2>
+
+                            <!-- TABELA CENIKA -->
+                            <div class="pricing-table-container">
+                                <table class="pricing-table" id="pricing-table">
+                                    <!-- Tabela se bo dinamično naložila tu -->
+                                </table>
+                            </div>
+
+                            <!-- DODATNE INFORMACIJE -->
+                            <div class="pricing-notes">
+                                <h3 id="pricing-notes-title">Dodatne informacije</h3>
+                                <div id="pricing-notes-content">
+                                    <!-- Opombe se bodo dinamično naložile tu -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Overlay za Neposredno rezervacijo -->
+                    <div class="text-overlay" id="direct-booking-overlay">
+                        <div class="pricing-text">
+                            <h2 id="direct-booking-title">Rezerviraj neposredno</h2>
+                            <!-- PROSTOR ZA WIDGET -->
+
+
+                            <!-- Primer iframe kode -->
+
+                            <iframe src="https://open-meteo.com/en/docs" width="100%" height="500"
+                                style="border:1px solid #ccc;"></iframe>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p id="footer-text">&copy; 2025 Iža na brejgi. Vse pravice pridržane.</p>
+    </footer>
+
+    <script src="script.js?version=244" defer></script>
+</body>
+
+</html>
