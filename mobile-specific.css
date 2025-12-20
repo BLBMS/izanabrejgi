@@ -1,0 +1,75 @@
+/* 025*/
+/* Dodatni mobilni stili za boljše izkušnje na mobilnih napravah */
+
+/* Optimizacija za vertikalne zaslone */
+@media (max-width: 900px) and (orientation: portrait) {
+    .slideshow-container {
+        min-height: 60vh;
+    }
+    
+    .text-overlay,
+    .contact-overlay,
+    #pricing-overlay {
+        max-height: 70vh;
+    }
+}
+
+/* Optimizacija za landscape orientation */
+@media (max-width: 900px) and (orientation: landscape) {
+    .logo-text {
+        max-width: 180px;
+    }
+    
+    .nav-links {
+        gap: 0.2rem;
+    }
+    
+    .text-overlay,
+    .contact-overlay,
+    #pricing-overlay {
+        max-height: 85vh;
+        margin-top: 50px;
+    }
+}
+
+/* Touch-friendly povečanje gumbov za mobilne naprave */
+@media (max-width: 768px) {
+    .nav-links a {
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .slideshow-dot {
+        width: 14px;
+        height: 14px;
+        min-width: 14px;
+        min-height: 14px;
+    }
+}
+
+/* Dodatne optimizacije za zelo majhne zaslone */
+@media (max-width: 320px) {
+    .logo-section {
+        gap: 8px;
+    }
+    
+    .logo-img {
+        height: 30px;
+    }
+    
+    .language-flags .language-flag {
+        width: 20px;
+        height: 11px;
+    }
+    
+    .nav-links {
+        gap: 0.1rem;
+    }
+    
+    .nav-links a {
+        padding: 0.15rem 0.25rem;
+        font-size: 0.65rem;
+    }
+}
