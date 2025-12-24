@@ -1,0 +1,38 @@
+/* 026 */
+/* HOSTEX WIDGET CSS - MINIMALNO */
+
+/* Gumb za zapiranje - osnovni stil */
+#close-hostex-widget {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#close-hostex-widget.active {
+    display: flex;
+}
+
+#close-hostex-widget:hover {
+    transform: scale(1.2);
+    opacity: 0.9;
+}
+
+/* RESPONSIVE STILI */
+@media (max-width: 768px) {
+    #close-hostex-widget {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #close-hostex-widget {
+        font-size: 1.8rem;
+        width: 35px;
+        height: 35px;
+    }
+}

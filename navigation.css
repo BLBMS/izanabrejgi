@@ -1,0 +1,141 @@
+/* 026 */
+/* NAVIGATIONS */
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    min-width: 0;
+    order: 1;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-size: 1.6rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+}
+
+.nav-main {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 1;
+    min-width: 0;
+    order: 2;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 0.1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--font-color);
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.nav-links a:hover {
+    font-weight: bold;
+    color: var(--hover-color);
+}
+
+/* Stili za spustni meni */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    position: relative;
+    padding-right: 20px !important;
+}
+
+.dropdown-toggle:after {
+    content: ' ▼';
+    font-size: 0.7em;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--header-bg);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--font-color);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--hover-color);
+}
+
+/* Animacije */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+    }
+    to {
+        opacity: 1;
+        max-height: 200px;
+    }
+}
