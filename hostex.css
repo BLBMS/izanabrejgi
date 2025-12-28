@@ -1,0 +1,80 @@
+/* 027 */
+/* HOSTEX WIDGET CSS - MINIMALNO */
+
+/* Gumb za zapiranje - osnovni stil */
+#close-hostex-widget {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#close-hostex-widget.active {
+    display: flex;
+}
+
+#close-hostex-widget:hover {
+    transform: scale(1.2);
+    opacity: 0.9;
+}
+
+/* RESPONSIVE STILI */
+@media (max-width: 768px) {
+    #close-hostex-widget {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #close-hostex-widget {
+        font-size: 1.8rem;
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* WIDGET OVERRIDE */
+
+
+.ant-drawer-open {
+    height: 100vh !important;
+    width: 700px !important;
+    margin: 0 auto !important;
+}
+
+.ant-drawer.ant-drawer-open {
+    width: 700px !important;
+    margin: 0 auto !important;
+}
+
+.ant-drawer-content {
+    background-color: #ff0000 !important;
+}
+
+/* ČE widget uporablja .sheet-container (kar kaže HTML) */
+
+.sheet-container {
+    width: 700px !important;
+    max-width: 90vw !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 20px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ČE widget uporablja modal/dialog */
+
+.hostex-modal,
+.hostex-dialog,
+[class*="modal"],
+[class*="dialog"] {
+    width: 700px !important;
+    max-width: 90vw !important;
+    margin: 0 auto !important;
+}
+
