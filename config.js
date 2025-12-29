@@ -18,7 +18,8 @@ window.imageFiles = [
     "images/spalnica2.jpg",
     "images/wc1.jpg",
     "images/zunaj-lagev1.jpg",
-    "images/zunaj-mici1.jpg"
+    "images/zunaj-mici1.jpg",
+    "images/klobuka.jpg"
 ];
 
 // Globalne spremenljivke
@@ -37,4 +38,5 @@ if (typeof module !== 'undefined' && module.exports) {
         currentLanguage: window.currentLanguage,
         languageData: window.languageData
     };
+
 }
