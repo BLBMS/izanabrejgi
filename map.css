@@ -1,0 +1,12 @@
+/* 030 */
+/* map.css - minimalen, samo za iframe */
+#map-iframe {
+    display: none;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+#close-map-widget:hover {
+    transform: scale(1.2);
+    color: var(--hover-color);
+}

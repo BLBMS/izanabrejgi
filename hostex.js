@@ -1,15 +1,27 @@
-/* 027 */
+/* 031 */
 // HOSTEX WIDGET - PREPROSTO
+
+// Inicializiraj globalno spremenljivko če ne obstaja
+if (!window.activeOverlayType) window.activeOverlayType = null;
 
 function showHostexWidget() {
     console.log('👁️ Showing Hostex widget...');
+
+    // Preveri če je že kak overlay aktiven
+    if (window.activeOverlayType) {
+        console.log(`Cannot show Hostex, ${window.activeOverlayType} is active`);
+        return;
+    }
+
+    // Nastavi da je hostex aktiven
+    window.activeOverlayType = 'hostex';
 
     // Skrij druge overlaye
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
     }
 
-    // Ustvari widget če še ne obstaja - this is copy from Hostex.io
+    // Ustvari widget če še ne obstaja
     let widget = document.querySelector('hostex-booking-widget');
     if (!widget) {
         widget = document.createElement('hostex-booking-widget');
@@ -24,7 +36,7 @@ function showHostexWidget() {
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
 
-    // OMIK OD ZGORNJEGA ROBA (za X)
+    // OMIK OD ZGORNJEGA ROBA (za koledar puščice)
     const topOffset = 50; // px odmika od roba
 
     // POSTAVI WIDGET
@@ -39,7 +51,6 @@ function showHostexWidget() {
         background: transparent !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
-
     `;
 
     // BLUR OZADJE
@@ -133,6 +144,11 @@ function hideHostexWidget() {
 
     // Omogoči scroll
     document.body.style.overflow = '';
+
+    // Reset aktivnega overlayja
+    if (window.activeOverlayType === 'hostex') {
+        window.activeOverlayType = null;
+    }
 }
 
 // ESC KEY
