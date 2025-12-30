@@ -1,6 +1,10 @@
 /* 030 */
 // Upravljanje overlayev
 
+<!-- V JS skriptih dodaj timestamp -->
+<script src="language-manager.js?v=029"></script>
+<script src="map-overlay.js?v=001"></script>
+
 // Skrij vse overlaye
 function hideAllOverlays() {
     const bg = document.getElementById('overlay-background');
@@ -69,4 +73,5 @@ if (typeof module !== 'undefined' && module.exports) {
         showContact,
         showHome
     };
+
 }
