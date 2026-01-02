@@ -1,4 +1,4 @@
-/* 030 */
+/* 032 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -470,6 +470,13 @@ function switchLanguage(lang) {
         const url = new URL(window.location);
         url.searchParams.set('lang', lang);
         window.history.pushState({}, '', url);
+
+        // OSVEŽI ZEMLJEVID ČE JE ODPRT
+        if (typeof refreshMapLanguage === 'function') {
+            setTimeout(() => {
+                refreshMapLanguage(lang);
+            }, 100);
+        }
     }
 }
 

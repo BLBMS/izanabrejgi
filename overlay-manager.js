@@ -1,4 +1,4 @@
-/* 031 */
+/* 032 */
 // Upravljanje overlayev
 
 // Globalna spremenljivka za sledenje aktivnemu overlayju
@@ -11,6 +11,15 @@ function isTextOverlay(type) {
 
 function isWidgetOverlay(type) {
     return ['map', 'hostex'].includes(type);
+}
+
+// Deselect vse selektirano besedilo
+function deselectAllText() {
+    if (window.getSelection) {
+        window.getSelection().removeAllRanges();
+    } else if (document.selection) {
+        document.selection.empty();
+    }
 }
 
 // Skrij vse overlaye
@@ -46,6 +55,9 @@ function hideAllOverlays() {
 
     // Reset aktivnega overlayja
     activeOverlayType = null;
+
+    // Deselect vse selektirano besedilo
+    deselectAllText();
 
     // Omogoči skrolanje
     document.body.style.overflow = '';
@@ -153,6 +165,7 @@ if (typeof module !== 'undefined' && module.exports) {
         showHome,
         activeOverlayType,
         isTextOverlay,
-        isWidgetOverlay
+        isWidgetOverlay,
+        deselectAllText
     };
 }

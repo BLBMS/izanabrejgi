@@ -1,4 +1,4 @@
-/* 031 */
+/* 032 */
 // HOSTEX WIDGET - PREPROSTO
 
 // Inicializiraj globalno spremenljivko če ne obstaja
@@ -148,6 +148,13 @@ function hideHostexWidget() {
     // Reset aktivnega overlayja
     if (window.activeOverlayType === 'hostex') {
         window.activeOverlayType = null;
+    }
+
+    // Deselect vse selektirano besedilo
+    if (window.getSelection) {
+        window.getSelection().removeAllRanges();
+    } else if (document.selection) {
+        document.selection.empty();
     }
 }
 
