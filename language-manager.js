@@ -45,7 +45,7 @@ const embeddedLanguageData = {
                         "pokrito teraso",
                         "prostor za shranjevanje koles",
                         "dvema parkirnima mestoma",
-                        "televizijo, WiFi-jem, ..."
+                        "televizijo, Wi-Fi, ..."
                     ],
                     "intro2": "Dodatne informacije",
                     "items2": [
@@ -118,7 +118,7 @@ const embeddedLanguageData = {
                         "a covered terrace",
                         "a storage space for bicycles",
                         "two parking spaces",
-                        "WiFi, television, internet radio, ..."
+                        "Wi-Fi, television, internet radio, ..."
                     ],
                     "intro2": "Additional Information",
                     "items2": [
@@ -191,7 +191,7 @@ const embeddedLanguageData = {
                         "einer überdachten Terrasse",
                         "einem Abstellraum für Fahrräder",
                         "zwei Parkplätzen",
-                        "WiFi, Fernseher, Internetradio, ..."
+                        "WLAN, Fernseher, Internetradio, ..."
                     ],
                     "intro2": "Zusätzliche Informationen",
                     "items2": [
@@ -488,4 +488,5 @@ if (typeof module !== 'undefined' && module.exports) {
         switchLanguage,
         detectLanguageByLocation
     };
+
 }
