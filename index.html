@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="sl">
-<!--032 -->
+<!--034 -->
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="hostex.css">
     <link rel="stylesheet" href="map-overlay.css">
+    <link rel="stylesheet" href="cookies.css">
 </head>
 
 <body>
@@ -116,9 +117,56 @@
     <script src="main.js"></script>
     <script src="hostex.js"></script>
     <script src="map-overlay.js"></script>
-
+    <script src="cookies.js"></script>
+    
     <!-- HOSTEX SCRIPT -->
     <script src="https://hostex.io/app/assets/js/hostex-widget.js?version=20251218112201" type="module"></script>
+
+    <!-- COOKIES -->
+    <div id="cookie-notice" class="cookie-notice" style="display: none;">
+        <div class="cookie-content">
+            <!-- Osnovno besedilo -->
+            <div class="cookie-basic-text">
+                <p>Ta spletna stran uporablja piškotke za izboljšanje uporabniške izkušnje.
+                    <button class="read-more-link">Preberite več</button>
+                </p>
+            </div>
+
+            <!-- Podrobnosti (skrito na začetku) -->
+            <div class="cookie-details">
+                <h3>Kaj so piškotki?</h3>
+                <p>Piškotki so majhne datoteke, ki jih spletna stran shrani na vašo napravo. Omogočajo spletni strani,
+                    da si zapomni vaše dejanja in nastavitve (npr. prijavo, jezik in druge nastavitve prikaza), tako da
+                    jih ni treba nanovo vnašati ob vsakem obisku strani.</p>
+
+                <h3>Katere piškotke uporabljamo?</h3>
+                <ul>
+                    <li><strong>Nujno potrebni piškotki:</strong> Omogočajo osnovno delovanje strani</li>
+                    <li><strong>Funkcionalni piškotki:</strong> Zapomnijo vaše nastavitve in izbire</li>
+                    <li><strong>Analitični piškotki:</strong> Pomagajo nam razumeti, kako uporabljate stran</li>
+                </ul>
+
+                <h3>Kako lahko upravljate s piškotki?</h3>
+                <p>Večino brskalnikov lahko nastavite tako, da blokirajo piškotke ali vas opozorijo, ko so piškotki
+                    nameščeni. Če piškotke onemogočite, nekatere funkcije spletne strani morda ne bodo delovale
+                    pravilno.</p>
+
+                <h3>Vaša zasebnost</h3>
+                <p>Vaši osebni podatki so nam dragi. Piškotki, ki jih uporabljamo, so namenjeni izključno izboljšanju
+                    delovanja spletne strani in analitičnim namenom. Ne delimo vaših podatkov s tretjimi osebami v
+                    komercialne namene.</p>
+            </div>
+
+            <!-- Gumbi -->
+            <div class="cookie-buttons">
+                <button class="cookie-btn decline">Zavrni piškotke</button>
+                <button class="cookie-btn accept">Sprejmi vse piškotke</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast obvestilo -->
+    <div id="cookie-toast" class="cookie-toast" style="display: none;"></div>
 
 </body>
 

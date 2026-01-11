@@ -1,4 +1,4 @@
-/* 032 */
+/* 034 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -303,6 +303,20 @@ function applyLanguage(lang) {
 
     // Shrani jezik v localStorage
     localStorage.setItem('preferredLanguage', lang);
+
+    // Sinhroniziraj piškotke
+    if (window.setCookieNoticeLanguage) {
+        window.setCookieNoticeLanguage(lang);
+    }
+
+    // ✅ DODAJ ŠE TO VRSTICO: Preveri če so piškotki prikazani in jih posodobi
+    const cookieNotice = document.getElementById('cookie-notice');
+    if (cookieNotice && cookieNotice.style.display === 'block') {
+        // Piškotno obvestilo je prikazano - posodobi jezik
+        if (window.updateCookieTexts) {
+            window.updateCookieTexts();
+        }
+    }
 }
 
 // Posodobi navigacijo
@@ -477,6 +491,11 @@ function switchLanguage(lang) {
                 refreshMapLanguage(lang);
             }, 100);
         }
+
+        // ✅ DODAJ: Obvesti cookie sistem o spremembi jezika
+        if (window.setCookieNoticeLanguage) {
+            window.setCookieNoticeLanguage(lang);
+        }
     }
 }
 
@@ -488,5 +507,4 @@ if (typeof module !== 'undefined' && module.exports) {
         switchLanguage,
         detectLanguageByLocation
     };
-
 }

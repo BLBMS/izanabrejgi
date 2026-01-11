@@ -1,4 +1,4 @@
-/* 031 */
+/* 034 */
 /* OVERLAY BACKGROUND ------------------------------------------------------------*/
 #overlay-background {
     display: none;
@@ -179,7 +179,7 @@
 /* Dodaj na konec overlays.css */
 
 /* ESC hint za overlaye */
-.overlay-esc-hint {
+/*.overlay-esc-hint {
     position: absolute;
     bottom: 15px;
     right: 15px;
@@ -187,10 +187,10 @@
     font-size: 0.8rem;
     pointer-events: none;
     z-index: 101;
-}
+}*/
 
 /* Dodaj v text-overlay in contact-overlay */
-.text-overlay::after,
+/*.text-overlay::after,
 .contact-overlay::after {
     content: 'ESC za zapiranje';
     position: absolute;
@@ -199,18 +199,18 @@
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.8rem;
     pointer-events: none;
-}
+}*/
 
 /* Dodaj v overlays.css na konec */
 
 /* ESC hint za overlaye */
-.text-overlay .description-text,
+/*.text-overlay .description-text,
 .text-overlay .about-text,
 .contact-overlay .contact-section {
     position: relative;
-}
+}*/
 
-.text-overlay .description-text::after,
+/*.text-overlay .description-text::after,
 .text-overlay .about-text::after,
 .contact-overlay .contact-section::after {
     content: 'ESC za zapiranje';
@@ -222,4 +222,4 @@
     font-style: italic;
     pointer-events: none;
     z-index: 101;
-}
+}*/

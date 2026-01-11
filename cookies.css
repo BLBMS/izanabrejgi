@@ -1,0 +1,240 @@
+/* 034 */
+/* PŠIŠKOTKOVNO OBVESTILO */
+
+.cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgba(20, 20, 20, 0.98);
+    color: var(--font-color);
+    padding: 15px 20px;
+    z-index: 10000;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    max-height: 80vh;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+/* Ko je razširjeno */
+.cookie-notice.expanded {
+    padding: 25px;
+    max-height: 85vh;
+}
+
+.cookie-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* Osnovno besedilo (prikazano vedno) */
+.cookie-basic-text {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+.cookie-basic-text p {
+    margin: 0;
+}
+
+.read-more-link {
+    color: #4CAF50 !important;
+    text-decoration: underline !important;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    display: inline;
+    margin-left: 5px;
+}
+
+.read-more-link:hover {
+    color: #66BB6A !important;
+    text-decoration: none !important;
+}
+
+/* Dodatne informacije (skrite dokler ni razširjeno) */
+.cookie-details {
+    display: none;
+    font-size: 14px;
+    line-height: 1.5;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+.cookie-notice.expanded .cookie-details {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.cookie-details h3 {
+    margin: 20px 0 10px 0;
+    font-size: 16px;
+    color: #4CAF50;
+}
+
+.cookie-details p {
+    margin-bottom: 15px;
+}
+
+.cookie-details ul {
+    margin: 10px 0 15px 20px;
+}
+
+.cookie-details li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 5px;
+}
+
+.cookie-details li:before {
+    content: "•";
+    color: #4CAF50;
+    position: absolute;
+    left: -15px;
+}
+
+/* Gumbi (vedno prikazani) */
+.cookie-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+.cookie-notice.expanded .cookie-buttons {
+    margin-top: 20px;
+}
+
+.cookie-btn {
+    background: transparent;
+    border: 1px solid var(--font-color);
+    color: var(--font-color);
+    padding: 10px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    min-width: 120px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.cookie-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.cookie-btn.accept {
+    background: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+}
+
+.cookie-btn.accept:hover {
+    background: #45a049;
+    border-color: #45a049;
+}
+
+.cookie-btn.decline {
+    background: transparent;
+    border-color: #f44336;
+    color: #f44336;
+}
+
+.cookie-btn.decline:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+/* Preprost toast */
+.cookie-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(20, 20, 20, 0.95);
+    color: var(--font-color);
+    padding: 15px 25px;
+    border-radius: 6px;
+    z-index: 10001;
+    display: none;
+    max-width: 300px;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .cookie-notice {
+        padding: 15px;
+    }
+
+    .cookie-notice.expanded {
+        padding: 20px 15px;
+    }
+
+    .cookie-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cookie-btn {
+        width: 100%;
+        min-width: unset;
+        padding: 12px;
+    }
+
+    .cookie-toast {
+        left: 15px;
+        right: 15px;
+        max-width: none;
+        top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cookie-notice {
+        padding: 12px;
+    }
+
+    .cookie-basic-text {
+        font-size: 14px;
+    }
+
+    .cookie-details {
+        font-size: 13px;
+    }
+}
