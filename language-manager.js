@@ -56,7 +56,7 @@ const embeddedLanguageData = {
                         "Turistična taksa se plača posebej:",
                         "  - polnoletne osebe 2,50 € na noč,",
                         "  - otroci od 7 do 18 let 1,25 € na noč,",
-                        "  - Otroci do 7 let in invalidi so opravičeni do plačila turistične takse.",
+                        "  - otroci do 7 let in invalidi so opravičeni do plačila turistične takse.",
                         "Vse cene so v EUR. Ne poslujemo z gotovino."
                     ]
                 },
@@ -129,7 +129,7 @@ const embeddedLanguageData = {
                         "Tourist tax is paid separately:",
                         "  - adults 2.50 € per night,",
                         "  - children from 7 to 18 years 1.25 € per night,",
-                        "  - Children up to 7 years and disabled persons are exempt from tourist tax.",
+                        "  - children up to 7 years and disabled persons are exempt from tourist tax.",
                         "All prices are in EUR. We do not accept cash."
                     ]
                 },
@@ -507,4 +507,5 @@ if (typeof module !== 'undefined' && module.exports) {
         switchLanguage,
         detectLanguageByLocation
     };
+
 }
