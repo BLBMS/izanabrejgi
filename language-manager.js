@@ -1,4 +1,4 @@
-/* 034 */
+/* 035 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -509,3 +509,4 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 
 }
+
