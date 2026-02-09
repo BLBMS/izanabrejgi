@@ -1,4 +1,4 @@
-/* 035 */
+/* 036 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -58,6 +58,8 @@ const embeddedLanguageData = {
                         "  - otroci od 7 do 18 let 1,25 € na noč,",
                         "  - otroci do 7 let in invalidi so opravičeni do plačila turistične takse.",
                         "Vse cene so v EUR. Ne poslujemo z gotovino."
+                        "ID nastanitvenega obrata: 137845"
+                        "Katetogorizaja: počitniška hiša ***"
                     ]
                 },
                 "contact": {
@@ -131,6 +133,8 @@ const embeddedLanguageData = {
                         "  - children from 7 to 18 years 1.25 € per night,",
                         "  - children up to 7 years and disabled persons are exempt from tourist tax.",
                         "All prices are in EUR. We do not accept cash."
+                        "Accommodation ID: 137845"
+                        "Categorization: holiday home ***"
                     ]
                 },
                 "contact": {
@@ -204,6 +208,8 @@ const embeddedLanguageData = {
                         "  - Kinder von 7 bis 18 Jahren 1,25 € pro Nacht,",
                         "  - Kinder bis 7 Jahre und behinderte Personen sind von der Tourismusabgabe befreit.",
                         "Alle Preise sind v EUR. Wir akzeptieren kein Bargeld."
+                        "Beherbergungsbetriebs-ID: 137845"
+                        "Kategorisierung: Ferienhaus ***"
                     ]
                 },
                 "contact": {
@@ -509,4 +515,3 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 
 }
-
