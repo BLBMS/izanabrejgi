@@ -59,7 +59,7 @@ const embeddedLanguageData = {
                         "  - otroci do 7 let in invalidi so opravičeni do plačila turistične takse.",
                         "Vse cene so v EUR. Ne poslujemo z gotovino.",
                         "ID nastanitvenega obrata: 137845",
-                        "Katetogorizaja: počitniška hiša ***"
+                        "Kategorizaja: počitniška hiša ***"
                     ]
                 },
                 "contact": {
@@ -515,3 +515,4 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 
 }
+
