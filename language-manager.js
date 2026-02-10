@@ -16,7 +16,8 @@ const embeddedLanguageData = {
                 "about": "Ponujamo",
                 "contact": "Kontakti",
                 "map": "Zemljevid",
-                "reserve": "Rezerviraj"
+                "reserve": "Rezerviraj",
+                "links": "Povezave"
             },
             "overlays": {
                 "description": {
@@ -91,7 +92,8 @@ const embeddedLanguageData = {
                 "about": "We offer",
                 "contact": "Contacts",
                 "map": "Map",
-                "reserve": "Book"
+                "reserve": "Book",
+                "links": "Links"
             },
             "overlays": {
                 "description": {
@@ -166,7 +168,8 @@ const embeddedLanguageData = {
                 "about": "Wir bieten",
                 "contact": "Kontakt",
                 "map": "Karte",
-                "reserve": "Buchen"
+                "reserve": "Buchen",
+                "links": "Links"
             },
             "overlays": {
                 "description": {
@@ -315,7 +318,12 @@ function applyLanguage(lang) {
         window.setCookieNoticeLanguage(lang);
     }
 
-    // ✅ DODAJ ŠE TO VRSTICO: Preveri če so piškotki prikazani in jih posodobi
+    // Sinhroniziraj links overlay
+    if (window.updateLinksLanguage) {
+        window.updateLinksLanguage(lang);
+    }
+
+    // Preveri če so piškotki prikazani in jih posodobi
     const cookieNotice = document.getElementById('cookie-notice');
     if (cookieNotice && cookieNotice.style.display === 'block') {
         // Piškotno obvestilo je prikazano - posodobi jezik
@@ -333,7 +341,8 @@ function updateNavigation(navData) {
         'nav-about': 'about',
         'nav-contact': 'contact',
         'nav-map': 'map',
-        'nav-reserve': 'reserve'
+        'nav-reserve': 'reserve',
+        'nav-links': 'links'
     };
 
     for (const [elementId, dataKey] of Object.entries(navIds)) {
@@ -422,18 +431,65 @@ function updateAboutContent(aboutData) {
     }
 }
 
-// Posodobi kontakt overlay
+// Popravljena verzija z boljšim formatiranjem
 function updateContactContent(contactData) {
+    const contactContent = document.getElementById('contact-content');
+    if (contactContent && contactData) {
+        // Razdeli telefon številko in ime
+        const phoneParts = contactData.phoneValue.split(' ');
+        const phoneNumber = phoneParts[0]; // +386 41 563 873
+        const phoneName = phoneParts.slice(1).join(' '); // Tanja
+
+        let html = `
+            <div class="contact-item">
+                <span class="contact-label">${contactData.phone}</span>
+                <span class="contact-value">
+                    <a href="tel:${phoneNumber.replace(/\s/g, '')}" class="contact-link phone-link">
+                        <span class="phone-number">${phoneNumber}</span>
+                        ${phoneName ? `<span class="phone-name">${phoneName}</span>` : ''}
+                    </a>
+                </span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">${contactData.email}</span>
+                <span class="contact-value">
+                    <a href="mailto:iza.na.breigi@gmail.com" class="contact-link email-link">
+                        ${contactData.emailValue}
+                    </a>
+                </span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">${contactData.address}</span>
+                <div class="contact-value address">
+        `;
+        contactData.addressLines.forEach(line => {
+            html += `<div>${line}</div>`;
+        });
+        html += `</div></div>`;
+        contactContent.innerHTML = html;
+    }
+}
+
+// Posodobi kontakt overlay xxxxxxxxxx
+function xxxupdateContactContent(contactData) {
     const contactContent = document.getElementById('contact-content');
     if (contactContent && contactData) {
         let html = `
             <div class="contact-item">
                 <span class="contact-label">${contactData.phone}</span>
-                <span class="contact-value">${contactData.phoneValue}</span>
+                <span class="contact-value">
+                    <a href="tel:+38641563873" class="contact-link">
+                        ${contactData.phoneValue}
+                    </a>
+                </span>
             </div>
             <div class="contact-item">
                 <span class="contact-label">${contactData.email}</span>
-                <span class="contact-value">${contactData.emailValue}</span>
+                <span class="contact-value">
+                    <a href="mailto:iza.na.breigi@gmail.com" class="contact-link">
+                        ${contactData.emailValue}
+                    </a>
+                </span>
             </div>
             <div class="contact-item">
                 <span class="contact-label">${contactData.address}</span>

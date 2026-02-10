@@ -1,0 +1,261 @@
+/* links-overlay.css */
+/* 036 - OVERLAY ZA POVEZAVE - ENAKO KOT OPIS/PONUJAMO/KONTAKTI */
+
+/* OVERLAY BACKGROUND (ISTO KOT #overlay-background) */
+.links-background {
+    display: none;
+    position: fixed;
+    /* SPREMENI: fixed namesto absolute */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-background);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 90;
+    cursor: pointer;
+}
+
+.links-background.active {
+    display: block;
+}
+
+/* LINKS OVERLAY (ISTO KOT .text-overlay, .contact-overlay) */
+.links-overlay {
+    display: none;
+    position: fixed;
+    /* SPREMENI: fixed namesto absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    color: var(--font-color);
+    text-shadow: var(--font-shadow);
+    font-size: var(--font-size-overlay);
+    padding: 2rem;
+    z-index: 100;
+    width: 90%;
+    max-width: 900px;
+    max-height: 75vh;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(208, 255, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+}
+
+/* AKTIVEN OVERLAY */
+.links-overlay.active {
+    display: block;
+}
+
+/* VSEBINA LINKS OVERLAY */
+.links-content {
+    padding: 1rem;
+    padding-right: 0.5rem;
+}
+
+#links-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--hover-color);
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(208, 255, 0, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+/* LINK ITEM - CELOTNA PLOŠČICA JE KLIKLJIVA */
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* MANJŠI RAZMAK */
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid rgba(208, 255, 0, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.link-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-left-color: rgba(208, 255, 0, 0.8);
+}
+
+/* IKONA - LEPO LEVO, FIKSNE VELIKOSTI */
+.link-icon {
+    width: 100px;
+    /* FIKSNO, NE PREVELIKO */
+    height: 100px;
+    object-fit: cover;
+    /* ALI contain ČE ŽELIŠ */
+    object-position: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid rgba(208, 255, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ALI ČE ŽELIŠ BOLJŠE SHRANJEVANJE PROPORCIJ: */
+.link-icon.contain {
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.2);
+    /* TEMNEJŠE OZADJE ZA contain */
+    padding: 5px;
+}
+
+.link-text {
+    flex: 1;
+    min-width: 0;
+    /* PREPREČI, DA BI TEKST POTISNIL PREVEČ V DESNO */
+}
+
+.link-title {
+    font-size: 1.3rem;
+    margin: 0 0 8px 0;
+    color: rgba(208, 255, 0, 0.9);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.link-item:hover .link-title {
+    color: rgba(234, 255, 0, 1);
+}
+
+.link-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* PUŠČICA - KOT V SLIDESHOW */
+.link-arrow {
+    background: transparent !important;
+    border: none !important;
+    color: var(--font-color) !important;
+    font-size: 2rem !important;
+    text-shadow: var(--font-shadow) !important;
+    cursor: pointer !important;
+    padding: 5px !important;
+    transition: all 0.3s ease !important;
+    opacity: 0.7 !important;
+    width: auto !important;
+    height: auto !important;
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+
+.link-arrow:hover {
+    opacity: 1 !important;
+    color: rgba(208, 255, 0, 0.9) !important;
+    text-shadow: 0 0 10px rgba(208, 255, 0, 0.7) !important;
+}
+
+.link-item:hover .link-arrow {
+    opacity: 1;
+    color: rgba(208, 255, 0, 0.9) !important;
+    text-shadow: 0 0 10px rgba(208, 255, 0, 0.7) !important;
+}
+
+/* SCROLLBAR - ISTO KOT DRUGI OVERLAYJI */
+.links-overlay::-webkit-scrollbar {
+    width: 10px;
+}
+
+.links-overlay::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.links-overlay::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom,
+            rgba(208, 255, 0, 0.7),
+            rgba(123, 155, 0, 0.9));
+    border-radius: 5px;
+    border: 1px solid rgba(208, 255, 0, 0.3);
+}
+
+.links-overlay::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom,
+            rgba(234, 255, 0, 0.8),
+            rgba(143, 175, 0, 0.95));
+}
+
+/* Firefox scrollbar */
+.links-overlay {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .links-overlay {
+        padding: 1.5rem;
+        max-width: 95%;
+        max-height: 80vh;
+    }
+
+    .link-item {
+        gap: 15px;
+        padding: 12px;
+    }
+
+    .link-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .link-title {
+        font-size: 1.1rem;
+    }
+
+    .link-description {
+        font-size: 0.9rem;
+    }
+
+    .link-arrow {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .links-overlay {
+        padding: 1rem;
+        max-height: 85vh;
+    }
+
+    .link-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .link-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .link-arrow {
+        font-size: 1.5rem !important;
+        margin-top: 5px;
+        margin-left: 0;
+    }
+}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="sl">
-<!--035 ***-->
+<!--036 ***-->
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="hostex.css">
     <link rel="stylesheet" href="map-overlay.css">
+    <link rel="stylesheet" href="links-overlay.css">
     <link rel="stylesheet" href="cookies.css">
 </head>
 
@@ -43,6 +44,7 @@
                     <li><a href="#kontakt" onclick="showContact()" id="nav-contact">Kontakti</a></li>
                     <li><a href="#zemljevid" onclick="showMapWidget()" id="nav-map">Zemljevid</a></li>
                     <li><a href="#rezerviraj" onclick="showHostexWidget()" id="nav-reserve">Rezerviraj</a></li>
+                    <li><a href="#povezave" onclick="showLinksOverlay()" id="nav-links">Povezave</a></li>
                 </ul>
             </div>
 
@@ -106,6 +108,15 @@
         <p id="footer-text">&copy; 2025 Iža na brejgi. Vse pravice pridržane.</p>
     </footer>
 
+    <script>
+        // Prepreči source map errorje
+        if (window.location.protocol === 'file:') {
+            console.log('Running in file protocol - disabling source maps');
+            // Nastavi globalno spremenljivko za preprečitev source map errorjev
+            window.ignoreSourceMaps = true;
+        }
+    </script>
+
     <!-- JAVASCRIPT -->
     <script src="config.js"></script>
     <script src="language-manager.js"></script>
@@ -117,10 +128,24 @@
     <script src="main.js"></script>
     <script src="hostex.js"></script>
     <script src="map-overlay.js"></script>
+    <script src="links-overlay.js"></script>
     <script src="cookies.js"></script>
-    
+
     <!-- HOSTEX SCRIPT -->
     <script src="https://hostex.io/app/assets/js/hostex-widget.js?version=20251218112201" type="module"></script>
+
+    <!-- Blur background za links (ENAKO KOT #overlay-background) -->
+    <div id="links-background" class="links-background"></div>
+
+    <!-- Links overlay (ENAKO KOT drugi overlaye) -->
+    <div id="links-overlay" class="links-overlay">
+        <div class="links-content">
+            <h2 id="links-title">Povezave</h2>
+            <div class="links-container" id="links-container">
+                <!-- Povezave se naložijo dinamično -->
+            </div>
+        </div>
+    </div>
 
     <!-- COOKIES -->
     <div id="cookie-notice" class="cookie-notice" style="display: none;">
@@ -172,4 +197,3 @@
 
 
 </html>
-

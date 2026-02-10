@@ -1,4 +1,4 @@
-/* 032 */
+/* 036 */
 // Upravljanje overlayev
 
 // Globalna spremenljivka za sledenje aktivnemu overlayju
@@ -29,6 +29,51 @@ function hideAllOverlays() {
     const bg = document.getElementById('overlay-background');
     if (bg) bg.classList.remove('active');
 
+    // SKRIJ LINKS BACKGROUND
+    const linksBg = document.getElementById('links-background');
+    if (linksBg) linksBg.classList.remove('active');
+
+    const allOverlayElements = document.querySelectorAll(
+        '.text-overlay, .contact-overlay, .links-overlay, #description-overlay, #about-overlay, #contact-overlay, #links-overlay'
+    );
+
+    allOverlayElements.forEach(overlay => {
+        overlay.classList.remove('active');
+    });
+
+    // Skrij tudi widgete če so prikazani
+    if (typeof hideMapWidget === 'function') {
+        hideMapWidget();
+    }
+
+    if (typeof hideHostexWidget === 'function') {
+        hideHostexWidget();
+    }
+
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+    });
+
+    // Odstrani ESC handler
+    document.removeEventListener('keydown', escHandler);
+
+    // Reset aktivnega overlayja
+    activeOverlayType = null;
+
+    // Deselect vse selektirano besedilo
+    deselectAllText();
+
+    // Omogoči skrolanje
+    document.body.style.overflow = '';
+}
+
+// Skrij vse overlayexxx
+function XXhideAllOverlays() {
+    console.log('Hiding all overlays, current active:', activeOverlayType);
+
+    const bg = document.getElementById('overlay-background');
+    if (bg) bg.classList.remove('active');
+
     const allOverlayElements = document.querySelectorAll(
         '.text-overlay, .contact-overlay, #description-overlay, #about-overlay, #contact-overlay'
     );
@@ -36,6 +81,10 @@ function hideAllOverlays() {
     allOverlayElements.forEach(overlay => {
         overlay.classList.remove('active');
     });
+
+    if (typeof hideLinksOverlay === 'function') {
+        hideLinksOverlay();
+    }
 
     // Skrij tudi widgete če so prikazani
     if (typeof hideMapWidget === 'function') {
