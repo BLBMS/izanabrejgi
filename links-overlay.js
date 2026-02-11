@@ -5,7 +5,9 @@ const baseLinksData = [
     {
         id: 1,
         icon: 'links/logo_i_feel_slo.png',
-        logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
+        //logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
+        //logoBg: 'rgba(255, 255, 255, 0.75)', // SIVO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.00)', // BELO OZADJE
         title: {
             sl: 'Slovenska turistična organizacija',
             en: 'Slovenian Tourist Board',
@@ -25,8 +27,8 @@ const baseLinksData = [
     {
         id: 2,
         icon: 'links/logo_TIC_MT.svg',
-        logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
-        //logoBg: 'rgba(255, 255, 255, 0.75)', // BELO OZADJE
+        //logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.00)', // BELO OZADJE
         title: {
             sl: 'Turistično informacijski center, TIC Moravske Toplice',
             en: 'Tourist Information Center, TIC Moravske Toplice',
@@ -46,8 +48,8 @@ const baseLinksData = [
     {
         id: 3,
         icon: 'links/logo_TIC_MT.svg',
-        logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
-        //logoBg: 'rgba(255, 255, 255, 0.75)', // BELO OZADJE
+        //logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.00)', // BELO OZADJE
         title: {
             sl: 'Kolesarske poti in najem koles - TIC Moravske Toplice',
             en: 'Bike Trails and Bike Rental - TIC Moravske Toplice',
