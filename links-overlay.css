@@ -1,10 +1,11 @@
 /* links-overlay.css */
-/* 037 - OVERLAY ZA POVEZAVE - POPOLNOMA ENAKO KOT OPIS/PONUJAMO/KONTAKTI */
+/* 038 - OVERLAY ZA POVEZAVE - POPOLNOMA ENAKO KOT OPIS/PONUJAMO/KONTAKTI */
 
 /* OVERLAY BACKGROUND (ISTO KOT #overlay-background) */
 .links-background {
     display: none;
-    position: absolute; /* SPREMENI: absolute namesto fixed */
+    position: absolute;
+    /* SPREMENI: absolute namesto fixed */
     top: 0;
     left: 0;
     width: 100%;
@@ -23,7 +24,8 @@
 /* LINKS OVERLAY (ISTO KOT .text-overlay, .contact-overlay) */
 .links-overlay {
     display: none;
-    position: absolute; /* SPREMENI: absolute namesto fixed */
+    position: absolute;
+    /* SPREMENI: absolute namesto fixed */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -250,4 +252,22 @@
         margin-top: 5px;
         margin-left: 0;
     }
+}
+
+/* IKONA ZA LOGO - S PODPORO ZA RAZLIČNA OZADJA */
+.link-icon.contain {
+    object-fit: contain;
+    padding: 8px;
+    /* VEČJI PADDING ZA LOGOJE */
+    transition: all 0.3s ease;
+}
+
+/* .link-icon.contain[style*="background"] { */
+    /* Ohrani inline style za background */
+/* } */
+
+.link-item:hover .link-icon.contain {
+    transform: scale(1.05);
+    border-color: rgba(208, 255, 0, 0.6);
+    box-shadow: 0 0 15px rgba(208, 255, 0, 0.3);
 }
