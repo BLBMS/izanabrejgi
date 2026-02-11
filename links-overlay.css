@@ -1,11 +1,10 @@
 /* links-overlay.css */
-/* 036 - OVERLAY ZA POVEZAVE - ENAKO KOT OPIS/PONUJAMO/KONTAKTI */
+/* 037 - OVERLAY ZA POVEZAVE - POPOLNOMA ENAKO KOT OPIS/PONUJAMO/KONTAKTI */
 
 /* OVERLAY BACKGROUND (ISTO KOT #overlay-background) */
 .links-background {
     display: none;
-    position: fixed;
-    /* SPREMENI: fixed namesto absolute */
+    position: absolute; /* SPREMENI: absolute namesto fixed */
     top: 0;
     left: 0;
     width: 100%;
@@ -24,8 +23,7 @@
 /* LINKS OVERLAY (ISTO KOT .text-overlay, .contact-overlay) */
 .links-overlay {
     display: none;
-    position: fixed;
-    /* SPREMENI: fixed namesto absolute */
+    position: absolute; /* SPREMENI: absolute namesto fixed */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -80,7 +78,6 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    /* MANJŠI RAZMAK */
     padding: 15px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
@@ -98,13 +95,11 @@
     border-left-color: rgba(208, 255, 0, 0.8);
 }
 
-/* IKONA - LEPO LEVO, FIKSNE VELIKOSTI */
+/* IKONA */
 .link-icon {
     width: 100px;
-    /* FIKSNO, NE PREVELIKO */
     height: 100px;
     object-fit: cover;
-    /* ALI contain ČE ŽELIŠ */
     object-position: center;
     border-radius: 6px;
     flex-shrink: 0;
@@ -112,18 +107,15 @@
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* ALI ČE ŽELIŠ BOLJŠE SHRANJEVANJE PROPORCIJ: */
 .link-icon.contain {
     object-fit: contain;
     background: rgba(0, 0, 0, 0.2);
-    /* TEMNEJŠE OZADJE ZA contain */
     padding: 5px;
 }
 
 .link-text {
     flex: 1;
     min-width: 0;
-    /* PREPREČI, DA BI TEKST POTISNIL PREVEČ V DESNO */
 }
 
 .link-title {
@@ -145,7 +137,7 @@
     color: rgba(255, 255, 255, 0.85);
 }
 
-/* PUŠČICA - KOT V SLIDESHOW */
+/* PUŠČICA */
 .link-arrow {
     background: transparent !important;
     border: none !important;
@@ -174,7 +166,7 @@
     text-shadow: 0 0 10px rgba(208, 255, 0, 0.7) !important;
 }
 
-/* SCROLLBAR - ISTO KOT DRUGI OVERLAYJI */
+/* SCROLLBAR */
 .links-overlay::-webkit-scrollbar {
     width: 10px;
 }

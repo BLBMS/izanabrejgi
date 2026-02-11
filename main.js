@@ -1,4 +1,4 @@
-/* 027 */
+/* 037 */
 // Glavna inicializacija
 
 // Inicializacija DOM elementov
@@ -85,3 +85,22 @@ if (typeof module !== 'undefined' && module.exports) {
         initDOMElements
     };
 }
+
+// Klik na logo in naslov je Domov
+document.addEventListener('DOMContentLoaded', function() {
+    // Počakamo, da se vse naloži
+    setTimeout(function() {
+        const logoSection = document.querySelector('.logo-section');
+        if (logoSection) {
+            logoSection.addEventListener('click', function(e) {
+                if (!e.target.closest('.language-flag')) {
+                    e.preventDefault();
+                    window.location.href = '#domov';
+                    if (typeof hideAllOverlays === 'function') hideAllOverlays();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+            logoSection.style.cursor = 'pointer';
+        }
+    }, 100);
+});
