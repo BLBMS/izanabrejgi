@@ -1,80 +1,42 @@
-/* 027 */
-/* HOSTEX WIDGET CSS - MINIMALNO */
+/* 028 */
+/* HOSTEX WIDGET CSS */
 
-/* Gumb za zapiranje - osnovni stil */
-#close-hostex-widget {
+/* Globalni X gumb */
+#global-hostex-close {
+    position: fixed;
+    z-index: 2001;
     display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    line-height: 1;
-    transition: all 0.3s ease;
-    cursor: pointer;
 }
 
-#close-hostex-widget.active {
-    display: flex;
+/* Widget stil */
+hostex-booking-widget {
+    display: none;
+    background: transparent !important;
 }
 
-#close-hostex-widget:hover {
-    transform: scale(1.2);
-    opacity: 0.9;
+hostex-booking-widget[style*="display: block"] {
+    display: block !important;
+}
+
+/* Prepreči, da bi widget imel svoje ozadje */
+hostex-booking-widget * {
+    background: transparent !important;
 }
 
 /* RESPONSIVE STILI */
 @media (max-width: 768px) {
-    #close-hostex-widget {
-        font-size: 2rem;
+    #global-hostex-close {
+        font-size: 2rem !important;
+        width: 35px !important;
+        height: 35px !important;
+        right: 10px !important;
     }
 }
 
 @media (max-width: 480px) {
-    #close-hostex-widget {
-        font-size: 1.8rem;
-        width: 35px;
-        height: 35px;
+    #global-hostex-close {
+        font-size: 1.8rem !important;
+        width: 30px !important;
+        height: 30px !important;
     }
 }
-
-/* WIDGET OVERRIDE */
-
-
-.ant-drawer-open {
-    height: 100vh !important;
-    width: 700px !important;
-    margin: 0 auto !important;
-}
-
-.ant-drawer.ant-drawer-open {
-    width: 700px !important;
-    margin: 0 auto !important;
-}
-
-.ant-drawer-content {
-    background-color: #ff0000 !important;
-}
-
-/* ČE widget uporablja .sheet-container (kar kaže HTML) */
-
-.sheet-container {
-    width: 700px !important;
-    max-width: 90vw !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    bottom: 20px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* ČE widget uporablja modal/dialog */
-
-.hostex-modal,
-.hostex-dialog,
-[class*="modal"],
-[class*="dialog"] {
-    width: 700px !important;
-    max-width: 90vw !important;
-    margin: 0 auto !important;
-}
-
