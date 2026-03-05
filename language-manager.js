@@ -1,4 +1,4 @@
-/* 036 */
+/* 037 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -68,7 +68,7 @@ const embeddedLanguageData = {
                     "phone": "Telefon:",
                     "phoneValue": "+386 41 563 873 Tanja",
                     "email": "Email:",
-                    "emailValue": "iza.na.breigi@gmail.com",
+                    "emailValue": "izanabreigi@gmail.com",
                     "address": "Naslov:",
                     "addressLines": [
                         "Rumičev breg 71",
@@ -144,7 +144,7 @@ const embeddedLanguageData = {
                     "phone": "Phone:",
                     "phoneValue": "+386 41 563 873 Tanja",
                     "email": "Email:",
-                    "emailValue": "iza.na.brejgi@gmail.com",
+                    "emailValue": "izanabrejgi@gmail.com",
                     "address": "Address:",
                     "addressLines": [
                         "Rumičev breg 71",
@@ -220,7 +220,7 @@ const embeddedLanguageData = {
                     "phone": "Telefon:",
                     "phoneValue": "+386 41 563 873 Tanja",
                     "email": "E-Mail:",
-                    "emailValue": "iza.na.breigi@gmail.com",
+                    "emailValue": "izanabreigi@gmail.com",
                     "address": "Adresse:",
                     "addressLines": [
                         "Rumičev breg 71",
@@ -571,3 +571,4 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 
 }
+
