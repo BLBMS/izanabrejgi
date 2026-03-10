@@ -1,4 +1,4 @@
-/* 037 */
+/* 038 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -66,7 +66,10 @@ const embeddedLanguageData = {
                 "contact": {
                     "title": "Kontakti",
                     "phone": "Telefon:",
-                    "phoneValue": "+386 41 563 873 Tanja",
+                    "phoneValues": [
+                        "+386 41 563 873 Tanja",
+                        "+386 41 913 001 Marko"
+                    ],
                     "email": "Email:",
                     "emailValue": "izanabreigi@gmail.com",
                     "address": "Naslov:",
@@ -142,7 +145,10 @@ const embeddedLanguageData = {
                 "contact": {
                     "title": "Contacts",
                     "phone": "Phone:",
-                    "phoneValue": "+386 41 563 873 Tanja",
+                    "phoneValues": [
+                        "+386 41 563 873 Tanja",
+                        "+386 41 913 001 Marko"
+                    ],
                     "email": "Email:",
                     "emailValue": "izanabrejgi@gmail.com",
                     "address": "Address:",
@@ -218,7 +224,10 @@ const embeddedLanguageData = {
                 "contact": {
                     "title": "Kontakt",
                     "phone": "Telefon:",
-                    "phoneValue": "+386 41 563 873 Tanja",
+                    "phoneValues": [
+                        "+386 41 563 873 Tanja",
+                        "+386 41 913 001 Marko"
+                    ],
                     "email": "E-Mail:",
                     "emailValue": "izanabreigi@gmail.com",
                     "address": "Adresse:",
@@ -431,8 +440,8 @@ function updateAboutContent(aboutData) {
     }
 }
 
-// Popravljena verzija z boljšim formatiranjem
-function updateContactContent(contactData) {
+// Popravljena verzija z boljšim formatiranjem - BRIŠI
+function updateContactContent037(contactData) {
     const contactContent = document.getElementById('contact-content');
     if (contactContent && contactData) {
         // Razdeli telefon številko in ime
@@ -469,6 +478,75 @@ function updateContactContent(contactData) {
         contactContent.innerHTML = html;
     }
 }
+
+// Posodobi kontakt overlay
+function updateContactContent(contactData) {
+    const contactContent = document.getElementById('contact-content');
+    if (contactContent && contactData) {
+        let html = '';
+
+        // TELEFON - podpora za več številk (phoneValues)
+        if (contactData.phoneValues && Array.isArray(contactData.phoneValues)) {
+            html += '<div class="contact-item">';
+            html += `<span class="contact-label">${contactData.phone}</span>`;
+            html += '<div class="contact-values">';
+
+            contactData.phoneValues.forEach(phone => {
+                // Izlušči številko za tel: link (odstrani presledke in črke)
+                const phoneNumber = phone.replace(/[^\d+]/g, ''); // Pusti samo številke in +
+                html += `<div class="contact-value">`;
+                html += `<a href="tel:${phoneNumber}" class="contact-link phone-link">${phone}</a>`;
+                html += `</div>`;
+            });
+
+            html += '</div>';
+            html += '</div>';
+        }
+        // FALLBACK za staro strukturo (ena številka)
+        else if (contactData.phoneValue) {
+            html += '<div class="contact-item">';
+            html += `<span class="contact-label">${contactData.phone}</span>`;
+            html += '<div class="contact-values">';
+
+            const phoneNumber = contactData.phoneValue.replace(/[^\d+]/g, '');
+            html += `<div class="contact-value">`;
+            html += `<a href="tel:${phoneNumber}" class="contact-link phone-link">${contactData.phoneValue}</a>`;
+            html += `</div>`;
+
+            html += '</div>';
+            html += '</div>';
+        }
+
+        // EMAIL
+        if (contactData.email && contactData.emailValue) {
+            html += '<div class="contact-item">';
+            html += `<span class="contact-label">${contactData.email}</span>`;
+            html += '<div class="contact-values">';
+            html += `<div class="contact-value">`;
+            html += `<a href="mailto:${contactData.emailValue}" class="contact-link email-link">${contactData.emailValue}</a>`;
+            html += `</div>`;
+            html += '</div>';
+            html += '</div>';
+        }
+
+        // NASLOV
+        if (contactData.address && contactData.addressLines) {
+            html += '<div class="contact-item address-item">';
+            html += `<span class="contact-label">${contactData.address}</span>`;
+            html += '<div class="contact-values">';
+
+            contactData.addressLines.forEach(line => {
+                html += `<div class="contact-value address-line">${line}</div>`;
+            });
+
+            html += '</div>';
+            html += '</div>';
+        }
+
+        contactContent.innerHTML = html;
+    }
+}
+
 
 // Posodobi kontakt overlay xxxxxxxxxx
 function xxxupdateContactContent(contactData) {
@@ -571,4 +649,3 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 
 }
-
