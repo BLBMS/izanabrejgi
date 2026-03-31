@@ -1,25 +1,83 @@
-// 033
+// 034
 // HOSTEX WIDGET - USTVARJANJE V JS
 
 // Inicializiraj globalno spremenljivko če ne obstaja
 if (!window.activeOverlayType) window.activeOverlayType = null;
 if (!window.hostexScriptLoaded) window.hostexScriptLoaded = false;
 
-// Funkcija za nalaganje Hostex skripte (če je nimate v HTML)
+// Funkcija za pridobitev Hostex teksta v trenutnem jeziku
+function getHostexText() {
+    const lang = window.currentLanguage || 'sl';
+    const hostexData = window.languageData?.[lang]?.hostex;
+
+    if (hostexData && hostexData.items) {
+        return hostexData;
+    }
+
+    // Fallback za slovenščino
+    return {
+        items: [
+            "Ponujamo direktno rezervacijo brez provizije preko lastnega portala spodaj. Plačilo s kreditno kartico.",
+            "Check-in se izvede preko on-line portala na dan prihoda v nastanitev. Takrat se preko istega portala plača tudi turistična taksa. Plačilo s kreditno kartico."
+        ]
+    };
+}
+
+// Funkcija za posodobitev ali ustvarjanje header teksta
+// Funkcija za posodobitev ali ustvarjanje header teksta
+function updateHostexHeader() {
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 80;
+    const text = getHostexText();
+
+    let headerDiv = document.getElementById('hostex-header-text');
+
+    if (!headerDiv) {
+        headerDiv = document.createElement('div');
+        headerDiv.id = 'hostex-header-text';
+        headerDiv.className = 'hostex-header-text';
+        document.body.appendChild(headerDiv);
+    }
+
+    // Postavi header tekst takoj pod header
+    headerDiv.style.top = `${headerHeight}px`;
+
+    // Generiraj seznam s pikami
+    let itemsHtml = '';
+    if (text.items && text.items.length > 0) {
+        itemsHtml = '<ul class="hostex-info-list">';
+        text.items.forEach(item => {
+            const cleanItem = item.replace(/^•\s*/, '');
+            itemsHtml += `<li>${cleanItem}</li>`;
+        });
+        itemsHtml += '</ul>';
+    }
+
+    headerDiv.innerHTML = itemsHtml;
+}
+
+// Funkcija za skrivanje header teksta
+function hideHostexHeader() {
+    const headerDiv = document.getElementById('hostex-header-text');
+    if (headerDiv) {
+        headerDiv.remove();
+    }
+}
+
+// Funkcija za nalaganje Hostex skripte
 function loadHostexScript() {
     return new Promise((resolve, reject) => {
         if (window.hostexScriptLoaded) {
             resolve();
             return;
         }
-        
-        // Preveri če skripta že obstaja
+
         if (document.querySelector('script[src*="hostex-widget.js"]')) {
             window.hostexScriptLoaded = true;
             resolve();
             return;
         }
-        
+
         const script = document.createElement('script');
         script.src = 'https://hostex.io/app/assets/js/hostex-widget.js?version=20260211115522';
         script.type = 'module';
@@ -35,23 +93,20 @@ function loadHostexScript() {
 
 // Funkcija za ustvarjanje widgeta
 function createHostexWidget() {
-    // Preveri če widget že obstaja
     let widget = document.querySelector('hostex-booking-widget');
     if (widget) return widget;
-    
-    // Ustvari nov widget
+
     widget = document.createElement('hostex-booking-widget');
     widget.setAttribute('listing-id', '115139');
     widget.setAttribute('id', 'eyJob3N0X2lkIjoiMTAzNzI3Iiwid2lkZ2V0X2hvc3QiOiJodHRwczovL3cuaG9zdGV4Ym9va2luZy5zaXRlIn0=');
-    
-    // Začetni stili
+
     widget.style.display = 'none';
     widget.style.position = 'fixed';
     widget.style.zIndex = '2000';
     widget.style.background = 'transparent';
     widget.style.overflowY = 'auto';
     widget.style.WebkitOverflowScrolling = 'touch';
-    
+
     document.body.appendChild(widget);
     return widget;
 }
@@ -59,13 +114,11 @@ function createHostexWidget() {
 async function showHostexWidget() {
     console.log('👁️ Showing Hostex widget...');
 
-    // Preveri če je že kak overlay aktiven
     if (window.activeOverlayType) {
         console.log(`Cannot show Hostex, ${window.activeOverlayType} is active`);
         return;
     }
 
-    // Naloži skripto če še ni
     try {
         await loadHostexScript();
     } catch (error) {
@@ -73,43 +126,116 @@ async function showHostexWidget() {
         return;
     }
 
-    // Nastavi da je hostex aktiven
     window.activeOverlayType = 'hostex';
 
-    // Skrij druge overlaye
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
     }
 
-    // Ustvari ali poišči widget
     const widget = createHostexWidget();
     if (!widget) {
         console.error('Failed to create Hostex widget');
         return;
     }
 
-    // Pridobi višine
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
 
-    // OMIK OD ZGORNJEGA ROBA (za koledar puščice)
-    const topOffset = 50;
+    // Ustvari ali posodobi header tekst
+    updateHostexHeader();
 
-    // POSTAVI WIDGET - PRIKAŽI GA
-    widget.style.cssText = `
-        position: fixed !important;
-        top: ${headerHeight + topOffset}px !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: calc(100vh - ${headerHeight + footerHeight + topOffset}px) !important;
-        z-index: 2000 !important;
-        display: block !important;
-        background: transparent !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-    `;
+    // Funkcija za pozicioniranje vseh elementov
+    function positionAllElements() {
+        // Pridobi header tekst div in njegovo višino
+        const headerTextDiv = document.getElementById('hostex-header-text');
+        let headerTextHeight = 0;
+
+        if (headerTextDiv) {
+            headerTextHeight = headerTextDiv.offsetHeight;
+            // Zagotovi, da je header tekst pod headerjem
+            headerTextDiv.style.top = `${headerHeight}px`;
+        }
+
+        // Izračunaj top offset za widget (header + header tekst)
+        const topOffset = headerHeight + headerTextHeight;
+
+        // POSTAVI WIDGET pod header tekst
+        widget.style.cssText = `
+            position: fixed !important;
+            top: ${topOffset}px !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: calc(100vh - ${topOffset + footerHeight}px) !important;
+            z-index: 2000 !important;
+            display: block !important;
+            background: transparent !important;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch !important;
+        `;
+
+        // X GUMB - postavi ga pod header tekst, desno zgoraj nad widgetom
+        let closeButton = document.getElementById('global-hostex-close');
+        if (!closeButton) {
+            closeButton = document.createElement('button');
+            closeButton.id = 'global-hostex-close';
+            closeButton.innerHTML = '×';
+            closeButton.title = 'Zapri rezervacije';
+            closeButton.setAttribute('aria-label', 'Zapri rezervacije');
+            document.body.appendChild(closeButton);
+
+            closeButton.onmouseenter = function () {
+                this.style.transform = 'scale(1.2)';
+                this.style.color = 'var(--hover-color)';
+            };
+            closeButton.onmouseleave = function () {
+                this.style.transform = 'scale(1)';
+                this.style.color = 'var(--font-color)';
+            };
+            closeButton.onclick = hideHostexWidget;
+        }
+
+        // Postavi X gumb
+        closeButton.style.cssText = `
+            position: fixed !important;
+            top: ${topOffset + 10}px !important;
+            right: 20px !important;
+            width: 40px !important;
+            height: 40px !important;
+            background: transparent !important;
+            border: none !important;
+            color: var(--font-color) !important;
+            font-size: 2.5rem !important;
+            font-weight: normal !important;
+            cursor: pointer !important;
+            z-index: 2001 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            line-height: 1 !important;
+            opacity: 1 !important;
+            text-shadow: var(--font-shadow) !important;
+            transition: all 0.2s ease !important;
+        `;
+        closeButton.style.display = 'flex';
+    }
+
+    // Takoj pozicioniraj
+    positionAllElements();
+
+    // Uporabi ResizeObserver za spremljanje sprememb višine header teksta
+    const headerTextDiv = document.getElementById('hostex-header-text');
+    if (headerTextDiv && window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(() => {
+            positionAllElements();
+        });
+        resizeObserver.observe(headerTextDiv);
+        // Shrani observer za kasnejše čiščenje
+        window.hostexResizeObserver = resizeObserver;
+    }
 
     // BLUR OZADJE
     const blurOverlay = document.getElementById('full-page-blur');
@@ -130,79 +256,35 @@ async function showHostexWidget() {
         blurOverlay.classList.add('active');
     }
 
-    // X GUMB
-    let closeButton = document.getElementById('global-hostex-close');
-    if (!closeButton) {
-        closeButton = document.createElement('button');
-        closeButton.id = 'global-hostex-close';
-        closeButton.innerHTML = '×';
-        closeButton.title = 'Zapri rezervacije';
-        closeButton.setAttribute('aria-label', 'Zapri rezervacije');
-        document.body.appendChild(closeButton);
-        
-        closeButton.onmouseenter = function () {
-            this.style.transform = 'scale(1.2)';
-            this.style.color = 'var(--hover-color)';
-        };
-        closeButton.onmouseleave = function () {
-            this.style.transform = 'scale(1)';
-            this.style.color = 'var(--font-color)';
-        };
-    }
-
-    closeButton.style.cssText = `
-        position: fixed !important;
-        top: ${headerHeight + 10}px !important;
-        right: 20px !important;
-        width: 40px !important;
-        height: 40px !important;
-        background: transparent !important;
-        border: none !important;
-        color: var(--font-color) !important;
-        font-size: 2.5rem !important;
-        font-weight: normal !important;
-        cursor: pointer !important;
-        z-index: 2001 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        line-height: 1 !important;
-        opacity: 1 !important;
-        text-shadow: var(--font-shadow) !important;
-        transition: all 0.2s ease !important;
-    `;
-
-    closeButton.onclick = hideHostexWidget;
-    closeButton.style.display = 'flex';
-
-    // Onemogoči scroll
     document.body.style.overflow = 'hidden';
 }
 
 function hideHostexWidget() {
     console.log('👁️‍🗨️ Hiding Hostex widget...');
 
-    // Skrij widget
+    // Počisti ResizeObserver
+    if (window.hostexResizeObserver) {
+        window.hostexResizeObserver.disconnect();
+        window.hostexResizeObserver = null;
+    }
+
     const widget = document.querySelector('hostex-booking-widget');
     if (widget) widget.style.display = 'none';
 
-    // Skrij blur
+    // Skrij header tekst
+    hideHostexHeader();
+
     const blurOverlay = document.getElementById('full-page-blur');
     if (blurOverlay) {
         blurOverlay.style.cssText = '';
         blurOverlay.classList.remove('active');
     }
 
-    // Skrij X
     const closeButton = document.getElementById('global-hostex-close');
     if (closeButton) closeButton.style.display = 'none';
 
-    // Omogoči scroll
     document.body.style.overflow = '';
 
-    // Reset aktivnega overlayja
     if (window.activeOverlayType === 'hostex') {
         window.activeOverlayType = null;
     }
@@ -220,6 +302,52 @@ document.addEventListener('DOMContentLoaded', function () {
         blurOverlay.addEventListener('click', function (e) {
             if (e.target === this) hideHostexWidget();
         });
+    }
+});
+
+// Poslušaj spremembe jezika
+if (typeof window.switchLanguage === 'function') {
+    const originalSwitchLanguage = window.switchLanguage;
+    window.switchLanguage = function (lang) {
+        originalSwitchLanguage(lang);
+        // Če je hostex odprt, posodobi tekst
+        if (window.activeOverlayType === 'hostex') {
+            updateHostexHeader();
+        }
+    };
+}
+
+// Dodaj na konec hostex.js
+
+// Poslušalec za spremembo velikosti okna
+window.addEventListener('resize', function () {
+    if (window.activeOverlayType === 'hostex') {
+        // Ponovno pozicioniraj vse elemente
+        const header = document.querySelector('header');
+        const headerHeight = header ? header.offsetHeight : 80;
+
+        const headerTextDiv = document.getElementById('hostex-header-text');
+        if (headerTextDiv) {
+            headerTextDiv.style.top = `${headerHeight}px`;
+            const headerTextHeight = headerTextDiv.offsetHeight;
+
+            // Posodobi X gumb
+            const closeButton = document.getElementById('global-hostex-close');
+            if (closeButton && closeButton.style.display === 'flex') {
+                closeButton.style.top = `${headerHeight + headerTextHeight + 5}px`;
+            }
+
+            // Posodobi widget
+            const widget = document.querySelector('hostex-booking-widget');
+            const footer = document.querySelector('footer');
+            const footerHeight = footer ? footer.offsetHeight : 60;
+
+            if (widget && widget.style.display === 'block') {
+                const topOffset = headerHeight + headerTextHeight;
+                widget.style.top = `${topOffset}px`;
+                widget.style.height = `calc(100vh - ${topOffset + footerHeight}px)`;
+            }
+        }
     }
 });
 
