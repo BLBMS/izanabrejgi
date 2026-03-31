@@ -1,4 +1,4 @@
-/* 038 */
+/* 039 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -50,9 +50,9 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Dodatne informacije",
                     "items2": [
-                        "Cenik velja za najem za 1 do 2 osebi na nočitev.",
-                        "Za 3. do 4. osebo je doplačilo na osnovno ceno.",
+                        "Cenik velja za najem za od 2 do 4 osebe na nočitev.",
                         "Hišni ljubljenčki niso dovoljeni.",
+                        "Zabave niso dovoljene.",
                         "Kajenje ni dovoljeno.",
                         "Turistična taksa se plača posebej:",
                         "  - polnoletne osebe 2,50 € na noč,",
@@ -61,7 +61,12 @@ const embeddedLanguageData = {
                         "Vse cene so v EUR. Ne poslujemo z gotovino.",
                         "ID nastanitvenega obrata: 137845",
                         "Kategorizaja: počitniška hiša ***"
-                    ]
+                    ],
+                    "intro3": "Varnost",
+                    "items3": [
+                        "Detektor dima in ogljikovega dioksida.",
+                        "Nadzorne kamere pokrivajo parkirišče in okolico hiše. Območje za najemnike: vsa okna, terasa in dvorišče pa ni pokrito s kamerami."
+                    ],
                 },
                 "contact": {
                     "title": "Kontakti",
@@ -129,9 +134,9 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Additional Information",
                     "items2": [
-                        "Price list applies to rental for 1 to 2 persons per night.",
-                        "For 3rd to 4th person: surcharge on basic price.",
+                        "Price list applies for rental for 2 to 4 persons per night.",
                         "Pets are not allowed.",
+                        "Parties are not allowed.",
                         "Smoking is not permitted.",
                         "Tourist tax is paid separately:",
                         "  - adults 2.50 € per night,",
@@ -140,6 +145,11 @@ const embeddedLanguageData = {
                         "All prices are in EUR. We do not accept cash.",
                         "Accommodation ID: 137845",
                         "Categorization: holiday home ***"
+                    ],
+                    "intro3": "Safety",
+                    "items3": [
+                        "Smoke and carbon monoxide detector.",
+                        "Security cameras cover the parking lot and the surroundings of the house. The tenant area: all windows, terrace, and courtyard are not covered by cameras."
                     ]
                 },
                 "contact": {
@@ -195,9 +205,9 @@ const embeddedLanguageData = {
                     "title": "Wir bieten",
                     "intro1": "Ein Ferienhaus für 1-4 Personen inklusive:",
                     "items1": [
-                        "einem separaten Schlafzimmer",
-                        "einer zusätzlichen Schlafgelegenheit im Wohnbereich",
-                        "einem Essbereich",
+                        "Die Preisliste gilt für die Anmietung für 2 bis 4 Personen pro Nacht.",
+                        "Haustiere sind nicht erlaubt.",
+                        "Partys sind nicht erlaubt.",
                         "einer komplett ausgestatteten Küche",
                         "einem Badezimmer mit Dusche",
                         "einer zusätzlichen Toilette",
@@ -219,6 +229,11 @@ const embeddedLanguageData = {
                         "Alle Preise sind v EUR. Wir akzeptieren kein Bargeld.",
                         "Beherbergungsbetriebs-ID: 137845",
                         "Kategorisierung: Ferienhaus ***"
+                    ],
+                    "intro3": "Sicherheit",
+                    "items3": [
+                        "Rauch- und Kohlenmonoxidmelder.",
+                        "Überwachungskameras erfassen den Parkplatz und die Umgebung des Hauses. Der Bereich für Mieter: Alle Fenster, Terrasse und Hof sind nicht von Kameras erfasst."
                     ]
                 },
                 "contact": {
@@ -436,46 +451,19 @@ function updateAboutContent(aboutData) {
             html += `</div>`;
         }
 
+        // TRETJI DEL - Varnost
+        if (aboutData.intro3 && aboutData.items3) {
+            html += `<div class="extra-info-section">`;
+            html += `<h3 class="extra-info-title">${aboutData.intro3}</h3>`;
+            html += '<ul class="extra-info-list">';
+            aboutData.items3.forEach(item => {
+                html += `<li>${item}</li>`;
+            });
+            html += '</ul>';
+            html += `</div>`;
+        }
+
         aboutContent.innerHTML = html;
-    }
-}
-
-// Popravljena verzija z boljšim formatiranjem - BRIŠI
-function updateContactContent037(contactData) {
-    const contactContent = document.getElementById('contact-content');
-    if (contactContent && contactData) {
-        // Razdeli telefon številko in ime
-        const phoneParts = contactData.phoneValue.split(' ');
-        const phoneNumber = phoneParts[0]; // +386 41 563 873
-        const phoneName = phoneParts.slice(1).join(' '); // Tanja
-
-        let html = `
-            <div class="contact-item">
-                <span class="contact-label">${contactData.phone}</span>
-                <span class="contact-value">
-                    <a href="tel:${phoneNumber.replace(/\s/g, '')}" class="contact-link phone-link">
-                        <span class="phone-number">${phoneNumber}</span>
-                        ${phoneName ? `<span class="phone-name">${phoneName}</span>` : ''}
-                    </a>
-                </span>
-            </div>
-            <div class="contact-item">
-                <span class="contact-label">${contactData.email}</span>
-                <span class="contact-value">
-                    <a href="mailto:iza.na.breigi@gmail.com" class="contact-link email-link">
-                        ${contactData.emailValue}
-                    </a>
-                </span>
-            </div>
-            <div class="contact-item">
-                <span class="contact-label">${contactData.address}</span>
-                <div class="contact-value address">
-        `;
-        contactData.addressLines.forEach(line => {
-            html += `<div>${line}</div>`;
-        });
-        html += `</div></div>`;
-        contactContent.innerHTML = html;
     }
 }
 
