@@ -1,5 +1,5 @@
 /* links-overlay.js */
-/* 038 - UPRAVLJANJE POVEZAV - VSE NA ENEM MESTU */
+/* 039 - UPRAVLJANJE POVEZAV - VSE NA ENEM MESTU */
 
 const baseLinksData = [
     {
@@ -125,7 +125,30 @@ function getLinksByLanguage(lang = 'sl') {
 }
 
 // ============================================
-// 3. OSTALE FUNKCIJE (enake kot prej)
+// 3. HANDLERJI ZA ZAPIRANJE
+// ============================================
+
+// ESC handler za links
+function linksEscHandler(e) {
+    if (e.key === 'Escape') {
+        hideLinksOverlay();
+    }
+}
+
+// Body klik handler za zapiranje ob kliku na zeleno ozadje
+function linksBodyClickHandler(e) {
+    // Preveri, če je klik na overlay vsebino
+    const isOverlayContent = e.target.closest('#links-overlay');
+    
+    // Če klik NI na overlay vsebino IN je overlay aktiven, zapri
+    if (!isOverlayContent && window.activeOverlayType === 'links') {
+        console.log('Click outside Links overlay, closing');
+        hideLinksOverlay();
+    }
+}
+
+// ============================================
+// 4. GLAVNI FUNKCIJI
 // ============================================
 
 // Prikaži links overlay
@@ -169,6 +192,9 @@ function showLinksOverlay() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', linksEscHandler);
+    
+    // Dodaj body klik handler za zapiranje ob kliku na zeleno ozadje
+    document.body.addEventListener('click', linksBodyClickHandler);
 
     // Onemogoči skrolanje
     document.body.style.overflow = 'hidden';
@@ -198,6 +224,9 @@ function hideLinksOverlay() {
 
     // Odstrani ESC handler
     document.removeEventListener('keydown', linksEscHandler);
+    
+    // Odstrani body klik handler
+    document.body.removeEventListener('click', linksBodyClickHandler);
 
     // Deselect vse selektirano besedilo
     if (window.getSelection) {
@@ -274,16 +303,9 @@ function updateLinksLanguage(lang) {
     loadLinks(lang);
 }
 
-// ESC handler za links
-function linksEscHandler(e) {
-    if (e.key === 'Escape') {
-        hideLinksOverlay();
-    }
-}
-
-// Inicializacija
+// Inicializacija - samo za background klik (brez body handlerja, ker ga dodamo v show)
 document.addEventListener('DOMContentLoaded', function () {
-    // Klik na background zapre overlay
+    // Klik na background (links-background) zapre overlay
     const bg = document.getElementById('links-background');
     if (bg) {
         bg.addEventListener('click', function (e) {
@@ -292,16 +314,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
-    // Zapri z ESC tipko
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            const overlay = document.getElementById('links-overlay');
-            if (overlay && overlay.classList.contains('active')) {
-                hideLinksOverlay();
-            }
-        }
-    });
 });
 
 // Eksport funkcij za globalno uporabo
