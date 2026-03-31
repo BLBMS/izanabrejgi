@@ -15,7 +15,7 @@ function setupOverlayBackgroundClick() {
 // Blokiraj event propagation znotraj overlayjev
 function setupOverlayClickHandlers() {
     document.querySelectorAll('.text-overlay, .contact-overlay').forEach(overlay => {
-        overlay.addEventListener('click', function(e) {
+        overlay.addEventListener('click', function (e) {
             e.stopPropagation();
         });
     });
@@ -43,6 +43,69 @@ function setupResizeHandlers() {
         }, 100);
     });
 }
+
+// Prepreči, da bi klik na gumb sprožil bodyClickHandler
+function setupNavHandlers() {
+    const navHome = document.getElementById('nav-home');
+    const navDescription = document.getElementById('nav-description');
+    const navAbout = document.getElementById('nav-about');
+    const navContact = document.getElementById('nav-contact');
+    const navMap = document.getElementById('nav-map');
+    const navReserve = document.getElementById('nav-reserve');
+    const navLinks = document.getElementById('nav-links');
+
+    if (navHome) {
+        navHome.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showHome();
+        });
+    }
+
+    if (navDescription) {
+        navDescription.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showDescription();
+        });
+    }
+
+    if (navAbout) {
+        navAbout.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showAbout();
+        });
+    }
+
+    if (navContact) {
+        navContact.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showContact();
+        });
+    }
+
+    if (navMap) {
+        navMap.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showMapWidget();
+        });
+    }
+
+    if (navReserve) {
+        navReserve.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showHostexWidget();
+        });
+    }
+
+    if (navLinks) {
+        navLinks.addEventListener('click', function (e) {
+            e.stopPropagation(); // PREPREČI PROPAGACIJO
+            showLinksOverlay();
+        });
+    }
+}
+
+// Pokliči ob nalaganju
+document.addEventListener('DOMContentLoaded', setupNavHandlers);
 
 // Eksport funkcij
 if (typeof module !== 'undefined' && module.exports) {
