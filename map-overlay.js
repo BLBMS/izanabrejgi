@@ -59,8 +59,8 @@ function getGoogleMapsUrl(lang = 'sl') {
 // Funkcija za pridobitev Apple Maps URL
 function getAppleMapsUrl(lang = 'sl') {
     const address = encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice");
-    const lat = 46.6833;
-    const lng = 16.2167;
+    const lat = 46.709083;
+    const lng = 16.246525;
     
     // Za iOS uporabimo maps:// (odpre aplikacijo)
     // Za macOS uporabimo https:// (odpre v brskalniku)
