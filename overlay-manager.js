@@ -1,4 +1,4 @@
-/* 037 */
+// 038
 // Upravljanje overlayev
 
 // Globalna spremenljivka za sledenje aktivnemu overlayju
@@ -56,6 +56,9 @@ function hideAllOverlays() {
 
     // Odstrani ESC handler
     document.removeEventListener('keydown', escHandler);
+    
+    // Odstrani klik handler za celotno ozadje
+    document.body.removeEventListener('click', bodyClickHandler);
 
     // Reset aktivnega overlayja
     activeOverlayType = null;
@@ -67,49 +70,33 @@ function hideAllOverlays() {
     document.body.style.overflow = '';
 }
 
-// Skrij vse overlayexxx
-function XXhideAllOverlays() {
-    console.log('Hiding all overlays, current active:', activeOverlayType);
+// Handler za klik na body (zeleno ozadje)
+let clickTimeout = null;
 
-    const bg = document.getElementById('overlay-background');
-    if (bg) bg.classList.remove('active');
-
-    const allOverlayElements = document.querySelectorAll(
-        '.text-overlay, .contact-overlay, #description-overlay, #about-overlay, #contact-overlay'
-    );
-
-    allOverlayElements.forEach(overlay => {
-        overlay.classList.remove('active');
-    });
-
-    if (typeof hideLinksOverlay === 'function') {
-        hideLinksOverlay();
+function bodyClickHandler(e) {
+    // Preveri, če je klik na gumb za odpiranje overlayja
+    const isNavButton = e.target.closest('.nav-links a, .language-flag, .logo-section');
+    
+    // Če je klik na navigacijski gumb, ne zapri overlayja
+    if (isNavButton) {
+        console.log('Click on nav button, ignoring');
+        return;
     }
-
-    // Skrij tudi widgete če so prikazani
-    if (typeof hideMapWidget === 'function') {
-        hideMapWidget();
+    
+    // Preveri, če je klik na overlay vsebino
+    const isOverlayContent = e.target.closest('.text-overlay, .contact-overlay, .links-overlay, hostex-booking-widget, #map-iframe');
+    
+    // Če klik NI na overlay vsebino IN je overlay aktiven, zapri
+    if (!isOverlayContent && activeOverlayType) {
+        console.log('Click outside overlay, closing');
+        
+        // Majhna zakasnitev, da se izognemo takojšnjemu zapiranju
+        if (clickTimeout) clearTimeout(clickTimeout);
+        clickTimeout = setTimeout(() => {
+            hideAllOverlays();
+            clickTimeout = null;
+        }, 10);
     }
-
-    if (typeof hideHostexWidget === 'function') {
-        hideHostexWidget();
-    }
-
-    document.querySelectorAll('.dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
-    });
-
-    // Odstrani ESC handler
-    document.removeEventListener('keydown', escHandler);
-
-    // Reset aktivnega overlayja
-    activeOverlayType = null;
-
-    // Deselect vse selektirano besedilo
-    deselectAllText();
-
-    // Omogoči skrolanje
-    document.body.style.overflow = '';
 }
 
 // ESC handler
@@ -122,6 +109,8 @@ function escHandler(e) {
 
 // Prikaži opis overlay
 function showDescription() {
+    console.log('Showing Description overlay');
+    
     // Če je aktiven widget, ga blokiram
     if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
         console.log(`Cannot show Description, ${activeOverlayType} widget is active`);
@@ -139,6 +128,9 @@ function showDescription() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', escHandler);
+    
+    // Dodaj klik handler za zapiranje ob kliku na ozadje
+    document.body.addEventListener('click', bodyClickHandler);
 
     // Onemogoči skrolanje
     document.body.style.overflow = 'hidden';
@@ -148,6 +140,8 @@ function showDescription() {
 
 // Prikaži "ponujamo" overlay
 function showAbout() {
+    console.log('Showing About overlay');
+    
     // Če je aktiven widget, ga blokiram
     if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
         console.log(`Cannot show About, ${activeOverlayType} widget is active`);
@@ -165,6 +159,9 @@ function showAbout() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', escHandler);
+    
+    // Dodaj klik handler za zapiranje ob kliku na ozadje
+    document.body.addEventListener('click', bodyClickHandler);
 
     // Onemogoči skrolanje
     document.body.style.overflow = 'hidden';
@@ -174,6 +171,8 @@ function showAbout() {
 
 // Prikaži kontakt overlay
 function showContact() {
+    console.log('Showing Contact overlay');
+    
     // Če je aktiven widget, ga blokiram
     if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
         console.log(`Cannot show Contact, ${activeOverlayType} widget is active`);
@@ -191,6 +190,9 @@ function showContact() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', escHandler);
+    
+    // Dodaj klik handler za zapiranje ob kliku na ozadje
+    document.body.addEventListener('click', bodyClickHandler);
 
     // Onemogoči skrolanje
     document.body.style.overflow = 'hidden';
