@@ -86,7 +86,7 @@ const embeddedLanguageData = {
                 },
             },
             "footer": {
-                "copyright": "&copy; 2025 Iža na brejgi. Vse pravice pridržane."
+                "copyright": "&copy; 2026 Iža na brejgi. Vse pravice pridržane."
             }
         },
         "en": {
@@ -170,7 +170,7 @@ const embeddedLanguageData = {
                 },
             },
             "footer": {
-                "copyright": "&copy; 2025 Iža na brejgi. All rights reserved."
+                "copyright": "&copy; 2026 Iža na brejgi. All rights reserved."
             }
         },
         "de": {
@@ -254,7 +254,7 @@ const embeddedLanguageData = {
                 },
             },
             "footer": {
-                "copyright": "&copy; 2025 Iža na brejgi. Alle Rechte vorbehalten."
+                "copyright": "&copy; 2026 Iža na brejgi. Alle Rechte vorbehalten."
             }
         }
     }
