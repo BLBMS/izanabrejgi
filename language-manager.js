@@ -241,7 +241,7 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Zusätzliche Informationen",
                     "items2": [
-                        "Preisliste gilt für Vermietung für 1 bis 2 Personen pro Nacht.",
+                        "Preisliste gilt für Vermietung für 1 bis 4 Personen pro Nacht.",
                         "Für 3. bis 4. Person: Aufschlag auf den Grundpreis.",
                         "Haustiere sind nicht erlaubt.",
                         "Rauchen ist nicht gestattet.",
