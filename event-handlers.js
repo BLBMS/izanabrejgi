@@ -1,4 +1,4 @@
-/* 027 */
+/* 028 */
 // Event handlerji
 
 // Event listener za klik na background
