@@ -39,7 +39,7 @@ const embeddedLanguageData = {
                     "intro1": "Počitniška hiša za 1-4 osebe vključuje:",
                     "items1": [
                         "ločeno spalnico",
-                        "dodatnim ležiščem v dnevnem prostoru",
+                        "dodatno ležišče v dnevnem prostoru",
                         "jedilnico",
                         "celotno opremljeno kuhinjo",
                         "kopalnico s tušem",
@@ -51,7 +51,7 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Dodatne informacije",
                     "items2": [
-                        "Cenik velja za najem za od 2 do 4 osebe na nočitev.",
+                        "Cenik velja za najem za od 1 do 4 osebe na nočitev.",
                         "Hišni ljubljenčki niso dovoljeni.",
                         "Zabave niso dovoljene.",
                         "Kajenje ni dovoljeno.",
@@ -91,8 +91,9 @@ const embeddedLanguageData = {
             },
             "hostex": {
                 "items": [
-                    "• Ponujamo direktno rezervacijo brez provizije preko lastnega portala spodaj. Plačilo s kreditno kartico.",
-                    "• Check-in se izvede preko on-line portala na dan prihoda v nastanitev. Takrat se preko istega portala plača tudi turistična taksa. Plačilo s kreditno kartico."
+                    "• Ponujamo direktno rezervacijo brez provizije preko lastnega portala spodaj. Plačilo je s kreditno kartico.",
+                    "• S premikanjem po mesecih lahko preverite tudi razpololjivost nastanitve.",
+                    "• Check-in se izvede preko on-line portala na dan prihoda v nastanitev. Takrat se preko istega portala plača tudi turistična taksa. Plačilo je s kreditno kartico."
                 ]
             },
             "footer": {
@@ -145,7 +146,7 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Additional Information",
                     "items2": [
-                        "Price list applies for rental for 2 to 4 persons per night.",
+                        "Price list applies for rental for 1 to 4 persons per night.",
                         "Pets are not allowed.",
                         "Parties are not allowed.",
                         "Smoking is not permitted.",
@@ -186,6 +187,7 @@ const embeddedLanguageData = {
             "hostex": {
                 "items": [
                     "• We offer direct booking without commission through our own portal below. Payment by credit card.",
+                    "• By scrolling through the months, you can also check the availability of the accommodation.",
                     "• Check-in is done through the online portal on the day of arrival at the accommodation. At that time, the tourist tax is also paid through the same portal. Payment by credit card."
                 ]
             },
@@ -226,7 +228,7 @@ const embeddedLanguageData = {
                     "title": "Wir bieten",
                     "intro1": "Ein Ferienhaus für 1-4 Personen inklusive:",
                     "items1": [
-                        "Die Preisliste gilt für die Anmietung für 2 bis 4 Personen pro Nacht.",
+                        "Die Preisliste gilt für die Anmietung für 1 bis 4 Personen pro Nacht.",
                         "Haustiere sind nicht erlaubt.",
                         "Partys sind nicht erlaubt.",
                         "einer komplett ausgestatteten Küche",
@@ -280,6 +282,7 @@ const embeddedLanguageData = {
             "hostex": {
                 "items": [
                     "• Wir bieten eine direkte Buchung ohne Provision über unser eigenes Portal unten. Zahlung per Kreditkarte.",
+                    "• Durch das Blättern durch die Monate können Sie auch die Verfügbarkeit der Unterkunft prüfen.",
                     "• Der Check-in erfolgt am Anreisetag in der Unterkunft über das Online-Portal. Zu diesem Zeitpunkt wird auch die Tourismusabgabe über dasselbe Portal bezahlt. Zahlung per Kreditkarte."
                 ]
             },
