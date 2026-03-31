@@ -1,69 +1,122 @@
-/* 032 */
-/* map-overlay.js v6 - z jezikovno podporo */
-// Osnovni URL z parametri za jezik
-const MAPS_BASE_URL = `https://maps.google.com/maps?width=1060&height=800&q=Rumičev%20breg%2071%20Moravske%20Toplice+(Iža%20na%20brejgi)&t=&z=12&ie=UTF8&iwloc=B&output=embed`;
+/* 033 */
+/* map-overlay.js v7 - z detekcijo platforme (Apple Maps za iOS/macOS) */
 
-// Jezikovne nastavitve
+// ============================================
+// 1. DETEKCIJA PLATFORME
+// ============================================
+function detectPlatform() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const platform = navigator.platform?.toLowerCase() || '';
+    
+    // iOS (iPhone, iPad, iPod)
+    if (/iphone|ipad|ipod/.test(userAgent)) {
+        return 'ios';
+    }
+    
+    // macOS
+    if (/mac/.test(platform) && !/iphone|ipad|ipod/.test(userAgent)) {
+        return 'macos';
+    }
+    
+    // Android
+    if (/android/.test(userAgent)) {
+        return 'android';
+    }
+    
+    // Windows
+    if (/win/.test(platform)) {
+        return 'windows';
+    }
+    
+    // Linux in ostalo
+    return 'other';
+}
+
+// ============================================
+// 2. JEZIKOVNE NASTAVITVE (tvoje obstoječe)
+// ============================================
 const MAPS_LANGUAGE_SETTINGS = {
     'sl': {
-        hl: 'sl', // Slovensko
-        hl_param: 'sl',
+        hl: 'sl',
         title: "Iža na brejgi"
     },
     'en': {
-        hl: 'en', // Angleško
-        hl_param: 'en',
+        hl: 'en',
         title: "Iža na brejgi"
     },
     'de': {
-        hl: 'de', // Nemško
-        hl_param: 'de',
+        hl: 'de',
         title: "Iža na brejgi"
     }
 };
 
-// Funkcija za pridobitev URL glede na jezik
-function getMapsUrl(lang = 'sl') {
+// Funkcija za pridobitev Google Maps URL (brez API ključa)
+function getGoogleMapsUrl(lang = 'sl') {
     const settings = MAPS_LANGUAGE_SETTINGS[lang] || MAPS_LANGUAGE_SETTINGS['sl'];
-
-    // Ustvari URL s pravilnimi parametri za jezik
-    let url = `https://maps.google.com/maps?`;
-    url += `width=1060&height=800`;
-    url += `&hl=${settings.hl}`; // glavni jezik
-    url += `&q=Rumičev%20breg%2071%20Moravske%20Toplice+(Iža%20na%20brejgi)`;
-    url += `&t=`;
-    url += `&z=12`;
-    url += `&ie=UTF8`;
-    url += `&iwloc=B`;
-    url += `&output=embed`;
-
-    return url;
+    return `https://maps.google.com/maps?q=Rumičev%20breg%2071%20Moravske%20Toplice&output=embed&hl=${settings.hl}&z=12`;
 }
 
+// Funkcija za pridobitev Apple Maps URL
+function getAppleMapsUrl(lang = 'sl') {
+    const address = encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice");
+    const lat = 46.6833;
+    const lng = 16.2167;
+    
+    // Za iOS uporabimo maps:// (odpre aplikacijo)
+    // Za macOS uporabimo https:// (odpre v brskalniku)
+    const platform = detectPlatform();
+    if (platform === 'ios') {
+        return `maps://maps.apple.com/?q=${address}&ll=${lat},${lng}`;
+    } else {
+        return `https://maps.apple.com/?q=${address}&ll=${lat},${lng}`;
+    }
+}
+
+// Funkcija za title zapiralnega gumba (tvoja obstoječa)
+function getCloseButtonTitle(lang) {
+    const titles = {
+        'sl': 'Zapri zemljevid',
+        'en': 'Close map',
+        'de': 'Karte schließen'
+    };
+    return titles[lang] || titles['sl'];
+}
+
+// ============================================
+// 3. GLAVNA FUNKCIJA ZA PRIKAZ ZEMLJEVIDA
+// ============================================
 function showMapWidget() {
     console.log('🗺️ Showing Map widget...');
 
-    // Preveri če je že kak overlay aktiven
     if (window.activeOverlayType) {
         console.log(`Cannot show Map, ${window.activeOverlayType} is active`);
         return;
     }
 
-    // Določi jezik (uporabi trenutni jezik strani)
     const currentLang = window.currentLanguage || 'sl';
-    console.log('Current language for map:', currentLang);
+    const platform = detectPlatform();
+    console.log('Platform:', platform, 'Language:', currentLang);
 
-    // Nastavi aktivni overlay
+    // Za iOS in macOS odpremo Apple Maps v novem oknu/zavihku
+    if (platform === 'ios' || platform === 'macos') {
+        console.log('Opening Apple Maps for', platform);
+        const appleMapsUrl = getAppleMapsUrl(currentLang);
+        window.open(appleMapsUrl, '_blank');
+        
+        // Ne prikazujemo iframe, samo odpremo zunanjo aplikacijo
+        return;
+    }
+
+    // Za ostale platforme (Windows, Android, Linux) uporabimo Google Maps iframe
     window.activeOverlayType = 'map';
 
-    // Pridobi višine
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
     const topOffset = 50;
 
-    // Blur overlay (uporabi isti kot Hostex)
+    // BLUR OZADJE (tvoje obstoječe)
     const blurOverlay = document.getElementById('full-page-blur');
     if (blurOverlay) {
         blurOverlay.style.cssText = `
@@ -82,17 +135,14 @@ function showMapWidget() {
         `;
         blurOverlay.classList.add('active');
 
-        // Dodaj event listener za klik na blur
         blurOverlay.addEventListener('click', function (e) {
-            if (e.target === this) {
-                hideMapWidget();
-            }
+            if (e.target === this) hideMapWidget();
         });
     }
 
-    // Ustvari iframe če ne obstaja ali posodobi URL glede na jezik
+    // Ustvari iframe (tvoje obstoječe)
     let mapsIframe = document.getElementById('map-iframe');
-    const mapsUrl = getMapsUrl(currentLang);
+    const mapsUrl = getGoogleMapsUrl(currentLang);
 
     if (!mapsIframe) {
         mapsIframe = document.createElement('iframe');
@@ -110,12 +160,11 @@ function showMapWidget() {
         `;
         document.body.appendChild(mapsIframe);
     } else {
-        // Posodobi URL in title glede na jezik
         mapsIframe.src = mapsUrl;
         mapsIframe.title = MAPS_LANGUAGE_SETTINGS[currentLang]?.title || "Iža na brejgi";
     }
 
-    // Prikaži iframe
+    // Prikaži iframe (tvoje obstoječe)
     mapsIframe.style.cssText = `
         position: fixed !important;
         top: ${headerHeight + topOffset}px !important;
@@ -129,7 +178,7 @@ function showMapWidget() {
         border: none !important;
     `;
 
-    // X gumb
+    // X GUMB (tvoje obstoječe)
     let closeButton = document.getElementById('close-map-widget');
     if (!closeButton) {
         closeButton = document.createElement('button');
@@ -140,12 +189,10 @@ function showMapWidget() {
         closeButton.addEventListener('click', hideMapWidget);
         document.body.appendChild(closeButton);
     } else {
-        // Posodobi title gumba glede na jezik
         closeButton.title = getCloseButtonTitle(currentLang);
         closeButton.setAttribute('aria-label', getCloseButtonTitle(currentLang));
     }
 
-    // Gumb naj bo identičen hostex gumbu
     closeButton.style.cssText = `
         position: fixed !important;
         top: ${headerHeight + 10}px !important;
@@ -170,36 +217,22 @@ function showMapWidget() {
         transition: all 0.3s ease !important;
     `;
 
-    // ESC tipka
+    // ESC handler (tvoje obstoječe)
     function escHandler(e) {
         if (e.key === 'Escape') {
             hideMapWidget();
-            // Deselect vse selektirano besedilo
-            if (window.getSelection) {
-                window.getSelection().removeAllRanges();
-            } else if (document.selection) {
-                document.selection.empty();
-            }
+            if (window.getSelection) window.getSelection().removeAllRanges();
         }
     }
     document.addEventListener('keydown', escHandler);
-
-    // Shrani handler za poznejše brisanje
     mapsIframe._escHandler = escHandler;
 
     document.body.style.overflow = 'hidden';
 }
 
-// Funkcija za title gumba glede na jezik
-function getCloseButtonTitle(lang) {
-    const titles = {
-        'sl': 'Zapri zemljevid',
-        'en': 'Close map',
-        'de': 'Karte schließen'
-    };
-    return titles[lang] || titles['sl'];
-}
-
+// ============================================
+// 4. FUNKCIJA ZA SKRIVANJE (tvoja obstoječa)
+// ============================================
 function hideMapWidget() {
     console.log('Hiding Map widget');
 
@@ -208,56 +241,43 @@ function hideMapWidget() {
     const blurOverlay = document.getElementById('full-page-blur');
 
     if (mapsIframe) {
-        mapsIframe.style.cssText = `
-            display: none !important;
-        `;
-        // Odstrani ESC handler
+        mapsIframe.style.cssText = `display: none !important;`;
         if (mapsIframe._escHandler) {
             document.removeEventListener('keydown', mapsIframe._escHandler);
         }
     }
 
     if (closeButton) {
-        closeButton.style.cssText = `
-            display: none !important;
-        `;
+        closeButton.style.cssText = `display: none !important;`;
     }
 
     if (blurOverlay) {
         blurOverlay.style.opacity = '0';
         blurOverlay.style.pointerEvents = 'none';
-        // Odstrani event listener
         blurOverlay.removeEventListener('click', hideMapWidget);
         setTimeout(() => blurOverlay.classList.remove('active'), 300);
     }
 
-    // Reset aktivnega overlayja
     if (window.activeOverlayType === 'map') {
         window.activeOverlayType = null;
     }
 
-    // Deselect vse selektirano besedilo
-    if (window.getSelection) {
-        window.getSelection().removeAllRanges();
-    } else if (document.selection) {
-        document.selection.empty();
-    }
-
+    if (window.getSelection) window.getSelection().removeAllRanges();
     document.body.style.overflow = '';
 }
 
-// Funkcija za osvežitev zemljevida ob spremembi jezika
+// ============================================
+// 5. OSVEŽITEV OB SPREMEMBI JEZIKA (tvoja obstoječa)
+// ============================================
 function refreshMapLanguage(lang) {
     console.log('Refreshing map language to:', lang);
 
     const mapsIframe = document.getElementById('map-iframe');
     if (mapsIframe && window.activeOverlayType === 'map') {
-        // Če je zemljevid trenutno odprt, osveži z novim jezikom
-        const mapsUrl = getMapsUrl(lang);
+        const mapsUrl = getGoogleMapsUrl(lang);
         mapsIframe.src = mapsUrl;
         mapsIframe.title = MAPS_LANGUAGE_SETTINGS[lang]?.title || "Iža na brejgi";
 
-        // Posodobi tudi title zapiralnega gumba
         const closeButton = document.getElementById('close-map-widget');
         if (closeButton) {
             closeButton.title = getCloseButtonTitle(lang);
@@ -266,26 +286,22 @@ function refreshMapLanguage(lang) {
     }
 }
 
-// Dodaj v global scope
+// ============================================
+// 6. EKSPORT V GLOBAL SCOPE
+// ============================================
 if (typeof window !== 'undefined') {
     window.showMapWidget = showMapWidget;
     window.hideMapWidget = hideMapWidget;
     window.refreshMapLanguage = refreshMapLanguage;
+    window.detectPlatform = detectPlatform;
 }
 
-// Poveži z language-manager.js
+// Poveži z language-manager.js (tvoje obstoječe)
 document.addEventListener('DOMContentLoaded', function () {
-    // Če language-manager.js definira switchLanguage, dodaj listener
     if (typeof switchLanguage === 'function') {
-        // Shrani originalno funkcijo
         const originalSwitchLanguage = switchLanguage;
-
-        // Override funkcijo
         window.switchLanguage = function (lang) {
-            // Pokliči originalno funkcijo
             originalSwitchLanguage(lang);
-
-            // Osveži zemljevid če je odprt
             setTimeout(() => {
                 if (typeof refreshMapLanguage === 'function') {
                     refreshMapLanguage(lang);
