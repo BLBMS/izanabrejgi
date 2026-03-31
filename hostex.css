@@ -1,4 +1,4 @@
-/* 029 */
+/* 030 */
 /* HOSTEX WIDGET CSS */
 
 /* Globalni X gumb */
@@ -23,7 +23,7 @@ hostex-booking-widget * {
     background: transparent !important;
 }
 
-/* Header tekst nad koledarjem - samo seznam */
+/* Header tekst nad koledarjem - CENTRIRANO */
 .hostex-header-text {
     position: fixed;
     z-index: 2002;
@@ -36,21 +36,26 @@ hostex-booking-widget * {
     left: 0;
     right: 0;
     transition: all 0.3s ease;
-    /* DODANO: omogoči prelivanje brez scrollbara */
-    overflow-y: auto;
-    max-height: 30vh; /* Omeji maksimalno višino */
+    /* DODANO: centriranje */
+    text-align: center;
 }
 
 .hostex-info-list {
     margin: 0;
-    padding-left: 20px;
+    padding-left: 0;
+    /* SPREMENJENO: odstrani levi padding */
     color: var(--font-color);
     font-size: 0.85rem;
     line-height: 1.5;
+    /* DODANO: centriranje seznama */
+    list-style-position: inside;
+    display: inline-block;
+    text-align: left;
 }
 
 .hostex-info-list li {
     margin-bottom: 8px;
+    text-align: left;
 }
 
 .hostex-info-list li:last-child {
@@ -63,16 +68,16 @@ hostex-booking-widget * {
         padding: 10px 15px;
         max-height: 25vh;
     }
-    
+
     .hostex-info-list {
         font-size: 0.75rem;
-        padding-left: 18px;
+        padding-left: 0;
     }
-    
+
     .hostex-info-list li {
         margin-bottom: 6px;
     }
-    
+
     #global-hostex-close {
         font-size: 2rem !important;
         width: 35px !important;
@@ -85,16 +90,16 @@ hostex-booking-widget * {
         padding: 8px 12px;
         max-height: 20vh;
     }
-    
+
     .hostex-info-list {
         font-size: 0.7rem;
-        padding-left: 16px;
+        padding-left: 0;
     }
-    
+
     .hostex-info-list li {
         margin-bottom: 5px;
     }
-    
+
     #global-hostex-close {
         font-size: 1.8rem !important;
         width: 30px !important;
