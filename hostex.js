@@ -351,5 +351,66 @@ window.addEventListener('resize', function () {
     }
 });
 
+// ============================================
+// POSLUŠALEC ZA SPREMEMBO JEZIKA - DODAJ NA KONEC DATOTEKE
+// ============================================
+
+// Funkcija za posodobitev Hostexa ob spremembi jezika
+function updateHostexOnLanguageChange() {
+    // Preveri, če je Hostex widget odprt
+    const widget = document.querySelector('hostex-booking-widget');
+    if (widget && widget.style.display === 'block') {
+        console.log('Language changed while Hostex is open, updating header...');
+
+        // Posodobi header tekst
+        updateHostexHeader();
+
+        // Počakaj, da se nov tekst renderira, nato ponovno pozicioniraj
+        setTimeout(() => {
+            // Ponovno pozicioniraj widget in X gumb
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+            const headerHeight = header ? header.offsetHeight : 80;
+            const footerHeight = footer ? footer.offsetHeight : 60;
+
+            const headerTextDiv = document.getElementById('hostex-header-text');
+            const headerTextHeight = headerTextDiv ? headerTextDiv.offsetHeight : 0;
+            const topOffset = headerHeight + headerTextHeight;
+
+            // Posodobi widget
+            widget.style.top = `${topOffset}px`;
+            widget.style.height = `calc(100vh - ${topOffset + footerHeight}px)`;
+
+            // Posodobi X gumb
+            const closeButton = document.getElementById('global-hostex-close');
+            if (closeButton && closeButton.style.display === 'flex') {
+                closeButton.style.top = `${topOffset + 10}px`;
+            }
+        }, 50);
+    }
+}
+
+// Poslušaj na spremembo jezika preko switchLanguage
+if (typeof window.switchLanguage === 'function') {
+    const originalSwitchLanguage = window.switchLanguage;
+    window.switchLanguage = function (lang) {
+        // Pokliči originalno funkcijo
+        const result = originalSwitchLanguage(lang);
+        // Posodobi Hostex
+        updateHostexOnLanguageChange();
+        return result;
+    };
+}
+
+// Tudi poslušaj na spremembo preko applyLanguage (za vsak slučaj)
+if (typeof window.applyLanguage === 'function') {
+    const originalApplyLanguage = window.applyLanguage;
+    window.applyLanguage = function (lang) {
+        const result = originalApplyLanguage(lang);
+        updateHostexOnLanguageChange();
+        return result;
+    };
+}
+
 window.showHostexWidget = showHostexWidget;
 window.hideHostexWidget = hideHostexWidget;
