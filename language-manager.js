@@ -5,6 +5,7 @@
 const embeddedLanguageData = {
     "languages-version": "027",
     "languages": {
+        // ------------------------------------- SL ---------------------------------------------
         "sl": {
             "meta": {
                 "title": "Iža na brejgi",
@@ -76,7 +77,10 @@ const embeddedLanguageData = {
                         "+386 41 913 001 Marko"
                     ],
                     "email": "Email:",
-                    "emailValue": "izanabreigi@gmail.com",
+                    "emailValues": [
+                        "izanabrejgi@gmail.com",
+                        "iza.na.brejgi@gmail.com"
+                    ],
                     "address": "Naslov:",
                     "addressLines": [
                         "Rumičev breg 71",
@@ -85,10 +89,17 @@ const embeddedLanguageData = {
                     ]
                 },
             },
+            "hostex": {
+                "items": [
+                    "• Ponujamo direktno rezervacijo brez provizije preko lastnega portala spodaj. Plačilo s kreditno kartico.",
+                    "• Check-in se izvede preko on-line portala na dan prihoda v nastanitev. Takrat se preko istega portala plača tudi turistična taksa. Plačilo s kreditno kartico."
+                ]
+            },
             "footer": {
                 "copyright": "&copy; 2026 Iža na brejgi. Vse pravice pridržane."
             }
         },
+        // ------------------------------------- EN ---------------------------------------------
         "en": {
             "meta": {
                 "title": "Iža na brejgi",
@@ -160,7 +171,10 @@ const embeddedLanguageData = {
                         "+386 41 913 001 Marko"
                     ],
                     "email": "Email:",
-                    "emailValue": "izanabrejgi@gmail.com",
+                    "emailValues": [
+                        "izanabrejgi@gmail.com",
+                        "iza.na.brejgi@gmail.com"
+                    ],
                     "address": "Address:",
                     "addressLines": [
                         "Rumičev breg 71",
@@ -169,10 +183,17 @@ const embeddedLanguageData = {
                     ]
                 },
             },
+            "hostex": {
+                "items": [
+                    "• We offer direct booking without commission through our own portal below. Payment by credit card.",
+                    "• Check-in is done through the online portal on the day of arrival at the accommodation. At that time, the tourist tax is also paid through the same portal. Payment by credit card."
+                ]
+            },
             "footer": {
                 "copyright": "&copy; 2026 Iža na brejgi. All rights reserved."
             }
         },
+        // ------------------------------------- DE ---------------------------------------------
         "de": {
             "meta": {
                 "title": "Iža na brejgi",
@@ -243,8 +264,11 @@ const embeddedLanguageData = {
                         "+386 41 563 873 Tanja",
                         "+386 41 913 001 Marko"
                     ],
-                    "email": "E-Mail:",
-                    "emailValue": "izanabreigi@gmail.com",
+                    "email": "Email:",
+                    "emailValues": [
+                        "izanabrejgi@gmail.com",
+                        "iza.na.brejgi@gmail.com"
+                    ],
                     "address": "Adresse:",
                     "addressLines": [
                         "Rumičev breg 71",
@@ -252,6 +276,12 @@ const embeddedLanguageData = {
                         "Goričko, Prekmurje, Slowenien"
                     ]
                 },
+            },
+            "hostex": {
+                "items": [
+                    "• Wir bieten eine direkte Buchung ohne Provision über unser eigenes Portal unten. Zahlung per Kreditkarte.",
+                    "• Der Check-in erfolgt am Anreisetag in der Unterkunft über das Online-Portal. Zu diesem Zeitpunkt wird auch die Tourismusabgabe über dasselbe Portal bezahlt. Zahlung per Kreditkarte."
+                ]
             },
             "footer": {
                 "copyright": "&copy; 2026 Iža na brejgi. Alle Rechte vorbehalten."
@@ -468,6 +498,7 @@ function updateAboutContent(aboutData) {
 }
 
 // Posodobi kontakt overlay
+// Posodobi kontakt overlay
 function updateContactContent(contactData) {
     const contactContent = document.getElementById('contact-content');
     if (contactContent && contactData) {
@@ -480,8 +511,7 @@ function updateContactContent(contactData) {
             html += '<div class="contact-values">';
 
             contactData.phoneValues.forEach(phone => {
-                // Izlušči številko za tel: link (odstrani presledke in črke)
-                const phoneNumber = phone.replace(/[^\d+]/g, ''); // Pusti samo številke in +
+                const phoneNumber = phone.replace(/[^\d+]/g, '');
                 html += `<div class="contact-value">`;
                 html += `<a href="tel:${phoneNumber}" class="contact-link phone-link">${phone}</a>`;
                 html += `</div>`;
@@ -495,18 +525,31 @@ function updateContactContent(contactData) {
             html += '<div class="contact-item">';
             html += `<span class="contact-label">${contactData.phone}</span>`;
             html += '<div class="contact-values">';
-
             const phoneNumber = contactData.phoneValue.replace(/[^\d+]/g, '');
             html += `<div class="contact-value">`;
             html += `<a href="tel:${phoneNumber}" class="contact-link phone-link">${contactData.phoneValue}</a>`;
             html += `</div>`;
-
             html += '</div>';
             html += '</div>';
         }
 
-        // EMAIL
-        if (contactData.email && contactData.emailValue) {
+        // EMAIL - podpora za več emailov (emailValues)
+        if (contactData.emailValues && Array.isArray(contactData.emailValues)) {
+            html += '<div class="contact-item">';
+            html += `<span class="contact-label">${contactData.email}</span>`;
+            html += '<div class="contact-values">';
+
+            contactData.emailValues.forEach(email => {
+                html += `<div class="contact-value">`;
+                html += `<a href="mailto:${email}" class="contact-link email-link">${email}</a>`;
+                html += `</div>`;
+            });
+
+            html += '</div>';
+            html += '</div>';
+        }
+        // FALLBACK za staro strukturo (en email)
+        else if (contactData.emailValue) {
             html += '<div class="contact-item">';
             html += `<span class="contact-label">${contactData.email}</span>`;
             html += '<div class="contact-values">';
