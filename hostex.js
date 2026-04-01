@@ -1,4 +1,4 @@
-// 034
+// 035
 // HOSTEX WIDGET - USTVARJANJE V JS
 
 // Inicializiraj globalno spremenljivko če ne obstaja
@@ -23,7 +23,6 @@ function getHostexText() {
     };
 }
 
-// Funkcija za posodobitev ali ustvarjanje header teksta
 // Funkcija za posodobitev ali ustvarjanje header teksta
 function updateHostexHeader() {
     const header = document.querySelector('header');
@@ -114,10 +113,11 @@ function createHostexWidget() {
 async function showHostexWidget() {
     console.log('👁️ Showing Hostex widget...');
 
-    if (window.activeOverlayType) {
-        console.log(`Cannot show Hostex, ${window.activeOverlayType} is active`);
-        return;
+    // ========== DODANO: ZAPRI VSE OVERLAYE PREDEN ODPREŠ HOSTEX ==========
+    if (typeof hideAllOverlays === 'function') {
+        hideAllOverlays();
     }
+    // ======================================================================
 
     try {
         await loadHostexScript();
@@ -127,10 +127,6 @@ async function showHostexWidget() {
     }
 
     window.activeOverlayType = 'hostex';
-
-    if (typeof hideAllOverlays === 'function') {
-        hideAllOverlays();
-    }
 
     const widget = createHostexWidget();
     if (!widget) {
@@ -352,7 +348,7 @@ window.addEventListener('resize', function () {
 });
 
 // ============================================
-// POSLUŠALEC ZA SPREMEMBO JEZIKA - DODAJ NA KONEC DATOTEKE
+// POSLUŠALEC ZA SPREMEMBO JEZIKA
 // ============================================
 
 // Funkcija za posodobitev Hostexa ob spremembi jezika
