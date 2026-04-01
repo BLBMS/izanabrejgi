@@ -1,4 +1,4 @@
-/* 039 */
+/* 040 */
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -88,6 +88,14 @@ const embeddedLanguageData = {
                         "Goričko, Prekmurje, Slovenija"
                     ]
                 },
+            },
+            "map": {
+                "title": "📍 Iža na brejgi",
+                "viewLabel": "Prikaži na zemljevidu",
+                "navLabel": "Navigacija / Izračun poti",
+                "googleMaps": "Google Maps",
+                "appleMaps": "Apple Maps",
+                "tip": "Kliknite na gumb za odprtje v aplikaciji ali brskalniku."
             },
             "hostex": {
                 "items": [
@@ -184,6 +192,14 @@ const embeddedLanguageData = {
                     ]
                 },
             },
+            "map": {
+                "title": "📍 Iža na brejgi",
+                "viewLabel": "View on map",
+                "navLabel": "Navigation / Get directions",
+                "googleMaps": "Google Maps",
+                "appleMaps": "Apple Maps",
+                "tip": "Click the button to open in app or browser."
+            },
             "hostex": {
                 "items": [
                     "• We offer direct booking without commission through our own portal below. Payment by credit card.",
@@ -279,6 +295,14 @@ const embeddedLanguageData = {
                     ]
                 },
             },
+            "map": {
+                "title": "📍 Iža na brejgi",
+                "viewLabel": "Auf Karte anzeigen",
+                "navLabel": "Navigation / Route berechnen",
+                "googleMaps": "Google Maps",
+                "appleMaps": "Apple Maps",
+                "tip": "Klicken Sie auf die Schaltfläche, um in der App oder im Browser zu öffnen."
+            },
             "hostex": {
                 "items": [
                     "• Wir bieten eine direkte Buchung ohne Provision über unser eigenes Portal unten. Zahlung per Kreditkarte.",
@@ -342,6 +366,7 @@ function detectLanguageByLocation() {
 }
 
 // Uporabi jezik
+
 function applyLanguage(lang) {
     if (!languageData[lang]) return;
 
@@ -375,15 +400,20 @@ function applyLanguage(lang) {
         window.setCookieNoticeLanguage(lang);
     }
 
-    // Sinhroniziraj links overlay
+    // Sinhroniziraj links overlay - TO MORA OBSTAJATI
     if (window.updateLinksLanguage) {
+        console.log('Calling updateLinksLanguage with:', lang);
         window.updateLinksLanguage(lang);
+    }
+
+    // Sinhroniziraj map overlay
+    if (window.refreshMapLanguage) {
+        window.refreshMapLanguage(lang);
     }
 
     // Preveri če so piškotki prikazani in jih posodobi
     const cookieNotice = document.getElementById('cookie-notice');
     if (cookieNotice && cookieNotice.style.display === 'block') {
-        // Piškotno obvestilo je prikazano - posodobi jezik
         if (window.updateCookieTexts) {
             window.updateCookieTexts();
         }
