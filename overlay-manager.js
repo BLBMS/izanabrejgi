@@ -56,7 +56,7 @@ function hideAllOverlays() {
 
     // Odstrani ESC handler
     document.removeEventListener('keydown', escHandler);
-    
+
     // Odstrani klik handler za celotno ozadje
     document.body.removeEventListener('click', bodyClickHandler);
 
@@ -76,20 +76,20 @@ let clickTimeout = null;
 function bodyClickHandler(e) {
     // Preveri, če je klik na gumb za odpiranje overlayja
     const isNavButton = e.target.closest('.nav-links a, .language-flag, .logo-section');
-    
+
     // Če je klik na navigacijski gumb, ne zapri overlayja
     if (isNavButton) {
         console.log('Click on nav button, ignoring');
         return;
     }
-    
+
     // Preveri, če je klik na overlay vsebino
     const isOverlayContent = e.target.closest('.text-overlay, .contact-overlay, .links-overlay, hostex-booking-widget, #map-iframe');
-    
+
     // Če klik NI na overlay vsebino IN je overlay aktiven, zapri
     if (!isOverlayContent && activeOverlayType) {
         console.log('Click outside overlay, closing');
-        
+
         // Majhna zakasnitev, da se izognemo takojšnjemu zapiranju
         if (clickTimeout) clearTimeout(clickTimeout);
         clickTimeout = setTimeout(() => {
@@ -110,7 +110,7 @@ function escHandler(e) {
 // Prikaži opis overlay
 function showDescription() {
     console.log('Showing Description overlay');
-    
+
     // Če je aktiven widget, ga blokiram
     if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
         console.log(`Cannot show Description, ${activeOverlayType} widget is active`);
@@ -128,7 +128,7 @@ function showDescription() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', escHandler);
-    
+
     // Dodaj klik handler za zapiranje ob kliku na ozadje
     document.body.addEventListener('click', bodyClickHandler);
 
@@ -141,7 +141,7 @@ function showDescription() {
 // Prikaži "ponujamo" overlay
 function showAbout() {
     console.log('Showing About overlay');
-    
+
     // Če je aktiven widget, ga blokiram
     if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
         console.log(`Cannot show About, ${activeOverlayType} widget is active`);
@@ -159,7 +159,7 @@ function showAbout() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', escHandler);
-    
+
     // Dodaj klik handler za zapiranje ob kliku na ozadje
     document.body.addEventListener('click', bodyClickHandler);
 
@@ -172,7 +172,7 @@ function showAbout() {
 // Prikaži kontakt overlay
 function showContact() {
     console.log('Showing Contact overlay');
-    
+
     // Če je aktiven widget, ga blokiram
     if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
         console.log(`Cannot show Contact, ${activeOverlayType} widget is active`);
@@ -190,7 +190,7 @@ function showContact() {
 
     // Dodaj ESC handler
     document.addEventListener('keydown', escHandler);
-    
+
     // Dodaj klik handler za zapiranje ob kliku na ozadje
     document.body.addEventListener('click', bodyClickHandler);
 
