@@ -1,129 +1,358 @@
-/* 034 */
-/* map-overlay.js v8 - odpre aplikacijo na vseh platformah */
+/* 032 */
+/* map-overlay.js v16 - popravljen Apple Maps URL */
 
 // ============================================
-// 1. DETEKCIJA PLATFORME
+// 1. KOORDINATE IN PODATKI
+// ============================================
+const LAT = 46.709083;
+const LNG = 16.246525;
+const PLACE_NAME = "Iža na brejgi";
+const FULL_ADDRESS = "Iža na brejgi, Rumičev breg 71, 9226 Moravske Toplice, Slovenija";
+const ENCODED_FULL_ADDRESS = encodeURIComponent(FULL_ADDRESS);
+const ENCODED_PLACE_NAME = encodeURIComponent(PLACE_NAME);
+
+// Apple Maps place ID
+const APPLE_PLACE_ID = "I10C98484AA979597";
+
+// ============================================
+// 2. DETEKCIJA PLATFORME
 // ============================================
 function detectPlatform() {
     const userAgent = navigator.userAgent.toLowerCase();
     const platform = navigator.platform?.toLowerCase() || '';
 
-    // iOS (iPhone, iPad, iPod)
-    if (/iphone|ipad|ipod/.test(userAgent)) {
-        return 'ios';
-    }
-
-    // macOS
-    if (/mac/.test(platform) && !/iphone|ipad|ipod/.test(userAgent)) {
-        return 'macos';
-    }
-
-    // Android
-    if (/android/.test(userAgent)) {
-        return 'android';
-    }
-
-    // Windows
-    if (/win/.test(platform)) {
-        return 'windows';
-    }
-
-    // Linux in ostalo
+    if (/iphone|ipad|ipod/.test(userAgent)) return 'ios';
+    if (/mac/.test(platform) && !/iphone|ipad|ipod/.test(userAgent)) return 'macos';
+    if (/android/.test(userAgent)) return 'android';
+    if (/win/.test(platform)) return 'windows';
     return 'other';
 }
 
 // ============================================
-// 2. PRAVILNE KOORDINATE
-// ============================================
-const LAT = 46.709083;
-const LNG = 16.246525;
-const ADDRESS = "Rumičev breg 71, 9226 Moravske Toplice";
-const ENCODED_ADDRESS = encodeURIComponent(ADDRESS);
-
-// ============================================
-// 3. FUNKCIJE ZA PRIDOBITEV URL PO PLATFORMI
+// 3. FUNKCIJE ZA URL
 // ============================================
 
-function getMapsUrl(platform, lang = 'sl') {
-    switch (platform) {
-        case 'ios':
-            // Apple Maps aplikacija
-            return `maps://maps.apple.com/?q=${ENCODED_ADDRESS}&ll=${LAT},${LNG}`;
+// Google Maps - prikaži lokacijo (iskanje po imenu)
+function getGoogleViewUrl() {
+    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
+}
 
-        case 'macos':
-            // Apple Maps v brskalniku
-            return `https://maps.apple.com/?q=${ENCODED_ADDRESS}&ll=${LAT},${LNG}`;
+// Google Maps - navigacija
+function getGoogleNavUrl() {
+    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
+}
 
-        case 'android':
-            // Google Maps aplikacija (odpre v aplikaciji)
-            // Uporabi geo: URI za odpiranje v aplikaciji
-            return `geo:${LAT},${LNG}?q=${ENCODED_ADDRESS}`;
+// Apple Maps - prikaži lokacijo (uporabi v14 delujoč URL)
+function getAppleViewUrl(platform) {
+    // Uporabi place-id za natančno lokacijo (kot v v14)
+    const appleUrl = `https://maps.apple.com/place?place-id=${APPLE_PLACE_ID}&address=${encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice")}&coordinate=${LAT},${LNG}&name=${ENCODED_PLACE_NAME}&_provider=9902`;
 
-        case 'windows':
-            // Windows - Google Maps v brskalniku (ker ni native aplikacije)
-            return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
+    if (platform === 'ios') {
+        return `maps://maps.apple.com/place?place-id=${APPLE_PLACE_ID}&address=${encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice")}&coordinate=${LAT},${LNG}&name=${ENCODED_PLACE_NAME}&_provider=9902`;
+    } else {
+        return appleUrl;
+    }
+}
 
-        default:
-            // Linux in ostalo - Google Maps v brskalniku
-            return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
+// Apple Maps - navigacija (uporabi directions URL)
+function getAppleNavUrl(platform) {
+    // Uporabi directions URL s polnim naslovom in place-id
+    const destination = encodeURIComponent("Iža na brejgi, Rumičev breg 71, 9226 Moravske Toplice, Slovenija");
+    const appleUrl = `https://maps.apple.com/directions?destination=${destination}&destination-place-id=${APPLE_PLACE_ID}&mode=driving`;
+
+    if (platform === 'ios') {
+        return `maps://maps.apple.com/directions?destination=${destination}&destination-place-id=${APPLE_PLACE_ID}&mode=driving`;
+    } else {
+        return appleUrl;
     }
 }
 
 // ============================================
-// 4. GLAVNA FUNKCIJA ZA PRIKAZ ZEMLJEVIDA
+// 4. POMOŽNE FUNKCIJE
+// ============================================
+function getMapText(lang, key) {
+    const texts = window.languageData?.[lang]?.map;
+    const defaults = {
+        'viewLabel': 'Prikaži na zemljevidu',
+        'navLabel': 'Navigacija / Izračun poti',
+        'googleMaps': 'Google Maps',
+        'appleMaps': 'Apple Maps'
+    };
+    return texts?.[key] || defaults[key] || '';
+}
+
+// ============================================
+// 5. GLAVNA FUNKCIJA ZA PRIKAZ
 // ============================================
 function showMapWidget() {
     console.log('🗺️ Showing Map widget...');
 
-    if (window.activeOverlayType) {
-        console.log(`Cannot show Map, ${window.activeOverlayType} is active`);
-        return;
+    // NAJPREJ ZAPRI VSE OVERLAYE
+    if (typeof hideAllOverlays === 'function') {
+        hideAllOverlays();
     }
+
+    window.activeOverlayType = 'map';
 
     const currentLang = window.currentLanguage || 'sl';
     const platform = detectPlatform();
     console.log('Platform:', platform, 'Language:', currentLang);
 
-    // Za VSE platforme odpremo native aplikacijo ali brskalnik
-    // Ne uporabljamo iframe, ker je boljša izkušnja v aplikaciji
-    const mapsUrl = getMapsUrl(platform, currentLang);
-    console.log('Opening maps URL:', mapsUrl);
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const headerHeight = header ? header.offsetHeight : 80;
+    const footerHeight = footer ? footer.offsetHeight : 60;
 
-    window.open(mapsUrl, '_blank');
+    // BLUR OZADJE
+    const blurOverlay = document.getElementById('overlay-background');
+    if (blurOverlay) {
+        blurOverlay.classList.add('active');
+        blurOverlay.style.display = 'block';
 
-    // Če je bil kak overlay aktiven, ga zapremo
-    if (window.activeOverlayType) {
-        // Samo sprostimo, ker smo odprli zunanjo aplikacijo
-        window.activeOverlayType = null;
+        blurOverlay.onclick = function (e) {
+            if (e.target === this) hideMapWidget();
+        };
     }
+
+    // Odstrani obstoječe elemente
+    const existingCloseBtn = document.getElementById('close-map-widget');
+    if (existingCloseBtn) existingCloseBtn.remove();
+
+    let mapContainer = document.getElementById('map-container');
+    if (mapContainer) mapContainer.remove();
+
+    mapContainer = document.createElement('div');
+    mapContainer.id = 'map-container';
+    document.body.appendChild(mapContainer);
+
+    // Pridobi besedila
+    const viewLabel = getMapText(currentLang, 'viewLabel');
+    const navLabel = getMapText(currentLang, 'navLabel');
+    const googleText = getMapText(currentLang, 'googleMaps');
+    const appleText = getMapText(currentLang, 'appleMaps');
+
+    // Ustvari vsebino
+    mapContainer.innerHTML = `
+        <div class="map-buttons-container">
+            <div class="map-button-group">
+                <div class="map-button-label">${viewLabel}</div>
+                <button class="map-btn google-view" data-type="google-view">🗺️ ${googleText}</button>
+                <button class="map-btn apple-view" data-type="apple-view">🍎 ${appleText}</button>
+            </div>
+            <div class="map-button-group">
+                <div class="map-button-label">${navLabel}</div>
+                <button class="map-btn google-nav" data-type="google-nav">🗺️ ${googleText}</button>
+                <button class="map-btn apple-nav" data-type="apple-nav">🍎 ${appleText}</button>
+            </div>
+        </div>
+        <div class="map-embed-container">
+            <iframe id="map-iframe" src="https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+        </div>
+    `;
+
+    // Funkcija za pozicioniranje
+    function positionMapContainer() {
+        const headerHeight = header ? header.offsetHeight : 80;
+        const footerHeight = footer ? footer.offsetHeight : 60;
+        const topOffset = 5;
+
+        mapContainer.style.cssText = `
+            position: fixed !important;
+            top: ${headerHeight + topOffset}px !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 90% !important;
+            max-width: 1000px !important;
+            margin: 0 auto !important;
+            height: calc(100vh - ${headerHeight + footerHeight + topOffset * 2}px) !important;
+            min-height: 400px !important;
+            z-index: 100 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            padding: 10px 15px !important;
+            background: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(5px) !important;
+            -webkit-backdrop-filter: blur(5px) !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(208, 255, 0, 0.2) !important;
+            overflow-y: auto !important;
+            box-sizing: border-box !important;
+        `;
+    }
+
+    positionMapContainer();
+
+    // ResizeObserver
+    if (window.ResizeObserver) {
+        const resizeObserver = new ResizeObserver(() => {
+            positionMapContainer();
+            positionCloseButton();
+        });
+        resizeObserver.observe(mapContainer);
+        window.mapResizeObserver = resizeObserver;
+    }
+
+    // Event listenerji za gumbe
+    document.querySelectorAll('.map-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const type = btn.getAttribute('data-type');
+            let url = '';
+
+            switch (type) {
+                case 'google-view': url = getGoogleViewUrl(); break;
+                case 'google-nav': url = getGoogleNavUrl(); break;
+                case 'apple-view': url = getAppleViewUrl(platform); break;
+                case 'apple-nav': url = getAppleNavUrl(platform); break;
+            }
+
+            if (url) {
+                console.log('Opening URL:', url);
+                window.open(url, '_blank');
+            }
+        });
+    });
+
+    // X GUMB
+    const closeButton = document.createElement('button');
+    closeButton.id = 'close-map-widget';
+    closeButton.innerHTML = '×';
+    closeButton.title = 'Zapri zemljevid';
+    document.body.appendChild(closeButton);
+
+    closeButton.onmouseenter = function () {
+        this.style.transform = 'scale(1.2)';
+        this.style.color = 'var(--hover-color)';
+    };
+    closeButton.onmouseleave = function () {
+        this.style.transform = 'scale(1)';
+        this.style.color = 'var(--font-color)';
+    };
+    closeButton.onclick = hideMapWidget;
+
+    function positionCloseButton() {
+        const headerHeight = header ? header.offsetHeight : 80;
+        const topOffset = 5;
+        const containerTop = headerHeight + topOffset;
+
+        closeButton.style.cssText = `
+            position: fixed !important;
+            top: ${containerTop + 8}px !important;
+            right: calc(50% - min(500px, 45vw) + 10px) !important;
+            width: 32px !important;
+            height: 32px !important;
+            background: transparent !important;
+            border: none !important;
+            color: var(--font-color) !important;
+            font-size: 2rem !important;
+            cursor: pointer !important;
+            z-index: 101 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 0 !important;
+            text-shadow: var(--font-shadow) !important;
+            transition: all 0.2s ease !important;
+        `;
+        closeButton.style.display = 'flex';
+    }
+
+    positionCloseButton();
+
+    // Observer za X gumb
+    const closeObserver = new ResizeObserver(() => positionCloseButton());
+    if (mapContainer) closeObserver.observe(mapContainer);
+    window.mapCloseObserver = closeObserver;
+
+    // ESC handler
+    function escHandler(e) {
+        if (e.key === 'Escape') hideMapWidget();
+    }
+    document.addEventListener('keydown', escHandler);
+    window.mapEscHandler = escHandler;
+
+    document.body.style.overflow = 'hidden';
 }
 
 // ============================================
-// 5. FUNKCIJA ZA SKRIVANJE (za kompatibilnost)
+// 6. SKRIJ ZEMLJEVID
 // ============================================
 function hideMapWidget() {
-    console.log('Hiding Map widget (nothing to hide)');
-    // Ničesar ne skrivamo, ker ne uporabljamo iframe
+    console.log('Hiding Map widget');
+
+    const mapContainer = document.getElementById('map-container');
+    const closeButton = document.getElementById('close-map-widget');
+    const blurOverlay = document.getElementById('overlay-background');
+
+    if (mapContainer) mapContainer.remove();
+    if (closeButton) closeButton.remove();
+
+    if (blurOverlay) {
+        blurOverlay.classList.remove('active');
+        blurOverlay.style.display = '';
+        blurOverlay.onclick = null;
+    }
+
+    // Počisti observerje
+    if (window.mapResizeObserver) {
+        window.mapResizeObserver.disconnect();
+        window.mapResizeObserver = null;
+    }
+    if (window.mapCloseObserver) {
+        window.mapCloseObserver.disconnect();
+        window.mapCloseObserver = null;
+    }
+    if (window.mapEscHandler) {
+        document.removeEventListener('keydown', window.mapEscHandler);
+        window.mapEscHandler = null;
+    }
 
     if (window.activeOverlayType === 'map') {
         window.activeOverlayType = null;
     }
+
+    document.body.style.overflow = '';
 }
 
 // ============================================
-// 6. OSVEŽITEV OB SPREMEMBI JEZIKA
+// 7. OSVEŽITEV OB SPREMEMBI JEZIKA
 // ============================================
 function refreshMapLanguage(lang) {
-    console.log('Map language refresh (not needed for native apps):', lang);
-    // Ni potrebno, ker ne uporabljamo iframe
+    console.log('Refreshing map language to:', lang);
+
+    const mapContainer = document.getElementById('map-container');
+    if (mapContainer && window.activeOverlayType === 'map') {
+        const iframe = document.getElementById('map-iframe');
+        if (iframe) {
+            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
+        }
+
+        const viewLabel = getMapText(lang, 'viewLabel');
+        const navLabel = getMapText(lang, 'navLabel');
+        const googleText = getMapText(lang, 'googleMaps');
+        const appleText = getMapText(lang, 'appleMaps');
+
+        const labels = document.querySelectorAll('.map-button-label');
+        if (labels[0]) labels[0].textContent = viewLabel;
+        if (labels[1]) labels[1].textContent = navLabel;
+
+        const btns = document.querySelectorAll('.map-btn');
+        btns.forEach(btn => {
+            if (btn.classList.contains('google-view') || btn.classList.contains('google-nav')) {
+                btn.innerHTML = `🗺️ ${googleText}`;
+            } else if (btn.classList.contains('apple-view') || btn.classList.contains('apple-nav')) {
+                btn.innerHTML = `🍎 ${appleText}`;
+            }
+        });
+    }
 }
 
 // ============================================
-// 7. EKSPORT V GLOBAL SCOPE
+// 8. EKSPORT
 // ============================================
 if (typeof window !== 'undefined') {
     window.showMapWidget = showMapWidget;
     window.hideMapWidget = hideMapWidget;
     window.refreshMapLanguage = refreshMapLanguage;
-    window.detectPlatform = detectPlatform;
 }
