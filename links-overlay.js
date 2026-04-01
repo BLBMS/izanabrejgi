@@ -1,13 +1,11 @@
 /* links-overlay.js */
-/* 039 - UPRAVLJANJE POVEZAV - VSE NA ENEM MESTU */
+/* 040 - KONČNA DELUJOČA VERZIJA */
 
 const baseLinksData = [
     {
         id: 1,
         icon: 'links/logo_i_feel_slo.png',
-        //logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
-        //logoBg: 'rgba(255, 255, 255, 0.75)', // SIVO OZADJE
-        logoBg: 'rgba(255, 255, 255, 1.00)', // BELO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.00)',
         title: {
             sl: 'Slovenska turistična organizacija',
             en: 'Slovenian Tourist Board',
@@ -27,8 +25,7 @@ const baseLinksData = [
     {
         id: 2,
         icon: 'links/logo_TIC_MT.svg',
-        //logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
-        logoBg: 'rgba(255, 255, 255, 1.00)', // BELO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.00)',
         title: {
             sl: 'Turistično informacijski center, TIC Moravske Toplice',
             en: 'Tourist Information Center, TIC Moravske Toplice',
@@ -48,8 +45,7 @@ const baseLinksData = [
     {
         id: 3,
         icon: 'links/logo_TIC_MT.svg',
-        //logoBg: 'rgba(0, 0, 0, 1.0)', // ČRNO OZADJE
-        logoBg: 'rgba(255, 255, 255, 1.00)', // BELO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.00)',
         title: {
             sl: 'Kolesarske poti in najem koles - TIC Moravske Toplice',
             en: 'Bike Trails and Bike Rental - TIC Moravske Toplice',
@@ -69,8 +65,7 @@ const baseLinksData = [
     {
         id: 4,
         icon: 'links/logo_RIDE_Goricko.png',
-        logoBg: 'rgba(255, 255, 255, 1.0)', // BELO OZADJE
-        //logoBg: 'rgba(255, 255, 255, 0.75)', // SVETLO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
             sl: 'Vodeni kolesarski izleti in najem e-koles - Ride Goričko',
             en: 'Guided Bike Tours and E-Bike Rental - Ride Goričko',
@@ -90,7 +85,7 @@ const baseLinksData = [
     {
         id: 5,
         icon: 'links/logo_murski_colnar.jpg',
-        logoBg: 'rgba(255, 255, 255, 1.0)', // BELO OZADJE
+        logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
             sl: 'Spust po reki Muri - Murski čolnar',
             en: 'Mura River Rafting - Murski čolnar',
@@ -107,12 +102,8 @@ const baseLinksData = [
             de: 'https://www.murski-colnar.si/de/'
         }
     }
-    // Dodaj več povezav tu
 ];
 
-// ============================================
-// 2. FUNKCIJA ZA PRIDOBIVANJE PODATKOV PO JEZIKU
-// ============================================
 function getLinksByLanguage(lang = 'sl') {
     return baseLinksData.map(link => ({
         id: link.id,
@@ -124,62 +115,40 @@ function getLinksByLanguage(lang = 'sl') {
     }));
 }
 
-// ============================================
-// 3. HANDLERJI ZA ZAPIRANJE
-// ============================================
-
-// ESC handler za links
 function linksEscHandler(e) {
     if (e.key === 'Escape') {
         hideLinksOverlay();
     }
 }
 
-// Body klik handler za zapiranje ob kliku na zeleno ozadje
 function linksBodyClickHandler(e) {
-    // Preveri, če je klik na overlay vsebino
+    // Preveri, če je klik na zastavo - ne zapri overlayja
+    const isFlag = e.target.closest('.language-flag');
+    if (isFlag) {
+        return;
+    }
+
     const isOverlayContent = e.target.closest('#links-overlay');
-    
-    // Če klik NI na overlay vsebino IN je overlay aktiven, zapri
     if (!isOverlayContent && window.activeOverlayType === 'links') {
-        console.log('Click outside Links overlay, closing');
         hideLinksOverlay();
     }
 }
 
-// ============================================
-// 4. GLAVNI FUNKCIJI
-// ============================================
-
-// Prikaži links overlay
 function showLinksOverlay() {
-    console.log('👁️ Showing Links overlay...');
-
-    // Preveri če je že kak overlay aktiven
     if (window.activeOverlayType && window.activeOverlayType !== 'links') {
-        console.log(`Cannot show Links, ${window.activeOverlayType} is active`);
         return;
     }
 
-    // Skrij vse overlaye
-    if (typeof hideAllOverlays === 'function') {
-        hideAllOverlays();
-    }
-
-    // Nastavi da je links aktiven
     window.activeOverlayType = 'links';
 
-    // Prikaži background
     const bg = document.getElementById('links-background');
     if (bg) bg.classList.add('active');
 
-    // Prikaži overlay
     const overlay = document.getElementById('links-overlay');
     const title = document.getElementById('links-title');
 
     if (overlay) overlay.classList.add('active');
 
-    // Nastavi naslov glede na jezik
     const currentLang = window.currentLanguage || 'sl';
     const navData = window.languageData?.[currentLang]?.nav;
 
@@ -187,56 +156,34 @@ function showLinksOverlay() {
         title.textContent = navData.links;
     }
 
-    // Naloži povezave
     loadLinks(currentLang);
 
-    // Dodaj ESC handler
     document.addEventListener('keydown', linksEscHandler);
-    
-    // Dodaj body klik handler za zapiranje ob kliku na zeleno ozadje
     document.body.addEventListener('click', linksBodyClickHandler);
 
-    // Onemogoči skrolanje
     document.body.style.overflow = 'hidden';
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Skrij links overlay
 function hideLinksOverlay() {
-    console.log('👁️‍🗨️ Hiding Links overlay...');
-
-    // Skrij overlay
     const overlay = document.getElementById('links-overlay');
-    if (overlay) overlay.classList.remove('active');
-
-    // Skrij background
     const bg = document.getElementById('links-background');
+
+    if (overlay) overlay.classList.remove('active');
     if (bg) bg.classList.remove('active');
 
-    // Omogoči scroll
     document.body.style.overflow = '';
 
-    // Reset aktivnega overlayja
     if (window.activeOverlayType === 'links') {
         window.activeOverlayType = null;
     }
 
-    // Odstrani ESC handler
     document.removeEventListener('keydown', linksEscHandler);
-    
-    // Odstrani body klik handler
     document.body.removeEventListener('click', linksBodyClickHandler);
 
-    // Deselect vse selektirano besedilo
-    if (window.getSelection) {
-        window.getSelection().removeAllRanges();
-    } else if (document.selection) {
-        document.selection.empty();
-    }
+    if (window.getSelection) window.getSelection().removeAllRanges();
 }
 
-// Naloži in prikaži povezave
 function loadLinks(lang = 'sl') {
     const container = document.getElementById('links-container');
     if (!container) return;
@@ -262,18 +209,14 @@ function loadLinks(lang = 'sl') {
 
     container.innerHTML = html;
 
-    // Event listenerji za odpiranje povezav
     container.querySelectorAll('.link-item').forEach(item => {
         item.addEventListener('click', function (e) {
             e.preventDefault();
             const url = this.getAttribute('href');
-            if (url) {
-                window.open(url, '_blank', 'noopener,noreferrer');
-            }
+            if (url) window.open(url, '_blank', 'noopener,noreferrer');
         });
     });
 
-    // Puščice tudi odprejo povezavo
     container.querySelectorAll('.link-arrow').forEach(arrow => {
         arrow.addEventListener('click', function (e) {
             e.preventDefault();
@@ -281,42 +224,34 @@ function loadLinks(lang = 'sl') {
             const linkItem = this.closest('.link-item');
             if (linkItem) {
                 const url = linkItem.getAttribute('href');
-                if (url) {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                }
+                if (url) window.open(url, '_blank', 'noopener,noreferrer');
             }
         });
     });
 }
 
-// Posodobi jezik povezav
 function updateLinksLanguage(lang) {
-    // Posodobi naslov
     const title = document.getElementById('links-title');
     const navData = window.languageData?.[lang]?.nav;
-
     if (title && navData?.links) {
         title.textContent = navData.links;
     }
 
-    // Posodobi povezave
-    loadLinks(lang);
+    const overlay = document.getElementById('links-overlay');
+    if (overlay && overlay.classList.contains('active')) {
+        loadLinks(lang);
+    }
 }
 
-// Inicializacija - samo za background klik (brez body handlerja, ker ga dodamo v show)
 document.addEventListener('DOMContentLoaded', function () {
-    // Klik na background (links-background) zapre overlay
     const bg = document.getElementById('links-background');
     if (bg) {
         bg.addEventListener('click', function (e) {
-            if (e.target === this) {
-                hideLinksOverlay();
-            }
+            if (e.target === this) hideLinksOverlay();
         });
     }
 });
 
-// Eksport funkcij za globalno uporabo
 window.showLinksOverlay = showLinksOverlay;
 window.hideLinksOverlay = hideLinksOverlay;
 window.updateLinksLanguage = updateLinksLanguage;
