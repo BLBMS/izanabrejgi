@@ -1,5 +1,7 @@
-/* 038 */
+/* 039 */
+/* overlays.css */
 /* OVERLAY BACKGROUND ------------------------------------------------------------*/
+
 #overlay-background {
     display: none;
     position: absolute;
@@ -35,7 +37,6 @@
     width: 90%;
     max-width: 900px;
     max-height: 75vh;
-    /* Zmanjšano za boljši prikaz */
     overflow-y: auto;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
@@ -43,12 +44,9 @@
     border: 1px solid rgba(208, 255, 0, 0.2);
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-
-    /* DODANO: margin-top za header */
     margin-top: 40px;
 }
 
-/* AKTIVEN OVERLAY */
 .text-overlay.active,
 .contact-overlay.active {
     display: block;
@@ -83,16 +81,14 @@
     line-height: 1.5;
 }
 
-/* CONTACT STYLES - POPRAVLJENO ZA VERTIKALNO USKLAJENJE */
+/* CONTACT STYLES */
 .contact-section {
     padding: 1rem;
 }
 
 .contact-item {
     display: flex;
-    /* SPREMENI: flex za boljše poravnavo */
     align-items: flex-start;
-    /* Poravnaj na vrhu */
     margin-bottom: 1.2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -108,40 +104,44 @@
     color: var(--hover-color);
     display: inline-block;
     min-width: 80px;
-    /* POČASITEV: nekoliko širše za boljšo poravnavo */
     flex-shrink: 0;
-    /* PREPREČI, DA BI SE ZMANJŠAL */
     margin-top: 2px;
-    /* RAHLO PORAVNAVANJE NAVPIČNO */
 }
 
 .contact-value {
     color: var(--font-color);
     flex: 1;
-    /* ZASEDE PREOSTALI PROSTOR */
 }
 
-/* NASLOV - S PRAVIM ZAMIKOM */
+.contact-values {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .address {
     margin-left: 0;
-    /* ZAGOTOVI, DA JE BREZ LEVEGA MARGINA */
     padding-left: 0;
-    /* ZAGOTOVI, DA JE BREZ LEVEGA PADDINGA */
 }
 
 .address div {
     margin-bottom: 0.3rem;
 }
 
-/* ALTERNATIVNA REŠITEV - ČE ŽELIŠ NASLOV NA ISTI LINIJI KOT LABEL */
 .contact-item.address-item {
     align-items: flex-start;
-    /* Poravnaj na vrhu za več vrstic */
 }
 
 .contact-item.address-item .contact-label {
     margin-top: 0;
-    /* Label se začne na vrhu */
+}
+
+.email-link {
+    word-break: break-word;
+    /* ali word-break: break-word; če želiš bolj nežno prelamljanje */
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .contact-link {
@@ -159,19 +159,6 @@
     background: rgba(208, 255, 0, 0.1);
 }
 
-.contact-values {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.contact-values .contact-value {
-    flex: none;  /* Prepreči raztezanje */
-    width: 100%;
-}
-
-
 /* NASLOVI V OVERLAYJIH */
 .text-overlay h2,
 .contact-overlay h2 {
@@ -183,7 +170,7 @@
     padding-bottom: 0.5rem;
 }
 
-/* SCROLLBAR - SAMO ZA CELOTEN OVERLAY */
+/* SCROLLBAR */
 .text-overlay::-webkit-scrollbar,
 .contact-overlay::-webkit-scrollbar {
     width: 10px;
@@ -212,14 +199,11 @@
             rgba(143, 175, 0, 0.95));
 }
 
-/* Firefox scrollbar */
 .text-overlay,
 .contact-overlay {
     scrollbar-width: thin;
     scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
 }
-
-/* ODSTRANI SCROLLBAR ZA NOTRANJE ELEMENTE */
 
 .description-text::-webkit-scrollbar,
 .about-text::-webkit-scrollbar {
