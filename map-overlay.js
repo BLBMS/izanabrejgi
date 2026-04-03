@@ -1,5 +1,5 @@
-/* 032 */
-/* map-overlay.js v16 - popravljen Apple Maps URL */
+/* 033 */
+/* map-overlay.js v17 - z ikonami za Google in Apple Maps */
 
 // ============================================
 // 1. KOORDINATE IN PODATKI
@@ -42,9 +42,8 @@ function getGoogleNavUrl() {
     return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
 }
 
-// Apple Maps - prikaži lokacijo (uporabi v14 delujoč URL)
+// Apple Maps - prikaži lokacijo
 function getAppleViewUrl(platform) {
-    // Uporabi place-id za natančno lokacijo (kot v v14)
     const appleUrl = `https://maps.apple.com/place?place-id=${APPLE_PLACE_ID}&address=${encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice")}&coordinate=${LAT},${LNG}&name=${ENCODED_PLACE_NAME}&_provider=9902`;
 
     if (platform === 'ios') {
@@ -54,9 +53,8 @@ function getAppleViewUrl(platform) {
     }
 }
 
-// Apple Maps - navigacija (uporabi directions URL)
+// Apple Maps - navigacija
 function getAppleNavUrl(platform) {
-    // Uporabi directions URL s polnim naslovom in place-id
     const destination = encodeURIComponent("Iža na brejgi, Rumičev breg 71, 9226 Moravske Toplice, Slovenija");
     const appleUrl = `https://maps.apple.com/directions?destination=${destination}&destination-place-id=${APPLE_PLACE_ID}&mode=driving`;
 
@@ -87,7 +85,6 @@ function getMapText(lang, key) {
 function showMapWidget() {
     console.log('🗺️ Showing Map widget...');
 
-    // NAJPREJ ZAPRI VSE OVERLAYE
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
     }
@@ -103,18 +100,15 @@ function showMapWidget() {
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
 
-    // BLUR OZADJE
     const blurOverlay = document.getElementById('overlay-background');
     if (blurOverlay) {
         blurOverlay.classList.add('active');
         blurOverlay.style.display = 'block';
-
         blurOverlay.onclick = function (e) {
             if (e.target === this) hideMapWidget();
         };
     }
 
-    // Odstrani obstoječe elemente
     const existingCloseBtn = document.getElementById('close-map-widget');
     if (existingCloseBtn) existingCloseBtn.remove();
 
@@ -125,24 +119,31 @@ function showMapWidget() {
     mapContainer.id = 'map-container';
     document.body.appendChild(mapContainer);
 
-    // Pridobi besedila
     const viewLabel = getMapText(currentLang, 'viewLabel');
     const navLabel = getMapText(currentLang, 'navLabel');
     const googleText = getMapText(currentLang, 'googleMaps');
     const appleText = getMapText(currentLang, 'appleMaps');
 
-    // Ustvari vsebino
+    // Ustvari vsebino z ikonami (72x72, zmanjšane na velikost besedila)
     mapContainer.innerHTML = `
         <div class="map-buttons-container">
             <div class="map-button-group">
                 <div class="map-button-label">${viewLabel}</div>
-                <button class="map-btn google-view" data-type="google-view">🗺️ ${googleText}</button>
-                <button class="map-btn apple-view" data-type="apple-view">🍎 ${appleText}</button>
+                <button class="map-btn google-view" data-type="google-view">
+                    <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                </button>
+                <button class="map-btn apple-view" data-type="apple-view">
+                    <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                </button>
             </div>
             <div class="map-button-group">
                 <div class="map-button-label">${navLabel}</div>
-                <button class="map-btn google-nav" data-type="google-nav">🗺️ ${googleText}</button>
-                <button class="map-btn apple-nav" data-type="apple-nav">🍎 ${appleText}</button>
+                <button class="map-btn google-nav" data-type="google-nav">
+                    <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                </button>
+                <button class="map-btn apple-nav" data-type="apple-nav">
+                    <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                </button>
             </div>
         </div>
         <div class="map-embed-container">
@@ -150,7 +151,6 @@ function showMapWidget() {
         </div>
     `;
 
-    // Funkcija za pozicioniranje
     function positionMapContainer() {
         const headerHeight = header ? header.offsetHeight : 80;
         const footerHeight = footer ? footer.offsetHeight : 60;
@@ -182,7 +182,6 @@ function showMapWidget() {
 
     positionMapContainer();
 
-    // ResizeObserver
     if (window.ResizeObserver) {
         const resizeObserver = new ResizeObserver(() => {
             positionMapContainer();
@@ -192,7 +191,6 @@ function showMapWidget() {
         window.mapResizeObserver = resizeObserver;
     }
 
-    // Event listenerji za gumbe
     document.querySelectorAll('.map-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -214,7 +212,6 @@ function showMapWidget() {
         });
     });
 
-    // X GUMB
     const closeButton = document.createElement('button');
     closeButton.id = 'close-map-widget';
     closeButton.innerHTML = '×';
@@ -260,12 +257,10 @@ function showMapWidget() {
 
     positionCloseButton();
 
-    // Observer za X gumb
     const closeObserver = new ResizeObserver(() => positionCloseButton());
     if (mapContainer) closeObserver.observe(mapContainer);
     window.mapCloseObserver = closeObserver;
 
-    // ESC handler
     function escHandler(e) {
         if (e.key === 'Escape') hideMapWidget();
     }
@@ -294,7 +289,6 @@ function hideMapWidget() {
         blurOverlay.onclick = null;
     }
 
-    // Počisti observerje
     if (window.mapResizeObserver) {
         window.mapResizeObserver.disconnect();
         window.mapResizeObserver = null;
@@ -339,10 +333,13 @@ function refreshMapLanguage(lang) {
 
         const btns = document.querySelectorAll('.map-btn');
         btns.forEach(btn => {
-            if (btn.classList.contains('google-view') || btn.classList.contains('google-nav')) {
-                btn.innerHTML = `🗺️ ${googleText}`;
-            } else if (btn.classList.contains('apple-view') || btn.classList.contains('apple-nav')) {
-                btn.innerHTML = `🍎 ${appleText}`;
+            const isGoogle = btn.classList.contains('google-view') || btn.classList.contains('google-nav');
+            const isApple = btn.classList.contains('apple-view') || btn.classList.contains('apple-nav');
+
+            if (isGoogle) {
+                btn.innerHTML = `<img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}`;
+            } else if (isApple) {
+                btn.innerHTML = `<img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}`;
             }
         });
     }
@@ -355,4 +352,4 @@ if (typeof window !== 'undefined') {
     window.showMapWidget = showMapWidget;
     window.hideMapWidget = hideMapWidget;
     window.refreshMapLanguage = refreshMapLanguage;
-}
+} []
