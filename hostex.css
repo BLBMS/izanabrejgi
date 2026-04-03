@@ -1,4 +1,4 @@
-/* 030 */
+/* 031 */
 /* HOSTEX WIDGET CSS */
 
 /* Globalni X gumb */
@@ -45,7 +45,7 @@ hostex-booking-widget * {
     padding-left: 0;
     /* SPREMENJENO: odstrani levi padding */
     color: var(--font-color);
-    font-size: 0.85rem;
+    font-size: 1.0rem; /*0.85rem;*/
     line-height: 1.5;
     /* DODANO: centriranje seznama */
     list-style-position: inside;
@@ -70,7 +70,7 @@ hostex-booking-widget * {
     }
 
     .hostex-info-list {
-        font-size: 0.75rem;
+        font-size: 0.85rem; /*0.75rem;*/
         padding-left: 0;
     }
 
