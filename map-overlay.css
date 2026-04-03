@@ -80,6 +80,14 @@
     opacity: 0.9;
 }
 
+/* ikoni za mapi */
+.map-btn-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .map-buttons-container {
