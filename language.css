@@ -1,4 +1,5 @@
-/* 027 */
+/* 028 */
+/* language.css */
 /* JEZIKOVNE ZASTAVICE ------------------------------------------------------------*/
 .language-flags {
     display: flex;
@@ -42,4 +43,13 @@
 .language-flags .language-flag.active-flag:hover .flag {
     filter: grayscale(100%) brightness(100%);
     border-color: #ffffff1f;
+}
+
+/* Zagotovi, da so zastave desno na mobilnih */
+@media (max-width: 900px) {
+    .language-flags {
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto !important;
+    }
 }
