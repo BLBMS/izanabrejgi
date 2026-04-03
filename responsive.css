@@ -96,6 +96,10 @@
         white-space: normal;
         align-items: center;
         pointer-events: none;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        text-wrap: wrap;
+        word-break: keep-all;
     }
 
     /* Meni - cela vrstica pod logotom in imenom */
@@ -128,6 +132,10 @@
 @media (max-width: 420px) {
     .logo-text {
         font-size: 1rem;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: normal;
+        word-break: keep-all;
     }
 
     .logo-img {
@@ -200,6 +208,10 @@
 
     .logo-text {
         font-size: 0.9rem;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        white-space: normal;
+        word-break: keep-all;
     }
 
     .logo-img {
