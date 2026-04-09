@@ -24,7 +24,7 @@ function getHostexText() {
 }
 
 // Funkcija za posodobitev ali ustvarjanje header teksta
-/*function updateHostexHeader() {
+function updateHostexHeader() {
     const header = document.querySelector('header');
     const headerHeight = header ? header.offsetHeight : 80;
     const text = getHostexText();
@@ -54,7 +54,6 @@ function getHostexText() {
 
     headerDiv.innerHTML = itemsHtml;
 }
-*/
     
 // Funkcija za skrivanje header teksta
 function hideHostexHeader() {
@@ -141,7 +140,7 @@ async function showHostexWidget() {
     const footerHeight = footer ? footer.offsetHeight : 60;
 
     // Ustvari ali posodobi header tekst
-    updateHostexHeader();
+    // updateHostexHeader();
 
     // Funkcija za pozicioniranje vseh elementov
     function positionAllElements() {
