@@ -1,14 +1,15 @@
-/* 043 */
-/* hostex.css */
+/* 043a */
+/* hostex.css - CELOZASLONSKI WIDGET */
 
+/* X gumb */
 #global-hostex-close {
     position: fixed;
-    z-index: 2001;
+    z-index: 10001;
     display: none;
     justify-content: center;
     align-items: center;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     background: transparent !important;
     border: none !important;
     color: var(--font-color) !important;
@@ -17,17 +18,35 @@
     text-shadow: var(--font-shadow);
     transition: all 0.2s ease;
 }
-#global-hostex-close:hover { transform: scale(1.2); color: var(--hover-color) !important; }
 
+/* Widget stil */
 hostex-booking-widget {
     display: none;
-    background: transparent !important;
 }
-hostex-booking-widget[style*="display: block"] { display: block !important; }
 
-@media (max-width: 768px) {
-    #global-hostex-close { font-size: 2rem !important; width: 32px !important; height: 32px !important; }
+/* Notranji elementi widgeta naj se prilagodijo */
+hostex-booking-widget * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
 }
+
+/* RESPONSIVE - manjši X gumb na mobilnih */
+@media (max-width: 768px) {
+    #global-hostex-close {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 2.2rem !important;
+        top: 8px !important;
+        right: 0px !important;
+    }
+}
+
 @media (max-width: 480px) {
-    #global-hostex-close { font-size: 1.8rem !important; width: 30px !important; height: 30px !important; }
+    #global-hostex-close {
+        width: 25% !important;
+        height: 25px !important;
+        font-size: 2rem !important;
+        top: 8px !important;
+        right: 0px !important;
+    }
 }
