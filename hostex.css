@@ -65,6 +65,7 @@ hostex-booking-widget * {
 /* RESPONSIVE STILI */
 @media (max-width: 768px) {
     .hostex-header-text {
+        display: none !important; /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
         padding: 10px 15px;
         max-height: 25vh;
     }
