@@ -1,5 +1,5 @@
-// 043
-// hostex.js
+// 043a
+// hostex.js - CELOZASLONSKI WIDGET
 
 if (!window.activeOverlayType) window.activeOverlayType = null;
 if (!window.hostexScriptLoaded) window.hostexScriptLoaded = false;
@@ -35,17 +35,12 @@ function createHostexWidget() {
     widget.setAttribute('listing-id', '115139');
     widget.setAttribute('id', 'eyJob3N0X2lkIjoiMTAzNzI3Iiwid2lkZ2V0X2hvc3QiOiJodHRwczovL3cuaG9zdGV4Ym9va2luZy5zaXRlIn0=');
     widget.style.display = 'none';
-    widget.style.position = 'fixed';
-    widget.style.zIndex = '2000';
-    widget.style.background = 'transparent';
-    widget.style.overflowY = 'auto';
-    widget.style.WebkitOverflowScrolling = 'touch';
     document.body.appendChild(widget);
     return widget;
 }
 
 async function showHostexWidget() {
-    console.log('👁️ Showing Hostex widget...');
+    console.log('👁️ Showing Hostex widget (fullscreen)...');
 
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
@@ -66,34 +61,26 @@ async function showHostexWidget() {
         return;
     }
 
-    const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
-    const headerHeight = header ? header.offsetHeight : 80;
-    const footerHeight = footer ? footer.offsetHeight : 60;
-    const topOffset = headerHeight + 20;
-    const bottomOffset = footerHeight + 20;
-
+    // CELOZASLONSKI WIDGET - čez vse
     widget.style.cssText = `
         position: fixed !important;
-        top: ${topOffset}px !important;
+        top: 0 !important;
         left: 0 !important;
-        right: 0 !important;
-        width: 90% !important;
-        max-width: 1000px !important;
-        margin: 0 auto !important;
-        height: calc(100vh - ${topOffset + bottomOffset}px) !important;
-        min-height: 400px !important;
-        z-index: 2000 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 10000 !important;
         display: block !important;
-        background: rgba(0, 0, 0, 0.7) !important;
-        backdrop-filter: blur(5px) !important;
-        -webkit-backdrop-filter: blur(5px) !important;
-        border-radius: 8px !important;
-        border: 1px solid rgba(208, 255, 0, 0.2) !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
         overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 10px !important;
         box-sizing: border-box !important;
     `;
 
+    // X GUMB - desno zgoraj
     let closeButton = document.getElementById('global-hostex-close');
     if (!closeButton) {
         closeButton = document.createElement('button');
@@ -101,6 +88,7 @@ async function showHostexWidget() {
         closeButton.innerHTML = '×';
         closeButton.title = 'Zapri rezervacije';
         document.body.appendChild(closeButton);
+        closeButton.onclick = hideHostexWidget;
         closeButton.onmouseenter = function () {
             this.style.transform = 'scale(1.2)';
             this.style.color = 'var(--hover-color)';
@@ -109,46 +97,37 @@ async function showHostexWidget() {
             this.style.transform = 'scale(1)';
             this.style.color = 'var(--font-color)';
         };
-        closeButton.onclick = hideHostexWidget;
     }
-
+/*
     closeButton.style.cssText = `
         position: fixed !important;
-        top: ${topOffset + 2}px !important;
-        right: calc(50% - min(500px, 45vw) + 2px) !important;
-        width: 35px !important;
-        height: 35px !important;
-        background: transparent !important;
-        border: none !important;
+        top: 15px !important;
+        right: 15px !important;
+        width: 45px !important;
+        height: 45px !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        border: 2px solid var(--font-color) !important;
+        border-radius: 50% !important;
         color: var(--font-color) !important;
-        font-size: 2.2rem !important;
+        font-size: 2.5rem !important;
         cursor: pointer !important;
-        z-index: 2001 !important;
+        z-index: 10001 !important;
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         padding: 0 !important;
-        text-shadow: var(--font-shadow) !important;
+        margin: 0 !important;
+        line-height: 1 !important;
         transition: all 0.2s ease !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
     `;
+*/
     closeButton.style.display = 'flex';
 
+    // Blur ozadje (ne rabimo, ker je widget sam čez vse)
     const blurOverlay = document.getElementById('full-page-blur');
     if (blurOverlay) {
-        blurOverlay.style.cssText = `
-            position: fixed !important;
-            top: ${headerHeight}px !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: calc(100vh - ${headerHeight + footerHeight}px) !important;
-            background: rgba(0, 0, 0, 0.85) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            z-index: 1999 !important;
-            opacity: 1 !important;
-            pointer-events: all !important;
-        `;
-        blurOverlay.classList.add('active');
+        blurOverlay.classList.remove('active');
     }
 
     document.body.style.overflow = 'hidden';
@@ -160,12 +139,6 @@ function hideHostexWidget() {
     const widget = document.querySelector('hostex-booking-widget');
     if (widget) widget.style.display = 'none';
 
-    const blurOverlay = document.getElementById('full-page-blur');
-    if (blurOverlay) {
-        blurOverlay.style.cssText = '';
-        blurOverlay.classList.remove('active');
-    }
-
     const closeButton = document.getElementById('global-hostex-close');
     if (closeButton) closeButton.style.display = 'none';
 
@@ -176,17 +149,9 @@ function hideHostexWidget() {
     }
 }
 
+// ESC KEY
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') hideHostexWidget();
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const blurOverlay = document.getElementById('full-page-blur');
-    if (blurOverlay) {
-        blurOverlay.addEventListener('click', function (e) {
-            if (e.target === this) hideHostexWidget();
-        });
-    }
 });
 
 window.showHostexWidget = showHostexWidget;
