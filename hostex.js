@@ -223,6 +223,7 @@ async function showHostexWidget() {
     positionAllElements();
 
     // Uporabi ResizeObserver za spremljanje sprememb višine header teksta
+    /*
     const headerTextDiv = document.getElementById('hostex-header-text');
     if (headerTextDiv && window.ResizeObserver) {
         const resizeObserver = new ResizeObserver(() => {
@@ -232,7 +233,7 @@ async function showHostexWidget() {
         // Shrani observer za kasnejše čiščenje
         window.hostexResizeObserver = resizeObserver;
     }
-
+*/
     // BLUR OZADJE
     const blurOverlay = document.getElementById('full-page-blur');
     if (blurOverlay) {
