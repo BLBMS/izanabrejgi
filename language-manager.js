@@ -99,9 +99,7 @@ const embeddedLanguageData = {
             },
             "hostex": {
                 "items": [
-                    "• Ponujamo direktno rezervacijo brez provizije preko lastnega portala spodaj. Plačilo je s kreditno kartico.",
-                    "• S premikanjem po mesecih lahko preverite tudi razpololjivost nastanitve.",
-                    "• Check-in se izvede preko on-line portala na dan prihoda v nastanitev. Takrat se preko istega portala plača tudi turistična taksa. Plačilo je s kreditno kartico."
+                    ""
                 ]
             },
             "footer": {
@@ -202,9 +200,7 @@ const embeddedLanguageData = {
             },
             "hostex": {
                 "items": [
-                    "• We offer direct booking without commission through our own portal below. Payment by credit card.",
-                    "• By scrolling through the months, you can also check the availability of the accommodation.",
-                    "• Check-in is done through the online portal on the day of arrival at the accommodation. At that time, the tourist tax is also paid through the same portal. Payment by credit card."
+                    ""
                 ]
             },
             "footer": {
@@ -305,9 +301,7 @@ const embeddedLanguageData = {
             },
             "hostex": {
                 "items": [
-                    "• Wir bieten eine direkte Buchung ohne Provision über unser eigenes Portal unten. Zahlung per Kreditkarte.",
-                    "• Durch das Blättern durch die Monate können Sie auch die Verfügbarkeit der Unterkunft prüfen.",
-                    "• Der Check-in erfolgt am Anreisetag in der Unterkunft über das Online-Portal. Zu diesem Zeitpunkt wird auch die Tourismusabgabe über dasselbe Portal bezahlt. Zahlung per Kreditkarte."
+                    ""
                 ]
             },
             "footer": {
