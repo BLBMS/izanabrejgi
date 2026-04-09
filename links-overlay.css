@@ -1,11 +1,9 @@
-/* links-overlay.css */
-/* 038 - OVERLAY ZA POVEZAVE - POPOLNOMA ENAKO KOT OPIS/PONUJAMO/KONTAKTI */
+/* 043 */
+/* links-overlay.css - posodobljen */
 
-/* OVERLAY BACKGROUND (ISTO KOT #overlay-background) */
 .links-background {
     display: none;
-    position: absolute;
-    /* SPREMENI: absolute namesto fixed */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -21,14 +19,11 @@
     display: block;
 }
 
-/* LINKS OVERLAY (ISTO KOT .text-overlay, .contact-overlay) */
 .links-overlay {
     display: none;
-    position: absolute;
-    /* SPREMENI: absolute namesto fixed */
-    top: 50%;
+    position: fixed;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     text-align: left;
     color: var(--font-color);
     text-shadow: var(--font-shadow);
@@ -36,24 +31,20 @@
     padding: 2rem;
     z-index: 100;
     width: 90%;
-    max-width: 900px;
-    max-height: 75vh;
-    overflow-y: auto;
+    max-width: 1000px;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(208, 255, 0, 0.2);
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    margin-top: 40px;
+    overflow-y: auto;
 }
 
-/* AKTIVEN OVERLAY */
 .links-overlay.active {
     display: block;
 }
 
-/* VSEBINA LINKS OVERLAY */
 .links-content {
     padding: 1rem;
     padding-right: 0.5rem;
@@ -68,7 +59,6 @@
     padding-bottom: 0.5rem;
 }
 
-/* LINK ITEM - CELOTNA PLOŠČICA JE KLIKLJIVA */
 .links-container {
     display: flex;
     flex-direction: column;
@@ -97,7 +87,6 @@
     border-left-color: rgba(208, 255, 0, 0.8);
 }
 
-/* IKONA */
 .link-icon {
     width: 100px;
     height: 100px;
@@ -106,7 +95,6 @@
     border-radius: 6px;
     flex-shrink: 0;
     border: 1px solid rgba(208, 255, 0, 0.3);
-    background: rgba(255, 255, 255, 0.05);
 }
 
 .link-icon.contain {
@@ -125,7 +113,6 @@
     margin: 0 0 8px 0;
     color: rgba(208, 255, 0, 0.9);
     font-weight: 600;
-    transition: color 0.3s ease;
 }
 
 .link-item:hover .link-title {
@@ -139,7 +126,6 @@
     color: rgba(255, 255, 255, 0.85);
 }
 
-/* PUŠČICA */
 .link-arrow {
     background: transparent !important;
     border: none !important;
@@ -150,22 +136,12 @@
     padding: 5px !important;
     transition: all 0.3s ease !important;
     opacity: 0.7 !important;
-    width: auto !important;
-    height: auto !important;
     flex-shrink: 0;
-    margin-left: 5px;
 }
 
 .link-arrow:hover {
     opacity: 1 !important;
     color: rgba(208, 255, 0, 0.9) !important;
-    text-shadow: 0 0 10px rgba(208, 255, 0, 0.7) !important;
-}
-
-.link-item:hover .link-arrow {
-    opacity: 1;
-    color: rgba(208, 255, 0, 0.9) !important;
-    text-shadow: 0 0 10px rgba(208, 255, 0, 0.7) !important;
 }
 
 /* SCROLLBAR */
@@ -176,24 +152,13 @@
 .links-overlay::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    margin: 5px 0;
 }
 
 .links-overlay::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom,
-            rgba(208, 255, 0, 0.7),
-            rgba(123, 155, 0, 0.9));
+    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
     border-radius: 5px;
-    border: 1px solid rgba(208, 255, 0, 0.3);
 }
 
-.links-overlay::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom,
-            rgba(234, 255, 0, 0.8),
-            rgba(143, 175, 0, 0.95));
-}
-
-/* Firefox scrollbar */
 .links-overlay {
     scrollbar-width: thin;
     scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
@@ -204,27 +169,21 @@
     .links-overlay {
         padding: 1.5rem;
         max-width: 95%;
-        max-height: 80vh;
     }
-
     .link-item {
         gap: 15px;
         padding: 12px;
     }
-
     .link-icon {
         width: 80px;
         height: 80px;
     }
-
     .link-title {
         font-size: 1.1rem;
     }
-
     .link-description {
         font-size: 0.9rem;
     }
-
     .link-arrow {
         font-size: 1.8rem !important;
     }
@@ -233,41 +192,17 @@
 @media (max-width: 480px) {
     .links-overlay {
         padding: 1rem;
-        max-height: 85vh;
     }
-
     .link-item {
         flex-direction: column;
         text-align: center;
         gap: 10px;
     }
-
     .link-icon {
         width: 70px;
         height: 70px;
     }
-
     .link-arrow {
         font-size: 1.5rem !important;
-        margin-top: 5px;
-        margin-left: 0;
     }
-}
-
-/* IKONA ZA LOGO - S PODPORO ZA RAZLIČNA OZADJA */
-.link-icon.contain {
-    object-fit: contain;
-    padding: 8px;
-    /* VEČJI PADDING ZA LOGOJE */
-    transition: all 0.3s ease;
-}
-
-/* .link-icon.contain[style*="background"] { */
-    /* Ohrani inline style za background */
-/* } */
-
-.link-item:hover .link-icon.contain {
-    transform: scale(1.05);
-    border-color: rgba(208, 255, 0, 0.6);
-    box-shadow: 0 0 15px rgba(208, 255, 0, 0.3);
 }

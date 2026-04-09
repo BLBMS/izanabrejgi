@@ -1,4 +1,5 @@
-/* 027 */
+/* 043 */
+/* slideshow-manager.js */
 // Upravljanje slideshow
 
 // Premeša array

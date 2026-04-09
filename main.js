@@ -1,7 +1,6 @@
-/* 037 */
-// Glavna inicializacija
+// 043
+// main.js
 
-// Inicializacija DOM elementov
 function initDOMElements() {
     aboutOverlay = document.getElementById('about-overlay');
     contactOverlay = document.getElementById('contact-overlay');
@@ -10,17 +9,57 @@ function initDOMElements() {
     slideshowTrack = document.getElementById('slideshow-track');
 }
 
-// Glavna inicializacijska funkcija
-function init() {
-    // Inicializiraj DOM elemente
-    initDOMElements();
-
-    // Naloži jezikovne podatke
-    if (typeof loadLanguageData === 'function') {
-        loadLanguageData();
+// ============================================
+// DINAMIČNO ZMANJŠEVANJE VELIKOSTI ČRK NASLOVA
+// ============================================
+function adjustLogoTextSize() {
+    const logoText = document.querySelector('.logo-text');
+    const logoSection = document.querySelector('.logo-section');
+    const languageFlags = document.querySelector('.language-flags');
+    
+    if (!logoText || !logoSection || !languageFlags) return;
+    
+    // Začetna velikost
+    let fontSize = 1.6; // rem
+    const minFontSize = 0.9; // rem
+    const step = 0.05; // rem
+    
+    // Ponastavi velikost
+    logoText.style.fontSize = `${fontSize}rem`;
+    logoText.style.whiteSpace = 'nowrap';
+    
+    // Preveri, če je premalo prostora
+    const containerWidth = logoSection.parentElement.offsetWidth;
+    const flagsWidth = languageFlags.offsetWidth;
+    const logoImgWidth = document.querySelector('.logo-img')?.offsetWidth || 40;
+    const textWidth = logoText.scrollWidth;
+    const availableWidth = containerWidth - logoImgWidth - flagsWidth - 30; // 30 za gap
+    
+    if (textWidth > availableWidth && fontSize > minFontSize) {
+        // Zmanjšuj, dokler ne gre
+        while (textWidth > availableWidth && fontSize > minFontSize) {
+            fontSize -= step;
+            logoText.style.fontSize = `${fontSize}rem`;
+            logoText.style.whiteSpace = 'nowrap';
+            // Ponovno izračunaj širino
+            const newTextWidth = logoText.scrollWidth;
+            if (newTextWidth <= availableWidth || fontSize <= minFontSize) break;
+        }
     }
+    
+    // Če je še vedno prevelik, dovoli prelom
+    if (logoText.scrollWidth > availableWidth && fontSize <= minFontSize + 0.1) {
+        logoText.style.whiteSpace = 'normal';
+        logoText.style.wordBreak = 'keep-all';
+    }
+}
 
-    // Preveri localStorage za shranjen jezik
+// Glavna inicializacija
+function init() {
+    initDOMElements();
+    
+    if (typeof loadLanguageData === 'function') loadLanguageData();
+    
     const savedLang = localStorage.getItem('preferredLanguage');
     if (savedLang && savedLang !== currentLanguage) {
         setTimeout(() => {
@@ -29,66 +68,42 @@ function init() {
             }
         }, 100);
     }
-
-    // Inicializiraj dropdown menije
-    if (typeof initDropdowns === 'function') {
-        initDropdowns();
-    }
-
-    // Inicializiraj slideshow dots
+    
+    if (typeof initDropdowns === 'function') initDropdowns();
+    
     if (typeof createSlideshowDots === 'function') {
-        setTimeout(() => {
-            createSlideshowDots();
-        }, 500);
+        setTimeout(() => createSlideshowDots(), 500);
     }
-
-    // Nastavi event handlerje
-    if (typeof setupOverlayClickHandlers === 'function') {
-        setupOverlayClickHandlers();
-    }
-
-    if (typeof setupOverlayBackgroundClick === 'function') {
-        setupOverlayBackgroundClick();
-    }
-
-    if (typeof setupResizeHandlers === 'function') {
-        setupResizeHandlers();
-    }
-
-    // Naloži slike
-    if (typeof loadSlides === 'function') {
-        loadSlides();
-    }
-
-    // Začni avtomatsko menjavo slik
-    if (typeof showNextSlide === 'function') {
-        setInterval(showNextSlide, 4000);
-    }
+    
+    if (typeof setupOverlayClickHandlers === 'function') setupOverlayClickHandlers();
+    if (typeof setupOverlayBackgroundClick === 'function') setupOverlayBackgroundClick();
+    if (typeof setupResizeHandlers === 'function') setupResizeHandlers();
+    
+    if (typeof loadSlides === 'function') loadSlides();
+    
+    if (typeof showNextSlide === 'function') setInterval(showNextSlide, 4000);
+    
+    // Dinamično prilagajanje velikosti črk
+    setTimeout(adjustLogoTextSize, 100);
+    window.addEventListener('resize', () => setTimeout(adjustLogoTextSize, 50));
+    window.addEventListener('orientationchange', () => setTimeout(adjustLogoTextSize, 100));
 }
 
-// Zaženi inicializacijo ko se stran naloži
 document.addEventListener('DOMContentLoaded', init);
 
-// Eksponiraj globalne funkcije za uporabo v HTML
-window.showDescription = showDescription || function () { };
-window.showAbout = showAbout || function () { };
-window.showContact = showContact || function () { };
-window.showHome = showHome || function () { };
-window.prevSlide = prevSlide || function () { };
-window.nextSlide = nextSlide || function () { };
-window.switchLanguage = switchLanguage || function () { };
+window.showDescription = showDescription || function() {};
+window.showAbout = showAbout || function() {};
+window.showContact = showContact || function() {};
+window.showHome = showHome || function() {};
+window.prevSlide = prevSlide || function() {};
+window.nextSlide = nextSlide || function() {};
+window.switchLanguage = switchLanguage || function() {};
 
-// Eksport za modulno uporabo
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        init,
-        initDOMElements
-    };
+    module.exports = { init, initDOMElements };
 }
 
-// Klik na logo in naslov je Domov
 document.addEventListener('DOMContentLoaded', function() {
-    // Počakamo, da se vse naloži
     setTimeout(function() {
         const logoSection = document.querySelector('.logo-section');
         if (logoSection) {

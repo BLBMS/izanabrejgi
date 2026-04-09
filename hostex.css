@@ -1,109 +1,33 @@
-/* 031 */
-/* HOSTEX WIDGET CSS */
+/* 043 */
+/* hostex.css */
 
-/* Globalni X gumb */
 #global-hostex-close {
     position: fixed;
     z-index: 2001;
     display: none;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: transparent !important;
+    border: none !important;
+    color: var(--font-color) !important;
+    font-size: 2.2rem !important;
+    cursor: pointer;
+    text-shadow: var(--font-shadow);
+    transition: all 0.2s ease;
 }
+#global-hostex-close:hover { transform: scale(1.2); color: var(--hover-color) !important; }
 
-/* Widget stil */
 hostex-booking-widget {
     display: none;
     background: transparent !important;
 }
+hostex-booking-widget[style*="display: block"] { display: block !important; }
 
-hostex-booking-widget[style*="display: block"] {
-    display: block !important;
-}
-
-/* Prepreči, da bi widget imel svoje ozadje */
-hostex-booking-widget * {
-    background: transparent !important;
-}
-
-/* Header tekst nad koledarjem - CENTRIRANO */
-.hostex-header-text {
-    position: fixed;
-    z-index: 2002;
-    padding: 12px 20px;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(208, 255, 0, 0.3);
-    pointer-events: none;
-    left: 0;
-    right: 0;
-    transition: all 0.3s ease;
-    /* DODANO: centriranje */
-    text-align: center;
-}
-
-.hostex-info-list {
-    margin: 0;
-    padding-left: 0;
-    /* SPREMENJENO: odstrani levi padding */
-    color: var(--font-color);
-    font-size: 1.0rem; /*0.85rem;*/
-    line-height: 1.5;
-    /* DODANO: centriranje seznama */
-    list-style-position: inside;
-    display: inline-block;
-    text-align: left;
-}
-
-.hostex-info-list li {
-    margin-bottom: 8px;
-    text-align: left;
-}
-
-.hostex-info-list li:last-child {
-    margin-bottom: 0;
-}
-
-/* RESPONSIVE STILI */
 @media (max-width: 768px) {
-    .hostex-header-text {
-        display: none !important; /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        padding: 10px 15px;
-        max-height: 25vh;
-    }
-
-    .hostex-info-list {
-        font-size: 0.85rem; /*0.75rem;*/
-        padding-left: 0;
-    }
-
-    .hostex-info-list li {
-        margin-bottom: 6px;
-    }
-
-    #global-hostex-close {
-        font-size: 2rem !important;
-        width: 35px !important;
-        height: 35px !important;
-    }
+    #global-hostex-close { font-size: 2rem !important; width: 32px !important; height: 32px !important; }
 }
-
 @media (max-width: 480px) {
-    .hostex-header-text {
-        padding: 8px 12px;
-        max-height: 20vh;
-    }
-
-    .hostex-info-list {
-        font-size: 0.7rem;
-        padding-left: 0;
-    }
-
-    .hostex-info-list li {
-        margin-bottom: 5px;
-    }
-
-    #global-hostex-close {
-        font-size: 1.8rem !important;
-        width: 30px !important;
-        height: 30px !important;
-    }
+    #global-hostex-close { font-size: 1.8rem !important; width: 30px !important; height: 30px !important; }
 }

@@ -1,5 +1,6 @@
-/* 027 */
+/* 043 */
 /* BASE */
+/* base.css */
 @font-face {
     font-family: 'TT2020StyleE';
     src: url('fonts/TT2020StyleE-Regular.woff2') format('woff2'),
@@ -47,4 +48,22 @@ body {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 80px);
+}
+
+/* BLUR OVERLAY - PRAVILNO POZICIONIRAN BREZ PREKRIVANJA FOOTERJA */
+#full-page-blur {
+    display: none;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1999;
+    pointer-events: all;
+    opacity: 1;
+}
+
+#full-page-blur.active {
+    display: block;
 }

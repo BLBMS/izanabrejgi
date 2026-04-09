@@ -1,4 +1,5 @@
-/* 028 */
+/* 043 */
+/* event-handlers.js */
 // Event handlerji
 
 // Event listener za klik na background
@@ -92,7 +93,7 @@ function setupNavHandlers() {
     if (navReserve) {
         navReserve.addEventListener('click', function (e) {
             e.stopPropagation(); // PREPREČI PROPAGACIJO
-            showHostexWidget();
+            showReserveOverlay();
         });
     }
 

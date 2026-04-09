@@ -1,10 +1,9 @@
-/* 039 */
+/* 043 */
 /* overlays.css */
-/* OVERLAY BACKGROUND ------------------------------------------------------------*/
 
 #overlay-background {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -20,14 +19,12 @@
     display: block;
 }
 
-/* TEXT & CONTACT OVERLAY --------------------------------------------------------*/
 .text-overlay,
 .contact-overlay {
     display: none;
-    position: absolute;
-    top: 50%;
+    position: fixed;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     text-align: left;
     color: var(--font-color);
     text-shadow: var(--font-shadow);
@@ -35,16 +32,14 @@
     padding: 2rem;
     z-index: 100;
     width: 90%;
-    max-width: 900px;
-    max-height: 75vh;
-    overflow-y: auto;
+    max-width: 1000px;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(208, 255, 0, 0.2);
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    margin-top: 40px;
+    overflow-y: auto;
 }
 
 .text-overlay.active,
@@ -52,7 +47,22 @@
     display: block;
 }
 
-/* VSEBINA OVERLAYEV -------------------------------------------------------------*/
+/* NASLOVI - ENAKO ZA VSE */
+.text-overlay h2,
+.contact-overlay h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--hover-color);
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(208, 255, 0, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.contact-overlay h2 { 
+    padding-top: 15px;
+}
+
+/* VSEBINA */
 .description-text,
 .about-text {
     padding: 1rem;
@@ -65,13 +75,7 @@
     line-height: 1.6;
 }
 
-.description-text p:last-child,
-.about-text p:last-child {
-    margin-bottom: 0;
-}
-
 .about-text ul {
-    text-align: left;
     margin: 1.5rem 0;
     padding-left: 2rem;
 }
@@ -81,7 +85,7 @@
     line-height: 1.5;
 }
 
-/* CONTACT STYLES */
+/* CONTACT - ENAKO KOT OSTALI OVERLAYI */
 .contact-section {
     padding: 1rem;
 }
@@ -91,7 +95,7 @@
     align-items: flex-start;
     margin-bottom: 1.2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-item:last-child {
@@ -102,10 +106,8 @@
     font-weight: bold;
     margin-right: 10px;
     color: var(--hover-color);
-    display: inline-block;
     min-width: 80px;
     flex-shrink: 0;
-    margin-top: 2px;
 }
 
 .contact-value {
@@ -139,7 +141,6 @@
 
 .email-link {
     word-break: break-word;
-    /* ali word-break: break-word; če želiš bolj nežno prelamljanje */
     overflow-wrap: break-word;
     hyphens: auto;
 }
@@ -159,61 +160,126 @@
     background: rgba(208, 255, 0, 0.1);
 }
 
-/* NASLOVI V OVERLAYJIH */
-.text-overlay h2,
-.contact-overlay h2 {
+/* RESERVE */
+.reserve-text {
+    padding: 1rem;
+}
+
+.reserve-text ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.reserve-text li {
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+}
+
+.reserve-open-btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 25px auto 10px auto;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--hover-color);
-    font-size: 1.8rem;
-    border-bottom: 2px solid rgba(208, 255, 0, 0.3);
-    padding-bottom: 0.5rem;
 }
 
-/* SCROLLBAR */
-.text-overlay::-webkit-scrollbar,
-.contact-overlay::-webkit-scrollbar {
-    width: 10px;
+.reserve-open-btn:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #45a049, #1B5E20);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-.text-overlay::-webkit-scrollbar-track,
-.contact-overlay::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    margin: 5px 0;
+.reserve-open-btn:active {
+    transform: scale(0.98);
 }
 
-.text-overlay::-webkit-scrollbar-thumb,
-.contact-overlay::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom,
-            rgba(208, 255, 0, 0.7),
-            rgba(123, 155, 0, 0.9));
-    border-radius: 5px;
-    border: 1px solid rgba(208, 255, 0, 0.3);
-}
-
-.text-overlay::-webkit-scrollbar-thumb:hover,
-.contact-overlay::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom,
-            rgba(234, 255, 0, 0.8),
-            rgba(143, 175, 0, 0.95));
-}
-
+/* SCROLLBAR - VEDNO VIDEN NA MOBILNIH */
 .text-overlay,
-.contact-overlay {
+.contact-overlay,
+.links-overlay {
     scrollbar-width: thin;
     scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
 }
 
-.description-text::-webkit-scrollbar,
-.about-text::-webkit-scrollbar {
-    display: none;
-    width: 0;
+.text-overlay::-webkit-scrollbar,
+.contact-overlay::-webkit-scrollbar,
+.links-overlay::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-.description-text,
-.about-text {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    overflow: visible;
+.text-overlay::-webkit-scrollbar-track,
+.contact-overlay::-webkit-scrollbar-track,
+.links-overlay::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.text-overlay::-webkit-scrollbar-thumb,
+.contact-overlay::-webkit-scrollbar-thumb,
+.links-overlay::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
+    border-radius: 4px;
+}
+
+/* MOBILNI - VEČ BESEDILA V VRSTICI, SCROLLBAR VEDNO VIDEN */
+@media (max-width: 768px) {
+
+    .text-overlay,
+    .contact-overlay,
+    .links-overlay {
+        padding: 1rem 0.75rem;
+        width: 95%;
+    }
+
+    .description-text,
+    .about-text,
+    .links-content {
+        padding: 0.5rem 0.25rem;
+    }
+
+    .contact-item {
+        gap: 8px;
+    }
+
+    .contact-label {
+        min-width: 70px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .text-overlay,
+    .contact-overlay,
+    .links-overlay {
+        padding: 0.75rem 0.5rem;
+        width: 98%;
+    }
+
+    .text-overlay h2,
+    .contact-overlay h2,
+    #links-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .contact-label {
+        min-width: 60px;
+        font-size: 0.85rem;
+    }
+
+    .contact-value,
+    .contact-values {
+        font-size: 0.85rem;
+    }
 }

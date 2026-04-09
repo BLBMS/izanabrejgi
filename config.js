@@ -1,4 +1,6 @@
-// 027 - Konfiguracija
+// 043
+// config.js
+// Konfiguracija
 
 // Seznam slik za slideshow - GLOBALNA SPREMENLJIVKA
 window.imageFiles = [
@@ -18,8 +20,7 @@ window.imageFiles = [
     "images/spalnica2.jpg",
     "images/wc1.jpg",
     "images/zunaj-lagev1.jpg",
-    "images/zunaj-mici1.jpg",
-    "images/klobuka.jpg"
+    "images/zunaj-mici1.jpg"
 ];
 
 // Globalne spremenljivke
@@ -38,5 +39,4 @@ if (typeof module !== 'undefined' && module.exports) {
         currentLanguage: window.currentLanguage,
         languageData: window.languageData
     };
-
 }

@@ -1,4 +1,5 @@
-/* 040 */
+/* 043 */
+// language-manager.js
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
@@ -97,12 +98,15 @@ const embeddedLanguageData = {
                 "appleMaps": "Apple Maps",
                 "tip": "Kliknite na gumb za odprtje v aplikaciji ali brskalniku."
             },
-            "hostex": {
+            "reserve": {
+                "title": "Rezervacija",
+                "intro": "Rezervacijo izvedete preko spodnjega portala",
                 "items": [
-                    "• Ponujamo direktno rezervacijo brez provizije preko lastnega portala spodaj. Plačilo je s kreditno kartico.",
-                    "• S premikanjem po mesecih lahko preverite tudi razpololjivost nastanitve.",
+                    "• Ponujamo direktno rezervacijo brez provizije preko lastnega portala. Plačilo je s kreditno kartico.",
+                    "• S premikanjem po mesecih lahko preverite tudi razpoložljivost nastanitve.",
                     "• Check-in se izvede preko on-line portala na dan prihoda v nastanitev. Takrat se preko istega portala plača tudi turistična taksa. Plačilo je s kreditno kartico."
-                ]
+                ],
+                "button": "Odpri rezervacijski portal"
             },
             "footer": {
                 "copyright": "&copy; 2026 Iža na brejgi. Vse pravice pridržane."
@@ -200,12 +204,15 @@ const embeddedLanguageData = {
                 "appleMaps": "Apple Maps",
                 "tip": "Click the button to open in app or browser."
             },
-            "hostex": {
+            "reserve": {
+                "title": "Reservation",
+                "intro": "Make your reservation through the portal below",
                 "items": [
-                    "• We offer direct booking without commission through our own portal below. Payment by credit card.",
+                    "• We offer direct booking without commission through our own portal. Payment by credit card.",
                     "• By scrolling through the months, you can also check the availability of the accommodation.",
                     "• Check-in is done through the online portal on the day of arrival at the accommodation. At that time, the tourist tax is also paid through the same portal. Payment by credit card."
-                ]
+                ],
+                "button": "Open reservation portal"
             },
             "footer": {
                 "copyright": "&copy; 2026 Iža na brejgi. All rights reserved."
@@ -303,12 +310,15 @@ const embeddedLanguageData = {
                 "appleMaps": "Apple Maps",
                 "tip": "Klicken Sie auf die Schaltfläche, um in der App oder im Browser zu öffnen."
             },
-            "hostex": {
+            "reserve": {
+                "title": "Reservierung",
+                "intro": "Buchen Sie über das untenstehende Portal",
                 "items": [
-                    "• Wir bieten eine direkte Buchung ohne Provision über unser eigenes Portal unten. Zahlung per Kreditkarte.",
+                    "• Wir bieten eine direkte Buchung ohne Provision über unser eigenes Portal. Zahlung per Kreditkarte.",
                     "• Durch das Blättern durch die Monate können Sie auch die Verfügbarkeit der Unterkunft prüfen.",
                     "• Der Check-in erfolgt am Anreisetag in der Unterkunft über das Online-Portal. Zu diesem Zeitpunkt wird auch die Tourismusabgabe über dasselbe Portal bezahlt. Zahlung per Kreditkarte."
-                ]
+                ],
+                "button": "Buchungsportal öffnen"
             },
             "footer": {
                 "copyright": "&copy; 2026 Iža na brejgi. Alle Rechte vorbehalten."
@@ -411,6 +421,14 @@ function applyLanguage(lang) {
         window.refreshMapLanguage(lang);
     }
 
+    // Posodobi reserve overlay, če je aktiven
+    const reserveOverlay = document.getElementById('reserve-overlay');
+    if (reserveOverlay && reserveOverlay.classList.contains('active')) {
+        if (typeof updateReserveContent === 'function') {
+            updateReserveContent(lang);
+        }
+    }
+
     // Preveri če so piškotki prikazani in jih posodobi
     const cookieNotice = document.getElementById('cookie-notice');
     if (cookieNotice && cookieNotice.style.display === 'block') {
@@ -472,6 +490,10 @@ function updateOverlayContent(lang) {
     updateDescriptionContent(data.overlays.description);
     updateAboutContent(data.overlays.about);
     updateContactContent(data.overlays.contact);
+
+    if (typeof updateReserveContent === 'function') {
+        updateReserveContent(lang);
+    }
 }
 
 // Posodobi opis overlay
@@ -607,40 +629,6 @@ function updateContactContent(contactData) {
             html += '</div>';
         }
 
-        contactContent.innerHTML = html;
-    }
-}
-
-
-// Posodobi kontakt overlay xxxxxxxxxx
-function xxxupdateContactContent(contactData) {
-    const contactContent = document.getElementById('contact-content');
-    if (contactContent && contactData) {
-        let html = `
-            <div class="contact-item">
-                <span class="contact-label">${contactData.phone}</span>
-                <span class="contact-value">
-                    <a href="tel:+38641563873" class="contact-link">
-                        ${contactData.phoneValue}
-                    </a>
-                </span>
-            </div>
-            <div class="contact-item">
-                <span class="contact-label">${contactData.email}</span>
-                <span class="contact-value">
-                    <a href="mailto:iza.na.breigi@gmail.com" class="contact-link">
-                        ${contactData.emailValue}
-                    </a>
-                </span>
-            </div>
-            <div class="contact-item">
-                <span class="contact-label">${contactData.address}</span>
-                <div class="contact-value address">
-        `;
-        contactData.addressLines.forEach(line => {
-            html += `<div>${line}</div>`;
-        });
-        html += `</div></div>`;
         contactContent.innerHTML = html;
     }
 }

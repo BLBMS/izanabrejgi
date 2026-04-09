@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="sl">
-<!--041 ***-->
+<!--043 ***-->
 
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
                     <li><a href="#ponujamo" onclick="showAbout()" id="nav-about">Ponujamo</a></li>
                     <li><a href="#kontakt" onclick="showContact()" id="nav-contact">Kontakti</a></li>
                     <li><a href="#zemljevid" onclick="showMapWidget()" id="nav-map">Zemljevid</a></li>
-                    <li><a href="#rezerviraj" onclick="showHostexWidget()" id="nav-reserve">Rezerviraj</a></li>
+                    <li><a href="#rezerviraj" onclick="showReserveOverlay()" id="nav-reserve">Rezerviraj</a></li>
                     <li><a href="#povezave" onclick="showLinksOverlay()" id="nav-links">Povezave</a></li>
                 </ul>
             </div>
@@ -95,6 +95,15 @@
                         <div class="contact-section" id="contact-content"></div>
                     </div>
 
+                    <!-- RESERVE OVERLAY (prva stran) -->
+                    <div class="text-overlay" id="reserve-overlay">
+                        <div class="reserve-text">
+                            <h2 id="reserve-title">Rezervacija</h2>
+                            <div id="reserve-content"></div>
+                            <button id="reserve-open-widget" class="reserve-open-btn">Odpri rezervacijski portal</button>
+                        </div>
+                    </div>
+
                     <!-- LINKS OVERLAY BACKGROUND - DODAJ TUKAJ -->
                     <div id="links-background" class="links-background"></div>
 
@@ -119,6 +128,7 @@
 
     <footer>
         <p id="footer-text"></p>
+        <p><a href="#" id="footer-cookie-link">Piškotki</a></p>
     </footer>
 
     <script>
@@ -135,7 +145,6 @@
     <script src="language-manager.js"></script>
     <script src="slideshow-manager.js"></script>
     <script src="overlay-manager.js"></script>
-    <script src="dropdown-manager.js"></script>
     <script src="event-handlers.js"></script>
     <script src="main.js"></script>
     <script src="hostex.js"></script>
@@ -195,7 +204,5 @@
     <div id="cookie-toast" class="cookie-toast" style="display: none;"></div>
 
 </body>
-
-
 
 </html>

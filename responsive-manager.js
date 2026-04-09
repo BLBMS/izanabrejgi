@@ -1,4 +1,5 @@
-/* 027 */
+/* 043 */
+/* responsive-manager.js */
 // Responsivne funkcije
 
 // Funkcija za prilagajanje višine glede na orientacijo
