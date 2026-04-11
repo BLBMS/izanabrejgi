@@ -1,10 +1,9 @@
-/* 043b */
+/* 043c */
 // language-manager.js
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
 const embeddedLanguageData = {
-    "languages-version": "043b",
     "languages": {
         // ------------------------------------- SL ---------------------------------------------
         "sl": {
@@ -61,6 +60,7 @@ const embeddedLanguageData = {
                         "Hišni ljubljenčki niso dovoljeni.",
                         "Zabave niso dovoljene.",
                         "Kajenje ni dovoljeno.",
+                        "Nočni mir velja med 22.00 in 7.00.",
                         "Cenik velja za najem za od 1 do 4 osebe na nočitev.",
                         "Turistična taksa se plača posebej:",
                         "  - polnoletne osebe 2,50 € na noč,",
@@ -74,6 +74,12 @@ const embeddedLanguageData = {
                     "items3": [
                         "Detektor dima in ogljikovega dioksida.",
                         "Nadzorne kamere pokrivajo parkirišče in okolico hiše. Območje za najemnike: vsa okna, terasa in dvorišče pa ni pokrito s kamerami."
+                    ],
+                    "intro4": "Škoda in odgovornost",
+                    "items4": [
+                        "Goste prosimo, da z nastanitvijo in opremo ravnajo skrbno.",
+                        "Morebitne poškodbe je potrebno takoj prijaviti.",
+                        "Gost odgovarja za škodo, ki presega običajno rabo, in je lahko dolžan poravnati stroške popravila ali zamenjave."
                     ],
                 },
                 "contact": {
@@ -174,6 +180,7 @@ const embeddedLanguageData = {
                         "Pets are not allowed.",
                         "Parties are not allowed.",
                         "Smoking is not permitted.",
+                        "Quiet hours are from 22:00 to 07:00.",
                         "Price list applies for rental for 1 to 4 persons per night.",
                         "Tourist tax is paid separately:",
                         "  - adults 2.50 € per night,",
@@ -187,7 +194,13 @@ const embeddedLanguageData = {
                     "items3": [
                         "Smoke and carbon monoxide detector.",
                         "Security cameras cover the parking lot and the surroundings of the house. The tenant area: all windows, terrace, and courtyard are not covered by cameras."
-                    ]
+                    ],
+                    "intro4": "Damage & Liability",
+                    "items4": [
+                        "Guests are kindly asked to treat the property and all equipment with care.",
+                        "Any damage caused during your stay must be reported promptly.",
+                        "Guests are responsible for any damage beyond normal wear and tear and may be asked to cover the cost of repair or replacement."
+                    ],
                 },
                 "contact": {
                     "title": "Contacts",
@@ -287,6 +300,7 @@ const embeddedLanguageData = {
                         "Für 3. bis 4. Person: Aufschlag auf den Grundpreis.",
                         "Haustiere sind nicht erlaubt.",
                         "Rauchen ist nicht gestattet.",
+                        "Nachtruhe gilt von 22:00 bis 07:00 Uhr.",
                         "Preisliste gilt für Vermietung für 1 bis 4 Personen pro Nacht.",
                         "Tourismusabgabe wird separat bezahlt:",
                         "  - Erwachsene 2,50 € pro Nacht,",
@@ -300,7 +314,13 @@ const embeddedLanguageData = {
                     "items3": [
                         "Rauch- und Kohlenmonoxidmelder.",
                         "Überwachungskameras erfassen den Parkplatz und die Umgebung des Hauses. Der Bereich für Mieter: Alle Fenster, Terrasse und Hof sind nicht von Kameras erfasst."
-                    ]
+                    ],
+                    "intro4": "Schäden und Haftung",
+                    "items4": [
+                        "Wir bitten unsere Gäste, die Unterkunft und die Ausstattung sorgfältig zu behandeln.",
+                        "Eventuelle Schäden sind umgehend zu melden.",
+                        "Für Schäden, die über die normale Abnutzung hinausgehen, haftet der Gast und kann zur Übernahme der Reparatur- oder Ersatzkosten verpflichtet werden."
+                    ],
                 },
                 "contact": {
                     "title": "Kontakt",
@@ -568,11 +588,22 @@ function updateAboutContent(aboutData) {
             html += `</div>`;
         }
 
+        // ČETRTI DEL - Škoda
+        if (aboutData.intro4 && aboutData.items4) {
+            html += `<div class="extra-info-section">`;
+            html += `<h3 class="extra-info-title">${aboutData.intro4}</h3>`;
+            html += '<ul class="extra-info-list">';
+            aboutData.items4.forEach(item => {
+                html += `<li>${item}</li>`;
+            });
+            html += '</ul>';
+            html += `</div>`;
+        }
+
         aboutContent.innerHTML = html;
     }
 }
 
-// Posodobi kontakt overlay
 // Posodobi kontakt overlay
 function updateContactContent(contactData) {
     const contactContent = document.getElementById('contact-content');
