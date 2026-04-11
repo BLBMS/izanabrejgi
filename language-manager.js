@@ -1,10 +1,10 @@
-/* 043 */
+/* 043b */
 // language-manager.js
 // Upravljanje jezikov
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
 const embeddedLanguageData = {
-    "languages-version": "027",
+    "languages-version": "043b",
     "languages": {
         // ------------------------------------- SL ---------------------------------------------
         "sl": {
@@ -32,7 +32,12 @@ const embeddedLanguageData = {
                         "Prva omemba hiše datira v leto 1864 in je že označena na prvih kartah. Prvotni namen stavbe je bila viničarija, kjer so živeli delavci s svojimi družinami in so skrbeli za te vinograde. Vinogradi in objekti pa so bili v lasti premožnejših kmetov iz spodnjega dela vasi.",
                         "Hiša je opremljena z restavriranim stilnim pohištvom takratnega časa in veliko kosov presega častitljivo starost 100 let.",
                         "Potrudili smo se, da vas popeljemo na potovanje v preteklost, da si vzamete čas za sebe in svoje najbližje ter mogoče tudi za razmislek o nekdanjih vrednotah, ki v tem prehitrem svetu vedno bolj izginjajo.",
-                        "Prosimo, da hišo in pohištvo uporabljate skrbno in pazljivo, da ga bomo čez naslednjih 100 let lahko predali našim vnukom in pravnukom v takem stanju, kot so nam ga predali naši predniki."
+                        "Prosimo, da hišo in pohištvo uporabljate skrbno in pazljivo, da ga bomo čez naslednjih 100 let lahko predali našim vnukom in pravnukom v takem stanju, kot so nam ga predali naši predniki.",
+                        "Počitniška hiška se nahaja v naselju Moravske Toplice in to v predelu imenovanem Zgornji Moravci, v mirnem predelu sredi vinogradov in njiv. V bližini je nekaj hiš in vse niso stalno naseljene. Cesta vodi samo do teh hišk in do Gostišča Aleksander, malo naprej. V Gostišču strežejo večerje tudi za zunanje goste in če ste zelo lačni vam obisk močno priporočamo.",
+                        "Sama lokacija je zelo primerna za sprehode, kar nekaj poti je krožnih, krajših in daljših in tudi nekaj vzponov se lahko nabere. Še posebej priporočamo obisk kolesarjem, tako cestnim ali treking kot tudi MTB. V stari kleti je zaklenjen prostor za vsa vaša kolesa. Če imate električna, si jih lahko tudi napolnite. Nekaj orodja se najde tudi za hitra popravila. Začetek vaše kolesarske trase je po cestah z malo prometa. Lahko sledite uradno označenim potem ali pa si jih ustvarite z vašo aplikacijo. Naš predlog je seveda, da se zapeljite v naravo, glejte okoli sebe in poslušajte mir. Izogibajte se glavnih cest, kajti številke na aplikaciji vam tega ne bodo zabeležile.",
+                        "Za vse kopalne navdušence so seveda v spodnjem delu naselja Moravskih Toplic, imenovanem Spodnji Moravci, bazeni Term 3000 in Hotela Vivat, s savnami in wellnesi. Tam je tudi igrišče za golf in v parku trim steza.",
+                        "Tam spodaj se nahaja trgovina, nekaj gostiln in picerija. Za večje nakupe je 8 km vstran regijsko središče Murska Sobota s sodobnimi trgovskimi centri.",
+                        "Za ljubitelje bolj domače hrane in pijače pa priporočamo odhod v drugo smer, na Goričko. Priporočamo dve bližnji v Zgornjih Moravcih: Okrepčevalnica pri Goranu in Zeleni gaj. Pred odhodom prosim preverite delovni čas."
                     ]
                 },
                 "about": {
@@ -52,10 +57,11 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Dodatne informacije",
                     "items2": [
-                        "Cenik velja za najem za od 1 do 4 osebe na nočitev.",
+                        "Prijava od 14:00, odjava do 11:00.",
                         "Hišni ljubljenčki niso dovoljeni.",
                         "Zabave niso dovoljene.",
                         "Kajenje ni dovoljeno.",
+                        "Cenik velja za najem za od 1 do 4 osebe na nočitev.",
                         "Turistična taksa se plača posebej:",
                         "  - polnoletne osebe 2,50 € na noč,",
                         "  - otroci od 7 do 18 let 1,25 € na noč,",
@@ -138,7 +144,13 @@ const embeddedLanguageData = {
                         "The first mention of the house dates back to 1864, and it is already marked on the earliest maps. The original purpose of the building was a viničarija - a vintner's house where workers and their families lived while taking care of the vineyards. The vineyards and the buildings were owned by the wealthier farmers from the lower part of the village.",
                         "The house is furnished with restored period furniture, and many pieces are more than 100 years old.",
                         "We have made an effort to take you on a journey into the past - to allow you to take time for yourself and your loved ones, and perhaps to reflect on the old values that are increasingly disappearing in today's fast-paced world.",
-                        "Please use the house and furniture with care, so that we can pass them on to our grandchildren and great-grandchildren in the same condition in which they were handed down to us."
+                        "Please use the house and furniture with care, so that we can pass them on to our grandchildren and great-grandchildren in the same condition in which they were handed down to us.",
+                        "The holiday house is located in the area of Moravske Toplice, in a part called Zgornji Moravci, in a მშვიდ and quiet setting surrounded by vineyards and fields. There are only a few houses nearby, and not all are permanently occupied. The road leads only to these houses and to Aleksander Inn (Gostišče Aleksander), just a bit further up the road. The inn also serves dinners to external guests, and if you are very hungry, we highly recommend a visit.",
+                        "The location is perfect for walking and hiking, with several circular routes of varying lengths and some gentle climbs along the way. It is especially ideal for cyclists — whether you prefer road cycling, trekking, or mountain biking (MTB). In the old cellar, there is a locked storage space for your bicycles. If you have e-bikes, you can also charge them there. Basic tools are available for quick repairs.",
+                        "Your cycling routes can begin right from the house, along roads with very little traffic. You can follow officially marked cycling routes or create your own using your preferred app. Our suggestion is simple: head into nature, look around, and enjoy the peaceful surroundings. Try to avoid main roads — your app may not reflect the true beauty of the experience.",
+                        "For swimming enthusiasts, the lower part of Moravske Toplice, called Spodnji Moravci, offers the Terme 3000 spa complex and Hotel Vivat, with pools, saunas, and wellness facilities. There is also a golf course and a fitness trail in the nearby park.",
+                        "In this area, you will also find a grocery store, several restaurants, and a pizzeria. For larger shopping trips, the regional centre of Murska Sobota is just 8 km away and offers modern shopping centres.",
+                        "For those who enjoy more traditional local food and drinks, we recommend heading in the opposite direction, towards the Goričko region. Two nearby options in Zgornji Moravci are “Okrepčevalnica pri Goranu” and “Zeleni gaj”. Please check their opening hours before visiting."
                     ]
                 },
                 "about": {
@@ -158,10 +170,11 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Additional Information",
                     "items2": [
-                        "Price list applies for rental for 1 to 4 persons per night.",
+                        "Check-in from 14:00, check-out until 11:00.",
                         "Pets are not allowed.",
                         "Parties are not allowed.",
                         "Smoking is not permitted.",
+                        "Price list applies for rental for 1 to 4 persons per night.",
                         "Tourist tax is paid separately:",
                         "  - adults 2.50 € per night,",
                         "  - children from 7 to 18 years 1.25 € per night,",
@@ -244,7 +257,13 @@ const embeddedLanguageData = {
                         "Die erste Erwähnung des Hauses stammt aus dem Jahr 1864, und es ist bereits auf den ältesten Karten eingezeichnet. Ursprünglich diente das Gebäude als Viničarija - ein Winzerhaus, in dem Arbeiter mit ihren Familien lebten und die Weinberge betreuten. Die Weinberge und Gebäude gehörten wohlhabenderen Bauern aus dem unteren Teil des Dorfes.",
                         "Das Haus ist mit restaurierten Möbeln aus jener Zeit ausgestattet, von denen viele über 100 Jahre alt sind.",
                         "Wir haben uns bemüht, Sie auf eine Reise in die Vergangenheit mitzunehmen - damit Sie Zeit für sich und Ihre Liebsten finden und vielleicht auch an die alten Werte denken, die in unserer schnelllebigen Welt immer mehr verloren gehen.",
-                        "Bitte gehen Sie mit dem Haus und den Möbeln sorgsam um, damit wir sie in demselben Zustand unseren Enkeln und Urenkeln weitergeben können, wie sie uns von unseren Vorfahren überliefert wurden."
+                        "Bitte gehen Sie mit dem Haus und den Möbeln sorgsam um, damit wir sie in demselben Zustand unseren Enkeln und Urenkeln weitergeben können, wie sie uns von unseren Vorfahren überliefert wurden.",
+                        "Das Ferienhaus befindet sich in der Ortschaft Moravske Toplice, im Ortsteil Zgornji Moravci, in einer ruhigen Lage, umgeben von Weinbergen und Feldern. In der Nähe gibt es nur wenige Häuser, die zudem nicht alle dauerhaft bewohnt sind. Die Straße führt ausschließlich zu diesen Häusern und weiter zum Gasthaus Aleksander (Gostišče Aleksander), das sich etwas weiter oben befindet. Dort werden auch Abendessen für externe Gäste angeboten – wenn Sie hungrig sind, empfehlen wir Ihnen einen Besuch.",
+                        "Die Lage eignet sich hervorragend zum Spazierengehen und Wandern. Es gibt mehrere Rundwege unterschiedlicher Länge, teilweise auch mit leichten Anstiegen. Besonders empfehlenswert ist die Gegend für Radfahrer – egal ob Rennrad, Trekkingrad oder Mountainbike (MTB). Im alten Keller steht Ihnen ein abschließbarer Raum für Ihre Fahrräder zur Verfügung. E-Bikes können dort auch aufgeladen werden, und es gibt einige Werkzeuge für kleinere Reparaturen.",
+                        "Ihre Radtouren können direkt an der Unterkunft beginnen, auf Straßen mit sehr wenig Verkehr. Sie können offiziellen, ausgeschilderten Routen folgen oder Ihre eigene Strecke mit einer App planen. Unser Tipp: Fahren Sie einfach in die Natur, genießen Sie die Umgebung und die Ruhe. Vermeiden Sie Hauptstraßen – Ihre App zeigt Ihnen nicht immer das beste Erlebnis.",
+                        "Für Badebegeisterte befinden sich im unteren Teil von Moravske Toplice, im Ortsteil Spodnji Moravci, die Thermen Terme 3000 sowie das Hotel Vivat mit Pools, Saunen und Wellnessangeboten. Dort finden Sie auch einen Golfplatz sowie einen Trimmpfad im Park.",
+                        "In diesem Bereich gibt es außerdem ein Lebensmittelgeschäft, einige Restaurants und eine Pizzeria. Für größere Einkäufe liegt das regionale Zentrum Murska Sobota nur 8 km entfernt und bietet moderne Einkaufszentren.",
+                        "Für Liebhaber traditioneller regionaler Speisen und Getränke empfehlen wir einen Ausflug in die andere Richtung, ins Gebiet Goričko. Zwei nahegelegene Möglichkeiten in Zgornji Moravci sind die „Okrepčevalnica pri Goranu“ und „Zeleni gaj“. Bitte prüfen Sie vor Ihrem Besuch die Öffnungszeiten."
                     ]
                 },
                 "about": {
@@ -264,10 +283,11 @@ const embeddedLanguageData = {
                     ],
                     "intro2": "Zusätzliche Informationen",
                     "items2": [
-                        "Preisliste gilt für Vermietung für 1 bis 4 Personen pro Nacht.",
+                        "Check-in ab 14:00 Uhr, Check-out bis 11:00 Uhr.",
                         "Für 3. bis 4. Person: Aufschlag auf den Grundpreis.",
                         "Haustiere sind nicht erlaubt.",
                         "Rauchen ist nicht gestattet.",
+                        "Preisliste gilt für Vermietung für 1 bis 4 Personen pro Nacht.",
                         "Tourismusabgabe wird separat bezahlt:",
                         "  - Erwachsene 2,50 € pro Nacht,",
                         "  - Kinder von 7 bis 18 Jahren 1,25 € pro Nacht,",
