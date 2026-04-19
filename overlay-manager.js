@@ -1,4 +1,4 @@
-// 043
+// 044
 // overlay-manager.js
 
 let activeOverlayType = null;
@@ -27,11 +27,14 @@ function adjustOverlayPosition() {
     const footer = document.querySelector('footer');
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
-    
+
+    // Uporabi pravo višino iz spremenljivke
+    const viewportHeight = window.innerHeight;
     const topOffset = headerHeight + 20;
     const bottomOffset = footerHeight + 20;
+    //const maxHeight = viewportHeight - topOffset - bottomOffset;
     const maxHeight = `calc(100vh - ${topOffset + bottomOffset}px)`;
-    
+
     // 1. TEXT OVERLAYI
     const textOverlays = document.querySelectorAll('.text-overlay, .contact-overlay');
     textOverlays.forEach(overlay => {
@@ -41,7 +44,7 @@ function adjustOverlayPosition() {
         overlay.style.position = 'fixed';
         overlay.style.marginTop = '0';
     });
-    
+
     // 2. LINKS OVERLAY
     const linksOverlay = document.getElementById('links-overlay');
     if (linksOverlay) {
@@ -51,7 +54,7 @@ function adjustOverlayPosition() {
         linksOverlay.style.position = 'fixed';
         linksOverlay.style.marginTop = '0';
     }
-    
+
     // 3. MAP OVERLAY
     const mapContainer = document.getElementById('map-container');
     if (mapContainer && window.activeOverlayType === 'map') {
@@ -62,7 +65,7 @@ function adjustOverlayPosition() {
     if (mapCloseBtn && mapCloseBtn.style.display === 'flex') {
         mapCloseBtn.style.top = `${topOffset + 10}px`;
     }
-    
+
     // 4. HOSTEX OVERLAY
     const hostexWidget = document.querySelector('hostex-booking-widget');
     if (hostexWidget && hostexWidget.style.display === 'block') {
@@ -74,7 +77,7 @@ function adjustOverlayPosition() {
         hostexCloseBtn.style.top = `${topOffset + 10}px`;
         hostexCloseBtn.style.right = '5px';
     }
-    
+
     // 5. BLUR - PRAVILNA VIŠINA (ne čez footer)
     const blurOverlay = document.getElementById('full-page-blur');
     if (blurOverlay && blurOverlay.classList.contains('active')) {

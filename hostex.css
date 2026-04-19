@@ -17,6 +17,7 @@
     cursor: pointer;
     text-shadow: var(--font-shadow);
     transition: all 0.2s ease;
+    right: 10px !important;
 }
 
 /* Widget stil */
@@ -43,7 +44,7 @@ hostex-booking-widget * {
 
 @media (max-width: 480px) {
     #global-hostex-close {
-        width: 25% !important;
+        width: 25px !important;
         height: 25px !important;
         font-size: 2rem !important;
         top: 8px !important;

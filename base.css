@@ -1,4 +1,4 @@
-/* 043 */
+/* 044 */
 /* BASE */
 /* base.css */
 @font-face {
@@ -21,6 +21,7 @@
     --font-shadow: 3px 3px 4px rgba(0, 0, 0, 0.95);
     --hover-color: rgba(234, 255, 0, 0.8);
     --font-size-overlay: 1.0rem;
+    --app-height: 100vh;
 }
 
 * {
@@ -47,8 +48,18 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 80px);
+    min-height: calc(var(--app-height) - 80px);
+    /*min-height: calc(100vh - 80px);*/
 }
+
+.slideshow-container {
+    height: calc(var(--app-height) - 140px);
+}
+
+footer {
+    padding-bottom: max(0.8rem, env(safe-area-inset-bottom, 0px));
+}
+
 
 /* BLUR OVERLAY - PRAVILNO POZICIONIRAN BREZ PREKRIVANJA FOOTERJA */
 #full-page-blur {

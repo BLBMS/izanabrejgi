@@ -1,4 +1,4 @@
-/* 043 */
+/* 044 */
 /* responsive.css */
 
 /* DESKTOP (≥ 1024px) */
@@ -9,8 +9,19 @@
     .nav-links { justify-content: center; gap: 0.3rem; }
     .nav-links a { font-size: 1rem; padding: 0.25rem 0.5rem; letter-spacing: -0.3px; }
     .language-flags { order: 3; margin-left: auto; }
+    
+    footer {
+        padding-bottom: calc(0.8rem + env(safe-area-inset-bottom, 0px));
+    }
 }
 
+@media (min-width: 775px) {
+    .text-overlay,
+    .contact-overlay,
+    .links-overlay {
+        max-height: calc(var(--app-height) - 100px);
+    }
+}
 /* TABLET (700px - 800px) - meni gre v NOVO VRSTICO, vendar se linki NE PRELOMIJO posamično */
 @media (max-width: 776px) and (min-width: 651px) {
     .logo-text { font-size: 1.3rem; }
@@ -207,13 +218,22 @@ footer {
     flex-wrap: wrap;
     gap: 15px;
     padding: 0.5rem;
+    padding-bottom: calc(0.8rem + env(safe-area-inset-bottom, 0px));
 }
 footer p { margin: 0; font-size: 0.90rem; }
-@media (max-width: 770px) {
-    footer { flex-direction: column; gap: 1px; }
+
+@media (max-width: 776px) {
+    footer {
+        flex-direction: column; gap: 1px; 
+        padding-bottom: calc(0.8rem + env(safe-area-inset-bottom, 0px));
+    }
     footer p { font-size: 0.8rem; }
 }
-@media (max-width: 480px) {
-    footer { flex-direction: column; gap: 1px; }
+
+@media (max-width: 390px) {
+    footer {
+        flex-direction: column; gap: 1px;
+        padding-bottom: calc(0.8rem + env(safe-area-inset-bottom, 0px));
+    }
     footer p { font-size: 0.7rem; }
 }
