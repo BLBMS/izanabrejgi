@@ -1,4 +1,4 @@
-// 044
+// 043
 // main.js
 
 function initDOMElements() {
@@ -87,24 +87,7 @@ function init() {
     window.addEventListener('orientationchange', () => setTimeout(adjustLogoTextSize, 100));
 }
 
-// Nastavi pravo višino za Android (upošteva navigacijsko vrstico)
-function setAppHeight() {
-    const doc = document.documentElement;
-    const viewportHeight = window.innerHeight;
-    doc.style.setProperty('--app-height', `${viewportHeight}px`);
-    
-    // Posodobi tudi overlaye, če so odprti
-    if (typeof adjustOverlayPosition === 'function') {
-        setTimeout(adjustOverlayPosition, 50);
-    }
-}
-
 document.addEventListener('DOMContentLoaded', init);
-document.addEventListener('visibilitychange', setAppHeight);
-
-window.addEventListener('resize', setAppHeight);
-window.addEventListener('orientationchange', setAppHeight);
-window.addEventListener('load', setAppHeight);
 
 window.showDescription = showDescription || function () { };
 window.showAbout = showAbout || function () { };
@@ -134,5 +117,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 100);
 });
-
-setAppHeight();

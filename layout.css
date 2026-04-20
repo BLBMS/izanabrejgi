@@ -1,4 +1,4 @@
-/* 043 */
+/* 044 */
 /* layout.css */
 /* HEADER -------------------------------------------------------------------------*/
 header {
@@ -38,9 +38,61 @@ footer {
     word-wrap: break-word;
     word-break: break-word;
     z-index: 2000;
+    /* za FB */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* padding: 0.8rem;  že je zgoraj */
 }
 
 footer p {
     margin: 0;
     padding: 0 10px;
+}
+
+/* za FB in Instagram*/
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: var(--font-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--hover-color);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .footer-links {
+        gap: 12px;
+    }
 }
