@@ -1,4 +1,4 @@
-/* 044 */
+/* 044a */
 // language-manager.js
 // Upravljanje jezikov
 
@@ -66,6 +66,7 @@ const embeddedLanguageData = {
                         "  - polnoletne osebe 2,50 € na noč,",
                         "  - otroci od 7 do 18 let 1,25 € na noč,",
                         "  - otroci do 7 let in invalidi so opravičeni do plačila turistične takse.",
+                        "Strošek prijave in pobiranja turistične takse znaša 1,00 € na rezervacijo.",
                         "Vse cene so v EUR. Ne poslujemo z gotovino.",
                         "ID nastanitvenega obrata: 137845",
                         "Kategorizaja: počitniška hiša ***"
@@ -186,6 +187,7 @@ const embeddedLanguageData = {
                         "  - adults 2.50 € per night,",
                         "  - children from 7 to 18 years 1.25 € per night,",
                         "  - children up to 7 years and disabled persons are exempt from tourist tax.",
+                        "The cost of registration and collection of the tourist tax is €1.00 per reservation.",
                         "All prices are in EUR. We do not accept cash.",
                         "Accommodation ID: 137845",
                         "Categorization: holiday home ***"
@@ -306,6 +308,7 @@ const embeddedLanguageData = {
                         "  - Erwachsene 2,50 € pro Nacht,",
                         "  - Kinder von 7 bis 18 Jahren 1,25 € pro Nacht,",
                         "  - Kinder bis 7 Jahre und behinderte Personen sind von der Tourismusabgabe befreit.",
+                        "Die Kosten für die Anmeldung und die Einhebung der Tourismusabgabe betragen 1,00 € pro Reservierung.",
                         "Alle Preise sind v EUR. Wir akzeptieren kein Bargeld.",
                         "Beherbergungsbetriebs-ID: 137845",
                         "Kategorisierung: Ferienhaus ***"
