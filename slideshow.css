@@ -1,4 +1,4 @@
-/* 043 */
+/* 044 */
 /* slideshow.css */
 
 .hero { flex: 1; display: flex; flex-direction: column; margin: 0; padding: 0; }
@@ -17,7 +17,7 @@
 }
 .slideshow { width: 100%; height: 100%; position: relative; }
 .slide { min-width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
-.slideshow-track { display: flex; height: 100%; transition: transform 0.5s ease-in-out; gap: 0; }
+.slideshow-track { display: flex; height: 100%; transition: transform 1.5s ease-in-out; gap: 0; }
 
 .slideshow-dots {
     position: absolute;
