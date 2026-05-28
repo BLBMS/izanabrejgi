@@ -1,12 +1,15 @@
-// 043
+// 044
 // map-overlay.js
 
-const LAT = 46.709083;
-const LNG = 16.246525;
+//const LAT = 46.709083;
+//const LNG = 16.246525;
+const LAT = 46.70913;
+const LNG = 16.24649;
 const PLACE_NAME = "Iža na brejgi";
 const FULL_ADDRESS = "Iža na brejgi, Rumičev breg 71, 9226 Moravske Toplice, Slovenija";
 const ENCODED_FULL_ADDRESS = encodeURIComponent(FULL_ADDRESS);
 const ENCODED_PLACE_NAME = encodeURIComponent(PLACE_NAME);
+const GOOGLE_PLACE_ID = "ChIJycPmd9A7b0cRx8FU_SUyL5M";
 const APPLE_PLACE_ID = "I10C98484AA979597";
 
 function detectPlatform() {
@@ -20,11 +23,15 @@ function detectPlatform() {
 }
 
 function getGoogleViewUrl() {
-    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
+//    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
+//    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
+    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}&query_place_id=${GOOGLE_PLACE_ID}`;
 }
 
 function getGoogleNavUrl() {
-    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
+//    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
+//    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
+    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}&destination_place_id=${GOOGLE_PLACE_ID}`;
 }
 
 function getAppleViewUrl(platform) {
@@ -122,9 +129,15 @@ function showMapWidget() {
             </div>
         </div>
         <div class="map-embed-container">
-            <iframe id="map-iframe" src="https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+            <iframe id="map-iframe" src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
         </div>
     `;
+
+    /*
+            <iframe id="map-iframe" src="https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+            <iframe id="map-iframe" src="https://maps.google.com/maps?q=$${LAT},${LNG}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+            <iframe id="map-iframe" src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+    */
 
     mapContainer.style.cssText = `
         position: fixed !important;
@@ -244,7 +257,9 @@ function refreshMapLanguage(lang) {
     if (mapContainer && window.activeOverlayType === 'map') {
         const iframe = document.getElementById('map-iframe');
         if (iframe) {
-            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
+//            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
+//            iframe.src = `https://maps.google.com/maps?q=${LAT},${LNG}&output=embed&hl=${lang}&z=15`;
+            iframe.src = `https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}`;
         }
         const viewLabel = getMapText(lang, 'viewLabel');
         const navLabel = getMapText(lang, 'navLabel');
