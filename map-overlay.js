@@ -11,6 +11,8 @@ const ENCODED_FULL_ADDRESS = encodeURIComponent(FULL_ADDRESS);
 const ENCODED_PLACE_NAME = encodeURIComponent(PLACE_NAME);
 const GOOGLE_PLACE_ID = "ChIJycPmd9A7b0cRx8FU_SUyL5M";
 const APPLE_PLACE_ID = "I10C98484AA979597";
+const PLUGSHARE_URL = "https://www.plugshare.com/location/564262";
+const CHARGEMAP_URL = "https://chargemap.com/en-gb/megatel-moravske-toplice-83-rumicev-breg.html";
 
 function detectPlatform() {
     const userAgent = navigator.userAgent.toLowerCase();
@@ -23,14 +25,14 @@ function detectPlatform() {
 }
 
 function getGoogleViewUrl() {
-//    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
-//    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
+    //    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
+    //    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
     return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}&query_place_id=${GOOGLE_PLACE_ID}`;
 }
 
 function getGoogleNavUrl() {
-//    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
-//    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
+    //    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
+    //    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
     return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}&destination_place_id=${GOOGLE_PLACE_ID}`;
 }
 
@@ -59,7 +61,9 @@ function getMapText(lang, key) {
         'viewLabel': 'Prikaži na zemljevidu',
         'navLabel': 'Navigacija / Izračun poti',
         'googleMaps': 'Google Maps',
-        'appleMaps': 'Apple Maps'
+        'appleMaps': 'Apple Maps',
+        'evLabel': 'Polnilnica za EV',
+        'plugShare': 'PlugShare'
     };
     return texts?.[key] || defaults[key] || '';
 }
@@ -106,6 +110,8 @@ function showMapWidget() {
     const navLabel = getMapText(currentLang, 'navLabel');
     const googleText = getMapText(currentLang, 'googleMaps');
     const appleText = getMapText(currentLang, 'appleMaps');
+    const evLabel = getMapText(currentLang, 'evLabel');
+    const plugShareText = getMapText(currentLang, 'plugShare');
 
     mapContainer.innerHTML = `
         <div class="map-buttons-container">
@@ -125,6 +131,16 @@ function showMapWidget() {
                 </button>
                 <button class="map-btn apple-nav" data-type="apple-nav">
                     <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                </button>
+            </div>
+            <div class="map-button-group">
+                <div class="map-button-label ev-title">${evLabel}</div>
+                <button class="map-btn plugshare-btn" data-type="plugshare">
+                    <img src="logos/echarge-g.png" alt="PlugShare" class="map-btn-icon"> ${plugShareText}
+                </button>
+                <button class="map-btn chargemap-btn" data-type="chargemap">
+                    <img src="logos/echarge-b.png" alt="Chargemap" class="map-btn-icon">
+                    Chargemap
                 </button>
             </div>
         </div>
@@ -173,6 +189,8 @@ function showMapWidget() {
                 case 'google-nav': url = getGoogleNavUrl(); break;
                 case 'apple-view': url = getAppleViewUrl(platform); break;
                 case 'apple-nav': url = getAppleNavUrl(platform); break;
+                case 'plugshare': url = PLUGSHARE_URL; break;
+                case 'chargemap': url = CHARGEMAP_URL; break;
             }
             if (url) window.open(url, '_blank');
         });
@@ -257,18 +275,23 @@ function refreshMapLanguage(lang) {
     if (mapContainer && window.activeOverlayType === 'map') {
         const iframe = document.getElementById('map-iframe');
         if (iframe) {
-//            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
-//            iframe.src = `https://maps.google.com/maps?q=${LAT},${LNG}&output=embed&hl=${lang}&z=15`;
+            //            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
+            //            iframe.src = `https://maps.google.com/maps?q=${LAT},${LNG}&output=embed&hl=${lang}&z=15`;
             iframe.src = `https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}`;
         }
         const viewLabel = getMapText(lang, 'viewLabel');
         const navLabel = getMapText(lang, 'navLabel');
         const googleText = getMapText(lang, 'googleMaps');
         const appleText = getMapText(lang, 'appleMaps');
+        const evLabel = getMapText(lang, 'evLabel');
         const labels = document.querySelectorAll('.map-button-label');
         if (labels[0]) labels[0].textContent = viewLabel;
         if (labels[1]) labels[1].textContent = navLabel;
         const btns = document.querySelectorAll('.map-btn');
+        const evTitles = document.querySelectorAll('.ev-title');
+        evTitles.forEach(title => {
+            title.textContent = evLabel;
+        });
         btns.forEach(btn => {
             if (btn.classList.contains('google-view') || btn.classList.contains('google-nav')) {
                 btn.innerHTML = `<img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}`;
@@ -283,4 +306,5 @@ if (typeof window !== 'undefined') {
     window.showMapWidget = showMapWidget;
     window.hideMapWidget = hideMapWidget;
     window.refreshMapLanguage = refreshMapLanguage;
+    window.open(url, '_blank');
 }
