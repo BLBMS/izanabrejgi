@@ -1,141 +1,310 @@
-/* 043 */
-/* map-overlay.css */
-/* - popravljeni odmiki */
+// 044
+// map-overlay.js
 
-#map-container {
-    box-sizing: border-box;
+//const LAT = 46.709083;
+//const LNG = 16.246525;
+const LAT = 46.70913;
+const LNG = 16.24649;
+const PLACE_NAME = "Iža na brejgi";
+const FULL_ADDRESS = "Iža na brejgi, Rumičev breg 71, 9226 Moravske Toplice, Slovenija";
+const ENCODED_FULL_ADDRESS = encodeURIComponent(FULL_ADDRESS);
+const ENCODED_PLACE_NAME = encodeURIComponent(PLACE_NAME);
+const GOOGLE_PLACE_ID = "ChIJycPmd9A7b0cRx8FU_SUyL5M";
+const APPLE_PLACE_ID = "I10C98484AA979597";
+const PLUGSHARE_URL = "https://www.plugshare.com/location/564262";
+const CHARGEMAP_URL = "https://chargemap.com/en-gb/megatel-moravske-toplice-83-rumicev-breg.html";
+
+function detectPlatform() {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const platform = navigator.platform?.toLowerCase() || '';
+    if (/iphone|ipad|ipod/.test(userAgent)) return 'ios';
+    if (/mac/.test(platform) && !/iphone|ipad|ipod/.test(userAgent)) return 'macos';
+    if (/android/.test(userAgent)) return 'android';
+    if (/win/.test(platform)) return 'windows';
+    return 'other';
 }
 
-.map-buttons-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-    flex-shrink: 0;
+function getGoogleViewUrl() {
+    //    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
+    //    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
+    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}&query_place_id=${GOOGLE_PLACE_ID}`;
 }
 
-.map-button-group {
-    flex: 1;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    padding: 8px;
+function getGoogleNavUrl() {
+    //    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
+    //    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
+    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}&destination_place_id=${GOOGLE_PLACE_ID}`;
 }
 
-.map-button-label {
-    font-size: 0.8rem;
-    color: var(--hover-color);
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-.map-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(208, 255, 0, 0.3);
-    color: var(--font-color);
-    padding: 5px 10px;
-    margin: 0 3px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.2s ease;
-}
-
-.map-btn:hover {
-    background: rgba(208, 255, 0, 0.2);
-    border-color: var(--hover-color);
-    transform: scale(1.02);
-}
-
-.map-embed-container {
-    flex: 1;
-    min-height: 0;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 5px;
-}
-
-#map-iframe {
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    border: none;
-    border-radius: 8px;
-}
-
-/* X gumb */
-#close-map-widget {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    line-height: 1;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-#close-map-widget:hover {
-    transform: scale(1.2);
-    opacity: 0.9;
-}
-
-/* ikoni za mapi */
-.map-btn-icon {
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .map-buttons-container {
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 6px;
-    }
-
-    .map-button-group {
-        padding: 6px;
-    }
-
-    .map-button-label {
-        font-size: 0.7rem;
-        margin-bottom: 4px;
-    }
-
-    .map-btn {
-        padding: 4px 8px;
-        font-size: 0.7rem;
-    }
-
-    #map-iframe {
-        min-height: 250px;
-    }
-
-    #close-map-widget {
-        font-size: 1.8rem !important;
-        width: 30px !important;
-        height: 30px !important;
+function getAppleViewUrl(platform) {
+    const appleUrl = `https://maps.apple.com/place?place-id=${APPLE_PLACE_ID}&address=${encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice")}&coordinate=${LAT},${LNG}&name=${ENCODED_PLACE_NAME}&_provider=9902`;
+    if (platform === 'ios') {
+        return `maps://maps.apple.com/place?place-id=${APPLE_PLACE_ID}&address=${encodeURIComponent("Rumičev breg 71, 9226 Moravske Toplice")}&coordinate=${LAT},${LNG}&name=${ENCODED_PLACE_NAME}&_provider=9902`;
+    } else {
+        return appleUrl;
     }
 }
 
-@media (max-width: 480px) {
-    .map-btn {
-        padding: 3px 6px;
-        font-size: 0.65rem;
-        margin: 0 2px;
+function getAppleNavUrl(platform) {
+    const destination = encodeURIComponent("Iža na brejgi, Rumičev breg 71, 9226 Moravske Toplice, Slovenija");
+    const appleUrl = `https://maps.apple.com/directions?destination=${destination}&destination-place-id=${APPLE_PLACE_ID}&mode=driving`;
+    if (platform === 'ios') {
+        return `maps://maps.apple.com/directions?destination=${destination}&destination-place-id=${APPLE_PLACE_ID}&mode=driving`;
+    } else {
+        return appleUrl;
+    }
+}
+
+function getMapText(lang, key) {
+    const texts = window.languageData?.[lang]?.map;
+    const defaults = {
+        'viewLabel': 'Prikaži na zemljevidu',
+        'navLabel': 'Navigacija / Izračun poti',
+        'googleMaps': 'Google Maps',
+        'appleMaps': 'Apple Maps',
+        'evLabel': 'Polnilnica za EV',
+        'plugShare': 'PlugShare'
+    };
+    return texts?.[key] || defaults[key] || '';
+}
+
+function showMapWidget() {
+    console.log('🗺️ Showing Map widget...');
+
+    if (typeof hideAllOverlays === 'function') {
+        hideAllOverlays();
     }
 
-    #map-iframe {
-        min-height: 200px;
+    window.activeOverlayType = 'map';
+
+    const currentLang = window.currentLanguage || 'sl';
+    const platform = detectPlatform();
+
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const headerHeight = header ? header.offsetHeight : 80;
+    const footerHeight = footer ? footer.offsetHeight : 60;
+    const topOffset = headerHeight + 20;
+    const bottomOffset = footerHeight + 20;
+
+    const blurOverlay = document.getElementById('overlay-background');
+    if (blurOverlay) {
+        blurOverlay.classList.add('active');
+        blurOverlay.style.display = 'block';
+        blurOverlay.onclick = function (e) {
+            if (e.target === this) hideMapWidget();
+        };
     }
 
-    #close-map-widget {
-        font-size: 1.6rem !important;
-        width: 28px !important;
-        height: 28px !important;
+    const existingCloseBtn = document.getElementById('close-map-widget');
+    if (existingCloseBtn) existingCloseBtn.remove();
+
+    let mapContainer = document.getElementById('map-container');
+    if (mapContainer) mapContainer.remove();
+
+    mapContainer = document.createElement('div');
+    mapContainer.id = 'map-container';
+    document.body.appendChild(mapContainer);
+
+    const viewLabel = getMapText(currentLang, 'viewLabel');
+    const navLabel = getMapText(currentLang, 'navLabel');
+    const googleText = getMapText(currentLang, 'googleMaps');
+    const appleText = getMapText(currentLang, 'appleMaps');
+    const evLabel = getMapText(currentLang, 'evLabel');
+    const plugShareText = getMapText(currentLang, 'plugShare');
+
+    mapContainer.innerHTML = `
+        <div class="map-buttons-container">
+            <div class="map-button-group">
+                <div class="map-button-label">${viewLabel}</div>
+                <button class="map-btn google-view" data-type="google-view">
+                    <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                </button>
+                <button class="map-btn apple-view" data-type="apple-view">
+                    <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                </button>
+            </div>
+            <div class="map-button-group">
+                <div class="map-button-label">${navLabel}</div>
+                <button class="map-btn google-nav" data-type="google-nav">
+                    <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                </button>
+                <button class="map-btn apple-nav" data-type="apple-nav">
+                    <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                </button>
+            </div>
+            <div class="map-button-group">
+                <div class="map-button-label ev-title">${evLabel}</div>
+                <button class="map-btn plugshare-btn" data-type="plugshare">
+                    <img src="logos/echarge-g.png" alt="PlugShare" class="map-btn-icon"> ${plugShareText}
+                </button>
+                <button class="map-btn chargemap-btn" data-type="chargemap">
+                    <img src="logos/echarge-b.png" alt="Chargemap" class="map-btn-icon">
+                    Chargemap
+                </button>
+            </div>
+        </div>
+        <div class="map-embed-container">
+            <iframe id="map-iframe" src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+        </div>
+    `;
+
+    /*
+            <iframe id="map-iframe" src="https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+            <iframe id="map-iframe" src="https://maps.google.com/maps?q=$${LAT},${LNG}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+            <iframe id="map-iframe" src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
+    */
+
+    mapContainer.style.cssText = `
+        position: fixed !important;
+        top: ${topOffset}px !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 90% !important;
+        max-width: 1000px !important;
+        margin: 0 auto !important;
+        height: calc(100vh - ${topOffset + bottomOffset}px) !important;
+        min-height: 400px !important;
+        z-index: 100 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 10px 15px !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        border-radius: 8px !important;
+        border: 1px solid rgba(208, 255, 0, 0.2) !important;
+        overflow-y: auto !important;
+        box-sizing: border-box !important;
+    `;
+
+    document.querySelectorAll('.map-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const type = btn.getAttribute('data-type');
+            let url = '';
+            switch (type) {
+                case 'google-view': url = getGoogleViewUrl(); break;
+                case 'google-nav': url = getGoogleNavUrl(); break;
+                case 'apple-view': url = getAppleViewUrl(platform); break;
+                case 'apple-nav': url = getAppleNavUrl(platform); break;
+                case 'plugshare': url = PLUGSHARE_URL; break;
+                case 'chargemap': url = CHARGEMAP_URL; break;
+            }
+            if (url) window.open(url, '_blank');
+        });
+    });
+
+    const closeButton = document.createElement('button');
+    closeButton.id = 'close-map-widget';
+    closeButton.innerHTML = '×';
+    closeButton.title = 'Zapri zemljevid';
+    document.body.appendChild(closeButton);
+    closeButton.onmouseenter = function () {
+        this.style.transform = 'scale(1.2)';
+        this.style.color = 'var(--hover-color)';
+    };
+    closeButton.onmouseleave = function () {
+        this.style.transform = 'scale(1)';
+        this.style.color = 'var(--font-color)';
+    };
+    closeButton.onclick = hideMapWidget;
+
+    closeButton.style.cssText = `
+        position: fixed !important;
+        top: ${topOffset + 10}px !important;
+        right: calc(50% - min(500px, 45vw) + 10px) !important;
+        width: 32px !important;
+        height: 32px !important;
+        background: transparent !important;
+        border: none !important;
+        color: var(--font-color) !important;
+        font-size: 2rem !important;
+        cursor: pointer !important;
+        z-index: 101 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+        text-shadow: var(--font-shadow) !important;
+        transition: all 0.2s ease !important;
+    `;
+    closeButton.style.display = 'flex';
+
+    function escHandler(e) {
+        if (e.key === 'Escape') hideMapWidget();
     }
+    document.addEventListener('keydown', escHandler);
+    window.mapEscHandler = escHandler;
+
+    document.body.style.overflow = 'hidden';
+}
+
+function hideMapWidget() {
+    console.log('Hiding Map widget');
+
+    const mapContainer = document.getElementById('map-container');
+    const closeButton = document.getElementById('close-map-widget');
+    const blurOverlay = document.getElementById('overlay-background');
+
+    if (mapContainer) mapContainer.remove();
+    if (closeButton) closeButton.remove();
+
+    if (blurOverlay) {
+        blurOverlay.classList.remove('active');
+        blurOverlay.style.display = '';
+        blurOverlay.onclick = null;
+    }
+
+    if (window.mapEscHandler) {
+        document.removeEventListener('keydown', window.mapEscHandler);
+        window.mapEscHandler = null;
+    }
+
+    if (window.activeOverlayType === 'map') {
+        window.activeOverlayType = null;
+    }
+
+    document.body.style.overflow = '';
+}
+
+function refreshMapLanguage(lang) {
+    console.log('Refreshing map language to:', lang);
+    const mapContainer = document.getElementById('map-container');
+    if (mapContainer && window.activeOverlayType === 'map') {
+        const iframe = document.getElementById('map-iframe');
+        if (iframe) {
+            //            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
+            //            iframe.src = `https://maps.google.com/maps?q=${LAT},${LNG}&output=embed&hl=${lang}&z=15`;
+            iframe.src = `https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}`;
+        }
+        const viewLabel = getMapText(lang, 'viewLabel');
+        const navLabel = getMapText(lang, 'navLabel');
+        const googleText = getMapText(lang, 'googleMaps');
+        const appleText = getMapText(lang, 'appleMaps');
+        const evLabel = getMapText(lang, 'evLabel');
+        const labels = document.querySelectorAll('.map-button-label');
+        if (labels[0]) labels[0].textContent = viewLabel;
+        if (labels[1]) labels[1].textContent = navLabel;
+        const btns = document.querySelectorAll('.map-btn');
+        const evTitles = document.querySelectorAll('.ev-title');
+        evTitles.forEach(title => {
+            title.textContent = evLabel;
+        });
+        btns.forEach(btn => {
+            if (btn.classList.contains('google-view') || btn.classList.contains('google-nav')) {
+                btn.innerHTML = `<img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}`;
+            } else if (btn.classList.contains('apple-view') || btn.classList.contains('apple-nav')) {
+                btn.innerHTML = `<img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}`;
+            }
+        });
+    }
+}
+
+if (typeof window !== 'undefined') {
+    window.showMapWidget = showMapWidget;
+    window.hideMapWidget = hideMapWidget;
+    window.refreshMapLanguage = refreshMapLanguage;
+    window.open(url, '_blank');
 }
