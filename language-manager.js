@@ -1,4 +1,4 @@
-/* 044b */
+/* 044c */
 // language-manager.js
 // Upravljanje jezikov
 
@@ -111,6 +111,8 @@ const embeddedLanguageData = {
                 "navLabel": "Navigacija / Izračun poti",
                 "googleMaps": "Google Maps",
                 "appleMaps": "Apple Maps",
+                "evLabel": "Polnilnica za EV",
+                "plugShare": "PlugShare",
                 "tip": "Kliknite na gumb za odprtje v aplikaciji ali brskalniku."
             },
             "reserve": {
@@ -234,6 +236,8 @@ const embeddedLanguageData = {
                 "navLabel": "Navigation / Get directions",
                 "googleMaps": "Google Maps",
                 "appleMaps": "Apple Maps",
+                "evLabel": "EV Charging",
+                "plugShare": "PlugShare",
                 "tip": "Click the button to open in app or browser."
             },
             "reserve": {
@@ -357,6 +361,8 @@ const embeddedLanguageData = {
                 "navLabel": "Navigation / Route berechnen",
                 "googleMaps": "Google Maps",
                 "appleMaps": "Apple Maps",
+                "evLabel": "EV-Ladestation",
+                "plugShare": "PlugShare",
                 "tip": "Klicken Sie auf die Schaltfläche, um in der App oder im Browser zu öffnen."
             },
             "reserve": {
