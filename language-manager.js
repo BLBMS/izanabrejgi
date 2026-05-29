@@ -37,7 +37,7 @@ const embeddedLanguageData = {
                         "Za vse kopalne navdušence so seveda v spodnjem delu naselja Moravskih Toplic, imenovanem Spodnji Moravci, bazeni Term 3000 in Hotela Vivat, s savnami in wellnesi. Tam je tudi igrišče za golf in v parku trim steza.",
                         "Tam spodaj se nahaja trgovina, nekaj gostiln in picerija. Za večje nakupe je 8 km vstran regijsko središče Murska Sobota s sodobnimi trgovskimi centri.",
                         "Za ljubitelje bolj domače hrane in pijače pa priporočamo odhod v drugo smer, na Goričko. Priporočamo dve bližnji v Zgornjih Moravcih: Okrepčevalnica pri Goranu in Zeleni gaj. Pred odhodom prosim preverite delovni čas.",
-                        "Javna polnilnica za električna vozila je oddaljena 150 m (11 kW, proti plačilu)."
+                        "Javna polnilnica za električna vozila je oddaljena 150 m (11 kW, proti plačilu). Polnjenje električnih vozil v nastanitvi zaradi tehničnih omejitev ni mogoče."
                     ]
                 },
                 "about": {
@@ -162,7 +162,7 @@ const embeddedLanguageData = {
                         "For swimming enthusiasts, the lower part of Moravske Toplice, called Spodnji Moravci, offers the Terme 3000 spa complex and Hotel Vivat, with pools, saunas, and wellness facilities. There is also a golf course and a fitness trail in the nearby park.",
                         "In this area, you will also find a grocery store, several restaurants, and a pizzeria. For larger shopping trips, the regional centre of Murska Sobota is just 8 km away and offers modern shopping centres.",
                         "For those who enjoy more traditional local food and drinks, we recommend heading in the opposite direction, towards the Goričko region. Two nearby options in Zgornji Moravci are “Okrepčevalnica pri Goranu” and “Zeleni gaj”. Please check their opening hours before visiting.",
-                        "A public charging station for electric vehicles is located 150 m away (11 kW, subject to payment)."
+                        "A public charging station for electric vehicles is located 150 m away (11 kW, subject to payment). Charging electric vehicles at the accommodation is not possible due to technical limitations."
                     ]
                 },
                 "about": {
@@ -287,7 +287,7 @@ const embeddedLanguageData = {
                         "Für Badebegeisterte befinden sich im unteren Teil von Moravske Toplice, im Ortsteil Spodnji Moravci, die Thermen Terme 3000 sowie das Hotel Vivat mit Pools, Saunen und Wellnessangeboten. Dort finden Sie auch einen Golfplatz sowie einen Trimmpfad im Park.",
                         "In diesem Bereich gibt es außerdem ein Lebensmittelgeschäft, einige Restaurants und eine Pizzeria. Für größere Einkäufe liegt das regionale Zentrum Murska Sobota nur 8 km entfernt und bietet moderne Einkaufszentren.",
                         "Für Liebhaber traditioneller regionaler Speisen und Getränke empfehlen wir einen Ausflug in die andere Richtung, ins Gebiet Goričko. Zwei nahegelegene Möglichkeiten in Zgornji Moravci sind die „Okrepčevalnica pri Goranu“ und „Zeleni gaj“. Bitte prüfen Sie vor Ihrem Besuch die Öffnungszeiten.",
-                        "Eine öffentliche Ladestation für Elektrofahrzeuge befindet sich 150 m entfernt (11 kW, kostenpflichtig)."
+                        "Eine öffentliche Ladestation für Elektrofahrzeuge befindet sich 150 m entfernt (11 kW, kostenpflichtig). Das Laden von Elektrofahrzeugen in der Unterkunft ist aufgrund technischer Einschränkungen nicht möglich."
                     ]
                 },
                 "about": {
