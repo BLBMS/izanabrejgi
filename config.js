@@ -1,4 +1,4 @@
-// 044
+// 044a
 // config.js
 // Konfiguracija
 
@@ -19,6 +19,7 @@ window.imageFiles = [
     "images/sceste-pozimi.jpg",
     "images/spalnica1.jpg",
     "images/spalnica2.jpg",
+    "images/terasa1.jpg",
     "images/wc1.jpg",
     "images/zunaj-lagev1.jpg",
     "images/zunaj-mici1.jpg"
