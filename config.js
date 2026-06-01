@@ -12,6 +12,7 @@ window.imageFiles = [
     "images/dvor-pozimi.jpg",
     "images/jedilnica1.jpg",
     "images/kopalnica1.jpg",
+    "images/kuhinja1.jpg",
     "images/pogled-jed-sever.jpg",
     "images/pogled-sp-jug.jpg",
     "images/pogled-sp-vzhod.jpg",
