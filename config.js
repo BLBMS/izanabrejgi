@@ -4,7 +4,7 @@
 
 // Seznam slik za slideshow - GLOBALNA SPREMENLJIVKA
 window.imageFiles = [
-    "images/dnevna1.jpg",
+    "images/balkon1.jpg",
     "images/dnevna1.jpg",
     "images/dnevna3.jpg",
     "images/dnevna4.jpg",
