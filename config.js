@@ -1,4 +1,4 @@
-// 044a
+// 044b
 // config.js
 // Konfiguracija
 
@@ -6,11 +6,13 @@
 window.imageFiles = [
     "images/balkon1.jpg",
     "images/dnevna1.jpg",
+    "images/dnevna2.jpg",
     "images/dnevna3.jpg",
     "images/dnevna4.jpg",
     "images/dvor-poletje.jpg",
     "images/dvor-pozimi.jpg",
     "images/jedilnica1.jpg",
+    "images/klobuka.jpg",
     "images/kopalnica1.jpg",
     "images/kuhinja1.jpg",
     "images/pogled-jed-sever.jpg",
