@@ -1,0 +1,220 @@
+/* 045 */
+/* reviews-overlay.css */
+
+.reviews-overlay {
+    display: none;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: left;
+    color: var(--font-color);
+    text-shadow: var(--font-shadow);
+    font-size: var(--font-size-overlay);
+    padding: 2rem;
+    z-index: 100;
+    width: 90%;
+    max-width: 1100px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(208, 255, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.reviews-overlay.active {
+    display: block;
+}
+
+.reviews-container {
+    padding: 0.5rem;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+/* SCROLLBAR - ENAK KOT PRI OSTALIH OVERLAYIH */
+.reviews-overlay::-webkit-scrollbar,
+.reviews-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.reviews-overlay::-webkit-scrollbar-track,
+.reviews-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.reviews-overlay::-webkit-scrollbar-thumb,
+.reviews-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
+    border-radius: 4px;
+}
+
+.reviews-overlay {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
+}
+
+#reviews-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--hover-color);
+    font-size: 1.8rem;
+    border-bottom: 2px solid rgba(208, 255, 0, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.review-item {
+    display: flex;
+    gap: 25px;
+    padding: 18px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid rgba(208, 255, 0, 0.5);
+}
+
+.review-left {
+    width: 120px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.review-rating {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(208, 255, 0, 0.95);
+}
+
+.review-reviewer {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.review-platform-logo {
+    height: 22px;
+    width: auto;
+    object-fit: contain;
+}
+
+.review-text {
+    flex: 1;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.review-text p {
+    margin: 0;
+}
+
+/* Navigacija za mnenja - kot slideshow */
+.reviews-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    padding-top: 3px;
+}
+
+.reviews-arrow {
+    background: transparent !important;
+    border: none !important;
+    color: var(--font-color) !important;
+    font-size: 2rem !important;
+    text-shadow: var(--font-shadow) !important;
+    cursor: pointer !important;
+    padding: 5px 10px !important;
+    transition: all 0.3s ease !important;
+    opacity: 0.7 !important;
+    line-height: 1;
+}
+
+.reviews-arrow:hover {
+    opacity: 1 !important;
+    color: rgba(208, 255, 0, 0.9) !important;
+    transform: scale(1.1);
+}
+
+.reviews-page-info {
+    font-size: 1.2rem;
+    color: var(--font-color);
+    text-shadow: var(--font-shadow);
+    min-width: 60px;
+    text-align: center;
+    line-height: 1;
+}
+
+/* MOBILNI */
+@media (max-width: 768px) {
+    .reviews-overlay {
+        padding: 1rem;
+        width: 95%;
+    }
+
+    .review-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .review-left {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .review-rating {
+        font-size: 1.3rem;
+    }
+
+    .review-platform-logo {
+        height: 24px;
+    }
+
+    .reviews-arrow {
+        font-size: 1.6rem !important;
+        padding: 5px 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .reviews-overlay {
+        padding: 0.75rem;
+        width: 98%;
+    }
+
+    #reviews-title {
+        font-size: 1.3rem;
+    }
+
+    .review-rating {
+        font-size: 1.2rem;
+    }
+
+    .review-reviewer {
+        font-size: 0.85rem;
+    }
+
+    .review-text {
+        font-size: 0.9rem;
+    }
+
+    .reviews-arrow {
+        font-size: 1.4rem !important;
+        padding: 5px 8px !important;
+    }
+
+    .reviews-page-info {
+        font-size: 0.85rem;
+        min-width: 50px;
+    }
+}

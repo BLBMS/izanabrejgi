@@ -1,5 +1,5 @@
-// 043a
-// hostex.js - CELOZASLONSKI WIDGET
+// 045
+// hostex.js
 
 if (!window.activeOverlayType) window.activeOverlayType = null;
 if (!window.hostexScriptLoaded) window.hostexScriptLoaded = false;
@@ -19,7 +19,6 @@ function loadHostexScript() {
         script.src = 'https://hostex.io/app/assets/js/hostex-widget.js?version=20260211115522';
         script.type = 'module';
         script.onload = () => {
-            console.log('Hostex script loaded');
             window.hostexScriptLoaded = true;
             resolve();
         };
@@ -89,40 +88,14 @@ async function showHostexWidget() {
         closeButton.title = 'Zapri rezervacije';
         document.body.appendChild(closeButton);
         closeButton.onclick = hideHostexWidget;
-        closeButton.onmouseenter = function () {
-            this.style.transform = 'scale(1.2)';
-            this.style.color = 'var(--hover-color)';
-        };
-        closeButton.onmouseleave = function () {
-            this.style.transform = 'scale(1)';
-            this.style.color = 'var(--font-color)';
-        };
     }
-/*
     closeButton.style.cssText = `
         position: fixed !important;
         top: 15px !important;
         right: 15px !important;
-        width: 45px !important;
-        height: 45px !important;
-        background: rgba(0, 0, 0, 0.7) !important;
-        border: 2px solid var(--font-color) !important;
-        border-radius: 50% !important;
-        color: var(--font-color) !important;
-        font-size: 2.5rem !important;
-        cursor: pointer !important;
         z-index: 10001 !important;
         display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        line-height: 1 !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
     `;
-*/
-    closeButton.style.display = 'flex';
 
     // Blur ozadje (ne rabimo, ker je widget sam čez vse)
     const blurOverlay = document.getElementById('full-page-blur');

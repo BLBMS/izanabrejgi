@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="sl">
-<!--044 ***-->
+<!--045-->
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="hostex.css">
     <link rel="stylesheet" href="map-overlay.css">
     <link rel="stylesheet" href="links-overlay.css">
+    <link rel="stylesheet" href="reviews-overlay.css">
     <link rel="stylesheet" href="cookies.css">
     <link rel="stylesheet" href="responsive.css">
 </head>
@@ -45,6 +46,7 @@
                     <li><a href="#zemljevid" onclick="showMapWidget()" id="nav-map">Zemljevid</a></li>
                     <li><a href="#rezerviraj" onclick="showReserveOverlay()" id="nav-reserve">Rezerviraj</a></li>
                     <li><a href="#povezave" onclick="showLinksOverlay()" id="nav-links">Povezave</a></li>
+                    <li><a href="#mnenja" onclick="showReviewsOverlay()" id="nav-reviews">Mnenja</a></li>
                 </ul>
             </div>
 
@@ -67,69 +69,81 @@
             <div class="slideshow-container">
                 <div class="slideshow" id="slideshow-container">
                     <div class="slideshow-track" id="slideshow-track"></div>
-
                     <button class="slideshow-arrow prev" onclick="prevSlide()">❮</button>
                     <button class="slideshow-arrow next" onclick="nextSlide()">❯</button>
-
                     <div class="slideshow-dots" id="slideshow-dots"></div>
-
-                    <div class="overlay-background" id="overlay-background"></div>
-
-                    <div class="text-overlay" id="description-overlay">
-                        <div class="description-text">
-                            <h2 id="description-title">Opis</h2>
-                            <div id="description-content"></div>
-                        </div>
-                    </div>
-
-                    <div class="text-overlay" id="about-overlay">
-                        <div class="about-text">
-                            <h2 id="about-title">Ponujamo</h2>
-                            <div id="about-content"></div>
-
-                        </div>
-                    </div>
-
-                    <div class="contact-overlay" id="contact-overlay">
-                        <h2 id="contact-title">Kontakti</h2>
-                        <div class="contact-section" id="contact-content"></div>
-                    </div>
-
-                    <!-- RESERVE OVERLAY (prva stran) -->
-                    <div class="text-overlay" id="reserve-overlay">
-                        <div class="reserve-text">
-                            <h2 id="reserve-title">Rezervacija</h2>
-                            <div id="reserve-content"></div>
-                            <button id="reserve-open-widget" class="reserve-open-btn">Odpri rezervacijski
-                                portal</button>
-                        </div>
-                    </div>
-
-                    <!-- LINKS OVERLAY BACKGROUND - DODAJ TUKAJ -->
-                    <div id="links-background" class="links-background"></div>
-
-
-                    <!-- LINKS OVERLAY -->
-                    <div id="links-overlay" class="links-overlay">
-                        <div class="links-content">
-                            <h2 id="links-title">Povezave</h2>
-                            <div class="links-container" id="links-container"></div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </section>
     </div>
+
+    <!-- VSI OVERLAYI - IZVEN slideshow-containerja -->
+    <div class="overlay-background" id="overlay-background"></div>
+
+    <div class="text-overlay" id="description-overlay">
+        <div class="description-text">
+            <h2 id="description-title">Opis</h2>
+            <div id="description-content"></div>
+        </div>
+    </div>
+
+    <div class="text-overlay" id="about-overlay">
+        <div class="about-text">
+            <h2 id="about-title">Ponujamo</h2>
+            <div id="about-content"></div>
+        </div>
+    </div>
+
+    <div class="contact-overlay" id="contact-overlay">
+        <h2 id="contact-title">Kontakti</h2>
+        <div class="contact-section" id="contact-content"></div>
+    </div>
+
+    <div class="text-overlay" id="reserve-overlay">
+        <div class="reserve-text">
+            <h2 id="reserve-title">Rezervacija</h2>
+            <div id="reserve-content"></div>
+            <button id="reserve-open-widget" class="reserve-open-btn">Odpri rezervacijski portal</button>
+        </div>
+    </div>
+
+    <div id="links-background" class="links-background"></div>
+    <div id="links-overlay" class="links-overlay">
+        <div class="links-content">
+            <h2 id="links-title">Povezave</h2>
+            <div class="links-container" id="links-container"></div>
+        </div>
+    </div>
+
+    <div id="reviews-background" class="reviews-background"></div>
+    <div id="reviews-overlay" class="reviews-overlay">
+        <h2 id="reviews-title">Mnenja gostov</h2>
+        <div id="reviews-container" class="reviews-container"></div>
+        <div class="reviews-navigation">
+            <button class="reviews-arrow" id="reviews-prev" onclick="window.prevReviewsPage?.()">❮</button>
+            <span id="reviews-page-info" class="reviews-page-info">1 / 2</span>
+            <button class="reviews-arrow" id="reviews-next" onclick="window.nextReviewsPage?.()">❯</button>
+        </div>
+    </div>
+
+    <!--
+    <div id="reviews-background" class="reviews-background"></div>
+    <div id="reviews-overlay" class="reviews-overlay">
+        <div class="reviews-content">
+            <h2 id="reviews-title">Mnenja gostov</h2>
+            <div id="reviews-container" class="reviews-container"></div>
+        </div>
+    </div>
+-->
 
     <!-- GUMB ZA ZAPIRANJE -->
     <button id="close-hostex-widget" onclick="hideHostexWidget()" style="display:none;">
         ×
     </button>
 
-
     <!--
     https://www.facebook.com/profile.php?id=61568896771765
+    https://www.facebook.com/Izanabrejgi/
     https://www.instagram.com/izanabrejgi/
     -->
 
@@ -137,8 +151,8 @@
         <p id="footer-text"></p>
         <div class="footer-links">
             <a href="#" id="footer-cookie-link">Piškotki</a>
-            <a href="https://www.facebook.com/profile.php?id=61568896771765" id="footer-facebook-link"
-                class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a href="https://www.facebook.com/Izanabrejgi/" id="footer-facebook-link" class="social-link"
+                target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                     <path
                         d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
@@ -173,6 +187,7 @@
     <script src="hostex.js"></script>
     <script src="map-overlay.js"></script>
     <script src="links-overlay.js?v=2"></script>
+    <script src="reviews-overlay.js"></script>
     <script src="cookies.js"></script>
     <script src="responsive-manager.js"></script>
 

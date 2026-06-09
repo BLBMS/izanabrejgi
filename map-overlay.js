@@ -1,4 +1,4 @@
-// 044
+// 045
 // map-overlay.js
 
 //const LAT = 46.709083;
@@ -25,14 +25,10 @@ function detectPlatform() {
 }
 
 function getGoogleViewUrl() {
-    //    return `https://www.google.com/maps/search/?api=1&query=${ENCODED_PLACE_NAME}`;
-    //    return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
     return `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}&query_place_id=${GOOGLE_PLACE_ID}`;
 }
 
 function getGoogleNavUrl() {
-    //    return `https://www.google.com/maps/dir/?api=1&origin=&destination=${ENCODED_PLACE_NAME}`;
-    //    return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
     return `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}&destination_place_id=${GOOGLE_PLACE_ID}`;
 }
 
@@ -75,7 +71,7 @@ function showMapWidget() {
         hideAllOverlays();
     }
 
-    window.activeOverlayType = 'map';
+    activeOverlayType = 'map';
 
     const currentLang = window.currentLanguage || 'sl';
     const platform = detectPlatform();
@@ -84,7 +80,19 @@ function showMapWidget() {
     const footer = document.querySelector('footer');
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
-    const topOffset = headerHeight + 20;
+
+    // Preveri ali je landscape na mobitelu
+    const isLandscapeView = window.innerWidth > window.innerHeight;
+    const isMobileView = window.innerWidth <= 933;
+
+    // V landscape načinu zmanjšamo odmik na 2px
+    let topOffset;
+    if (isMobileView && isLandscapeView) {
+        topOffset = headerHeight + 2;
+    } else {
+        topOffset = headerHeight + 20;
+    }
+
     const bottomOffset = footerHeight + 20;
 
     const blurOverlay = document.getElementById('overlay-background');
@@ -113,47 +121,101 @@ function showMapWidget() {
     const evLabel = getMapText(currentLang, 'evLabel');
     const plugShareText = getMapText(currentLang, 'plugShare');
 
-    mapContainer.innerHTML = `
-        <div class="map-buttons-container">
-            <div class="map-button-group">
-                <div class="map-button-label">${viewLabel}</div>
-                <button class="map-btn google-view" data-type="google-view">
-                    <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
-                </button>
-                <button class="map-btn apple-view" data-type="apple-view">
-                    <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
-                </button>
-            </div>
-            <div class="map-button-group">
-                <div class="map-button-label">${navLabel}</div>
-                <button class="map-btn google-nav" data-type="google-nav">
-                    <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
-                </button>
-                <button class="map-btn apple-nav" data-type="apple-nav">
-                    <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
-                </button>
-            </div>
-            <div class="map-button-group">
-                <div class="map-button-label ev-title">${evLabel}</div>
-                <button class="map-btn plugshare-btn" data-type="plugshare">
-                    <img src="logos/echarge-g.png" alt="PlugShare" class="map-btn-icon"> ${plugShareText}
-                </button>
-                <button class="map-btn chargemap-btn" data-type="chargemap">
-                    <img src="logos/echarge-b.png" alt="Chargemap" class="map-btn-icon">
-                    Chargemap
-                </button>
-            </div>
-        </div>
-        <div class="map-embed-container">
-            <iframe id="map-iframe" src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
-        </div>
-    `;
+    // Ugotovimo ali je landscape
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const isMobile = window.innerWidth <= 933;
 
-    /*
-            <iframe id="map-iframe" src="https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
-            <iframe id="map-iframe" src="https://maps.google.com/maps?q=$${LAT},${LNG}&output=embed&hl=${currentLang}&z=15" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
-            <iframe id="map-iframe" src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" title="${PLACE_NAME}" allowfullscreen loading="lazy"></iframe>
-    */
+    let buttonsLayout = '';
+
+    if (isMobile && isLandscape) {
+        // Landscape način - gumbi levo, mapa desno
+        buttonsLayout = `
+            <div class="map-buttons-sidebar">
+                <div class="map-button-group">
+                    <div class="map-button-label">${viewLabel}</div>
+                    <button class="map-btn google-view" data-type="google-view">
+                        <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                    </button>
+                    <button class="map-btn apple-view" data-type="apple-view">
+                        <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                    </button>
+                </div>
+                <div class="map-button-group">
+                    <div class="map-button-label">${navLabel}</div>
+                    <button class="map-btn google-nav" data-type="google-nav">
+                        <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                    </button>
+                    <button class="map-btn apple-nav" data-type="apple-nav">
+                        <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                    </button>
+                </div>
+                <div class="map-button-group">
+                    <div class="map-button-label ev-title">${evLabel}</div>
+                    <button class="map-btn plugshare-btn" data-type="plugshare">
+                        <img src="logos/echarge-g.png" alt="PlugShare" class="map-btn-icon"> ${plugShareText}
+                    </button>
+                    <button class="map-btn chargemap-btn" data-type="chargemap">
+                        <img src="logos/echarge-b.png" alt="Chargemap" class="map-btn-icon">
+                        Chargemap
+                    </button>
+                </div>
+            </div>
+            <div class="map-embed-sidebar">
+                <iframe id="map-iframe" 
+                    src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" 
+                    title="${PLACE_NAME}" 
+                    allowfullscreen 
+                    loading="lazy"
+                    style="width: 100%; height: 100%; border: none; border-radius: 8px;">
+                </iframe>
+            </div>
+        `;
+    } else {
+        // Portret ali desktop - standardni prikaz
+        buttonsLayout = `
+            <div class="map-buttons-container">
+                <div class="map-button-group">
+                    <div class="map-button-label">${viewLabel}</div>
+                    <button class="map-btn google-view" data-type="google-view">
+                        <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                    </button>
+                    <button class="map-btn apple-view" data-type="apple-view">
+                        <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                    </button>
+                </div>
+                <div class="map-button-group">
+                    <div class="map-button-label">${navLabel}</div>
+                    <button class="map-btn google-nav" data-type="google-nav">
+                        <img src="logos/google72.png" alt="Google Maps" class="map-btn-icon"> ${googleText}
+                    </button>
+                    <button class="map-btn apple-nav" data-type="apple-nav">
+                        <img src="logos/apple72.png" alt="Apple Maps" class="map-btn-icon"> ${appleText}
+                    </button>
+                </div>
+                <div class="map-button-group">
+                    <div class="map-button-label ev-title">${evLabel}</div>
+                    <button class="map-btn plugshare-btn" data-type="plugshare">
+                        <img src="logos/echarge-g.png" alt="PlugShare" class="map-btn-icon"> ${plugShareText}
+                    </button>
+                    <button class="map-btn chargemap-btn" data-type="chargemap">
+                        <img src="logos/echarge-b.png" alt="Chargemap" class="map-btn-icon">
+                        Chargemap
+                    </button>
+                </div>
+            </div>
+            <div class="map-embed-container">
+                <iframe id="map-iframe" 
+                    src="https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}" 
+                    title="${PLACE_NAME}" 
+                    allowfullscreen 
+                    loading="lazy"
+                    style="width: 100%; height: 100%; min-height: 300px; border: none; border-radius: 8px;">
+                </iframe>
+            </div>
+        `;
+    }
+
+    mapContainer.innerHTML = buttonsLayout;
 
     mapContainer.style.cssText = `
         position: fixed !important;
@@ -163,8 +225,9 @@ function showMapWidget() {
         width: 90% !important;
         max-width: 1000px !important;
         margin: 0 auto !important;
-        height: calc(100vh - ${topOffset + bottomOffset}px) !important;
-        min-height: 400px !important;
+        max-height: calc(100vh - ${topOffset + 20}px) !important;
+        height: auto !important;
+        min-height: 300px !important;
         z-index: 100 !important;
         display: flex !important;
         flex-direction: column !important;
@@ -175,8 +238,16 @@ function showMapWidget() {
         border-radius: 8px !important;
         border: 1px solid rgba(208, 255, 0, 0.2) !important;
         overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
         box-sizing: border-box !important;
     `;
+
+    // Če je landscape in mobile, spremenimo flex smer
+    if (isMobile && isLandscape) {
+        mapContainer.style.flexDirection = 'row';
+        mapContainer.style.alignItems = 'stretch';
+    }
 
     document.querySelectorAll('.map-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -262,8 +333,8 @@ function hideMapWidget() {
         window.mapEscHandler = null;
     }
 
-    if (window.activeOverlayType === 'map') {
-        window.activeOverlayType = null;
+    if (activeOverlayType === 'map') {
+        activeOverlayType = null;
     }
 
     document.body.style.overflow = '';
@@ -272,12 +343,10 @@ function hideMapWidget() {
 function refreshMapLanguage(lang) {
     console.log('Refreshing map language to:', lang);
     const mapContainer = document.getElementById('map-container');
-    if (mapContainer && window.activeOverlayType === 'map') {
+    if (mapContainer && activeOverlayType === 'map') {
         const iframe = document.getElementById('map-iframe');
         if (iframe) {
-            //            iframe.src = `https://maps.google.com/maps?q=${ENCODED_PLACE_NAME}&output=embed&hl=${lang}&z=15`;
-            //            iframe.src = `https://maps.google.com/maps?q=${LAT},${LNG}&output=embed&hl=${lang}&z=15`;
-            iframe.src = `https://maps.google.com/maps?output=embed&hl=${currentLang}&z=15&q=${LAT}%2C${LNG}`;
+            iframe.src = `https://maps.google.com/maps?output=embed&hl=${lang}&z=15&q=${LAT}%2C${LNG}`;
         }
         const viewLabel = getMapText(lang, 'viewLabel');
         const navLabel = getMapText(lang, 'navLabel');
@@ -302,9 +371,35 @@ function refreshMapLanguage(lang) {
     }
 }
 
+function refreshMapLayout() {
+    const mapContainer = document.getElementById('map-container');
+    if (mapContainer && activeOverlayType === 'map') {
+        const wasActive = mapContainer && mapContainer.parentNode;
+        if (wasActive) {
+            hideMapWidget();
+            setTimeout(() => {
+                showMapWidget();
+            }, 50);
+        }
+    }
+}
+
+// Opazujemo spremembo orientacije
+window.addEventListener('orientationchange', function () {
+    setTimeout(refreshMapLayout, 100);
+});
+
+window.addEventListener('resize', function () {
+    const isLandscapeNow = window.innerWidth > window.innerHeight;
+    const wasLandscape = window._wasLandscape;
+    if (isLandscapeNow !== wasLandscape && activeOverlayType === 'map') {
+        refreshMapLayout();
+    }
+    window._wasLandscape = isLandscapeNow;
+});
+
 if (typeof window !== 'undefined') {
     window.showMapWidget = showMapWidget;
     window.hideMapWidget = hideMapWidget;
     window.refreshMapLanguage = refreshMapLanguage;
-    window.open(url, '_blank');
 }

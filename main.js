@@ -1,4 +1,4 @@
-// 043
+// 045
 // main.js
 
 function initDOMElements() {
@@ -55,6 +55,7 @@ function adjustLogoTextSize() {
 }
 
 // Glavna inicializacija
+
 function init() {
     initDOMElements();
 
@@ -85,7 +86,52 @@ function init() {
     setTimeout(adjustLogoTextSize, 100);
     window.addEventListener('resize', () => setTimeout(adjustLogoTextSize, 50));
     window.addEventListener('orientationchange', () => setTimeout(adjustLogoTextSize, 100));
+
+    // NOVO: Opazovanje sprememb višine headerja in footerja
+    if (typeof observeHeaderChanges === 'function') {
+        setTimeout(observeHeaderChanges, 100);
+    }
+
+    // Začetna prilagoditev višine slideshow
+    setTimeout(() => {
+        if (typeof adjustSlideshowHeight === 'function') {
+            adjustSlideshowHeight();
+        }
+    }, 150);
 }
+
+/*function init() {
+    initDOMElements();
+
+    if (typeof loadLanguageData === 'function') loadLanguageData();
+
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && savedLang !== currentLanguage) {
+        setTimeout(() => {
+            if (languageData[savedLang] && typeof applyLanguage === 'function') {
+                applyLanguage(savedLang);
+            }
+        }, 100);
+    }
+
+    if (typeof createSlideshowDots === 'function') {
+        setTimeout(() => createSlideshowDots(), 500);
+    }
+
+    if (typeof setupOverlayClickHandlers === 'function') setupOverlayClickHandlers();
+    if (typeof setupOverlayBackgroundClick === 'function') setupOverlayBackgroundClick();
+    if (typeof setupResizeHandlers === 'function') setupResizeHandlers();
+
+    if (typeof loadSlides === 'function') loadSlides();
+
+    if (typeof showNextSlide === 'function') setInterval(showNextSlide, 4000);
+
+    // Dinamično prilagajanje velikosti črk
+    setTimeout(adjustLogoTextSize, 100);
+    window.addEventListener('resize', () => setTimeout(adjustLogoTextSize, 50));
+    window.addEventListener('orientationchange', () => setTimeout(adjustLogoTextSize, 100));
+}
+*/
 
 document.addEventListener('DOMContentLoaded', init);
 

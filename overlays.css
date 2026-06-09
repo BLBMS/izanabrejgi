@@ -1,4 +1,4 @@
-/* 044 */
+/* 045 */
 /* overlays.css */
 
 #overlay-background {
@@ -59,7 +59,7 @@
     padding-bottom: 0.5rem;
 }
 
-.contact-overlay h2 { 
+.contact-overlay h2 {
     padding-top: 15px;
 }
 
@@ -283,4 +283,24 @@
     .contact-values {
         font-size: 0.85rem;
     }
+}
+
+.reviews-content {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.reviews-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reviews-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.reviews-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
+    border-radius: 4px;
 }

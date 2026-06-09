@@ -1,4 +1,4 @@
-/* 043 */
+/* 045 */
 /* slideshow-manager.js */
 // Upravljanje slideshow
 
@@ -74,7 +74,7 @@ function showNextSlide() {
             window.currentSlide = 0;
             track.style.transform = `translateX(0)`;
             setTimeout(() => {
-                track.style.transition = 'transform 0.75s ease-in-out';
+                track.style.transition = 'transform 1.25s ease-in-out';
             }, 50);
         }, 500);
     }
@@ -146,7 +146,7 @@ function nextSlide() {
             window.currentSlide = 0;
             track.style.transform = `translateX(0)`;
             setTimeout(() => {
-                track.style.transition = 'transform 0.75s ease-in-out';
+                track.style.transition = 'transform 1.25s ease-in-out';
             }, 50);
         }, 500);
     }

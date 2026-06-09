@@ -1,4 +1,4 @@
-/* 043 */
+/* 045 */
 /* navigation.css */
 
 .logo-section {
@@ -62,6 +62,27 @@
     color: var(--hover-color);
 }
 
+/* SCROLLBAR - ZA NAVIGACIJO KO SE OZIJA */
+.nav-main {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
+}
+
+.nav-main::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.nav-main::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.nav-main::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
+    border-radius: 4px;
+}
+
 /* Klik na logo */
 .logo-section:hover {
     transform: scale(1.01);
@@ -77,9 +98,11 @@
     .logo-section {
         order: 1;
     }
+
     .nav-main {
         order: 2;
     }
+
     .language-flags {
         order: 3;
         margin-left: auto;

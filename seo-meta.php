@@ -1,5 +1,5 @@
 <?php
-// 043
+// 045
 // seo-meta.php
 // SEO meta podatki za iskalnike
 

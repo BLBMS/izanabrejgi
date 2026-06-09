@@ -1,4 +1,4 @@
-// 043
+// 045
 // cookies.js
 
 const cookieTranslations = {
@@ -263,7 +263,9 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         const savedLang = localStorage.getItem('selectedLanguage') || 'sl';
         if (cookieTranslations[savedLang]) currentLang = savedLang;
-    } catch(e) {}
+    } catch(e) {
+        console.warn('Failed to load saved language preference:', e);
+    }
     
     const cookiesAccepted = localStorage.getItem('cookiesAccepted');
     const cookiesDeclined = localStorage.getItem('cookiesDeclined');

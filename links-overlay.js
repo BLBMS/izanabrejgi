@@ -1,4 +1,4 @@
-/* 043 */
+/* 045 */
 /* links-overlay.js */
 
 const baseLinksData = [
@@ -122,24 +122,26 @@ function linksEscHandler(e) {
 }
 
 function linksBodyClickHandler(e) {
-    // Preveri, če je klik na zastavo - ne zapri overlayja
     const isFlag = e.target.closest('.language-flag');
-    if (isFlag) {
-        return;
-    }
+    if (isFlag) return;
 
     const isOverlayContent = e.target.closest('#links-overlay');
-    if (!isOverlayContent && window.activeOverlayType === 'links') {
+    if (!isOverlayContent && activeOverlayType === 'links') {
         hideLinksOverlay();
     }
 }
 
 function showLinksOverlay() {
-    if (window.activeOverlayType && window.activeOverlayType !== 'links') {
-        return;
+    console.log('showLinksOverlay called');
+
+    // Zapremo druge overlaye
+    if (activeOverlayType && activeOverlayType !== 'links') {
+        if (typeof hideAllOverlays === 'function') {
+            hideAllOverlays();
+        }
     }
 
-    window.activeOverlayType = 'links';
+    activeOverlayType = 'links';
 
     const bg = document.getElementById('links-background');
     if (bg) bg.classList.add('active');
@@ -158,6 +160,14 @@ function showLinksOverlay() {
 
     loadLinks(currentLang);
 
+    // POMEMBNO: Takoj nastavimo pozicijo in ponovno čez kratek čas
+    if (typeof adjustOverlayPosition === 'function') {
+        adjustOverlayPosition();
+        // Ponovno pokličemo po kratkem zamiku, da se header višina pravilno izračuna
+        setTimeout(adjustOverlayPosition, 50);
+        setTimeout(adjustOverlayPosition, 150);
+    }
+
     document.addEventListener('keydown', linksEscHandler);
     document.body.addEventListener('click', linksBodyClickHandler);
 
@@ -174,8 +184,8 @@ function hideLinksOverlay() {
 
     document.body.style.overflow = '';
 
-    if (window.activeOverlayType === 'links') {
-        window.activeOverlayType = null;
+    if (activeOverlayType === 'links') {
+        activeOverlayType = null;
     }
 
     document.removeEventListener('keydown', linksEscHandler);

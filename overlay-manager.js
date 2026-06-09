@@ -1,5 +1,5 @@
-// 044
-// overlay-manager.js
+/* 045 */
+/* overlay-manager.js */
 
 let activeOverlayType = null;
 
@@ -28,12 +28,22 @@ function adjustOverlayPosition() {
     const headerHeight = header ? header.offsetHeight : 80;
     const footerHeight = footer ? footer.offsetHeight : 60;
 
-    // Uporabi pravo višino iz spremenljivke
-    const viewportHeight = window.innerHeight;
-    const topOffset = headerHeight + 20;
+    // Preveri ali je landscape na mobitelu
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const isMobile = window.innerWidth <= 933;
+
+    // V landscape načinu zmanjšamo odmik na 2px
+    let topOffset;
+    if (isMobile && isLandscape) {
+        topOffset = headerHeight + 2;  // samo 2px odmika
+    } else {
+        topOffset = headerHeight + 20; // normalen odmik
+    }
+
     const bottomOffset = footerHeight + 20;
-    //const maxHeight = viewportHeight - topOffset - bottomOffset;
     const maxHeight = `calc(100vh - ${topOffset + bottomOffset}px)`;
+
+    console.log('adjustOverlayPosition - topOffset:', topOffset, 'activeOverlayType:', activeOverlayType);
 
     // 1. TEXT OVERLAYI
     const textOverlays = document.querySelectorAll('.text-overlay, .contact-overlay');
@@ -43,6 +53,7 @@ function adjustOverlayPosition() {
         overlay.style.maxHeight = maxHeight;
         overlay.style.position = 'fixed';
         overlay.style.marginTop = '0';
+        overlay.style.left = '50%';
     });
 
     // 2. LINKS OVERLAY
@@ -53,14 +64,31 @@ function adjustOverlayPosition() {
         linksOverlay.style.maxHeight = maxHeight;
         linksOverlay.style.position = 'fixed';
         linksOverlay.style.marginTop = '0';
+        linksOverlay.style.left = '50%';
+        // FORSIRAJ ponoven izris
+        linksOverlay.style.display = 'none';
+        linksOverlay.offsetHeight; // force reflow
+        linksOverlay.style.display = '';
     }
 
-    // 3. MAP OVERLAY
+    // 3. REVIEWS OVERLAY
+    const reviewsOverlay = document.getElementById('reviews-overlay');
+    if (reviewsOverlay) {
+        reviewsOverlay.style.top = `${topOffset}px`;
+        reviewsOverlay.style.transform = 'translateX(-50%)';
+        reviewsOverlay.style.maxHeight = maxHeight;
+        reviewsOverlay.style.position = 'fixed';
+        reviewsOverlay.style.marginTop = '0';
+        reviewsOverlay.style.left = '50%';
+    }
+
+    // MAP OVERLAY
     const mapContainer = document.getElementById('map-container');
-    if (mapContainer && window.activeOverlayType === 'map') {
+    if (mapContainer && activeOverlayType === 'map') {
         mapContainer.style.top = `${topOffset}px`;
         mapContainer.style.height = `calc(100vh - ${topOffset + bottomOffset}px)`;
     }
+
     const mapCloseBtn = document.getElementById('close-map-widget');
     if (mapCloseBtn && mapCloseBtn.style.display === 'flex') {
         mapCloseBtn.style.top = `${topOffset + 10}px`;
@@ -72,6 +100,7 @@ function adjustOverlayPosition() {
         hostexWidget.style.top = `${topOffset}px`;
         hostexWidget.style.height = `calc(100vh - ${topOffset + bottomOffset}px)`;
     }
+
     const hostexCloseBtn = document.getElementById('global-hostex-close');
     if (hostexCloseBtn && hostexCloseBtn.style.display === 'flex') {
         hostexCloseBtn.style.top = `${topOffset + 10}px`;
@@ -105,8 +134,11 @@ function hideAllOverlays() {
     const linksBg = document.getElementById('links-background');
     if (linksBg) linksBg.classList.remove('active');
 
+    const reviewsBg = document.getElementById('reviews-background');
+    if (reviewsBg) reviewsBg.classList.remove('active');
+
     const allOverlayElements = document.querySelectorAll(
-        '.text-overlay, .contact-overlay, .links-overlay, #description-overlay, #about-overlay, #contact-overlay, #links-overlay, #reserve-overlay'
+        '.text-overlay, .contact-overlay, .links-overlay, .reviews-overlay, #description-overlay, #about-overlay, #contact-overlay, #links-overlay, #reviews-overlay, #reserve-overlay'
     );
 
     allOverlayElements.forEach(overlay => {
@@ -115,6 +147,7 @@ function hideAllOverlays() {
 
     if (typeof hideMapWidget === 'function') hideMapWidget();
     if (typeof hideHostexWidget === 'function') hideHostexWidget();
+    if (typeof hideReviewsOverlay === 'function') hideReviewsOverlay();
 
     document.querySelectorAll('.dropdown').forEach(dropdown => {
         dropdown.classList.remove('active');
@@ -140,7 +173,7 @@ function bodyClickHandler(e) {
     const isNavButton = e.target.closest('.nav-links a, .language-flag, .logo-section');
     if (isNavButton) return;
 
-    const isOverlayContent = e.target.closest('.text-overlay, .contact-overlay, .links-overlay, hostex-booking-widget, #map-container, #reserve-overlay');
+    const isOverlayContent = e.target.closest('.text-overlay, .contact-overlay, .links-overlay, .reviews-overlay, hostex-booking-widget, #map-container, #reserve-overlay');
     if (!isOverlayContent && activeOverlayType) {
         if (clickTimeout) clearTimeout(clickTimeout);
         clickTimeout = setTimeout(() => {
@@ -158,7 +191,9 @@ function escHandler(e) {
 // PRIKAZ OVERLAYEV
 // ============================================
 function showDescription() {
-    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) return;
+    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
+        hideAllOverlays();
+    }
     hideAllOverlays();
     activeOverlayType = 'description';
     document.getElementById('overlay-background')?.classList.add('active');
@@ -171,7 +206,9 @@ function showDescription() {
 }
 
 function showAbout() {
-    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) return;
+    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
+        hideAllOverlays();
+    }
     hideAllOverlays();
     activeOverlayType = 'about';
     document.getElementById('overlay-background')?.classList.add('active');
@@ -184,7 +221,9 @@ function showAbout() {
 }
 
 function showContact() {
-    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) return;
+    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
+        hideAllOverlays();
+    }
     hideAllOverlays();
     activeOverlayType = 'contact';
     document.getElementById('overlay-background')?.classList.add('active');
@@ -202,7 +241,9 @@ function showHome() {
 }
 
 function showReserveOverlay() {
-    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) return;
+    if (activeOverlayType && isWidgetOverlay(activeOverlayType)) {
+        hideAllOverlays();
+    }
     hideAllOverlays();
     activeOverlayType = 'reserve';
     document.getElementById('overlay-background')?.classList.add('active');

@@ -1,7 +1,7 @@
-/* 043 */
+/* 045 */
 /* event-handlers.js */
-// Event handlerji
 
+// Event handlerji za klik in resize
 // Event listener za klik na background
 function setupOverlayBackgroundClick() {
     document.addEventListener('click', function (event) {
@@ -54,6 +54,7 @@ function setupNavHandlers() {
     const navMap = document.getElementById('nav-map');
     const navReserve = document.getElementById('nav-reserve');
     const navLinks = document.getElementById('nav-links');
+    const navReviews = document.getElementById('nav-reviews');
 
     if (navHome) {
         navHome.addEventListener('click', function (e) {
@@ -101,6 +102,12 @@ function setupNavHandlers() {
         navLinks.addEventListener('click', function (e) {
             e.stopPropagation(); // PREPREČI PROPAGACIJO
             showLinksOverlay();
+        });
+    }
+    if (navReviews) {
+        navReviews.addEventListener('click', function (e) {
+            e.stopPropagation();
+            showReviewsOverlay();
         });
     }
 }

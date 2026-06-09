@@ -1,17 +1,18 @@
-/* 044 */
+/* 045 */
 /* layout.css */
+
 /* HEADER -------------------------------------------------------------------------*/
 header {
     background: var(--header-bg);
     color: var(--font-color);
-    padding: 0.5rem 0;
+    padding: 0.3rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     box-shadow: var(--header-box-shadow);
     border-radius: 0;
-    min-height: 80px; /* DODAJ - fiksna minimalna višina */
+    min-height: auto;
 }
 
 nav {
@@ -38,13 +39,11 @@ footer {
     word-wrap: break-word;
     word-break: break-word;
     z-index: 2000;
-    /* za FB */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    /* padding: 0.8rem;  že je zgoraj */
 }
 
 footer p {
@@ -86,13 +85,86 @@ footer p {
     fill: currentColor;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
+/* LANDSCAPE - footer v eni vrstici */
+@media (max-width: 933px) and (orientation: landscape) {
+    footer {
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+
+    footer p {
+        font-size: 0.7rem !important;
+        padding: 0 5px !important;
+        margin: 0 !important;
+    }
+
+    .footer-links {
+        gap: 8px !important;
+    }
+
+    .social-icon {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .social-link:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* MOBILNI (portret) - footer v stolpcu */
+@media (max-width: 480px) and (orientation: portrait) {
     footer {
         flex-direction: column;
         gap: 8px;
+        padding: 0.5rem;
     }
+
     .footer-links {
         gap: 12px;
     }
+
+    footer p {
+        font-size: 0.7rem;
+    }
+}
+
+/* TABLETI (portret) */
+@media (min-width: 481px) and (max-width: 768px) and (orientation: portrait) {
+    footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 0.6rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+}
+
+/* DESKTOP - normalno */
+@media (min-width: 769px) {
+    footer {
+        flex-direction: row;
+        gap: 20px;
+        padding: 0.8rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+/* da body in container nimata dodatnih margin */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 0;
+    padding-top: 0;
 }
