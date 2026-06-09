@@ -218,30 +218,28 @@ function showMapWidget() {
     mapContainer.innerHTML = buttonsLayout;
 
     mapContainer.style.cssText = `
-        position: fixed !important;
-        top: ${topOffset}px !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 90% !important;
-        max-width: 1000px !important;
-        margin: 0 auto !important;
-        max-height: calc(100vh - ${topOffset + 20}px) !important;
-        height: auto !important;
-        min-height: 300px !important;
-        z-index: 100 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        padding: 10px 15px !important;
-        background: rgba(0, 0, 0, 0.7) !important;
-        backdrop-filter: blur(5px) !important;
-        -webkit-backdrop-filter: blur(5px) !important;
-        border-radius: 8px !important;
-        border: 1px solid rgba(208, 255, 0, 0.2) !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-        box-sizing: border-box !important;
-    `;
+    position: fixed !important;
+    top: ${topOffset}px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 90% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    /* IZBRISAN height in max-height - naj CSS določi */
+    z-index: 100 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px 15px !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(208, 255, 0, 0.2) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    box-sizing: border-box !important;
+`;
 
     // Če je landscape in mobile, spremenimo flex smer
     if (isMobile && isLandscape) {
