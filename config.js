@@ -20,6 +20,7 @@ window.imageFiles = [
     "images/pogled-sp-vzhod.jpg",
     "images/sceste-bozic.jpg",
     "images/sceste-pozimi.jpg",
+    "images/sceste-srcek.jpg",
     "images/spalnica1.jpg",
     "images/spalnica2.jpg",
     "images/terasa1.jpg",
