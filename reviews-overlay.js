@@ -1,4 +1,4 @@
-/* 045 */
+/* 045a */
 /* reviews-overlay.js - s paginacijo in samodejnim pomikanjem (brez zvezdic) */
 
 const baseReviewsData = [
@@ -37,20 +37,20 @@ const baseReviewsData = [
             en: 'Cozy and peaceful stay. Peaceful and comfortable.',
             de: 'Gemütlicher und ruhiger Aufenthalt. Ruhig und komfortabel.'
         }
-    }
-    /*,
+    },
     {
         id: 4,
-        platform: 'Vrbo',
+        platform: 'Airbnb',
         rating: 5,
         ratingMax: 5,
-        reviewer: 'Name (country)',
+        reviewer: 'Jiří (CZ)',
         review: {
-            sl: '',
-            en: '',
-            de: ''
+            sl: 'Neverjetno bivališče, res nam je bilo všeč. Bilo je tako tiho, uživali smo v zajtrkih na terasi. Bivališče je blizu termalnih kopališč, 5 minut vožnje z avtomobilom. Hiša je zelo čista, elegantna in lepa. Tanja je odlična gostiteljica. Po dolgi vožnji smo prejeli osvežitev v obliki lokalne hrane. Najlepša hvala. Zagotovo se bomo vrnili.',
+            en: 'Amazing place, we just loved it. It was so quiet, we enjoyed breakfasts on the terrace. The place is close to the thermals, 5 minutes by car. The house is super clean, stylish  and beautiful. Tanja is a great host, after long drive we have received refreshment of local food. Thank you very much. We will come back for sure.',
+            de: 'Ein traumhafter Ort, wir waren total begeistert. Es war so ruhig, wir haben das Frühstück auf der Terrasse sehr genossen. Die Thermalquellen sind nur 5 Autominuten entfernt. Das Haus ist blitzsauber, stilvoll und wunderschön. Tanja ist eine großartige Gastgeberin; nach der langen Fahrt wurden wir mit lokalen Spezialitäten verwöhnt. Vielen Dank! Wir kommen ganz bestimmt wieder.'
         }
-    },
+    }
+    /*,
     {
         id: 5,
         platform: 'Expedia',
