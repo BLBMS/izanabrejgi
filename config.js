@@ -26,6 +26,7 @@ window.imageFiles = [
     "images/terasa1.jpg",
     "images/terasa2.jpg",
     "images/wc1.jpg",
+    "images/zunaj-gobe1.jpg",
     "images/zunaj-lagev1.jpg",
     "images/zunaj-mici1.jpg"
 ];
