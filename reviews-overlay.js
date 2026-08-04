@@ -1,4 +1,4 @@
-/* 045a */
+/* 045b */
 /* reviews-overlay.js - s paginacijo in samodejnim pomikanjem (brez zvezdic) */
 
 const baseReviewsData = [
@@ -49,20 +49,20 @@ const baseReviewsData = [
             en: 'Amazing place, we just loved it. It was so quiet, we enjoyed breakfasts on the terrace. The place is close to the thermals, 5 minutes by car. The house is super clean, stylish  and beautiful. Tanja is a great host, after long drive we have received refreshment of local food. Thank you very much. We will come back for sure.',
             de: 'Ein traumhafter Ort, wir waren total begeistert. Es war so ruhig, wir haben das Frühstück auf der Terrasse sehr genossen. Die Thermalquellen sind nur 5 Autominuten entfernt. Das Haus ist blitzsauber, stilvoll und wunderschön. Tanja ist eine großartige Gastgeberin; nach der langen Fahrt wurden wir mit lokalen Spezialitäten verwöhnt. Vielen Dank! Wir kommen ganz bestimmt wieder.'
         }
-    }
-    /*,
+    },
     {
         id: 5,
-        platform: 'Expedia',
-        rating: 10,
-        ratingMax: 10,
-        reviewer: 'Name (country)',
+        platform: 'Google',
+        rating: 5,
+        ratingMax: 5,
+        reviewer: 'Kelly (DE)',
         review: {
-            sl: '',
-            en: '',
-            de: ''
+            sl: 'Imeli smo veliko srečo, da smo lahko teden dni preživeli v tej čudoviti hiši Tanje in Marka. Že ob prihodu sva se počutila dobrodošla in kot doma. Hiša čudovito združuje zgodovino in sodobno udobje, opremljena je z veliko okusa in v njej res ničesar ne manjka. Posebej naju je navdušila izjemna gostoljubnost gostiteljev in njuna prijazna dobrodošlica z domačimi dobrotami. Med vinogradi vladata popoln mir in čudovita narava - idealen kraj za sprostitev. Z veseljem se bova vrnila in to posebno hišo iskreno priporočava vsakomur, ki išče mir, naravo in pristno gostoljubje. <a href="https://www.google.com/maps/place/I%C5%BEa+na+brejgi/@46.7074027,16.249707,3747m/data=!3m1!1e3!4m6!3m5!1s0x476f3bd077e6c3c9:0x932f3225fd54c1c7!8m2!3d46.7091187!4d16.2464831!16s%2Fg%2F11yv74df35?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="review-link">(celotno mnenje)</a>',
+            en: 'We were lucky to spend a wonderful week in Tanja and Marko\'s beautiful house. From the moment we arrived, we felt warmly welcomed and immediately at home. The lovingly restored house combines history with modern comfort in a truly special way. It is tastefully furnished and equipped with everything you could possibly need for a relaxing stay. One of the highlights was Tanja and Marko\'s warm hospitality and the thoughtful welcome with delicious local specialties. Surrounded by vineyards, it is the perfect place to unwind, enjoy nature, and leave everyday life behind. We would gladly return and wholeheartedly recommend this unique house to anyone looking for peace, nature, and genuine hospitality. <a href="https://www.google.com/maps/place/I%C5%BEa+na+brejgi/@46.7074027,16.249707,3747m/data=!3m1!1e3!4m6!3m5!1s0x476f3bd077e6c3c9:0x932f3225fd54c1c7!8m2!3d46.7091187!4d16.2464831!16s%2Fg%2F11yv74df35?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="review-link">(Full review)</a>',
+            de: 'Wir hatten das große Glück, eine Woche in diesem wunderschönen Haus von Tanja und Marko verbringen zu dürfen. Schon bei unserer Ankunft haben wir uns sofort willkommen und wie zu Hause gefühlt. Das liebevoll restaurierte Haus verbindet Geschichte und modernen Komfort auf eine ganz besondere Weise. Es ist mit viel Geschmack eingerichtet und bietet wirklich alles, was man für einen entspannten Aufenthalt braucht. Ein Highlight war die herzliche Gastfreundschaft von Tanja und Marko und die liebevolle Begrüßung mit regionalen Spezialitäten. Mitten in den Weinbergen kann man wunderbar abschalten, die Natur genießen und einfach den Alltag hinter sich lassen. Wir kommen sehr gerne wieder und können dieses besondere Haus von Herzen weiterempfehlen. <a href="https://www.google.com/maps/place/I%C5%BEa+na+brejgi/@46.7074027,16.249707,3747m/data=!3m1!1e3!4m6!3m5!1s0x476f3bd077e6c3c9:0x932f3225fd54c1c7!8m2!3d46.7091187!4d16.2464831!16s%2Fg%2F11yv74df35?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="review-link">(Vollständige Bewertung)</a>'
         }
-    },
+    }
+    /*,
     {
         id: 6,
         platform: 'Hostex',

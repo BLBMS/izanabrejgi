@@ -1,4 +1,4 @@
-/* 045 */
+/* 045a */
 /* reviews-overlay.css */
 
 .reviews-overlay {
@@ -111,6 +111,16 @@
 
 .review-text p {
     margin: 0;
+}
+
+.review-link {
+    color: rgba(208,255,0,0.9);
+    text-decoration: none;
+}
+
+.review-link:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
 }
 
 /* Navigacija za mnenja - kot slideshow */
