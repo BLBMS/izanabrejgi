@@ -1,4 +1,4 @@
-/* 045 */
+/* 045a */
 // language-manager.js
 // Upravljanje jezikov
 
@@ -56,8 +56,14 @@ const embeddedLanguageData = {
                         "dve parkirni mesti",
                         "televizijo, Wi-Fi, sef, ..."
                     ],
-                    "intro2": "Dodatne informacije",
+                    "intro2": "Zajtrk in večerja",
                     "items2": [
+                        "Po predhodnem dogovoru (+386 2 548 1965) je v bližnjem Gostišču Aleksander na voljo zajtrk. Cena je 10 € na osebo.",
+                        "Gostišče Aleksander se vsak dan, razen ob ponedeljkih, odpre ob 16:00 in ponuja pristno domačo hrano à la carte.",
+                        "Gostišče je le 100 m naprej po cesti."
+                    ],
+                    "intro3": "Dodatne informacije",
+                    "items3": [
                         "Prijava od 14:00, odjava do 11:00.",
                         "Hišni ljubljenčki niso dovoljeni.",
                         "Zabave niso dovoljene.",
@@ -74,13 +80,13 @@ const embeddedLanguageData = {
                         "ID nastanitvenega obrata: 137845",
                         "Kategorizaja: počitniška hiša ***"
                     ],
-                    "intro3": "Varnost",
-                    "items3": [
+                    "intro4": "Varnost",
+                    "items4": [
                         "Detektor dima in ogljikovega dioksida.",
                         "Nadzorne kamere pokrivajo parkirišče in okolico hiše. Območje za najemnike: vsa okna, terasa in dvorišče pa ni pokrito s kamerami."
                     ],
-                    "intro4": "Škoda in odgovornost",
-                    "items4": [
+                    "intro5": "Škoda in odgovornost",
+                    "items5": [
                         "Goste prosimo, da z nastanitvijo in opremo ravnajo skrbno.",
                         "Morebitne poškodbe je potrebno takoj prijaviti.",
                         "Gost odgovarja za škodo, ki presega običajno rabo, in je lahko dolžan poravnati stroške popravila ali zamenjave."
@@ -182,8 +188,14 @@ const embeddedLanguageData = {
                         "two parking spaces",
                         "Wi-Fi, television, internet radio, safe, ..."
                     ],
-                    "intro2": "Additional Information",
+                    "intro2": "Breakfast and dinner",
                     "items2": [
+                        "Breakfast is available at the nearby Gostišče Aleksander by prior arrangement (+386 2 548 1965). The price is €10 per person.",
+                        "Gostišče Aleksander opens every day, except Mondays, at 16:00 and serves authentic local cuisine à la carte.",
+                        "The restaurant is just 100 m further down the road."
+                    ],
+                    "intro3": "Additional Information",
+                    "items3": [
                         "Check-in from 14:00, check-out until 11:00.",
                         "Pets are not allowed.",
                         "Parties are not allowed.",
@@ -200,13 +212,13 @@ const embeddedLanguageData = {
                         "Accommodation ID: 137845",
                         "Categorization: holiday home ***"
                     ],
-                    "intro3": "Safety",
-                    "items3": [
+                    "intro4": "Safety",
+                    "items4": [
                         "Smoke and carbon monoxide detector.",
                         "Security cameras cover the parking lot and the surroundings of the house. The tenant area: all windows, terrace, and courtyard are not covered by cameras."
                     ],
-                    "intro4": "Damage & Liability",
-                    "items4": [
+                    "intro5": "Damage & Liability",
+                    "items5": [
                         "Guests are kindly asked to treat the property and all equipment with care.",
                         "Any damage caused during your stay must be reported promptly.",
                         "Guests are responsible for any damage beyond normal wear and tear and may be asked to cover the cost of repair or replacement."
@@ -308,8 +320,14 @@ const embeddedLanguageData = {
                         "zwei Parkplätzen",
                         "WLAN, Fernseher, Internetradio, Safe, ..."
                     ],
-                    "intro2": "Zusätzliche Informationen",
+                    "intro2": "Frühstück und Abendessen",
                     "items2": [
+                        "Nach vorheriger Vereinbarung (+386 2 548 1965) ist im nahegelegenen Gostišče Aleksander ein Frühstück möglich. Der Preis beträgt 10 € pro Person.",
+                        "Das Gostišče Aleksander öffnet täglich außer montags um 16:00 Uhr und bietet authentische regionale Küche à la carte an.",
+                        "Das Gasthaus befindet sich nur 100 m weiter die Straße entlang."
+                    ],
+                    "intro3": "Zusätzliche Informationen",
+                    "items3": [
                         "Check-in ab 14:00 Uhr, Check-out bis 11:00 Uhr.",
                         "Für 3. bis 4. Person: Aufschlag auf den Grundpreis.",
                         "Haustiere sind nicht erlaubt.",
@@ -326,13 +344,13 @@ const embeddedLanguageData = {
                         "Beherbergungsbetriebs-ID: 137845",
                         "Kategorisierung: Ferienhaus ***"
                     ],
-                    "intro3": "Sicherheit",
-                    "items3": [
+                    "intro4": "Sicherheit",
+                    "items4": [
                         "Rauch- und Kohlenmonoxidmelder.",
                         "Überwachungskameras erfassen den Parkplatz und die Umgebung des Hauses. Der Bereich für Mieter: Alle Fenster, Terrasse und Hof sind nicht von Kameras erfasst."
                     ],
-                    "intro4": "Schäden und Haftung",
-                    "items4": [
+                    "intro5": "Schäden und Haftung",
+                    "items5": [
                         "Wir bitten unsere Gäste, die Unterkunft und die Ausstattung sorgfältig zu behandeln.",
                         "Eventuelle Schäden sind umgehend zu melden.",
                         "Für Schäden, die über die normale Abnutzung hinausgehen, haftet der Gast und kann zur Übernahme der Reparatur- oder Ersatzkosten verpflichtet werden."
@@ -571,60 +589,31 @@ function updateDescriptionContent(descriptionData) {
     }
 }
 
-// Posodobi "ponujamo" overlay
+// Posodobi "ponujamo" overlay - sam ugotovi koliko sklopov je (max 10)
 function updateAboutContent(aboutData) {
     const aboutContent = document.getElementById('about-content');
-    if (aboutContent && aboutData) {
-        let html = '';
+    if (!aboutContent || !aboutData) return;
 
-        // PRVI DEL - Ponujamo
-        if (aboutData.intro1 && aboutData.items1) {
-            html += `<h3 class="about-subtitle">${aboutData.intro1}</h3>`;
-            html += '<ul class="about-list">';
-            aboutData.items1.forEach(item => {
-                html += `<li>${item}</li>`;
-            });
-            html += '</ul>';
-        }
+    let html = '';
 
-        // DRUGI DEL - Dodatne informacije
-        if (aboutData.intro2 && aboutData.items2) {
-            html += `<div class="additional-info-section">`;
-            html += `<h3 class="additional-info-title">${aboutData.intro2}</h3>`;
-            html += '<ul class="additional-info-list">';
-            aboutData.items2.forEach(item => {
-                html += `<li>${item}</li>`;
-            });
-            html += '</ul>';
-            html += `</div>`;
-        }
+    // Pojdi čez vse lastnosti v aboutData
+    for (let i = 1; i <= 10; i++) {
+        const introKey = `intro${i}`;
+        const itemsKey = `items${i}`;
 
-        // TRETJI DEL - Varnost
-        if (aboutData.intro3 && aboutData.items3) {
+        if (aboutData[introKey] && aboutData[itemsKey]) {
             html += `<div class="extra-info-section">`;
-            html += `<h3 class="extra-info-title">${aboutData.intro3}</h3>`;
+            html += `<h3 class="extra-info-title">${aboutData[introKey]}</h3>`;
             html += '<ul class="extra-info-list">';
-            aboutData.items3.forEach(item => {
+            aboutData[itemsKey].forEach(item => {
                 html += `<li>${item}</li>`;
             });
             html += '</ul>';
             html += `</div>`;
         }
-
-        // ČETRTI DEL - Škoda
-        if (aboutData.intro4 && aboutData.items4) {
-            html += `<div class="extra-info-section">`;
-            html += `<h3 class="extra-info-title">${aboutData.intro4}</h3>`;
-            html += '<ul class="extra-info-list">';
-            aboutData.items4.forEach(item => {
-                html += `<li>${item}</li>`;
-            });
-            html += '</ul>';
-            html += `</div>`;
-        }
-
-        aboutContent.innerHTML = html;
     }
+
+    aboutContent.innerHTML = html;
 }
 
 // Posodobi kontakt overlay
