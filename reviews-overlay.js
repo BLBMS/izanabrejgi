@@ -1,4 +1,4 @@
-/* 045b */
+/* 045c */
 /* reviews-overlay.js - s paginacijo in samodejnim pomikanjem (brez zvezdic) */
 
 const baseReviewsData = [
@@ -61,32 +61,44 @@ const baseReviewsData = [
             en: 'We were lucky to spend a wonderful week in Tanja and Marko\'s beautiful house. From the moment we arrived, we felt warmly welcomed and immediately at home. The lovingly restored house combines history with modern comfort in a truly special way. It is tastefully furnished and equipped with everything you could possibly need for a relaxing stay. One of the highlights was Tanja and Marko\'s warm hospitality and the thoughtful welcome with delicious local specialties. Surrounded by vineyards, it is the perfect place to unwind, enjoy nature, and leave everyday life behind. We would gladly return and wholeheartedly recommend this unique house to anyone looking for peace, nature, and genuine hospitality. <a href="https://www.google.com/maps/place/I%C5%BEa+na+brejgi/@46.7074027,16.249707,3747m/data=!3m1!1e3!4m6!3m5!1s0x476f3bd077e6c3c9:0x932f3225fd54c1c7!8m2!3d46.7091187!4d16.2464831!16s%2Fg%2F11yv74df35?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="review-link">(Full review)</a>',
             de: 'Wir hatten das große Glück, eine Woche in diesem wunderschönen Haus von Tanja und Marko verbringen zu dürfen. Schon bei unserer Ankunft haben wir uns sofort willkommen und wie zu Hause gefühlt. Das liebevoll restaurierte Haus verbindet Geschichte und modernen Komfort auf eine ganz besondere Weise. Es ist mit viel Geschmack eingerichtet und bietet wirklich alles, was man für einen entspannten Aufenthalt braucht. Ein Highlight war die herzliche Gastfreundschaft von Tanja und Marko und die liebevolle Begrüßung mit regionalen Spezialitäten. Mitten in den Weinbergen kann man wunderbar abschalten, die Natur genießen und einfach den Alltag hinter sich lassen. Wir kommen sehr gerne wieder und können dieses besondere Haus von Herzen weiterempfehlen. <a href="https://www.google.com/maps/place/I%C5%BEa+na+brejgi/@46.7074027,16.249707,3747m/data=!3m1!1e3!4m6!3m5!1s0x476f3bd077e6c3c9:0x932f3225fd54c1c7!8m2!3d46.7091187!4d16.2464831!16s%2Fg%2F11yv74df35?entry=ttu&g_ep=EgoyMDI2MDcyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="review-link">(Vollständige Bewertung)</a>'
         }
-    }
-    /*,
+    },
     {
         id: 6,
-        platform: 'Hostex',
-        rating: 10,
-        ratingMax: 10,
-        reviewer: 'Name (country)',
+        platform: 'Airbnb',
+        rating: 5,
+        ratingMax: 5,
+        reviewer: 'Matthias (DE)',
         review: {
-            sl: '',
-            en: '',
-            de: ''
+            sl: 'Preprosto popolno! Hiša je čudovita. Mirna, z velikim vrtom in čudovitim razgledom na vinograde. Opremljena je z odličnim okusom in veliko pozornosti do detajlov. Postelja je izjemno udobna, tuš pa pravi užitek! Tanja in Marko sta najboljša gostitelja, kar si jih lahko predstavljate. Ustrežljiva, prijazna in vedno dosegljiva.',
+            en: 'Simply perfect! The house is beautiful. Peaceful, with a large garden and a fantastic view of the vineyards. The furnishings are beautifully tasteful, with great attention to detail. The bed is incredibly comfortable and the shower is a dream! Tanja and Marko are the best hosts you could imagine. Attentive, friendly and always available.',
+            de: 'Einfach perfekt! Das Haus ist wunderschön. Ruhig mit einem großen Garten und einem fantastischen Blick in die Weinreben. Die Ausstattung ist super geschmackvoll und mit Liebe zum Detail. Das Bett ist super bequem und die Dusche ein Traum! Tanja und Marko sind die besten Gastgeber, die man sich vorstellen kann. Zuvorkommend und freundlich und immer erreichbar.'
         }
     },
     {
         id: 7,
-        platform: 'Airbnb',
+        platform: 'Booking',
         rating: 10,
         ratingMax: 10,
-        reviewer: 'Name (country)',
+        reviewer: 'Marcell (HU)',
         review: {
-            sl: '',
-            en: '',
-            de: ''
+            sl: 'Izjemno dobro opremljena, udobna in prostorna hiška. Komunikacija je potekala tekoče in pisno v angleškem jeziku. Ob prihodu smo ključ vzeli iz škatlice. Zelo prijetna in mirna okolica. V hiši je bilo na voljo vse, kar smo potrebovali. Obe sobi sta klimatizirani. Pričakale so nas lokalne dobrote, ki so jih pripravili gostitelji (pecivo, hladni narezek, sirup, pivo ...). Namestitev je popolnoma presegla naša pričakovanja, glede na razmerje med ceno in kakovostjo je odlična in jo lahko samo priporočam.',
+            en: 'Extremely well equipped, comfortable, spacious cottage. Communication was smooth and in writing, in English. We took the key out of a box upon arrival. Very cozy, quiet neighborhood. The house had everything we needed. Both rooms are air-conditioned. Local delicacies prepared by the hosts awaited us (cakes, cold dishes, syrup, beer...). It absolutely exceeded our expectations, excellent value for money accommodation, I can only recommend it.',
+            de: 'Äußerst gut ausgestattetes, komfortables und geräumiges Häuschen. Die Kommunikation verlief reibungslos und schriftlich auf Englisch. Bei unserer Ankunft haben wir den Schlüssel aus einer Schlüsselbox genommen. Eine sehr gemütliche und ruhige Umgebung. Im Haus war alles vorhanden, was wir benötigten. Beide Zimmer sind klimatisiert. Es erwarteten uns lokale Köstlichkeiten, die von den Gastgebern vorbereitet wurden (Gebäck, kalte Platte, Sirup, Bier ...). Die Unterkunft hat unsere Erwartungen absolut übertroffen. Ein hervorragendes Preis-Leistungs-Verhältnis – ich kann sie nur empfehlen.'
         }
     }
+    /*,
+{
+    id: 99,
+    platform: 'Airbnb',
+    rating: 10,
+    ratingMax: 10,
+    reviewer: 'Name (country)',
+    review: {
+        sl: '',
+        en: '',
+        de: ''
+    }
+}
 */
 ];
 
