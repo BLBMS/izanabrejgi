@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 046 -->
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- ========================================== -->
+    <!-- GLAVNA STRAN - index.php                   -->
+    <!-- ========================================== -->
+    <url>
+        <loc>https://izanabrejgi.si/index.php</loc>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+
+        <!-- SLIKE ZA GLAVNO STRAN -->
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/sceste-srcek.jpg</image:loc>
+            <image:title>Iža na brejgi - počitniška hiša</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/dvor-poletje.jpg</image:loc>
+            <image:title>Dvorišče poleti - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/dvor-pozimi.jpg</image:loc>
+            <image:title>Dvorišče pozimi - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/terasa1.jpg</image:loc>
+            <image:title>Terasa z razgledom - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/terasa2.jpg</image:loc>
+            <image:title>Terasa - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/balkon1.jpg</image:loc>
+            <image:title>Balkon - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/dnevna1.jpg</image:loc>
+            <image:title>Dnevna soba - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/dnevna2.jpg</image:loc>
+            <image:title>Dnevna soba - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/dnevna3.jpg</image:loc>
+            <image:title>Dnevna soba - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/dnevna4.jpg</image:loc>
+            <image:title>Dnevna soba - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/jedilnica1.jpg</image:loc>
+            <image:title>Jedilnica - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/kuhinja1.jpg</image:loc>
+            <image:title>Kuhinja - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/spalnica1.jpg</image:loc>
+            <image:title>Spalnica - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/spalnica2.jpg</image:loc>
+            <image:title>Spalnica - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/kopalnica1.jpg</image:loc>
+            <image:title>Kopalnica - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/wc1.jpg</image:loc>
+            <image:title>Stranišče - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/klobuka.jpg</image:loc>
+            <image:title>Klobuk - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/pogled-jed-sever.jpg</image:loc>
+            <image:title>Pogled na sever - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/pogled-sp-jug.jpg</image:loc>
+            <image:title>Pogled na jug - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/pogled-sp-vzhod.jpg</image:loc>
+            <image:title>Pogled na vzhod - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/sceste-bozic.jpg</image:loc>
+            <image:title>Božična dekoracija - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/sceste-pozimi.jpg</image:loc>
+            <image:title>Zimska idila - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/zunaj-lagev1.jpg</image:loc>
+            <image:title>Zunanjost - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/zunaj-mici1.jpg</image:loc>
+            <image:title>Zunanjost - Iža na brejgi</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://izanabrejgi.si/images/zunaj-gobe1.jpg</image:loc>
+            <image:title>Gobe v naravi - Iža na brejgi</image:title>
+        </image:image>
+    </url>
+
+    <!-- ========================================== -->
+    <!-- REZERVIRAJ - preusmeritev                 -->
+    <!-- ========================================== -->
+    <url>
+        <loc>https://izanabrejgi.si/rezerviraj.php</loc>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+</urlset>

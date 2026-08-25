@@ -1,0 +1,56 @@
+# robots.txt za Iža na brejgi
+# Omogoča iskalnikom dostop do vseh strani
+
+User-agent: *
+Allow: /
+
+# Prepreči indeksiranje neželenih map in datotek
+Disallow: /css/
+Disallow: /js/
+Disallow: /fonts/
+Disallow: /images/
+Disallow: /logos/
+Disallow: /links/
+
+# Prepreči indeksiranje JavaScript datotek
+Disallow: /config.js
+Disallow: /cookies.js
+Disallow: /event-handlers.js
+Disallow: /hostex.js
+Disallow: /language-manager.js
+Disallow: /links-overlay.js
+Disallow: /main.js
+Disallow: /map-overlay.js
+Disallow: /overlay-manager.js
+Disallow: /responsive-manager.js
+Disallow: /reviews-overlay.js
+Disallow: /slideshow-manager.js
+
+# Prepreči indeksiranje CSS datotek
+Disallow: /base.css
+Disallow: /cookies.css
+Disallow: /hostex.css
+Disallow: /language.css
+Disallow: /layout.css
+Disallow: /links-overlay.css
+Disallow: /map-overlay.css
+Disallow: /navigation.css
+Disallow: /overlays.css
+Disallow: /responsive.css
+Disallow: /reviews-overlay.css
+Disallow: /slideshow.css
+
+# Dovoli indeksiranje pomembnih strani
+Allow: /index.php
+Allow: /rezerviraj.php
+
+# Google slike - dovoli
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /logos/
+
+# Določi lokacijo sitemap
+Sitemap: https://izanabrejgi.si/sitemap.xml
+
+# Časovni zamik za obisk (5 sekund)
+Crawl-delay: 5

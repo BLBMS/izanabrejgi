@@ -13,15 +13,11 @@ $base_description = "Počitniška hiša 'Iža na brejgi' ponuja nastanitev za 1-
 // Specifični podatki za različne strani
 $meta_data = [
   'index.php' => [
-    'description' => "Počitniška hiša Iža na brejgi ⭐⭐⭐, Moravske Toplice, Prekmurje, Slovenija. Apartma za 1-4 osebe sredi vinogradov, 5 min od term 3000. Popolna oprema, kamin, WiFi, terasa, brezplačno parkirišče. Idealno za kopanje, kolesarjenje in pohode.",
-    'keywords' => "apartma Moravske Toplice, počitniška hiša, počitnice, terme, kolesarjenje, mtb, gravel, pohod, nastanitev, družinsk apartma"
+    'description' => "Počitniška hiša Iža na brejgi ⭐⭐⭐, Moravske Toplice, Prekmurje, Slovenija. Apartma za 1-4 osebe s teraso, kaminom in razgledom na panonsko nižino, sredi vinogradov, Bližina Terme 3000, Terme Vivat, golf, kolesarske poti, gostilne. Popolna oprema, kamin, WiFi, dve brezplačni parkirni mesti. Idealno za kopanje, kolesarjenje in pohode.",
+    'keywords' => "apartma Moravske Toplice, cena, počitniška hiša, počitnice, terme, kolesarjenje, mtb, gravel, pohod, nastanitev, družinsk apartma, romantični apartma, počitnice v naravi, mirna lokacija"
   ],
-  'apartmaji.php' => [
-    'description' => "Počitniška hiša Iža na brejgi v Moravskih Toplicah. Apartma za 1-4 osebe s teraso, kaminom in razgledom na panonsko nižino. Bližina Terme 3000, Terme Vivat, golf, kolesarske poti, gostilne. Popolna oprema, WiFi, TV.",
-    'keywords' => "apartma Moravske Toplice, cena, apartma za družino, romantični apartma, počitnice v naravi, mirna lokacija"
-  ],
-  'rezervacije.php' => [
-    'description' => "Rezervirajte počitniško hišo Iža na brejgi v Moravskih Toplicah. Direktna spletna rezervacija brez provizije, takojšnja potrditev. Najboljše cene za apartma v Prekmurju. Plačilo s kreditno kartico.Prihod brez najave recepciji.",
+  'rezerviraj.php' => [
+    'description' => "Rezervirajte počitniško hišo Iža na brejgi v Moravskih Toplicah. Direktna spletna rezervacija brez provizije, takojšnja potrditev. Najboljše cene za apartma - celotno počitniško hišo v Prekmurju. Plačilo s kreditno kartico. Prihod in odhod brez recepcije.",
     'keywords' => "rezervacija apartma Moravske Toplice, booking Moravske Toplice, spletna rezervacija, najem apartmaja, počitniška hiša, brez provizije, takojšnja potrditev"
   ]
 ];
@@ -56,59 +52,65 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+  "@type": "WebPage",
   "name": "Iža na brejgi",
   "description": "<?php echo addslashes($data['description']); ?>",
-  "image": "https://www.izanabrejgi.si/images/sceste-srcek.jpg",
-  "starRating": {
-    "@type": "Rating",
-    "ratingValue": "3",
-    "bestRating": "5",
-    "ratingDescription": "počitniška hiša ***"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Moravske Toplice",
-    "postalCode": "9226",
-    "addressRegion": "Prekmurje",
-    "addressCountry": "Slovenija"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "46.7089622",
-    "longitude": "16.2464013"
-  },
-  "telephone": "+386 41 563 873",
-  "email": "izanabrejgi@gmail.com",
-  "url": "https://izanabrejgi.si",
-  "checkinTime": "14:00",
-  "checkoutTime": "11:00",
-  "petsAllowed": "false",
-  "smokingAllowed": "false",
-  "areaServed": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
+  "mainEntity": {
+    "@type": "LodgingBusiness",
+    "name": "Iža na brejgi",
+    "starRating": {
+      "@type": "Rating",
+      "ratingValue": "3",
+      "bestRating": "5",
+      "ratingDescription": "počitniška hiša ***"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "10",
+      "bestRating": "10",
+      "worstRating": "1",
+      "ratingCount": "7",
+      "reviewCount": "7",
+      "itemReviewed": {
+        "@type": "LodgingBusiness",
+        "name": "Iža na brejgi"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Moravske Toplice",
+      "postalCode": "9226",
+      "addressRegion": "Prekmurje",
+      "addressCountry": "Slovenija"
+    },
+    "geo": {
       "@type": "GeoCoordinates",
       "latitude": "46.7089622",
       "longitude": "16.2464013"
     },
-    "geoRadius": "50000"
-  },
-  "amenityFeature": [
-    { "@type": "LocationFeatureSpecification", "name": "celotna nastanitev" },
-    { "@type": "LocationFeatureSpecification", "name": "ločena spalnica" },
-    { "@type": "LocationFeatureSpecification", "name": "dodatno ležišče v dnevnem prostoru" },
-    { "@type": "LocationFeatureSpecification", "name": "jedilnica" },
-    { "@type": "LocationFeatureSpecification", "name": "celotna opremljena kuhinja" },
-    { "@type": "LocationFeatureSpecification", "name": "kopalnica s tušem" },
-    { "@type": "LocationFeatureSpecification", "name": "dodatno stranišče" },
-    { "@type": "LocationFeatureSpecification", "name": "pokrita terasa in balkon" },
-    { "@type": "LocationFeatureSpecification", "name": "kamin, klima v sobah, ogrevano" },
-    { "@type": "LocationFeatureSpecification", "name": "prostor za shranjevanje koles" },
-    { "@type": "LocationFeatureSpecification", "name": "brezplačen WiFi" },
-    { "@type": "LocationFeatureSpecification", "name": "TV" },
-    { "@type": "LocationFeatureSpecification", "name": "dve brezplačni parkirni mesti" }
-  ],
-  "priceRange": "€€"
+    "telephone": "+386 41 563 873",
+    "email": "izanabrejgi@gmail.com",
+    "url": "https://izanabrejgi.si",
+    "checkinTime": "14:00",
+    "checkoutTime": "11:00",
+    "petsAllowed": "false",
+    "smokingAllowed": "false",
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "celotna nastanitev" },
+      { "@type": "LocationFeatureSpecification", "name": "ločena spalnica" },
+      { "@type": "LocationFeatureSpecification", "name": "dodatno ležišče v dnevnem prostoru" },
+      { "@type": "LocationFeatureSpecification", "name": "jedilnica" },
+      { "@type": "LocationFeatureSpecification", "name": "celotno opremljena kuhinja" },
+      { "@type": "LocationFeatureSpecification", "name": "kopalnica s tušem" },
+      { "@type": "LocationFeatureSpecification", "name": "dodatno stranišče" },
+      { "@type": "LocationFeatureSpecification", "name": "pokrita terasa in balkon" },
+      { "@type": "LocationFeatureSpecification", "name": "kamin, klima v sobah, ogrevano" },
+      { "@type": "LocationFeatureSpecification", "name": "prostor za shranjevanje koles" },
+      { "@type": "LocationFeatureSpecification", "name": "brezplačen WiFi" },
+      { "@type": "LocationFeatureSpecification", "name": "TV" },
+      { "@type": "LocationFeatureSpecification", "name": "dve brezplačni parkirni mesti" }
+    ],
+    "priceRange": "€€"
+  }
 }
 </script>
