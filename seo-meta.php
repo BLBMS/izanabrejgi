@@ -1,5 +1,5 @@
 <?php
-// 045
+// 046
 // seo-meta.php
 // SEO meta podatki za iskalnike
 
@@ -12,18 +12,18 @@ $base_description = "Počitniška hiša 'Iža na brejgi' ponuja nastanitev za 1-
 
 // Specifični podatki za različne strani
 $meta_data = [
-    'index.php' => [
-        'description' => "Počitniška hiša 'Iža na brejgi' - apartma v bližini Moravskih Toplic v naravi z razgledom okoliške hribe in panonsko nižino. Bližina term. Romantični vikendi za dva ali celotno družino (4 osebe) v naravnem okolju.",
-        'keywords' => "apartmaj Moravske Toplice, počitniška hiša, počitnice, terme, kolesarjenje, pohodi, nastanitev, družinsk apartma"
-    ],
-    'apartmaji.php' => [
-        'description' => "Naš apartma zajema celotno počitniško hišo 'Iža na brejgi': prostori za 2-4 osebe, popolna oprema, razgled na okoliške griče in panonsko nižino, bližina term.",
-        'keywords' => "apartmaj Moravske Toplice cena, apartma za družino, romantični apartma, počitnice v naravi"
-    ],
-    'rezervacije.php' => [
-        'description' => "Rezervirajte apartma v počitniški hiši 'Iža na brejgi'. Enostavna spletna rezervacija, najboljše cene, takojšnja potrditev.",
-        'keywords' => "rezervacija apartma Moravske Toplice, booking Moravske Toplice, spletna rezervacija, najem apartmaja, počitniška hiša"
-    ]
+  'index.php' => [
+    'description' => "Počitniška hiša Iža na brejgi ⭐⭐⭐, Moravske Toplice, Prekmurje, Slovenija. Apartma za 1-4 osebe sredi vinogradov, 5 min od term 3000. Popolna oprema, kamin, WiFi, terasa, brezplačno parkirišče. Idealno za kopanje, kolesarjenje in pohode.",
+    'keywords' => "apartma Moravske Toplice, počitniška hiša, počitnice, terme, kolesarjenje, mtb, gravel, pohod, nastanitev, družinsk apartma"
+  ],
+  'apartmaji.php' => [
+    'description' => "Počitniška hiša Iža na brejgi v Moravskih Toplicah. Apartma za 1-4 osebe s teraso, kaminom in razgledom na panonsko nižino. Bližina Terme 3000, Terme Vivat, golf, kolesarske poti, gostilne. Popolna oprema, WiFi, TV.",
+    'keywords' => "apartma Moravske Toplice, cena, apartma za družino, romantični apartma, počitnice v naravi, mirna lokacija"
+  ],
+  'rezervacije.php' => [
+    'description' => "Rezervirajte počitniško hišo Iža na brejgi v Moravskih Toplicah. Direktna spletna rezervacija brez provizije, takojšnja potrditev. Najboljše cene za apartma v Prekmurju. Plačilo s kreditno kartico.Prihod brez najave recepciji.",
+    'keywords' => "rezervacija apartma Moravske Toplice, booking Moravske Toplice, spletna rezervacija, najem apartmaja, počitniška hiša, brez provizije, takojšnja potrditev"
+  ]
 ];
 
 // Pridobi podatke za trenutno stran ali uporabi privzete
@@ -38,7 +38,7 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
 <meta property="og:site_name" content="<?php echo htmlspecialchars($site_name); ?>">
 <meta property="og:title" content="Iža na brejgi | <?php echo htmlspecialchars($data['description']); ?>">
 <meta property="og:description" content="<?php echo htmlspecialchars($data['description']); ?>">
-<meta property="og:image" content="https://izanabrejgi.si/images/dvor-poletje.jpg">
+<meta property="og:image" content="https://izanabrejgi.si/images/sceste-srcek.jpg">
 <meta property="og:url" content="https://izanabrejgi.si">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="sl_SI">
@@ -47,7 +47,7 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Iža na brejgi">
 <meta name="twitter:description" content="<?php echo htmlspecialchars($data['description']); ?>">
-<meta name="twitter:image" content="https://izanabrejgi.si/images/dvor-poletje.jpg">
+<meta name="twitter:image" content="https://izanabrejgi.si/images/sceste-srcek.jpg">
 
 <!-- CANONICAL URL -->
 <link rel="canonical" href="https://izanabrejgi.si/<?php echo $current_page; ?>">
@@ -59,7 +59,13 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
   "@type": "LodgingBusiness",
   "name": "Iža na brejgi",
   "description": "<?php echo addslashes($data['description']); ?>",
-  "image": "https://www.izanabrejgi.si/images/dvor-poletje.jpg",
+  "image": "https://www.izanabrejgi.si/images/sceste-srcek.jpg",
+  "starRating": {
+    "@type": "Rating",
+    "ratingValue": "3",
+    "bestRating": "5",
+    "ratingDescription": "počitniška hiša ***"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Moravske Toplice",
@@ -75,6 +81,10 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
   "telephone": "+386 41 563 873",
   "email": "izanabrejgi@gmail.com",
   "url": "https://izanabrejgi.si",
+  "checkinTime": "14:00",
+  "checkoutTime": "11:00",
+  "petsAllowed": "false",
+  "smokingAllowed": "false",
   "areaServed": {
     "@type": "GeoCircle",
     "geoMidpoint": {
@@ -85,17 +95,19 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
     "geoRadius": "50000"
   },
   "amenityFeature": [
-    "ločena palnica",
-    "dodatno ležišče v dnevnem prostoru",
-    "jedilnica",
-    "celotno opremljena kuhinja",
-    "kopalnica s tušem",
-    "dodatno stranišče",
-    "pokrita terasa in balkon",
-    "kamin, klima v sobah, ogrevano",
-    "prostor za shranjevanje koles",
-    "Free WiFi, TV, ...",
-    "brezplačno parkirišče"
+    { "@type": "LocationFeatureSpecification", "name": "celotna nastanitev" },
+    { "@type": "LocationFeatureSpecification", "name": "ločena spalnica" },
+    { "@type": "LocationFeatureSpecification", "name": "dodatno ležišče v dnevnem prostoru" },
+    { "@type": "LocationFeatureSpecification", "name": "jedilnica" },
+    { "@type": "LocationFeatureSpecification", "name": "celotna opremljena kuhinja" },
+    { "@type": "LocationFeatureSpecification", "name": "kopalnica s tušem" },
+    { "@type": "LocationFeatureSpecification", "name": "dodatno stranišče" },
+    { "@type": "LocationFeatureSpecification", "name": "pokrita terasa in balkon" },
+    { "@type": "LocationFeatureSpecification", "name": "kamin, klima v sobah, ogrevano" },
+    { "@type": "LocationFeatureSpecification", "name": "prostor za shranjevanje koles" },
+    { "@type": "LocationFeatureSpecification", "name": "brezplačen WiFi" },
+    { "@type": "LocationFeatureSpecification", "name": "TV" },
+    { "@type": "LocationFeatureSpecification", "name": "dve brezplačni parkirni mesti" }
   ],
   "priceRange": "€€"
 }
