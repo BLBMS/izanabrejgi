@@ -1,4 +1,4 @@
-/* 045c */
+/* 046 */
 /* reviews-overlay.js - s paginacijo in samodejnim pomikanjem (brez zvezdic) */
 
 const baseReviewsData = [
@@ -102,7 +102,7 @@ const baseReviewsData = [
 */
 ];
 
-const REVIEWS_PER_PAGE = 5;
+const REVIEWS_PER_PAGE = 4;
 let currentReviewsPage = 0;
 let autoSlideInterval = null;
 
