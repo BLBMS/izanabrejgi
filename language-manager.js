@@ -1,4 +1,4 @@
-/* 045a */
+/* 046 */
 // language-manager.js
 // Upravljanje jezikov
 
@@ -37,7 +37,8 @@ const embeddedLanguageData = {
                         "Sama lokacija je zelo primerna za sprehode, kar nekaj poti je krožnih, krajših in daljših in tudi nekaj vzponov se lahko nabere. Še posebej priporočamo obisk kolesarjem, tako cestnim ali treking kot tudi MTB. V stari kleti je zaklenjen prostor za vsa vaša kolesa. Če imate električna, si jih lahko tudi napolnite. Nekaj orodja se najde tudi za hitra popravila. Začetek vaše kolesarske trase je po cestah z malo prometa. Lahko sledite uradno označenim potem ali pa si jih ustvarite z vašo aplikacijo. Naš predlog je seveda, da se zapeljite v naravo, glejte okoli sebe in poslušajte mir. Izogibajte se glavnih cest, kajti številke na aplikaciji vam tega ne bodo zabeležile.",
                         "Za vse kopalne navdušence so seveda v spodnjem delu naselja Moravskih Toplic, imenovanem Spodnji Moravci, bazeni Term 3000 in Hotela Vivat, s savnami in wellnesi. Tam je tudi igrišče za golf in v parku trim steza.",
                         "Tam spodaj se nahaja trgovina, nekaj gostiln in picerija. Za večje nakupe je 8 km vstran regijsko središče Murska Sobota s sodobnimi trgovskimi centri.",
-                        "Za ljubitelje bolj domače hrane in pijače pa priporočamo odhod v drugo smer, na Goričko. Priporočamo dve bližnji v Zgornjih Moravcih: Okrepčevalnica pri Goranu in Zeleni gaj. Pred odhodom prosim preverite delovni čas.",
+                        "Za ljubitelje domače hrane in pijače pa priporočamo odhod v drugo smer, na Goričko. Priporočamo tri bližnje v Zgornjih Moravcih: Gostišče Aleksander, Okrepčevalnica pri Goranu in Zeleni gaj. Pred odhodom prosim preverite delovni čas.",
+                        "Gostišče Aleksander je od nastanitve oddaljeno samo 100m in nudijo zajtrke in večerje. Na zajtrke se je potrebno predhodno naročiti.",
                         "Javna polnilnica za električna vozila je oddaljena 150 m (11 kW, proti plačilu)."
                     ]
                 },
@@ -169,7 +170,8 @@ const embeddedLanguageData = {
                         "Your cycling routes can begin right from the house, along roads with very little traffic. You can follow officially marked cycling routes or create your own using your preferred app. Our suggestion is simple: head into nature, look around, and enjoy the peaceful surroundings. Try to avoid main roads — your app may not reflect the true beauty of the experience.",
                         "For swimming enthusiasts, the lower part of Moravske Toplice, called Spodnji Moravci, offers the Terme 3000 spa complex and Hotel Vivat, with pools, saunas, and wellness facilities. There is also a golf course and a fitness trail in the nearby park.",
                         "In this area, you will also find a grocery store, several restaurants, and a pizzeria. For larger shopping trips, the regional centre of Murska Sobota is just 8 km away and offers modern shopping centres.",
-                        "For those who enjoy more traditional local food and drinks, we recommend heading in the opposite direction, towards the Goričko region. Two nearby options in Zgornji Moravci are “Okrepčevalnica pri Goranu” and “Zeleni gaj”. Please check their opening hours before visiting.",
+                        "For those who enjoy traditional local food and drinks, we recommend heading in the opposite direction, towards the Goričko region. We recommend three nearby options in Zgornji Moravci: “Gostišče Aleksander”, “Okrepčevalnica pri Goranu” and “Zeleni gaj”. Please check their opening hours before visiting.",
+                        "“Gostišče Aleksander” is only 100 m from the accommodation and offers breakfast and dinner. Breakfast must be booked in advance.",
                         "A public charging station for electric vehicles is located 150 m away (11 kW, subject to payment)."
                     ]
                 },
@@ -301,7 +303,8 @@ const embeddedLanguageData = {
                         "Ihre Radtouren können direkt an der Unterkunft beginnen, auf Straßen mit sehr wenig Verkehr. Sie können offiziellen, ausgeschilderten Routen folgen oder Ihre eigene Strecke mit einer App planen. Unser Tipp: Fahren Sie einfach in die Natur, genießen Sie die Umgebung und die Ruhe. Vermeiden Sie Hauptstraßen – Ihre App zeigt Ihnen nicht immer das beste Erlebnis.",
                         "Für Badebegeisterte befinden sich im unteren Teil von Moravske Toplice, im Ortsteil Spodnji Moravci, die Thermen Terme 3000 sowie das Hotel Vivat mit Pools, Saunen und Wellnessangeboten. Dort finden Sie auch einen Golfplatz sowie einen Trimmpfad im Park.",
                         "In diesem Bereich gibt es außerdem ein Lebensmittelgeschäft, einige Restaurants und eine Pizzeria. Für größere Einkäufe liegt das regionale Zentrum Murska Sobota nur 8 km entfernt und bietet moderne Einkaufszentren.",
-                        "Für Liebhaber traditioneller regionaler Speisen und Getränke empfehlen wir einen Ausflug in die andere Richtung, ins Gebiet Goričko. Zwei nahegelegene Möglichkeiten in Zgornji Moravci sind die „Okrepčevalnica pri Goranu“ und „Zeleni gaj“. Bitte prüfen Sie vor Ihrem Besuch die Öffnungszeiten.",
+                        "Für Liebhaber traditioneller regionaler Speisen und Getränke empfehlen wir einen Ausflug in die andere Richtung, ins Goričko-Gebiet. Wir empfehlen drei nahegelegene Möglichkeiten in Zgornji Moravci: „Gostišče Aleksander“, „Okrepčevalnica pri Goranu“ und „Zeleni gaj“. Bitte prüfen Sie vor Ihrem Besuch die Öffnungszeiten.",
+                        "„Gostišče Aleksander“ ist nur 100 m von der Unterkunft entfernt und bietet Frühstück und Abendessen an. Das Frühstück muss im Voraus bestellt werden.",
                         "Eine öffentliche Ladestation für Elektrofahrzeuge befindet sich 150 m entfernt (11 kW, kostenpflichtig)."
                     ]
                 },
