@@ -1,4 +1,4 @@
-/* 046 */
+/* 046a */
 /* reviews-overlay.js - s paginacijo in samodejnim pomikanjem (brez zvezdic) */
 
 const baseReviewsData = [
@@ -84,6 +84,18 @@ const baseReviewsData = [
             sl: 'Izjemno dobro opremljena, udobna in prostorna hiška. Komunikacija je potekala tekoče in pisno v angleškem jeziku. Ob prihodu smo ključ vzeli iz škatlice. Zelo prijetna in mirna okolica. V hiši je bilo na voljo vse, kar smo potrebovali. Obe sobi sta klimatizirani. Pričakale so nas lokalne dobrote, ki so jih pripravili gostitelji (pecivo, hladni narezek, sirup, pivo ...). Namestitev je popolnoma presegla naša pričakovanja, glede na razmerje med ceno in kakovostjo je odlična in jo lahko samo priporočam.',
             en: 'Extremely well equipped, comfortable, spacious cottage. Communication was smooth and in writing, in English. We took the key out of a box upon arrival. Very cozy, quiet neighborhood. The house had everything we needed. Both rooms are air-conditioned. Local delicacies prepared by the hosts awaited us (cakes, cold dishes, syrup, beer...). It absolutely exceeded our expectations, excellent value for money accommodation, I can only recommend it.',
             de: 'Äußerst gut ausgestattetes, komfortables und geräumiges Häuschen. Die Kommunikation verlief reibungslos und schriftlich auf Englisch. Bei unserer Ankunft haben wir den Schlüssel aus einer Schlüsselbox genommen. Eine sehr gemütliche und ruhige Umgebung. Im Haus war alles vorhanden, was wir benötigten. Beide Zimmer sind klimatisiert. Es erwarteten uns lokale Köstlichkeiten, die von den Gastgebern vorbereitet wurden (Gebäck, kalte Platte, Sirup, Bier ...). Die Unterkunft hat unsere Erwartungen absolut übertroffen. Ein hervorragendes Preis-Leistungs-Verhältnis – ich kann sie nur empfehlen.'
+        }
+    },
+    {
+        id: 8,
+        platform: 'Booking',
+        rating: 10,
+        ratingMax: 10,
+        reviewer: 'Jure (SI)',
+        review: {
+            sl: 'Mir, čudovita lokacija, čistoča, prostorno, presenečenje ob prihodu. Vse super.',
+            en: 'Peaceful, beautiful location, cleanliness, spacious, and a lovely surprise upon arrival. Everything was great.',
+            de: 'Ruhe, wunderschöne Lage, Sauberkeit, viel Platz und eine schöne Überraschung bei der Ankunft. Alles war großartig.'
         }
     }
     /*,
