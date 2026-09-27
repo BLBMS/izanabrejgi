@@ -8,7 +8,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 // Osnovni meta podatki za vse strani
 $site_name = "Iža na brejgi";
-$base_description = "Počitniška hiša 'Iža na brejgi' ponuja nastanitev za 1-4 osebe na mirni lokaciji v naravi med vinogradi. En apartma zajema celotno hišo.";
+// $base_description = "Počitniška hiša 'Iža na brejgi' ponuja nastanitev za 1-4 osebe na mirni lokaciji v naravi med vinogradi. En apartma zajema celotno hišo.";
 
 // Specifični podatki za različne strani
 $meta_data = [
@@ -32,7 +32,7 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
 
 <!-- OPEN GRAPH (Facebook, LinkedIn) -->
 <meta property="og:site_name" content="<?php echo htmlspecialchars($site_name); ?>">
-<meta property="og:title" content="Iža na brejgi | <?php echo htmlspecialchars($data['description']); ?>">
+<meta property="og:title" content="<?php echo htmlspecialchars($site_name); ?>">
 <meta property="og:description" content="<?php echo htmlspecialchars($data['description']); ?>">
 <meta property="og:image" content="https://izanabrejgi.si/images/sceste-srcek.jpg">
 <meta property="og:url" content="https://izanabrejgi.si">
@@ -54,7 +54,7 @@ $data = $meta_data[$current_page] ?? $meta_data['index.php'];
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Iža na brejgi",
-  "description": "<?php echo addslashes($data['description']); ?>",
+  "description": <?php echo json_encode($data['description']); ?>,
   "mainEntity": {
     "@type": "LodgingBusiness",
     "name": "Iža na brejgi",

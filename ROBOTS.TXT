@@ -1,5 +1,6 @@
 # robots.txt za Iža na brejgi
 # Omogoča iskalnikom dostop do vseh strani
+# 046
 
 User-agent: *
 Allow: /
