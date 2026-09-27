@@ -102,8 +102,7 @@ const embeddedLanguageData = {
                     ],
                     "email": "Email:",
                     "emailValues": [
-                        "izanabrejgi@gmail.com",
-                        "iza.na.brejgi@gmail.com"
+                        "izanabrejgi@gmail.com"
                     ],
                     "address": "Naslov:",
                     "addressLines": [
@@ -235,8 +234,7 @@ const embeddedLanguageData = {
                     ],
                     "email": "Email:",
                     "emailValues": [
-                        "izanabrejgi@gmail.com",
-                        "iza.na.brejgi@gmail.com"
+                        "izanabrejgi@gmail.com"
                     ],
                     "address": "Address:",
                     "addressLines": [
@@ -368,8 +366,7 @@ const embeddedLanguageData = {
                     ],
                     "email": "Email:",
                     "emailValues": [
-                        "izanabrejgi@gmail.com",
-                        "iza.na.brejgi@gmail.com"
+                        "izanabrejgi@gmail.com"
                     ],
                     "address": "Adresse:",
                     "addressLines": [
