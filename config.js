@@ -1,4 +1,4 @@
-// 045b
+// 045c
 // config.js
 // Konfiguracija
 
@@ -21,6 +21,7 @@ window.imageFiles = [
     "images/sceste-bozic.jpg",
     "images/sceste-pozimi.jpg",
     "images/sceste-srcek.jpg",
+    "images/sceste-srcek-jesen.jpg",
     "images/spalnica1.jpg",
     "images/spalnica2.jpg",
     "images/terasa1.jpg",
