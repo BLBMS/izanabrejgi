@@ -1,4 +1,4 @@
-/* 046 */
+/* 046a */
 /* links-overlay.js */
 
 const baseLinksData = [
@@ -100,6 +100,66 @@ const baseLinksData = [
             sl: 'https://www.murski-colnar.si/',
             en: 'https://www.murski-colnar.si/en/',
             de: 'https://www.murski-colnar.si/de/'
+        }
+    },
+    {
+        id: 6,
+        icon: 'links/Aleksander_logotip.jpg',
+        logoBg: 'rgba(255, 255, 255, 1.0)',
+        title: {
+            sl: 'Gostišče Aleksander - domača kulinarika',
+            en: 'Aleksander Guesthouse - Local Cuisine',
+            de: 'Aleksander Gästehaus - lokale Küche'
+        },
+        description: {
+            sl: 'Samo 100 m od nastanitve, zajtrki po predhodnem dogovoru in večerje à la carte',
+            en: 'Only 100 m from accommodation, breakfast by prior arrangement and à la carte dinners',
+            de: 'Nur 100 m von der Unterkunft entfernt, Frühstück nach Vereinbarung und à la carte Abendessen'
+        },
+        url: {
+            sl: 'https://gostisce-aleksander.net/kontakt.php',
+            en: 'https://gostisce-aleksander.net/kontakt.php',
+            de: 'https://gostisce-aleksander.net/kontakt-de.php'
+        }
+    },
+    {
+        id: 7,
+        icon: 'links/Terme_3000_logo.jpg',
+        logoBg: 'rgba(255, 255, 255, 1.0)',
+        title: {
+            sl: 'Terme 3000 - Moravske Toplice',
+            en: 'Terme 3000 - Moravske Toplice, Spa',
+            de: 'Terme 3000 - Moravske Toplice, Thermalquellen'
+        },
+        description: {
+            sl: 'Termalni park s tobogani in wellnesson',
+            en: 'Thermal park with slides and wellness',
+            de: 'Thermalpark mit Rutschen und Wellnessbereich'
+        },
+        url: {
+            sl: 'https://www.sava-hotels-resorts.com/sl/terme-3000/ponudba-in-dozivetja/termalni-park-in-hotelski-bazeni/',
+            en: 'https://www.sava-hotels-resorts.com/en/terme-3000/services-and-experiences/thermal-park-and-hotel-pools/',
+            de: 'https://www.sava-hotels-resorts.com/de/terme-3000/angebot-und-erlebnisse/thermalpark-und-hotelpools/'
+        }
+    },
+    {
+        id: 8,
+        icon: 'links/Terme_Vivat_logo.jpg',
+        logoBg: 'rgba(255, 255, 255, 1.0)',
+        title: {
+            sl: 'Terme Vivat - Moravske Toplice',
+            en: 'Terme Vivat - Moravske Toplice, Spa',
+            de: 'Terme Vivat - Moravske Toplice, Thermalquellen'
+        },
+        description: {
+            sl: 'Termalni park z wellnesson',
+            en: 'Thermal park with wellness',
+            de: 'Thermalpark mit Wellnessbereich'
+        },
+        url: {
+            sl: 'https://vivat.si/bazenski-kompleks',
+            en: 'https://vivat.si/en/swimming-pool-complex',
+            de: 'https://vivat.si/de/schwimmbad-komplex'
         }
     }
 ];
