@@ -1,4 +1,4 @@
-// 046
+// 046a
 // config.js
 // Konfiguracija
 
@@ -26,6 +26,7 @@ window.imageFiles = [
     "images/spalnica2.jpg",
     "images/terasa1.jpg",
     "images/terasa2.jpg",
+    "images/terasa3.jpg",
     "images/wc1.jpg",
     "images/zunaj-gobe1.jpg",
     "images/zunaj-lagev1.jpg",
