@@ -38,7 +38,7 @@ const embeddedLanguageData = {
                         "Za vse kopalne navdušence so seveda v spodnjem delu naselja Moravskih Toplic, imenovanem Spodnji Moravci, bazeni Term 3000 in Hotela Vivat, s savnami in wellnesi. Tam je tudi igrišče za golf in v parku trim steza.",
                         "Tam spodaj se nahaja trgovina, nekaj gostiln in picerija. Za večje nakupe je 8 km vstran regijsko središče Murska Sobota s sodobnimi trgovskimi centri.",
                         "Za ljubitelje domače hrane in pijače pa priporočamo odhod v drugo smer, na Goričko. Priporočamo bližnja gostišča: v Zgornjih Moravcih  Gostišče Aleksander in Okrepčevalnica pri Goranu, malce dlje pa še Oštarija pri Kapelici (Andrejci) in Buschenschank Janez Ernisa (Suhi vrh). Pred odhodom prosim preverite delovni čas.",
-                        "Gostišče Aleksander je od nastanitve oddaljeno samo 100m in nudijo zajtrke in večerje. Na zajtrke se je potrebno predhodno naročiti.",
+                        "Gostišče Aleksander je od nastanitve oddaljeno samo 100m in nudijo zajtrke in večerje. Na zajtrke se je potrebno predhodno naročiti v gostišču.",
                         "Javna polnilnica za električna vozila je oddaljena 150 m (11 kW, proti plačilu)."
                     ]
                 },
@@ -170,7 +170,7 @@ const embeddedLanguageData = {
                         "For swimming enthusiasts, the lower part of Moravske Toplice, called Spodnji Moravci, offers the Terme 3000 spa complex and Hotel Vivat, with pools, saunas, and wellness facilities. There is also a golf course and a fitness trail in the nearby park.",
                         "In this area, you will also find a grocery store, several restaurants, and a pizzeria. For larger shopping trips, the regional centre of Murska Sobota is just 8 km away and offers modern shopping centres.",
                         "For those who enjoy traditional local food and drinks, we recommend heading in the opposite direction, towards the Goričko region. Nearby options include “Gostišče Aleksander” and “Okrepčevalnica pri Goranu” in Zgornji Moravci, as well as “Oštarija pri Kapelici” in Andrejci and “Buschenschank Janez Ernisa” in Suhi Vrh, a little further away. Please check their opening hours before visiting.",
-                        "“Gostišče Aleksander” is only 100 m from the accommodation and offers breakfast and dinner. Breakfast must be booked in advance.",
+                        "“Gostišče Aleksander” is only 100 m from the accommodation and offers breakfast and dinner. Breakfast must be booked in advance directly with the restaurant.",
                         "A public charging station for electric vehicles is located 150 m away (11 kW, subject to payment)."
                     ]
                 },
@@ -302,7 +302,7 @@ const embeddedLanguageData = {
                         "Für Badebegeisterte befinden sich im unteren Teil von Moravske Toplice, im Ortsteil Spodnji Moravci, die Thermen Terme 3000 sowie das Hotel Vivat mit Pools, Saunen und Wellnessangeboten. Dort finden Sie auch einen Golfplatz sowie einen Trimmpfad im Park.",
                         "In diesem Bereich gibt es außerdem ein Lebensmittelgeschäft, einige Restaurants und eine Pizzeria. Für größere Einkäufe liegt das regionale Zentrum Murska Sobota nur 8 km entfernt und bietet moderne Einkaufszentren.",
                         "Für Liebhaber traditioneller regionaler Speisen und Getränke empfehlen wir einen Ausflug in die andere Richtung, ins Goričko-Gebiet. In der Nähe befinden sich das „Gostišče Aleksander“ und die „Okrepčevalnica pri Goranu“ in Zgornji Moravci. Etwas weiter entfernt liegen die „Oštarija pri Kapelici“ in Andrejci und der „Buschenschank Janez Ernisa“ in Suhi Vrh. Bitte prüfen Sie vor Ihrem Besuch die Öffnungszeiten.",
-                        "„Gostišče Aleksander“ ist nur 100 m von der Unterkunft entfernt und bietet Frühstück und Abendessen an. Das Frühstück muss im Voraus bestellt werden.",
+                        "„Gostišče Aleksander“ ist nur 100 m von der Unterkunft entfernt und bietet Frühstück und Abendessen an. Das Frühstück muss im Voraus direkt beim Gasthaus bestellt werden.",
                         "Eine öffentliche Ladestation für Elektrofahrzeuge befindet sich 150 m entfernt (11 kW, kostenpflichtig)."
                     ]
                 },
