@@ -24,7 +24,7 @@ const baseLinksData = [
     },
     {
         id: 2,
-        icon: 'links/logo_TIC_MT.svg',
+        icon: 'links/TIClogo.png',
         logoBg: 'rgba(255, 255, 255, 1.00)',
         title: {
             sl: 'Turistično informacijski center, TIC Moravske Toplice',
@@ -44,7 +44,27 @@ const baseLinksData = [
     },
     {
         id: 3,
-        icon: 'links/logo_TIC_MT.svg',
+        icon: 'links/KP_goricko_logo.png',
+        logoBg: 'rgba(255, 255, 255, 1.0)',
+        title: {
+            sl: 'Krajinski park Goričko',
+            en: 'Natural Park Goričko',
+            de: 'Naturpark Goričko'
+        },
+        description: {
+            sl: 'Krajinski park Goričko je zavarovano naravno območje z razgibano gričevnato pokrajino, izjemno naravno pestrostjo in bogato kulturno dediščino, kjer lahko odkrijete lepote Goričkega.',
+            en: 'Goričko Nature Park is a protected natural area with a diverse hilly landscape, exceptional biodiversity and rich cultural heritage, where you can discover the beauty of the Goričko region.',
+            de: 'Der Naturpark Goričko ist ein geschütztes Naturgebiet mit einer abwechslungsreichen Hügellandschaft, einer außergewöhnlichen Artenvielfalt und einem reichen Kulturerbe, in dem Sie die Schönheit der Region Goričko entdecken können.'
+        },
+        url: {
+            sl: 'https://www.park-goricko.org/?lang=SI',
+            en: 'https://www.park-goricko.org/?lang=GB',
+            de: 'https://www.park-goricko.org/?lang=DE'
+        }
+    },
+    {
+        id: 4,
+        icon: 'links/kolesarske.png',
         logoBg: 'rgba(255, 255, 255, 1.00)',
         title: {
             sl: 'Kolesarske poti in najem koles - TIC Moravske Toplice',
@@ -52,9 +72,9 @@ const baseLinksData = [
             de: 'Fahrradwege und Fahrradverleih - TIC Moravske Toplice'
         },
         description: {
-            sl: 'Razvejano kolesarsko omrežje, ki nudi številne označene krožne poti v skupni dolžini 250 km. Najem: treking, e-kolo ali e-skiro.',
-            en: 'An extensive cycling network offering numerous marked circular routes with a total length of 250 km. Rental: trekking, e-bike or e-scooter.',
-            de: 'Ein weitverzweigtes Radwegenetz mit zahlreichen markierten Rundwegen von insgesamt 250 km Länge. Verleih: Trekking, E-Bike oder E-Scooter.'
+            sl: 'Razvejano kolesarsko omrežje, ki nudi številne označene krožne poti v skupni dolžini 250 km. Najem: treking, e-kolo ali e-skiro. <a href="https://www.visitmoravsketoplice.com/pics/PDF/Poti_skozi_MT_KOL_WEB_OP.pdf" target="_blank" class="link-link">(kolesarske poti)</a>',
+            en: 'An extensive cycling network offering numerous marked circular routes with a total length of 250 km. Rental: trekking, e-bike or e-scooter. <a href="https://www.visitmoravsketoplice.com/pics/PDF/Poti_skozi_MT_KOL_WEB_OP.pdf" target="_blank" class="link-link">(cycling routes)</a>',
+            de: 'Ein weitverzweigtes Radwegenetz mit zahlreichen markierten Rundwegen von insgesamt 250 km Länge. Verleih: Trekking, E-Bike oder E-Scooter. <a href="https://www.visitmoravsketoplice.com/pics/PDF/Poti_skozi_MT_KOL_WEB_OP.pdf" target="_blank" class="link-link">(Radrouten)</a>'
         },
         url: {
             sl: 'https://www.visitmoravsketoplice.com/si/vsebina/522/Kolesarske-poti',
@@ -63,7 +83,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 4,
+        id: 5,
         icon: 'links/logo_RIDE_Goricko.png',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -83,7 +103,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 5,
+        id: 6,
         icon: 'links/logo_murski_colnar.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -103,7 +123,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 6,
+        id: 7,
         icon: 'links/Aleksander_logotip.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -123,7 +143,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 7,
+        id: 8,
         icon: 'links/Terme_3000_logo.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -143,7 +163,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 8,
+        id: 9,
         icon: 'links/Terme_Vivat_logo.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -162,6 +182,28 @@ const baseLinksData = [
             de: 'https://vivat.si/de/schwimmbad-komplex'
         }
     }
+    /*    ,
+        {
+            id: 99,
+            icon: 'links/logo.jpg',
+            logoBg: 'rgba(255, 255, 255, 1.0)',
+            title: {
+                sl: '',
+                en: '',
+                de: ''
+            },
+            description: {
+                sl: '',
+                en: '',
+                de: ''
+            },
+            url: {
+                sl: '',
+                en: '',
+                de: ''
+            }
+        }
+    */
 ];
 
 function getLinksByLanguage(lang = 'sl') {
@@ -263,7 +305,7 @@ function loadLinks(lang = 'sl') {
     let html = '';
     links.forEach(link => {
         html += `
-            <a href="${link.url}" class="link-item" data-id="${link.id}">
+            <div class="link-item" data-id="${link.id}" data-url="${link.url}">
                 <img src="${link.icon}" 
                     alt="${link.title}" 
                     class="link-icon contain"
@@ -273,27 +315,34 @@ function loadLinks(lang = 'sl') {
                     <p class="link-description">${link.description}</p>
                 </div>
                 <button class="link-arrow" aria-label="Odpiranje povezave">❯</button>
-            </a>
+            </div>
         `;
     });
 
     container.innerHTML = html;
 
+    // Klik na celotno kartico
     container.querySelectorAll('.link-item').forEach(item => {
         item.addEventListener('click', function (e) {
+            // Preveri, ali je uporabnik kliknil na notranji link (npr. kolesarske poti)
+            if (e.target.closest('.link-link')) {
+                return; // Naj notranji link opravi svoje
+            }
+
             e.preventDefault();
-            const url = this.getAttribute('href');
+            const url = this.getAttribute('data-url');
             if (url) window.open(url, '_blank', 'noopener,noreferrer');
         });
     });
 
+    // Klik na puščico
     container.querySelectorAll('.link-arrow').forEach(arrow => {
         arrow.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             const linkItem = this.closest('.link-item');
             if (linkItem) {
-                const url = linkItem.getAttribute('href');
+                const url = linkItem.getAttribute('data-url');
                 if (url) window.open(url, '_blank', 'noopener,noreferrer');
             }
         });

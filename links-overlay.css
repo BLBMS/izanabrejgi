@@ -1,4 +1,4 @@
-/* 046 */
+/* 046a */
 /* links-overlay.css */
 
 .links-background {
@@ -66,6 +66,7 @@
     margin-top: 1.5rem;
 }
 
+/*
 .link-item {
     display: flex;
     align-items: center;
@@ -142,6 +143,122 @@
 .link-arrow:hover {
     opacity: 1 !important;
     color: rgba(208, 255, 0, 0.9) !important;
+}
+*/
+
+/* Kartica povezave */
+.link-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid rgba(208, 255, 0, 0.5);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none !important;
+    color: inherit;
+    position: relative;
+}
+
+.link-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-left-color: rgba(208, 255, 0, 0.8);
+}
+
+.link-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid rgba(208, 255, 0, 0.3);
+}
+
+.link-icon.contain {
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+.link-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.link-title {
+    font-size: 1.3rem;
+    margin: 0 0 8px 0;
+    color: rgba(208, 255, 0, 0.9);
+    font-weight: 600;
+}
+
+.link-item:hover .link-title {
+    color: rgba(234, 255, 0, 1);
+}
+
+.link-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* NOTRANJI LINK (npr. kolesarske poti) */
+.link-description .link-link {
+    color: rgba(208,255,0,0.9);
+    text-decoration: none;
+    /*
+    color: rgba(208, 255, 0, 0.95) !important;
+    text-decoration: underline !important;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline;
+    cursor: pointer;
+*/
+}
+
+.link-description .link-link:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+    /*
+    color: var(--hover-color) !important;
+    background: rgba(208, 255, 0, 0.1);
+    border-radius: 3px;
+    */
+}
+
+/* Puščica */
+.link-arrow {
+    background: transparent !important;
+    border: none !important;
+    color: var(--font-color) !important;
+    font-size: 2rem !important;
+    text-shadow: var(--font-shadow) !important;
+    cursor: pointer !important;
+    padding: 5px !important;
+    transition: all 0.3s ease !important;
+    opacity: 0.7 !important;
+    flex-shrink: 0;
+}
+
+.link-arrow:hover {
+    opacity: 1 !important;
+    color: rgba(208, 255, 0, 0.9) !important;
+}
+
+.link-link {
+    color: rgba(208,255,0,0.9);
+    text-decoration: none;
+}
+
+.link-link:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
 }
 
 /* SCROLLBAR */
