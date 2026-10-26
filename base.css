@@ -1,12 +1,12 @@
-/* 046 */
+/* 047 */
 /* BASE */
 /* base.css */
 
 @font-face {
     font-family: 'TT2020StyleE';
-    src: url('fonts/TT2020StyleE-Regular.woff2') format('woff2'),
-        url('fonts/TT2020StyleE-Regular.woff') format('woff'),
-        url('fonts/TT2020StyleE-Regular.ttf') format('truetype');
+    src: url('fonts/TT2020StyleE-Regular-mini.ttf') format('woff2'),
+        url('fonts/TT2020StyleE-Regular-mini.woff') format('woff'),
+        url('fonts/TT2020StyleE-Regular-mini.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
