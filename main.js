@@ -1,4 +1,4 @@
-// 046
+// 047
 // main.js
 
 function initDOMElements() {
@@ -53,15 +53,6 @@ function init() {
     initDOMElements();
 
     if (typeof loadLanguageData === 'function') loadLanguageData();
-
-    const savedLang = localStorage.getItem('preferredLanguage');
-    if (savedLang && savedLang !== currentLanguage) {
-        setTimeout(() => {
-            if (languageData[savedLang] && typeof applyLanguage === 'function') {
-                applyLanguage(savedLang);
-            }
-        }, 100);
-    }
 
     if (typeof setupOverlayClickHandlers === 'function') setupOverlayClickHandlers();
     if (typeof setupOverlayBackgroundClick === 'function') setupOverlayBackgroundClick();

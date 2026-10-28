@@ -1,4 +1,4 @@
-/* 046 */
+/* 047 */
 /* cookies.css */
 
 .cookie-notice {
@@ -43,7 +43,7 @@
 }
 
 .read-more-link {
-    color: #4CAF50 !important;
+    color: var(--hover-color) !important;
     text-decoration: underline !important;
     cursor: pointer;
     background: none;
@@ -55,7 +55,7 @@
 }
 
 .read-more-link:hover {
-    color: #66BB6A !important;
+    color: var(--font-color) !important;
 }
 
 .cookie-details {
@@ -64,6 +64,7 @@
     line-height: 1.5;
     padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--font-color);
 }
 
 .cookie-notice.expanded .cookie-details {
@@ -72,14 +73,19 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .cookie-details h3 {
     margin: 20px 0 10px 0;
     font-size: 16px;
-    color: #4CAF50;
+    color: var(--hover-color);
 }
 
 .cookie-details ul {
@@ -151,8 +157,15 @@
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* DIALOG */
@@ -278,26 +291,32 @@ footer p a:hover {
         padding: 15px;
         bottom: 10px;
     }
+
     .cookie-buttons {
         flex-direction: column;
         gap: 10px;
     }
+
     .cookie-btn {
         width: 100%;
         min-width: unset;
     }
+
     .cookie-toast {
         left: 15px;
         right: 15px;
         max-width: none;
         top: 15px;
     }
+
     .cookie-settings-buttons {
         flex-direction: column;
     }
+
     .cookie-settings-content {
         margin-top: 80px;
     }
+
     footer {
         flex-direction: column;
         gap: 8px;

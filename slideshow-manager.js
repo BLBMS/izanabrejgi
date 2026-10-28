@@ -35,10 +35,10 @@ function stopSlideshow() {
 function startSlideshow(delay) {
     stopSlideshow();
     const interval = (typeof delay === 'number') ? delay : BASE_INTERVAL;
-    
+
     slideshowStartTime = Date.now();
     slideshowDuration = interval;
-    
+
     slideshowTimer = setTimeout(function () {
         slideshowTimer = null;
         slideshowStartTime = null;
@@ -60,27 +60,27 @@ function extendSlideshowTimer() {
         startSlideshow(USER_INTERVAL);
         return;
     }
-    
+
     const now = Date.now();
     const elapsed = now - slideshowStartTime;
     const remaining = Math.max(0, slideshowDuration - elapsed);
-    
+
     // Dodaj RAZLIKO med USER_INTERVAL (6s) in BASE_INTERVAL (3s) = 3s
     const extension = USER_INTERVAL - BASE_INTERVAL; // 3000ms
     const newRemaining = remaining + extension;
-    
+
     console.log('⏱️ Timer extended:',
         'elapsed:', elapsed + 'ms',
         'remaining:', remaining + 'ms',
         'newRemaining:', newRemaining + 'ms (podaljšano za ' + extension + 'ms)');
-    
+
     // Počisti stari timer
     clearTimeout(slideshowTimer);
-    
+
     // Nastavi novega z novim časom
     slideshowStartTime = now;
     slideshowDuration = newRemaining;
-    
+
     slideshowTimer = setTimeout(function () {
         slideshowTimer = null;
         slideshowStartTime = null;
@@ -97,7 +97,7 @@ function extendSlideshowTimer() {
 function advanceSlide() {
     if (typeof window.currentSlide === 'undefined') window.currentSlide = 0;
     if (!window.imageFiles || window.imageFiles.length === 0) return;
-    
+
     window.currentSlide++;
     const track = document.getElementById('slideshow-track');
     if (!track || !track.children[0]) return;
@@ -272,7 +272,7 @@ function initSlideshowControls() {
     createSlideshowDots();
     updateDots();
     startSlideshow(BASE_INTERVAL);
-    
+
     // DODAJ: Klik na sliko podaljša timer
     setupSlideshowClickHandler();
 }
@@ -284,24 +284,24 @@ function initSlideshowControls() {
 function setupSlideshowClickHandler() {
     const slideshow = document.querySelector('.slideshow');
     if (!slideshow) return;
-    
+
     // Odstrani stare listenerje (če obstajajo)
     if (window._slideshowClickHandler) {
         slideshow.removeEventListener('click', window._slideshowClickHandler);
     }
-    
+
     // Ustvari nov handler
-    window._slideshowClickHandler = function(e) {
+    window._slideshowClickHandler = function (e) {
         // Preveri, da klik NI na puščico ali piko
-        if (e.target.closest('.slideshow-arrow') || 
+        if (e.target.closest('.slideshow-arrow') ||
             e.target.closest('.slideshow-dot')) {
             return;
         }
-        
+
         // Klik na sliko - podaljšaj timer
         extendSlideshowTimer();
     };
-    
+
     slideshow.addEventListener('click', window._slideshowClickHandler);
 }
 
@@ -409,7 +409,9 @@ function createSlideshowDots() {
     dotsContainer.innerHTML = '';
 
     for (let i = 0; i < window.imageFiles.length; i++) {
-        const dot = document.createElement('div');
+        //const dot = document.createElement('div');
+        const dot = document.createElement('button');
+        dot.type = 'button';
         dot.className = 'slideshow-dot';
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', (function (index) {

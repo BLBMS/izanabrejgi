@@ -1,4 +1,4 @@
-// 046
+// 047
 // cookies.js
 
 const cookieTranslations = {
@@ -17,7 +17,7 @@ const cookieTranslations = {
         detailsTitle3: "Kako lahko upravljate s piškotki?",
         detailsText3: "Večino brskalnikov lahko nastavite tako, da blokirajo piškotke.",
         detailsTitle4: "Vaša zasebnost",
-        detailsText4: "Vaši osebni podatki so nam dragi. Ne delimo jih s tretjimi osebami.",
+        detailsText4: "Vaši osebni podatki so nam dragoceni. Ne delimo jih s tretjimi osebami.",
         declineBtn: "Zavrni piškotke",
         acceptBtn: "Sprejmi vse piškotke",
         toastAccepted: "Hvala! Piškotki so sprejeti.",
@@ -45,7 +45,7 @@ const cookieTranslations = {
         detailsTitle3: "How can you manage cookies?",
         detailsText3: "Most browsers can be set to block cookies.",
         detailsTitle4: "Your privacy",
-        detailsText4: "Your personal data is important to us.",
+        detailsText4: "Your personal data is valuable to us. We do not share it with third parties.",
         declineBtn: "Decline cookies",
         acceptBtn: "Accept all cookies",
         toastAccepted: "Thank you! Cookies accepted.",
@@ -73,7 +73,7 @@ const cookieTranslations = {
         detailsTitle3: "Wie können Sie Cookies verwalten?",
         detailsText3: "Die meisten Browser können so eingestellt werden.",
         detailsTitle4: "Ihre Privatsphäre",
-        detailsText4: "Ihre persönlichen Daten sind uns wichtig.",
+        detailsText4: "Ihre persönlichen Daten sind uns wertvoll. Wir geben sie nicht an Dritte weiter.",
         declineBtn: "Cookies ablehnen",
         acceptBtn: "Alle Cookies akzeptieren",
         toastAccepted: "Danke! Cookies akzeptiert.",
@@ -191,7 +191,7 @@ function showCookieSettingsDialog() {
     const cookiesAccepted = localStorage.getItem('cookiesAccepted');
     const cookiesDeclined = localStorage.getItem('cookiesDeclined');
     const lang = cookieTranslations[currentLang];
-    
+
     let statusText = '';
     let statusClass = '';
     if (cookiesAccepted) {
@@ -204,7 +204,7 @@ function showCookieSettingsDialog() {
         statusText = lang.statusUnknown;
         statusClass = 'cookie-status-unknown';
     }
-    
+
     let dialog = document.getElementById('cookie-settings-dialog');
     if (!dialog) {
         dialog = document.createElement('div');
@@ -212,10 +212,10 @@ function showCookieSettingsDialog() {
         dialog.className = 'cookie-settings-dialog';
         document.body.appendChild(dialog);
     }
-    
+
     const header = document.querySelector('header');
     const headerHeight = header ? header.offsetHeight : 80;
-    
+
     dialog.innerHTML = `
         <div class="cookie-settings-content" style="top: ${headerHeight + 20}px;">
             <button class="cookie-settings-close" id="cookie-settings-close">×</button>
@@ -228,19 +228,19 @@ function showCookieSettingsDialog() {
             <p class="cookie-settings-info">${lang.settingsInfo}</p>
         </div>
     `;
-    
+
     dialog.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+
     const closeBtn = document.getElementById('cookie-settings-close');
     if (closeBtn) closeBtn.onclick = closeCookieSettingsDialog;
     dialog.onclick = (e) => { if (e.target === dialog) closeCookieSettingsDialog(); };
-    
+
     const acceptBtn = document.getElementById('cookie-settings-accept');
     const declineBtn = document.getElementById('cookie-settings-decline');
     if (acceptBtn) acceptBtn.onclick = () => { acceptCookies(); closeCookieSettingsDialog(); };
     if (declineBtn) declineBtn.onclick = () => { declineCookies(); closeCookieSettingsDialog(); };
-    
+
     const escHandler = (e) => { if (e.key === 'Escape') closeCookieSettingsDialog(); };
     document.addEventListener('keydown', escHandler);
     dialog._escHandler = escHandler;
@@ -259,22 +259,22 @@ function updateCookieLanguageFromManager(lang) {
     if (cookieTranslations[lang]) setCookieLanguage(lang);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     try {
-        const savedLang = localStorage.getItem('selectedLanguage') || 'sl';
+        const savedLang = localStorage.getItem('preferredLanguage') || 'sl';
         if (cookieTranslations[savedLang]) currentLang = savedLang;
-    } catch(e) {
+    } catch (e) {
         console.warn('Failed to load saved language preference:', e);
     }
-    
+
     const cookiesAccepted = localStorage.getItem('cookiesAccepted');
     const cookiesDeclined = localStorage.getItem('cookiesDeclined');
-    
+
     if (!cookiesAccepted && !cookiesDeclined) {
         setTimeout(() => {
             updateCookieTexts();
             showCookieNotice();
-            
+
             // Pozicioniraj cookie notice nad footer
             const footer = document.querySelector('footer');
             const notice = document.getElementById('cookie-notice');
@@ -283,12 +283,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 1500);
     }
-    
+
     const acceptBtn = document.querySelector('.cookie-btn.accept');
     const declineBtn = document.querySelector('.cookie-btn.decline');
     if (acceptBtn) acceptBtn.addEventListener('click', acceptCookies);
     if (declineBtn) declineBtn.addEventListener('click', declineCookies);
-    
+
     const footerCookieLink = document.getElementById('footer-cookie-link');
     if (footerCookieLink) {
         footerCookieLink.addEventListener('click', (e) => {
@@ -296,11 +296,11 @@ document.addEventListener('DOMContentLoaded', function() {
             showCookieSettingsDialog();
         });
     }
-    
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && cookieExpanded) toggleCookieDetails();
     });
-    
+
     // Posodobi pozicijo ob spremembi višine footerja
     window.addEventListener('resize', () => {
         const footer = document.querySelector('footer');

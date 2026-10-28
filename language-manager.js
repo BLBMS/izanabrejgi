@@ -1,4 +1,4 @@
-/* 046a */
+/* 047 */
 // language-manager.js
 // Upravljanje jezikov
 
@@ -431,16 +431,14 @@ function loadLanguageData() {
 
 // Določi jezik glede na lokacijo
 function detectLanguageByLocation() {
-    // Preveri URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const langParam = urlParams.get('lang');
 
-    if (langParam && ['sl', 'en', 'de'].includes(langParam)) {
-        return langParam;
+    if (langParam !== null) {
+        return ['sl', 'en', 'de'].includes(langParam) ? langParam : 'en';
     }
 
-    // Preveri glede na jezik brskalnika
-    const userLang = navigator.language || navigator.userLanguage;
+    const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
 
     if (userLang.startsWith('sl')) {
         return 'sl';
@@ -452,7 +450,6 @@ function detectLanguageByLocation() {
 }
 
 // Uporabi jezik
-
 function applyLanguage(lang) {
     if (!window.languageData[lang]) return;
 
