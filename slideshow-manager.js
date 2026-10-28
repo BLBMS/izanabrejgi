@@ -217,6 +217,8 @@ function loadSlides() {
         img.src = selectedImageSrc;
         img.alt = 'Iža ' + (index + 1);
         img.className = 'slide';
+        img.width = mobileDevice ? 600 : 1066;
+        img.height = mobileDevice ? 450 : 800;
 
         img.onload = function () {
             if (!settled) {
