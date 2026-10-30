@@ -1,4 +1,4 @@
-/* 047 */
+/* 048 */
 /* slideshow-manager.js - s podaljšanjem timera ob kliku na sliko */
 
 // Premeša array
@@ -148,8 +148,8 @@ function getImagePaths(imageConfig) {
         const basename = extensionIndex > 0 ? filename.slice(0, extensionIndex) : filename;
 
         return {
-            desktop: 'd_images/d_' + basename + '.webp',
-            mobile: 'm_images/m_' + basename + '.webp'
+            desktop: 'images_d/d_' + basename + '.webp',
+            mobile: 'images_m/m_' + basename + '.webp'
         };
     }
 
@@ -185,8 +185,8 @@ function loadSlides() {
     // Napravo preverimo pred začetkom nalaganja slik, ne po širini okna.
     const mobileDevice = isMobileDevice();
     console.log(mobileDevice
-        ? '📱 Mobilna naprava: nalagam WebP slike iz m_images/'
-        : '🖥️ Namizna naprava: nalagam WebP slike iz d_images/');
+        ? '📱 Mobilna naprava: nalagam WebP slike iz images_m/'
+        : '🖥️ Namizna naprava: nalagam WebP slike iz images_d/');
 
     const shuffledImages = shuffleArray([...window.imageFiles]);
     let settledSlides = 0;
