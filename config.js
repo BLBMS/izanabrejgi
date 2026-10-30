@@ -38,7 +38,7 @@ window.imageFiles = [
 
 // Globalne spremenljivke
 window.currentSlide = 0;
-window.currentLanguage = 'sl';
+window.currentLanguage = 'en';
 window.languageData = {};
 
 // DOM elementi - bodo inicializirani v main.js
