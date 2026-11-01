@@ -1,6 +1,7 @@
-/* 046 */
+/* 049 */
 /* language.css */
 /* JEZIKOVNE ZASTAVICE ------------------------------------------------------------*/
+
 .language-flags {
     display: flex;
     gap: 6px;
@@ -14,12 +15,12 @@
     width: 30px;
     height: 16px;
     border-radius: 2px;
-    overflow: hidden;
     border: 1px solid white;
     transition: transform 0.3s;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .language-flags .language-flag:hover {
@@ -32,6 +33,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 1px;
 }
 
 /* Aktivna zastava v črno-beli barvi */
@@ -52,4 +54,39 @@
         justify-content: flex-end;
         margin-left: auto !important;
     }
+}
+
+/* ==========================================
+    BESEDILO POD ZASTAVO (BREZ OBLAČKA)
+   ========================================== */
+
+.language-flags .language-flag::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+
+    /* Slog besedila */
+    font-size: 0.75rem;
+    font-weight: normal;
+    color: var(--font-color);
+    text-shadow: var(--font-shadow);
+    white-space: nowrap;
+    pointer-events: none;
+
+    /* Skrijemo */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+/* Ob hoverju: prikaži, pobarvaj rumeno in odebeli */
+.language-flags .language-flag:hover::after {
+    opacity: 1;
+    visibility: visible;
+    color: var(--hover-color);
+    font-weight: bold;
 }
