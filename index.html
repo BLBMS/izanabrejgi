@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--049-->
+<!--049a-->
 
 <head>
     <script>
@@ -26,7 +26,6 @@
                     lang = 'en';
                 }
             }
-
             document.documentElement.lang = lang;
         })();
     </script>
@@ -119,12 +118,6 @@
     <link rel="stylesheet" href="language.css">
     <link rel="stylesheet" href="slideshow.css">
     <link rel="stylesheet" href="overlays.css">
-    <!--
-    <link rel="stylesheet" href="hostex.css">
-    <link rel="stylesheet" href="map-overlay.css">
-    <link rel="stylesheet" href="links-overlay.css">
-    <link rel="stylesheet" href="reviews-overlay.css">
--->
     <link rel="stylesheet" href="cookies.css">
     <link rel="stylesheet" href="responsive.css">
 </head>
@@ -146,11 +139,6 @@
                     <li><a href="#opis" onclick="showDescription()" id="nav-description">Opis</a></li>
                     <li><a href="#ponujamo" onclick="showAbout()" id="nav-about">Ponujamo</a></li>
                     <li><a href="#kontakt" onclick="showContact()" id="nav-contact">Kontakti</a></li>
-                    <!-- <li><a href="#zemljevid" onclick="showMapWidget()" id="nav-map">Zemljevid</a></li>
-                    <li><a href="#rezerviraj" onclick="showReserveOverlay()" id="nav-reserve">Rezerviraj</a></li>
-                    <li><a href="#povezave" onclick="showLinksOverlay()" id="nav-links">Povezave</a></li>
-                    <li><a href="#mnenja" onclick="showReviewsOverlay()" id="nav-reviews">Mnenja</a></li>
-                    novo -->
                     <li><a href="#zemljevid" id="nav-map" data-lazy-group="map">Zemljevid</a></li>
                     <li><a href="#rezerviraj" id="nav-reserve" data-lazy-group="hostex">Rezerviraj</a></li>
                     <li><a href="#povezave" id="nav-links" data-lazy-group="links">Povezave</a></li>
@@ -163,10 +151,10 @@
                     <img src="logos/flag_si.png" alt="Slovenija" class="flag">
                 </a>
                 <a href="#" title="English" class="language-flag" data-lang="en">
-                    <img src="logos/flag_us_gb.png" alt="English" class="flag">
+                    <img src="logos/flag_en.png" alt="English" class="flag">
                 </a>
                 <a href="#" title="Deutsch" class="language-flag" data-lang="de">
-                    <img src="logos/flag_de_at.png" alt="Deutsch" class="flag">
+                    <img src="logos/flag_de.png" alt="Deutsch" class="flag">
                 </a>
             </div>
         </nav>
@@ -278,67 +266,9 @@
     <script src="overlay-manager.js"></script>
     <script src="event-handlers.js"></script>
     <script src="main.js"></script>
-    <!--
-    <script src="hostex.js"></script>
-    <script src="map-overlay.js"></script>
-    <script src="links-overlay.js?v=2"></script>
-    <script src="reviews-overlay.js"></script>
--->
     <script src="cookies.js"></script>
     <script src="responsive-manager.js"></script>
-    <!-- nov -->
     <script src="lazy-loader.js"></script>
-
-    <!-- HOSTEX SCRIPT: naloži se šele, ko uporabnik klikne »Rezerviraj« v meniju
-    <script>
-        (function () {
-            const HOSTEX_WIDGET_URL =
-                'https://hostex.io/app/assets/js/hostex-widget.js?version=20260211115522';
-
-            let hostexWidgetLoadPromise = null;
-
-            function loadHostexWidget() {
-                // Če je nalaganje že sproženo, ne dodajaj druge skripte.
-                if (hostexWidgetLoadPromise) {
-                    return hostexWidgetLoadPromise;
-                }
-
-                // Zaščita pred podvojenim nalaganjem, če je skripta že v dokumentu.
-                const existingScript = document.querySelector('script[data-hostex-widget]');
-                if (existingScript) {
-                    hostexWidgetLoadPromise = Promise.resolve();
-                    return hostexWidgetLoadPromise;
-                }
-
-                hostexWidgetLoadPromise = new Promise(function (resolve, reject) {
-                    const script = document.createElement('script');
-                    script.type = 'module';
-                    script.src = HOSTEX_WIDGET_URL;
-                    script.dataset.hostexWidget = 'true';
-                    script.onload = resolve;
-                    script.onerror = function () {
-                        // Omogoči ponovni poskus, če se prva zahteva ni posrečila.
-                        hostexWidgetLoadPromise = null;
-                        reject(new Error('Hostex widget skripte ni bilo mogoče naložiti.'));
-                    };
-                    document.head.appendChild(script);
-                });
-
-                hostexWidgetLoadPromise.catch(function (error) {
-                    console.error(error);
-                });
-
-                return hostexWidgetLoadPromise;
-            }
-
-            // Odpiranje menija samo po sebi ne naloži Hostexa.
-            // Skripta se začne nalagati šele ob kliku na povezavo »Rezerviraj«.
-            document.getElementById('nav-reserve')?.addEventListener('click', function () {
-                loadHostexWidget();
-            });
-        })();
-    </script>
--->
 
     <!-- COOKIES -->
     <div id="cookie-notice" class="cookie-notice" style="display: none;">
