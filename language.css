@@ -1,4 +1,4 @@
-/* 049 */
+/* 049a */
 /* language.css */
 /* JEZIKOVNE ZASTAVICE ------------------------------------------------------------*/
 
@@ -89,4 +89,32 @@
     visibility: visible;
     color: var(--hover-color);
     font-weight: bold;
+}
+
+/* ==========================================
+   POPRAVEK ZA MOBILNE NAPRAVE (POD 650px)
+   ========================================== */
+
+/* 1. Prepreči, da tekst pri zadnji zastavi pobegne iz ekrana */
+@media (max-width: 650px) {
+
+    /* Za skrajno desno zastavo (Deutsch) poravnamo tekst na desno */
+    .language-flag:last-child::after {
+        left: auto;
+        right: 0;
+        transform: none;
+    }
+
+    /* Za skrajno levo zastavo (Slovenščina) poravnamo tekst na levo */
+    .language-flag:first-child::after {
+        left: 0;
+        transform: none;
+    }
+}
+
+/* 2. Na napravah na dotik (telefoni, tablice) onemogočimo hover tooltip */
+@media (hover: none) and (pointer: coarse) {
+    .language-flags .language-flag::after {
+        display: none !important;
+    }
 }

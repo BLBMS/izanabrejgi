@@ -1,4 +1,4 @@
-/* 046 */
+/* 049a */
 /* overlay-manager.js */
 
 let activeOverlayType = null;
@@ -43,7 +43,7 @@ function adjustOverlayPosition() {
     const bottomOffset = footerHeight + 20;
     const maxHeight = `calc(100vh - ${topOffset + bottomOffset}px)`;
 
-    console.log('adjustOverlayPosition - topOffset:', topOffset, 'activeOverlayType:', activeOverlayType);
+    //console.log('adjustOverlayPosition - topOffset:', topOffset, 'activeOverlayType:', activeOverlayType);
 
     // 1. TEXT OVERLAYI
     const textOverlays = document.querySelectorAll('.text-overlay, .contact-overlay');
@@ -126,7 +126,7 @@ window.addEventListener('orientationchange', () => {
 // SKRIJ VSE
 // ============================================
 function hideAllOverlays() {
-    console.log('Hiding all overlays, current active:', activeOverlayType);
+    //console.log('Hiding all overlays, current active:', activeOverlayType);
 
     const bg = document.getElementById('overlay-background');
     if (bg) bg.classList.remove('active');

@@ -1,4 +1,4 @@
-/* 046 */
+/* 049 */
 /* responsive-manager.js */
 // Responsivne funkcije
 
@@ -18,7 +18,7 @@ function adjustSlideshowHeight() {
         // Izračunamo razpoložljivo višino
         const availableHeight = window.innerHeight - headerHeight - footerHeight;
 
-        console.log('📐 adjustSlideshowHeight - Header:', headerHeight, 'Footer:', footerHeight, 'Available:', availableHeight);
+        //console.log('📐 adjustSlideshowHeight - Header:', headerHeight, 'Footer:', footerHeight, 'Available:', availableHeight);
 
         // Nastavimo višino
         slideshow.style.height = availableHeight + 'px';
@@ -67,7 +67,7 @@ function observeHeaderChanges() {
 
     // Opazujemo spremembe velikosti headerja
     const resizeObserver = new ResizeObserver(() => {
-        console.log('📐 Header size changed, adjusting...');
+        //console.log('📐 Header size changed, adjusting...');
         adjustSlideshowHeight();
         adjustContainerHeight();
     });

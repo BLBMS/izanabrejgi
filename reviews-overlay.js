@@ -1,4 +1,4 @@
-/* 046 */
+/* 049 */
 /* reviews-overlay.js - s paginacijo in samodejnim pomikanjem (brez zvezdic) */
 
 const baseReviewsData = [
@@ -256,7 +256,7 @@ function prevReviewsPage() {
 }
 
 function showReviewsOverlay() {
-    console.log('showReviewsOverlay called');
+    //console.log('showReviewsOverlay called');
 
     currentReviewsPage = 0;
 
@@ -308,7 +308,7 @@ function showReviewsOverlay() {
 }
 
 function hideReviewsOverlay() {
-    console.log('hideReviewsOverlay called');
+    //console.log('hideReviewsOverlay called');
 
     stopAutoSlide();
 

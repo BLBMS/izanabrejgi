@@ -1,8 +1,6 @@
-// 046
+// 049a
 // map-overlay.js
 
-//const LAT = 46.709083;
-//const LNG = 16.246525;
 const LAT = 46.70913;
 const LNG = 16.24649;
 const PLACE_NAME = "Iža na brejgi";
@@ -65,7 +63,7 @@ function getMapText(lang, key) {
 }
 
 function showMapWidget() {
-    console.log('🗺️ Showing Map widget...');
+    //console.log('🗺️ Showing Map widget...');
 
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
@@ -311,7 +309,7 @@ function showMapWidget() {
 }
 
 function hideMapWidget() {
-    console.log('Hiding Map widget');
+    //console.log('Hiding Map widget');
 
     const mapContainer = document.getElementById('map-container');
     const closeButton = document.getElementById('close-map-widget');
@@ -339,7 +337,7 @@ function hideMapWidget() {
 }
 
 function refreshMapLanguage(lang) {
-    console.log('Refreshing map language to:', lang);
+    //console.log('Refreshing map language to:', lang);
     const mapContainer = document.getElementById('map-container');
     if (mapContainer && activeOverlayType === 'map') {
         const iframe = document.getElementById('map-iframe');

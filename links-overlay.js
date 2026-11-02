@@ -1,4 +1,4 @@
-/* 046a */
+/* 049 */
 /* links-overlay.js */
 
 const baseLinksData = [
@@ -234,7 +234,7 @@ function linksBodyClickHandler(e) {
 }
 
 function showLinksOverlay() {
-    console.log('showLinksOverlay called');
+    //console.log('showLinksOverlay called');
 
     // Zapremo druge overlaye
     if (activeOverlayType && activeOverlayType !== 'links') {

@@ -11,8 +11,6 @@
             let lang;
 
             if (urlLang !== null) {
-                // Parameter obstaja: uporabi ga le, če je podprt,
-                // sicer izberi angleščino.
                 lang = ['sl', 'en', 'de'].includes(urlLang) ? urlLang : 'en';
             } else {
                 // Parametra ni: določi jezik glede na brskalnik.
@@ -203,7 +201,30 @@
             <button id="reserve-open-widget" class="reserve-open-btn">Odpri rezervacijski portal</button>
         </div>
     </div>
-    
+
+    <!--
+    <div id="links-background" class="links-background"></div>
+
+    <div id="links-overlay" class="links-overlay">
+        <div class="links-content">
+            <h2 id="links-title">Povezave</h2>
+            <div class="links-container" id="links-container"></div>
+        </div>
+    </div>
+
+    <div id="reviews-background" class="reviews-background"></div>
+
+    <div id="reviews-overlay" class="reviews-overlay">
+        <h2 id="reviews-title">Mnenja gostov</h2>
+        <div id="reviews-container" class="reviews-container"></div>
+        <div class="reviews-navigation">
+            <button class="reviews-arrow" id="reviews-prev" onclick="window.prevReviewsPage?.()">❮</button>
+            <span id="reviews-page-info" class="reviews-page-info">1 / 2</span>
+            <button class="reviews-arrow" id="reviews-next" onclick="window.nextReviewsPage?.()">❯</button>
+        </div>
+    </div>
+-->
+
     <div id="links-background" class="links-background"></div>
 
     <div id="links-overlay" class="links-overlay" style="display: none;">
@@ -224,6 +245,7 @@
             <button class="reviews-arrow" id="reviews-next" onclick="window.nextReviewsPage?.()">❯</button>
         </div>
     </div>
+
 
     <!-- GUMB ZA ZAPIRANJE -->
     <button id="close-hostex-widget" onclick="hideHostexWidget()" style="display:none;">
@@ -254,7 +276,7 @@
     <script>
         // Prepreči source map errorje
         if (window.location.protocol === 'file:') {
-            console.log('Running in file protocol - disabling source maps');
+            //console.log('Running in file protocol - disabling source maps');
             // Nastavi globalno spremenljivko za preprečitev source map errorjev
             window.ignoreSourceMaps = true;
         }

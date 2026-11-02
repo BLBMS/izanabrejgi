@@ -1,4 +1,4 @@
-/* 048 */
+/* 049a */
 /* slideshow-manager.js - s podaljšanjem timera ob kliku na sliko */
 
 // Premeša array
@@ -69,10 +69,11 @@ function extendSlideshowTimer() {
     const extension = USER_INTERVAL - BASE_INTERVAL; // 3000ms
     const newRemaining = remaining + extension;
 
-    console.log('⏱️ Timer extended:',
+    /*console.log('⏱️ Timer extended:',
         'elapsed:', elapsed + 'ms',
         'remaining:', remaining + 'ms',
         'newRemaining:', newRemaining + 'ms (podaljšano za ' + extension + 'ms)');
+*/
 
     // Počisti stari timer
     clearTimeout(slideshowTimer);
@@ -185,8 +186,8 @@ function loadSlides() {
     // Napravo preverimo pred začetkom nalaganja slik, ne po širini okna.
     const mobileDevice = isMobileDevice();
     console.log(mobileDevice
-        ? '📱 Mobilna naprava: nalagam WebP slike iz images_m/'
-        : '🖥️ Namizna naprava: nalagam WebP slike iz images_d/');
+        ? '📱 Mobile'
+        : '🖥️ Desktop');
 
     const shuffledImages = shuffleArray([...window.imageFiles]);
     let settledSlides = 0;
@@ -437,6 +438,50 @@ function updateDots() {
         }
     });
 }
+
+// ============================================
+// SWIPE (TOUCH) ZA MOBILNE NAPRAVE
+// ============================================
+let touchStartX = 0;
+let touchEndX = 0;
+const SWIPE_THRESHOLD = 50; // Minimalna razdalja v px, da se šteje kot kretnja
+
+function handleTouchStart(e) {
+    // Zabeležimo začetno X koordinato dotika
+    touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+    // Zabeležimo končno X koordinato dotika
+    touchEndX = e.changedTouches[0].screenX;
+
+    // Izračunamo razliko
+    const swipeDistance = touchEndX - touchStartX;
+
+    if (Math.abs(swipeDistance) > SWIPE_THRESHOLD) {
+        if (swipeDistance < 0) {
+            // Povlek v levo (prst gre levo) -> naslednja slika
+            if (typeof nextSlide === 'function') nextSlide();
+        } else {
+            // Povlek v desno (prst gre desno) -> prejšnja slika
+            if (typeof prevSlide === 'function') prevSlide();
+        }
+    }
+}
+
+function setupSwipeHandlers() {
+    const slideshowContainer = document.getElementById('slideshow-container');
+
+    if (!slideshowContainer) return;
+
+    // Preverimo, ali naprava podpira dotik (mobiteli, tablice)
+    // Uporabimo { passive: true }, da ne blokiramo scrollanja strani, če ni potrebno
+    slideshowContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    slideshowContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+}
+
+// Kličemo ob nalaganju DOM-a
+document.addEventListener('DOMContentLoaded', setupSwipeHandlers);
 
 // ============================================
 // ZAUSTAVITEV OB ZAPUSTITVI STRANI

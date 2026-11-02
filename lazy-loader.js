@@ -1,5 +1,5 @@
+/* 049a
 /* lazy-loader.js
-/* 049
  * Nalaga 4 skupine CSS/JS v ozadju (requestIdleCallback), šele po prvem prikazu.
  * Ob kliku na menu preveri, ali je skupina že naložena; če ni, jo naloži sinhrono in počaka.
  */
@@ -96,7 +96,7 @@
             .then(() => Promise.all(g.js.map(loadJS)))
             .then(() => {
                 state[name] = 'loaded';
-                console.log('[lazy-loader] Skupina naložena:', name);
+                //console.log('[lazy-loader] Skupina naložena:', name);
             })
             .catch(err => {
                 state[name] = 'error';
@@ -131,7 +131,7 @@
     function startIdlePrefetch() {
         // Spoštuj saveData (varčevanje s podatki)
         if (navigator.connection && navigator.connection.saveData) {
-            console.log('[lazy-loader] saveData aktiven – preskočim prefetch');
+            //console.log('[lazy-loader] saveData aktiven – preskočim prefetch');
             return;
         }
 
