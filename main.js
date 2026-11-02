@@ -114,7 +114,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = { init, initDOMElements };
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         const logoSection = document.querySelector('.logo-section');
         if (logoSection) {
@@ -130,3 +130,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 100);
 });
+*/

@@ -74,7 +74,7 @@ async function showHostexWidget() {
     // dodano 049
     if (typeof loadHostexWidget === 'function') loadHostexWidget();
 
-    //console.log('👁️ Showing Hostex widget (fullscreen)...');
+    console.log('👁️ Showing Hostex widget (fullscreen)...');
 
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
@@ -142,7 +142,7 @@ async function showHostexWidget() {
 }
 
 function hideHostexWidget() {
-    //console.log('👁️‍🗨️ Hiding Hostex widget...');
+    console.log('👁️‍🗨️ Hiding Hostex widget...');
 
     const widget = document.querySelector('hostex-booking-widget');
     if (widget) widget.style.display = 'none';

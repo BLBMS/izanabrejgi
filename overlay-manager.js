@@ -22,7 +22,7 @@ function deselectAllText() {
 // ============================================
 // DINAMIČNO POZICIONIRANJE
 // ============================================
-function adjustOverlayPosition() {
+/*function adjustOverlayPosition() {
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
     const headerHeight = header ? header.offsetHeight : 80;
@@ -43,7 +43,7 @@ function adjustOverlayPosition() {
     const bottomOffset = footerHeight + 20;
     const maxHeight = `calc(100vh - ${topOffset + bottomOffset}px)`;
 
-    //console.log('adjustOverlayPosition - topOffset:', topOffset, 'activeOverlayType:', activeOverlayType);
+    console.log('adjustOverlayPosition - topOffset:', topOffset, 'activeOverlayType:', activeOverlayType);
 
     // 1. TEXT OVERLAYI
     const textOverlays = document.querySelectorAll('.text-overlay, .contact-overlay');
@@ -114,6 +114,112 @@ function adjustOverlayPosition() {
         blurOverlay.style.height = `calc(100vh - ${headerHeight + footerHeight}px)`;
     }
 }
+*/
+
+function adjustOverlayPosition() {
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    const headerHeight = header ? header.offsetHeight : 80;
+    const footerHeight = footer ? footer.offsetHeight : 60;
+
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const isMobile = window.innerWidth <= 933;
+
+    let topOffset;
+    let bottomOffset;
+
+    if (isMobile && isLandscape) {
+        topOffset = headerHeight + 2;
+        bottomOffset = footerHeight + 5;
+    } else if (isMobile) {
+        topOffset = headerHeight + 10;
+        bottomOffset = footerHeight + 5; /* manjši odmik, da gre overlay do dna */
+    } else {
+        topOffset = headerHeight + 20;
+        bottomOffset = footerHeight + 20;
+    }
+
+    /* Uporabimo 100dvh za mobilne (dinamična višina) */
+    const viewportHeight = (typeof window.visualViewport !== 'undefined')
+        ? window.visualViewport.height
+        : window.innerHeight;
+    const maxHeight = `calc(${viewportHeight}px - ${topOffset + bottomOffset}px)`;
+
+    // 1. TEXT OVERLAYI
+    const textOverlays = document.querySelectorAll('.text-overlay, .contact-overlay');
+    textOverlays.forEach(overlay => {
+        overlay.style.top = `${topOffset}px`;
+        overlay.style.transform = 'translateX(-50%)';
+        overlay.style.maxHeight = maxHeight;
+        overlay.style.position = 'fixed';
+        overlay.style.marginTop = '0';
+        overlay.style.left = '50%';
+    });
+
+    // 2. LINKS OVERLAY
+    const linksOverlay = document.getElementById('links-overlay');
+    if (linksOverlay) {
+        linksOverlay.style.top = `${topOffset}px`;
+        linksOverlay.style.transform = 'translateX(-50%)';
+        linksOverlay.style.maxHeight = maxHeight;
+        linksOverlay.style.position = 'fixed';
+        linksOverlay.style.marginTop = '0';
+        linksOverlay.style.left = '50%';
+        linksOverlay.style.display = 'none';
+        linksOverlay.offsetHeight;
+        linksOverlay.style.display = '';
+    }
+
+    // 3. REVIEWS OVERLAY
+    const reviewsOverlay = document.getElementById('reviews-overlay');
+    if (reviewsOverlay) {
+        reviewsOverlay.style.top = `${topOffset}px`;
+        reviewsOverlay.style.transform = 'translateX(-50%)';
+        reviewsOverlay.style.maxHeight = maxHeight;
+        reviewsOverlay.style.position = 'fixed';
+        reviewsOverlay.style.marginTop = '0';
+        reviewsOverlay.style.left = '50%';
+    }
+
+    // MAP OVERLAY
+    const mapContainer = document.getElementById('map-container');
+    if (mapContainer && activeOverlayType === 'map') {
+        mapContainer.style.top = `${topOffset}px`;
+        mapContainer.style.height = `calc(${viewportHeight}px - ${topOffset + bottomOffset}px)`;
+    }
+
+    const mapCloseBtn = document.getElementById('close-map-widget');
+    if (mapCloseBtn && mapCloseBtn.style.display === 'flex') {
+        mapCloseBtn.style.top = `${topOffset + 10}px`;
+    }
+
+    // 4. HOSTEX OVERLAY
+    const hostexWidget = document.querySelector('hostex-booking-widget');
+    if (hostexWidget && hostexWidget.style.display === 'block') {
+        hostexWidget.style.top = `${topOffset}px`;
+        hostexWidget.style.height = `calc(${viewportHeight}px - ${topOffset + bottomOffset}px)`;
+    }
+
+    const hostexCloseBtn = document.getElementById('global-hostex-close');
+    if (hostexCloseBtn && hostexCloseBtn.style.display === 'flex') {
+        hostexCloseBtn.style.top = `${topOffset + 10}px`;
+        hostexCloseBtn.style.right = '5px';
+    }
+
+    // 5. BLUR - PRAVILNA VIŠINA (ne čez footer)
+    const blurOverlay = document.getElementById('full-page-blur');
+    if (blurOverlay && blurOverlay.classList.contains('active')) {
+        blurOverlay.style.top = `${headerHeight}px`;
+        blurOverlay.style.height = `calc(${viewportHeight}px - ${headerHeight + footerHeight}px)`;
+    }
+}
+
+/* Posodobi ob premikanju dinamičnega viewporta (mobilni Chrome) */
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+        if (activeOverlayType) setTimeout(adjustOverlayPosition, 50);
+    });
+}
 
 window.addEventListener('resize', () => {
     if (activeOverlayType) setTimeout(adjustOverlayPosition, 50);
@@ -126,7 +232,7 @@ window.addEventListener('orientationchange', () => {
 // SKRIJ VSE
 // ============================================
 function hideAllOverlays() {
-    //console.log('Hiding all overlays, current active:', activeOverlayType);
+    console.log('Hiding all overlays, current active:', activeOverlayType);
 
     const bg = document.getElementById('overlay-background');
     if (bg) bg.classList.remove('active');
@@ -147,7 +253,8 @@ function hideAllOverlays() {
 
     if (typeof hideMapWidget === 'function') hideMapWidget();
     if (typeof hideHostexWidget === 'function') hideHostexWidget();
-    if (typeof hideReviewsOverlay === 'function') hideReviewsOverlay();
+    //if (typeof hideReviewsOverlay === 'function') hideReviewsOverlay();
+    if (typeof stopAutoSlide === 'function') stopAutoSlide();
 
     document.querySelectorAll('.dropdown').forEach(dropdown => {
         dropdown.classList.remove('active');

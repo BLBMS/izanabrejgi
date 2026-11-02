@@ -24,7 +24,7 @@
 }
 
 .reviews-overlay.active {
-    display: block;
+    display: block !important;
 }
 
 .reviews-container {
@@ -114,7 +114,7 @@
 }
 
 .review-link {
-    color: rgba(208,255,0,0.9);
+    color: rgba(208, 255, 0, 0.9);
     text-decoration: none;
 }
 

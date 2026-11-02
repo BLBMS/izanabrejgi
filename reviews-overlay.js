@@ -255,8 +255,8 @@ function prevReviewsPage() {
     }
 }
 
-function showReviewsOverlay() {
-    //console.log('showReviewsOverlay called');
+/*function showReviewsOverlay() {
+    console.log('showReviewsOverlay called');
 
     currentReviewsPage = 0;
 
@@ -306,9 +306,76 @@ function showReviewsOverlay() {
     document.body.style.overflow = 'hidden';
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+*/
+
+function showReviewsOverlay() {
+    console.log('1. showReviewsOverlay called');
+
+    currentReviewsPage = 0;
+
+    if (typeof hideAllOverlays === 'function') {
+        console.log('2. Before hideAllOverlays');
+        hideAllOverlays();
+        console.log('3. After hideAllOverlays');
+    }
+
+    activeOverlayType = 'reviews';
+    console.log('4. activeOverlayType set to:', activeOverlayType);
+
+    const bg = document.getElementById('overlay-background');
+    if (bg) {
+        bg.classList.add('active');
+        console.log('5. overlay-background active added');
+    }
+
+    const currentLang = window.currentLanguage || 'sl';
+    const overlay = document.getElementById('reviews-overlay');
+
+    console.log('6. Before loadReviewsPage');
+    loadReviewsPage(currentLang);
+    console.log('7. After loadReviewsPage');
+
+    if (overlay) {
+        overlay.classList.add('active');
+        console.log('8. reviews-overlay active added');
+    } else {
+        console.error('8. ERROR: reviews-overlay element not found!');
+    }
+
+    const title = document.getElementById('reviews-title');
+    const navData = window.languageData?.[currentLang]?.nav;
+
+    if (title && navData?.reviews) {
+        title.textContent = navData.reviews;
+    } else if (title) {
+        title.textContent = 'Mnenja gostov';
+    }
+
+    console.log('9. Before startAutoSlide');
+    startAutoSlide();
+    console.log('10. After startAutoSlide');
+
+    setTimeout(() => {
+        if (typeof adjustOverlayPosition === 'function') {
+            adjustOverlayPosition();
+        }
+    }, 10);
+
+    document.addEventListener('keydown', reviewsEscHandler);
+    document.body.addEventListener('click', reviewsBodyClickHandler);
+
+    if (overlay) {
+        overlay.addEventListener('mouseenter', stopAutoSlide);
+        overlay.addEventListener('mouseleave', startAutoSlide);
+    }
+
+    document.body.style.overflow = 'hidden';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    console.log('11. showReviewsOverlay finished');
+}
 
 function hideReviewsOverlay() {
-    //console.log('hideReviewsOverlay called');
+    console.log('hideReviewsOverlay called');
 
     stopAutoSlide();
 
@@ -339,7 +406,7 @@ function reviewsEscHandler(e) {
     }
 }
 
-function reviewsBodyClickHandler(e) {
+/*function reviewsBodyClickHandler(e) {
     const isFlag = e.target.closest('.language-flag');
     if (isFlag) return;
 
@@ -348,6 +415,20 @@ function reviewsBodyClickHandler(e) {
 
     const isOverlayContent = e.target.closest('#reviews-overlay');
     if (!isOverlayContent && activeOverlayType === 'reviews') {
+        hideReviewsOverlay();
+    }
+}
+*/
+
+function reviewsBodyClickHandler(e) {
+    // Ne skrivaj, če je klik prišel z menu povezave
+    if (e.target.closest('.nav-links a')) return;
+    if (e.target.closest('.language-flag')) return;
+    if (e.target.closest('.reviews-arrow')) return;
+    if (e.target.closest('#reviews-overlay')) return;
+    if (e.target.closest('.text-overlay, .contact-overlay, .links-overlay, hostex-booking-widget, #map-container, #reserve-overlay')) return;
+
+    if (activeOverlayType === 'reviews') {
         hideReviewsOverlay();
     }
 }

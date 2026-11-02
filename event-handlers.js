@@ -131,7 +131,7 @@ function setupNavHandlers() {
     navContact?.addEventListener('click', e => { e.stopPropagation(); showContact(); });
 
     // ---- Z LAZY LOADING ----
-    function lazyClick(el, groupName, opener) {
+    /*function lazyClick(el, groupName, opener) {
         if (!el) return;
         el.addEventListener('click', async function (e) {
             e.preventDefault();
@@ -158,6 +158,36 @@ function setupNavHandlers() {
             // Zdaj je vse pripravljeno – odpri overlay
             opener();
         });
+        */
+    function lazyClick(el, groupName, opener) {
+        if (!el) return;
+        el.addEventListener('click', async function (e) {
+            // Preveri, ali je dogodek že obdelan
+            if (e.defaultPrevented) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (!window.LazyLoader) {
+                opener();
+                return;
+            }
+
+            if (!window.LazyLoader.isLoaded(groupName)) {
+                el.classList.add('lazy-loading');
+                try {
+                    await window.LazyLoader.loadGroup(groupName);
+                } catch (err) {
+                    console.error('Lazy load failed:', groupName, err);
+                    el.classList.remove('lazy-loading');
+                    return;
+                }
+                el.classList.remove('lazy-loading');
+            }
+
+            opener();
+        });
+        // ---- KONEC Z LAZY LOADING ----}
     }
 
     lazyClick(navMap, 'map', () => showMapWidget());

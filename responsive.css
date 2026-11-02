@@ -333,19 +333,17 @@ footer p {
    ========================================== */
 @media (max-width: 440px) {
 
-    /* 1. Pomaknemo logo in tekst navzdol (prej je bilo 5px) */
+    /* 1. Samo logotip in napis premaknemo navzdol */
     .logo-section {
-        top: 20px !important;
+        top: 22px !important;
     }
 
-    /* 2. Povečamo padding na nav, da se menu in spodnji rob pomakneta za logom */
+    /* 2. Povečamo padding na nav, da menu ostane pod logotipom */
     nav {
-        padding-top: 55px !important;
-        /* Prej 40px, zdaj 55px */
+        padding-top: 58px !important;
+        /* Dovolj prostora za spuščen logotip */
     }
 
-    /* 3. Rahlo spustimo še zastave, da so poravnane z novim položajem logotipa */
-    .language-flags {
-        top: 15px !important;
-    }
+    /* Zastave PUSTIMO pri miru (brez !important za top), 
+       da ostanejo na svojem mestu (top: 8px iz pravil za 600px) */
 }

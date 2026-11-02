@@ -234,7 +234,7 @@ function linksBodyClickHandler(e) {
 }
 
 function showLinksOverlay() {
-    //console.log('showLinksOverlay called');
+    console.log('showLinksOverlay called');
 
     // Zapremo druge overlaye
     if (activeOverlayType && activeOverlayType !== 'links') {

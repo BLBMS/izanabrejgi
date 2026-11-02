@@ -96,7 +96,7 @@
             .then(() => Promise.all(g.js.map(loadJS)))
             .then(() => {
                 state[name] = 'loaded';
-                //console.log('[lazy-loader] Skupina naložena:', name);
+                console.log('[lazy-loader] Skupina naložena:', name);
             })
             .catch(err => {
                 state[name] = 'error';
@@ -114,7 +114,7 @@
     function prefetchGroup(name) {
         if (state[name] === 'loaded' || state[name] === 'loading') return;
         // Uporabi requestIdleCallback, da ne tekmuje z animacijami
-        scheduleIdle(() => loadGroup(name).catch(() => {}));
+        scheduleIdle(() => loadGroup(name).catch(() => { }));
     }
 
     // ============================================
@@ -131,7 +131,7 @@
     function startIdlePrefetch() {
         // Spoštuj saveData (varčevanje s podatki)
         if (navigator.connection && navigator.connection.saveData) {
-            //console.log('[lazy-loader] saveData aktiven – preskočim prefetch');
+            console.log('[lazy-loader] saveData aktiven – preskočim prefetch');
             return;
         }
 
@@ -147,7 +147,7 @@
                 return;
             }
             loadGroup(name)
-                .catch(() => {})
+                .catch(() => { })
                 .finally(() => scheduleIdle(next));
         }
 
