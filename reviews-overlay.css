@@ -1,6 +1,9 @@
-/* 046 */
+/* 050 */
 /* reviews-overlay.css */
 
+/* ==========================================
+   OSNOVNI OVERLAY (deluje na vseh napravah)
+   ========================================== */
 .reviews-overlay {
     display: none;
     position: fixed;
@@ -20,43 +23,50 @@
     border: 1px solid rgba(208, 255, 0, 0.2);
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    /* Glavni scroll je na overlayu */
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
 }
 
 .reviews-overlay.active {
     display: block !important;
 }
 
+/* Notranji vsebnik NE skrola sam, ker overflow prevzame overlay */
 .reviews-container {
     padding: 0.5rem;
-    max-height: calc(100vh - 250px);
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
 }
 
-/* SCROLLBAR - ENAK KOT PRI OSTALIH OVERLAYIH */
-.reviews-overlay::-webkit-scrollbar,
-.reviews-container::-webkit-scrollbar {
+/* Skrijemo staro navigacijo (paginacijo), če je še kje v HTML-ju */
+.reviews-navigation {
+    display: none !important;
+}
+
+/* ==========================================
+   SCROLLBAR
+   ========================================== */
+.reviews-overlay::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
-.reviews-overlay::-webkit-scrollbar-track,
-.reviews-container::-webkit-scrollbar-track {
+.reviews-overlay::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
 
-.reviews-overlay::-webkit-scrollbar-thumb,
-.reviews-container::-webkit-scrollbar-thumb {
+.reviews-overlay::-webkit-scrollbar-thumb {
     background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
     border-radius: 4px;
 }
 
-.reviews-overlay {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
-}
-
+/* ==========================================
+   NASLOV IN VSEBINA
+   ========================================== */
 #reviews-title {
     text-align: center;
     margin-bottom: 1.5rem;
@@ -123,50 +133,17 @@
     text-decoration: underline;
 }
 
-/* Navigacija za mnenja - kot slideshow */
-.reviews-navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    margin-top: 3px;
-    margin-bottom: 0px;
-    padding-top: 3px;
-}
-
-.reviews-arrow {
-    background: transparent !important;
-    border: none !important;
-    color: var(--font-color) !important;
-    font-size: 2rem !important;
-    text-shadow: var(--font-shadow) !important;
-    cursor: pointer !important;
-    padding: 5px 10px !important;
-    transition: all 0.3s ease !important;
-    opacity: 0.7 !important;
-    line-height: 1;
-}
-
-.reviews-arrow:hover {
-    opacity: 1 !important;
-    color: rgba(208, 255, 0, 0.9) !important;
-    transform: scale(1.1);
-}
-
-.reviews-page-info {
-    font-size: 1.2rem;
-    color: var(--font-color);
-    text-shadow: var(--font-shadow);
-    min-width: 60px;
-    text-align: center;
-    line-height: 1;
-}
-
-/* MOBILNI */
+/* ==========================================
+   MOBILNE PRILAGODITVE (POD 768px)
+   ========================================== */
 @media (max-width: 768px) {
     .reviews-overlay {
         padding: 1rem;
         width: 95%;
+    }
+
+    .reviews-container {
+        padding: 0;
     }
 
     .review-item {
@@ -189,13 +166,11 @@
     .review-platform-logo {
         height: 24px;
     }
-
-    .reviews-arrow {
-        font-size: 1.6rem !important;
-        padding: 5px 10px !important;
-    }
 }
 
+/* ==========================================
+   MAJHNI MOBILNI (POD 480px)
+   ========================================== */
 @media (max-width: 480px) {
     .reviews-overlay {
         padding: 0.75rem;
@@ -216,15 +191,5 @@
 
     .review-text {
         font-size: 0.9rem;
-    }
-
-    .reviews-arrow {
-        font-size: 1.4rem !important;
-        padding: 5px 8px !important;
-    }
-
-    .reviews-page-info {
-        font-size: 0.85rem;
-        min-width: 50px;
     }
 }

@@ -69,7 +69,7 @@ function extendSlideshowTimer() {
     const extension = USER_INTERVAL - BASE_INTERVAL; // 3000ms
     const newRemaining = remaining + extension;
 
-    /*console.log('⏱️ Timer extended:',
+    /*//console.log('⏱️ Timer extended:',
         'elapsed:', elapsed + 'ms',
         'remaining:', remaining + 'ms',
         'newRemaining:', newRemaining + 'ms (podaljšano za ' + extension + 'ms)');

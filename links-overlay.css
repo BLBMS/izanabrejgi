@@ -1,24 +1,6 @@
 /* 046a */
 /* links-overlay.css */
 
-.links-background {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--overlay-background);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 90;
-    cursor: pointer;
-}
-
-.links-background.active {
-    display: block;
-}
-
 .links-overlay {
     display: none;
     position: fixed;
@@ -31,7 +13,7 @@
     padding: 2rem;
     z-index: 100;
     width: 90%;
-    max-width: 1000px;
+    max-width: 1100px;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -39,15 +21,12 @@
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
 }
 
 .links-overlay.active {
     display: block;
-}
-
-.links-content {
-    padding: 1rem;
-    padding-right: 0.5rem;
 }
 
 #links-title {
@@ -64,87 +43,8 @@
     flex-direction: column;
     gap: 15px;
     margin-top: 1.5rem;
+    padding: 0.5rem;
 }
-
-/*
-.link-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    border-left: 4px solid rgba(208, 255, 0, 0.5);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none !important;
-    color: inherit;
-}
-
-.link-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-left-color: rgba(208, 255, 0, 0.8);
-}
-
-.link-icon {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 6px;
-    flex-shrink: 0;
-    border: 1px solid rgba(208, 255, 0, 0.3);
-}
-
-.link-icon.contain {
-    object-fit: contain;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 5px;
-}
-
-.link-text {
-    flex: 1;
-    min-width: 0;
-}
-
-.link-title {
-    font-size: 1.3rem;
-    margin: 0 0 8px 0;
-    color: rgba(208, 255, 0, 0.9);
-    font-weight: 600;
-}
-
-.link-item:hover .link-title {
-    color: rgba(234, 255, 0, 1);
-}
-
-.link-description {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.link-arrow {
-    background: transparent !important;
-    border: none !important;
-    color: var(--font-color) !important;
-    font-size: 2rem !important;
-    text-shadow: var(--font-shadow) !important;
-    cursor: pointer !important;
-    padding: 5px !important;
-    transition: all 0.3s ease !important;
-    opacity: 0.7 !important;
-    flex-shrink: 0;
-}
-
-.link-arrow:hover {
-    opacity: 1 !important;
-    color: rgba(208, 255, 0, 0.9) !important;
-}
-*/
 
 /* Kartica povezave */
 .link-item {
@@ -210,7 +110,7 @@
 
 /* NOTRANJI LINK (npr. kolesarske poti) */
 .link-description .link-link {
-    color: rgba(208,255,0,0.9);
+    color: rgba(208, 255, 0, 0.9);
     text-decoration: none;
     /*
     color: rgba(208, 255, 0, 0.95) !important;
@@ -252,7 +152,7 @@
 }
 
 .link-link {
-    color: rgba(208,255,0,0.9);
+    color: rgba(208, 255, 0, 0.9);
     text-decoration: none;
 }
 
@@ -284,23 +184,32 @@
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .links-overlay {
-        padding: 1.5rem;
-        max-width: 95%;
+        padding: 1rem;
+        width: 95%;
     }
+
+    .links-container {
+        padding: 0;
+    }
+
     .link-item {
         gap: 15px;
         padding: 12px;
     }
+
     .link-icon {
         width: 80px;
         height: 80px;
     }
+
     .link-title {
         font-size: 1.1rem;
     }
+
     .link-description {
         font-size: 0.9rem;
     }
+
     .link-arrow {
         font-size: 1.8rem !important;
     }
@@ -308,17 +217,21 @@
 
 @media (max-width: 480px) {
     .links-overlay {
-        padding: 1rem;
+        padding: 0.75rem;
+        width: 98%;
     }
+
     .link-item {
         flex-direction: column;
         text-align: center;
         gap: 10px;
     }
+
     .link-icon {
         width: 70px;
         height: 70px;
     }
+
     .link-arrow {
         font-size: 1.5rem !important;
     }

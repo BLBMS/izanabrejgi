@@ -1,6 +1,7 @@
 /* 046 */
 /* overlays.css */
 
+/*
 #overlay-background {
     display: none;
     position: fixed;
@@ -14,6 +15,7 @@
     z-index: 90;
     cursor: pointer;
 }
+*/
 
 #overlay-background.active {
     display: block;
@@ -236,8 +238,7 @@
 @media (max-width: 768px) {
 
     .text-overlay,
-    .contact-overlay,
-    .links-overlay {
+    .contact-overlay {
         padding: 1rem 0.75rem;
         width: 95%;
     }
@@ -261,8 +262,7 @@
 @media (max-width: 480px) {
 
     .text-overlay,
-    .contact-overlay,
-    .links-overlay {
+    .contact-overlay {
         padding: 0.75rem 0.5rem;
         width: 98%;
     }

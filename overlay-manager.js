@@ -19,103 +19,6 @@ function deselectAllText() {
     }
 }
 
-// ============================================
-// DINAMIČNO POZICIONIRANJE
-// ============================================
-/*function adjustOverlayPosition() {
-    const header = document.querySelector('header');
-    const footer = document.querySelector('footer');
-    const headerHeight = header ? header.offsetHeight : 80;
-    const footerHeight = footer ? footer.offsetHeight : 60;
-
-    // Preveri ali je landscape na mobitelu
-    const isLandscape = window.innerWidth > window.innerHeight;
-    const isMobile = window.innerWidth <= 933;
-
-    // V landscape načinu zmanjšamo odmik na 2px
-    let topOffset;
-    if (isMobile && isLandscape) {
-        topOffset = headerHeight + 2;  // samo 2px odmika
-    } else {
-        topOffset = headerHeight + 20; // normalen odmik
-    }
-
-    const bottomOffset = footerHeight + 20;
-    const maxHeight = `calc(100vh - ${topOffset + bottomOffset}px)`;
-
-    console.log('adjustOverlayPosition - topOffset:', topOffset, 'activeOverlayType:', activeOverlayType);
-
-    // 1. TEXT OVERLAYI
-    const textOverlays = document.querySelectorAll('.text-overlay, .contact-overlay');
-    textOverlays.forEach(overlay => {
-        overlay.style.top = `${topOffset}px`;
-        overlay.style.transform = 'translateX(-50%)';
-        overlay.style.maxHeight = maxHeight;
-        overlay.style.position = 'fixed';
-        overlay.style.marginTop = '0';
-        overlay.style.left = '50%';
-    });
-
-    // 2. LINKS OVERLAY
-    const linksOverlay = document.getElementById('links-overlay');
-    if (linksOverlay) {
-        linksOverlay.style.top = `${topOffset}px`;
-        linksOverlay.style.transform = 'translateX(-50%)';
-        linksOverlay.style.maxHeight = maxHeight;
-        linksOverlay.style.position = 'fixed';
-        linksOverlay.style.marginTop = '0';
-        linksOverlay.style.left = '50%';
-        // FORSIRAJ ponoven izris
-        linksOverlay.style.display = 'none';
-        linksOverlay.offsetHeight; // force reflow
-        linksOverlay.style.display = '';
-    }
-
-    // 3. REVIEWS OVERLAY
-    const reviewsOverlay = document.getElementById('reviews-overlay');
-    if (reviewsOverlay) {
-        reviewsOverlay.style.top = `${topOffset}px`;
-        reviewsOverlay.style.transform = 'translateX(-50%)';
-        reviewsOverlay.style.maxHeight = maxHeight;
-        reviewsOverlay.style.position = 'fixed';
-        reviewsOverlay.style.marginTop = '0';
-        reviewsOverlay.style.left = '50%';
-    }
-
-    // MAP OVERLAY
-    const mapContainer = document.getElementById('map-container');
-    if (mapContainer && activeOverlayType === 'map') {
-        mapContainer.style.top = `${topOffset}px`;
-        mapContainer.style.height = `calc(100vh - ${topOffset + bottomOffset}px)`;
-    }
-
-    const mapCloseBtn = document.getElementById('close-map-widget');
-    if (mapCloseBtn && mapCloseBtn.style.display === 'flex') {
-        mapCloseBtn.style.top = `${topOffset + 10}px`;
-    }
-
-    // 4. HOSTEX OVERLAY
-    const hostexWidget = document.querySelector('hostex-booking-widget');
-    if (hostexWidget && hostexWidget.style.display === 'block') {
-        hostexWidget.style.top = `${topOffset}px`;
-        hostexWidget.style.height = `calc(100vh - ${topOffset + bottomOffset}px)`;
-    }
-
-    const hostexCloseBtn = document.getElementById('global-hostex-close');
-    if (hostexCloseBtn && hostexCloseBtn.style.display === 'flex') {
-        hostexCloseBtn.style.top = `${topOffset + 10}px`;
-        hostexCloseBtn.style.right = '5px';
-    }
-
-    // 5. BLUR - PRAVILNA VIŠINA (ne čez footer)
-    const blurOverlay = document.getElementById('full-page-blur');
-    if (blurOverlay && blurOverlay.classList.contains('active')) {
-        blurOverlay.style.top = `${headerHeight}px`;
-        blurOverlay.style.height = `calc(100vh - ${headerHeight + footerHeight}px)`;
-    }
-}
-*/
-
 function adjustOverlayPosition() {
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
@@ -232,16 +135,16 @@ window.addEventListener('orientationchange', () => {
 // SKRIJ VSE
 // ============================================
 function hideAllOverlays() {
-    console.log('Hiding all overlays, current active:', activeOverlayType);
+    //console.log('Hiding all overlays, current active:', activeOverlayType);
 
     const bg = document.getElementById('overlay-background');
     if (bg) bg.classList.remove('active');
 
-    const linksBg = document.getElementById('links-background');
-    if (linksBg) linksBg.classList.remove('active');
+    //    const linksBg = document.getElementById('links-background');
+    //    if (linksBg) linksBg.classList.remove('active');
 
-    const reviewsBg = document.getElementById('reviews-background');
-    if (reviewsBg) reviewsBg.classList.remove('active');
+    //    const reviewsBg = document.getElementById('reviews-background');
+    //    if (reviewsBg) reviewsBg.classList.remove('active');
 
     const allOverlayElements = document.querySelectorAll(
         '.text-overlay, .contact-overlay, .links-overlay, .reviews-overlay, #description-overlay, #about-overlay, #contact-overlay, #links-overlay, #reviews-overlay, #reserve-overlay'

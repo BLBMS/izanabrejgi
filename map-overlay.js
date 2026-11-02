@@ -63,7 +63,7 @@ function getMapText(lang, key) {
 }
 
 function showMapWidget() {
-    console.log('🗺️ Showing Map widget...');
+    //console.log('🗺️ Showing Map widget...');
 
     if (typeof hideAllOverlays === 'function') {
         hideAllOverlays();
@@ -220,8 +220,8 @@ function showMapWidget() {
     top: ${topOffset}px !important;
     left: 0 !important;
     right: 0 !important;
-    width: 90% !important;
-    max-width: 1000px !important;
+    width: 95% !important;
+    max-width: 1100px !important;
     margin: 0 auto !important;
     /* IZBRISAN height in max-height - naj CSS določi */
     z-index: 100 !important;
@@ -309,7 +309,7 @@ function showMapWidget() {
 }
 
 function hideMapWidget() {
-    console.log('Hiding Map widget');
+    //console.log('Hiding Map widget');
 
     const mapContainer = document.getElementById('map-container');
     const closeButton = document.getElementById('close-map-widget');
@@ -337,7 +337,7 @@ function hideMapWidget() {
 }
 
 function refreshMapLanguage(lang) {
-    console.log('Refreshing map language to:', lang);
+    //console.log('Refreshing map language to:', lang);
     const mapContainer = document.getElementById('map-container');
     if (mapContainer && activeOverlayType === 'map') {
         const iframe = document.getElementById('map-iframe');

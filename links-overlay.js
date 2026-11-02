@@ -234,7 +234,7 @@ function linksBodyClickHandler(e) {
 }
 
 function showLinksOverlay() {
-    console.log('showLinksOverlay called');
+    //console.log('showLinksOverlay called');
 
     // Zapremo druge overlaye
     if (activeOverlayType && activeOverlayType !== 'links') {
@@ -245,7 +245,7 @@ function showLinksOverlay() {
 
     activeOverlayType = 'links';
 
-    const bg = document.getElementById('links-background');
+    const bg = document.getElementById('overlay-background');
     if (bg) bg.classList.add('active');
 
     const overlay = document.getElementById('links-overlay');
@@ -279,10 +279,10 @@ function showLinksOverlay() {
 
 function hideLinksOverlay() {
     const overlay = document.getElementById('links-overlay');
-    const bg = document.getElementById('links-background');
+    const bg = document.getElementById('overlay-background');
 
+    if (bg && activeOverlayType === 'links') bg.classList.remove('active');
     if (overlay) overlay.classList.remove('active');
-    if (bg) bg.classList.remove('active');
 
     document.body.style.overflow = '';
 
@@ -361,15 +361,6 @@ function updateLinksLanguage(lang) {
         loadLinks(lang);
     }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    const bg = document.getElementById('links-background');
-    if (bg) {
-        bg.addEventListener('click', function (e) {
-            if (e.target === this) hideLinksOverlay();
-        });
-    }
-});
 
 window.showLinksOverlay = showLinksOverlay;
 window.hideLinksOverlay = hideLinksOverlay;
