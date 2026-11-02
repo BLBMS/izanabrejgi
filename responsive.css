@@ -1,4 +1,4 @@
-/* 046 */
+/* 046a */
 /* responsive.css */
 
 /* DESKTOP (≥ 1024px) */
@@ -325,5 +325,27 @@ footer p {
 
     .social-link {
         transform: scale(0.9);
+    }
+}
+
+/* ==========================================
+   POPRAVEK HEADERJA ZA OZKE EKRANE (POD 440px)
+   ========================================== */
+@media (max-width: 440px) {
+
+    /* 1. Pomaknemo logo in tekst navzdol (prej je bilo 5px) */
+    .logo-section {
+        top: 20px !important;
+    }
+
+    /* 2. Povečamo padding na nav, da se menu in spodnji rob pomakneta za logom */
+    nav {
+        padding-top: 55px !important;
+        /* Prej 40px, zdaj 55px */
+    }
+
+    /* 3. Rahlo spustimo še zastave, da so poravnane z novim položajem logotipa */
+    .language-flags {
+        top: 15px !important;
     }
 }
