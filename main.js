@@ -1,5 +1,5 @@
-// 050
-// main.js
+/* 050 */
+/* main.js */
 
 function initDOMElements() {
     aboutOverlay = document.getElementById('about-overlay');

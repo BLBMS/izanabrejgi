@@ -1,5 +1,5 @@
-/* 050 */
-/* slideshow-manager.js - s podaljšanjem timera ob kliku na sliko */
+/* 050a */
+/* slideshow-manager.js */
 
 // Premeša array
 function shuffleArray(array) {
@@ -244,6 +244,10 @@ function loadSlides() {
                 settleSlide();
             }
         };
+
+        if (index === 0) {
+            img.setAttribute('fetchpriority', 'high');  // <img> za prvo sliko naj se naloži čim prej
+        }
 
         slideshowTrack.appendChild(img);
     });

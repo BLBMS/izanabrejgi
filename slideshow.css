@@ -1,4 +1,4 @@
-/* 050 */
+/* 050a */
 /* slideshow.css */
 
 .hero {
@@ -21,7 +21,6 @@
     padding: 0;
     width: 100%;
     height: calc(100vh - 55px)
-    /* Višina se nastavi dinamično preko JS */
 }
 
 .slideshow {
@@ -92,6 +91,8 @@
     transition: all 0.3s ease !important;
     opacity: 0.7 !important;
     z-index: 50 !important;
+    min-width: 50px;
+    min-height: 50px;
 }
 
 .slideshow-arrow:hover {

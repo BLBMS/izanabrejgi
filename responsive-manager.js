@@ -1,6 +1,5 @@
 /* 050 */
 /* responsive-manager.js */
-// Responsivne funkcije
 
 // Funkcija za prilagajanje višine glede na orientacijo in header
 function adjustSlideshowHeight() {

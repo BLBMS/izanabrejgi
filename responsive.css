@@ -1,4 +1,4 @@
-/* 051 */
+/* 050a */
 /* responsive.css */
 
 /* ============================================
@@ -256,6 +256,10 @@
         letter-spacing: -0.4px;
         white-space: nowrap;
     }
+
+    .slideshow-dots {
+        display: none !important;
+    }
 }
 
 /* ============================================
@@ -318,6 +322,10 @@
         padding: 0.05rem 0.15rem;
         letter-spacing: -0.4px;
         white-space: nowrap;
+    }
+
+    .slideshow-dots {
+        display: none !important;
     }
 }
 

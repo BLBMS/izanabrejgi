@@ -1,5 +1,5 @@
-// 050
-// map-overlay.js
+/* 050 */
+/* map-overlay.js */
 
 const LAT = 46.70913;
 const LNG = 16.24649;
