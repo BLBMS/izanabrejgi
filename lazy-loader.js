@@ -1,8 +1,8 @@
-/* 049a
-/* lazy-loader.js
- * Nalaga 4 skupine CSS/JS v ozadju (requestIdleCallback), šele po prvem prikazu.
- * Ob kliku na menu preveri, ali je skupina že naložena; če ni, jo naloži sinhrono in počaka.
- */
+/* 050
+/* lazy-loader.js */
+
+/* Nalaga 4 skupine CSS/JS v ozadju (requestIdleCallback), šele po prvem prikazu.
+ * Ob kliku na menu preveri, ali je skupina že naložena; če ni, jo naloži sinhrono in počaka. */
 
 (function () {
     'use strict';

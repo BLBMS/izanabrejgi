@@ -1,4 +1,4 @@
-// 049
+// 050
 // main.js
 
 function initDOMElements() {
@@ -61,9 +61,7 @@ function init() {
     // Naloži slike - slideshow-manager.js poskrbi za timer
     if (typeof loadSlides === 'function') loadSlides();
 
-    // ODSTRANJENO: setInterval(showNextSlide, 4000) - timer je v slideshow-manager.js
-
-    // Dinamično prilagajanje velikosti črk
+        // Dinamično prilagajanje velikosti črk
     setTimeout(adjustLogoTextSize, 100);
     window.addEventListener('resize', () => setTimeout(adjustLogoTextSize, 50));
     window.addEventListener('orientationchange', () => setTimeout(adjustLogoTextSize, 100));
@@ -80,15 +78,6 @@ function init() {
         }
     }, 150);
 
-    // Preveri URL parameter za rezervacijo
-    /*
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('action') === 'rezerviraj') {
-        setTimeout(() => {
-            if (typeof showReserveOverlay === 'function') showReserveOverlay();
-        }, 800);
-    }
-        */
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('action') === 'rezerviraj') {
         setTimeout(async () => {
@@ -113,21 +102,3 @@ window.switchLanguage = switchLanguage || function () { };
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { init, initDOMElements };
 }
-
-/*document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(function () {
-        const logoSection = document.querySelector('.logo-section');
-        if (logoSection) {
-            logoSection.addEventListener('click', function (e) {
-                if (!e.target.closest('.language-flag')) {
-                    e.preventDefault();
-                    window.location.href = '#domov';
-                    if (typeof hideAllOverlays === 'function') hideAllOverlays();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
-            logoSection.style.cursor = 'pointer';
-        }
-    }, 100);
-});
-*/

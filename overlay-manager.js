@@ -1,4 +1,4 @@
-/* 049a */
+/* 050 */
 /* overlay-manager.js */
 
 let activeOverlayType = null;
@@ -36,7 +36,7 @@ function adjustOverlayPosition() {
         bottomOffset = footerHeight + 5;
     } else if (isMobile) {
         topOffset = headerHeight + 10;
-        bottomOffset = footerHeight + 5; /* manjši odmik, da gre overlay do dna */
+        bottomOffset = footerHeight + 5;
     } else {
         topOffset = headerHeight + 20;
         bottomOffset = footerHeight + 20;
@@ -84,11 +84,16 @@ function adjustOverlayPosition() {
         reviewsOverlay.style.left = '50%';
     }
 
-    // MAP OVERLAY
+    // 4. MAP OVERLAY
     const mapContainer = document.getElementById('map-container');
     if (mapContainer && activeOverlayType === 'map') {
         mapContainer.style.top = `${topOffset}px`;
-        mapContainer.style.height = `calc(${viewportHeight}px - ${topOffset + bottomOffset}px)`;
+        mapContainer.style.transform = 'translateX(-50%)';
+        mapContainer.style.height = maxHeight;
+        mapContainer.style.maxHeight = maxHeight;
+        mapContainer.style.position = 'fixed';
+        mapContainer.style.marginTop = '0';
+        mapContainer.style.left = '50%';
     }
 
     const mapCloseBtn = document.getElementById('close-map-widget');
@@ -96,7 +101,7 @@ function adjustOverlayPosition() {
         mapCloseBtn.style.top = `${topOffset + 10}px`;
     }
 
-    // 4. HOSTEX OVERLAY
+    // 5. HOSTEX OVERLAY
     const hostexWidget = document.querySelector('hostex-booking-widget');
     if (hostexWidget && hostexWidget.style.display === 'block') {
         hostexWidget.style.top = `${topOffset}px`;
@@ -109,7 +114,7 @@ function adjustOverlayPosition() {
         hostexCloseBtn.style.right = '5px';
     }
 
-    // 5. BLUR - PRAVILNA VIŠINA (ne čez footer)
+    // 6. BLUR - PRAVILNA VIŠINA (ne čez footer)
     const blurOverlay = document.getElementById('full-page-blur');
     if (blurOverlay && blurOverlay.classList.contains('active')) {
         blurOverlay.style.top = `${headerHeight}px`;
@@ -139,12 +144,6 @@ function hideAllOverlays() {
 
     const bg = document.getElementById('overlay-background');
     if (bg) bg.classList.remove('active');
-
-    //    const linksBg = document.getElementById('links-background');
-    //    if (linksBg) linksBg.classList.remove('active');
-
-    //    const reviewsBg = document.getElementById('reviews-background');
-    //    if (reviewsBg) reviewsBg.classList.remove('active');
 
     const allOverlayElements = document.querySelectorAll(
         '.text-overlay, .contact-overlay, .links-overlay, .reviews-overlay, #description-overlay, #about-overlay, #contact-overlay, #links-overlay, #reviews-overlay, #reserve-overlay'

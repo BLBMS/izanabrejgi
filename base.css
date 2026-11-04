@@ -1,5 +1,4 @@
-/* 047 */
-/* BASE */
+/* 050 */
 /* base.css */
 
 @font-face {
@@ -39,6 +38,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .container {

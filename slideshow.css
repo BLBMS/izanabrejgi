@@ -1,4 +1,4 @@
-/* 046 */
+/* 050 */
 /* slideshow.css */
 
 .hero {
@@ -20,7 +20,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    margin-top: 55px;
+    height: calc(100vh - 55px)
     /* Višina se nastavi dinamično preko JS */
 }
 

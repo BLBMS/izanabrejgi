@@ -1,287 +1,226 @@
-/* 046 */
+/* 050 */
 /* map-overlay.css */
 
-#map-container {
-    box-sizing: border-box;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
-    height: 80vh;
-    min-height: 500px;
-}
-
-.map-buttons-container {
+/* ============================================
+   OSNOVNI OVERLAY (Landscape privzeto)
+   ============================================ */
+.map-overlay {
     display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-    flex-shrink: 0;
+    flex-direction: row;
+    /* Gumbi levo, mapa desno */
+    gap: 10px;
+    align-items: stretch;
 }
 
-.map-button-group .map-btn {
-    flex: 1;
-    text-align: center;
+.map-overlay.active {
+    display: flex;
+}
+
+/* ============================================
+   SIDEBAR (gumbi levo) - Landscape privzeto
+   ============================================ */
+.map-buttons-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 0 0 160px;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.map-buttons-sidebar .map-button-group {
     background: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    padding: 8px;
+    border-radius: 6px;
+    padding: 6px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.map-button-label {
+.map-buttons-sidebar .map-button-label {
     font-size: 0.8rem;
+    margin-bottom: 4px;
     color: var(--hover-color);
-    margin-bottom: 6px;
     font-weight: bold;
+    text-align: left;
 }
 
-.map-btn {
+.map-buttons-sidebar .map-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 3px 0;
+    padding: 4px 6px;
+    font-size: 0.8rem;
+    /* Enake barve kot ostali gumbi */
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(208, 255, 0, 0.3);
     color: var(--font-color);
-    padding: 5px 10px;
-    margin: 0 3px;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-family: inherit;
     transition: all 0.2s ease;
 }
 
-.map-btn:hover {
+.map-buttons-sidebar .map-btn:hover {
     background: rgba(208, 255, 0, 0.2);
     border-color: var(--hover-color);
-    transform: scale(1.02);
 }
 
-.map-embed-container {
-    flex: 1;
-    min-height: 0;
-    border-radius: 8px;
+.map-buttons-sidebar .map-btn-icon {
+    height: 14px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+/* ============================================
+   MAPA V SIDEBARJU (desno)
+   ============================================ */
+.map-embed-sidebar {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
     overflow: hidden;
-    margin-top: 5px;
 }
 
-#map-iframe {
+.map-embed-sidebar iframe {
     width: 100%;
     height: 100%;
-    min-height: 400px;
+    min-height: 250px;
+    flex: 1;
     border: none;
     border-radius: 8px;
 }
 
-/* X gumb */
-#close-map-widget {
+/* ============================================
+   SKRIJ ZGORNJE GUMBE IN ZGORNJO MAPO
+   ============================================ */
+.map-buttons-container,
+.map-embed-container {
     display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    line-height: 1;
-    transition: all 0.3s ease;
-    cursor: pointer;
 }
 
-#close-map-widget:hover {
-    transform: scale(1.2);
-    opacity: 0.9;
-}
+/* ============================================
+   PORTRAIT – preklop na gumbe zgoraj
+   ============================================ */
+@media (orientation: portrait) {
 
-/* ikoni za mapi */
-.map-btn-icon {
-    height: 20px;
-    width: auto;
-    max-width: 40px;
-    vertical-align: middle;
-    margin-right: 6px;
-    object-fit: contain;
-}
-
-/* SCROLLBAR */
-#map-container::-webkit-scrollbar {
-    width: 8px;
-}
-
-#map-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-#map-container::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
-    border-radius: 4px;
-}
-
-/* ============================================ */
-/* DESKTOP - normalen prikaz */
-/* ============================================ */
-@media (min-width: 934px) {
-    .map-buttons-sidebar {
-        display: none !important;
+    .map-overlay,
+    .map-overlay.active {
+        flex-direction: column;
     }
 
+    /* Skrij sidebar */
+    .map-buttons-sidebar,
     .map-embed-sidebar {
         display: none !important;
     }
 
+    /* Prikaži zgornje gumbe */
     .map-buttons-container {
-        display: flex !important;
-    }
-
-    .map-embed-container {
-        display: block !important;
-    }
-
-    #map-iframe {
-        min-height: 450px;
-    }
-
-    /* POMEMBNO: Nastavi višino containerja za desktop */
-    #map-container {
-        height: 80vh !important;
-        max-height: 80vh !important;
-        min-height: 500px !important;
-    }
-}
-
-/* ============================================ */
-/* TABLETI (portret) */
-/* ============================================ */
-@media (max-width: 933px) and (orientation: portrait) {
-    .map-buttons-container {
-        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
         gap: 8px;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
     }
 
     .map-button-group {
+        flex: 1 1 200px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
         padding: 6px;
     }
 
     .map-button-label {
-        font-size: 0.7rem;
-        margin-bottom: 4px;
+        font-size: 0.8rem;
+        color: var(--hover-color);
+        margin-bottom: 6px;
+        font-weight: bold;
+        font-family: inherit;
+        text-align: left;
     }
 
     .map-btn {
-        padding: 4px 8px;
-        font-size: 0.7rem;
+        display: block;
+        width: auto;
+        max-width: 100%;
+        text-align: left;
+        margin: 3px 0;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(208, 255, 0, 0.3);
+        color: var(--font-color);
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-family: inherit;
+        transition: all 0.2s ease;
+    }
+
+    .map-btn:hover {
+        background: rgba(208, 255, 0, 0.2);
+        border-color: var(--hover-color);
+    }
+
+    .map-btn-icon {
+        height: 20px;
+        width: auto;
+        max-width: 40px;
+        vertical-align: middle;
+        margin-right: 6px;
+        object-fit: contain;
+    }
+
+    .map-embed-container {
+        display: block;
+        flex: 1;
+        min-height: 250px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 5px;
     }
 
     #map-iframe {
-        min-height: 350px;
-    }
-
-    #close-map-widget {
-        font-size: 1.8rem !important;
-        width: 30px !important;
-        height: 30px !important;
-    }
-
-    /* Skrij sidebar elemente */
-    .map-buttons-sidebar {
-        display: none !important;
-    }
-
-    .map-embed-sidebar {
-        display: none !important;
-    }
-
-    .map-buttons-container {
-        display: flex !important;
-    }
-
-    .map-embed-container {
-        display: block !important;
-    }
-}
-
-/* ============================================ */
-/* LANDSCAPE način - gumbi levo, mapa desno */
-/* ============================================ */
-@media (max-width: 933px) and (orientation: landscape) {
-    #map-container {
-        flex-direction: row !important;
-        gap: 15px;
-        padding: 10px !important;
-        max-height: 85vh !important;
-        align-items: stretch !important;
-    }
-
-    .map-buttons-sidebar {
-        width: 130px;
-        flex-shrink: 0;
-        display: flex !important;
-        flex-direction: column;
-        gap: 10px;
-        overflow-y: auto;
-        max-height: 100%;
-    }
-
-    .map-buttons-sidebar .map-button-group {
-        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        border: none;
         border-radius: 8px;
-        padding: 6px;
-        text-align: center;
-    }
-
-    .map-buttons-sidebar .map-button-label {
-        font-size: 0.6rem;
-        margin-bottom: 4px;
-        color: var(--hover-color);
-        font-weight: bold;
-    }
-
-    .map-buttons-sidebar .map-btn {
         display: block;
-        width: 100%;
-        margin: 3px 0;
-        padding: 3px 4px;
-        font-size: 0.55rem;
-        text-align: center;
-    }
-
-    .map-buttons-sidebar .map-btn-icon {
-        height: 12px;
-        margin-right: 2px;
-        vertical-align: middle;
-    }
-
-    .map-embed-sidebar {
-        flex: 1 !important;
-        min-width: 200px !important;
-        height: auto !important;
-        display: flex !important;
-        flex-direction: column;
-    }
-
-    .map-embed-sidebar iframe {
-        width: 100%;
-        height: 100% !important;
-        min-height: 280px;
-        flex: 1;
-    }
-
-    /* Skrij standardne elemente */
-    .map-buttons-container {
-        display: none !important;
-    }
-
-    .map-embed-container {
-        display: none !important;
     }
 }
 
-/* ============================================ */
-/* LANDSCAPE - prilagoditve za različne višine */
-/* ============================================ */
+/* ============================================
+   POPRAVKI ZA OZKE EKRANE (manjši fonti, padding)
+   ============================================ */
+@media (max-width: 933px) {
+    .map-buttons-container {
+        gap: 4px !important;
+        margin-bottom: 4px !important;
+    }
 
-/* Višina 415px */
-@media (max-width: 933px) and (orientation: landscape) and (max-height: 415px) {
-    .map-embed-sidebar iframe {
-        min-height: 230px !important;
+    .map-button-group {
+        padding: 4px !important;
+    }
+
+    .map-button-label {
+        margin-bottom: 2px !important;
+    }
+
+    .map-btn {
+        margin: 1px 0 !important;
+        padding: 4px 6px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .map-embed-container {
+        margin-top: 2px !important;
     }
 
     .map-buttons-sidebar {
-        gap: 8px !important;
+        gap: 4px !important;
     }
 
     .map-buttons-sidebar .map-button-group {
@@ -289,84 +228,22 @@
     }
 
     .map-buttons-sidebar .map-btn {
-        margin: 2px 0 !important;
-        padding: 2px 3px !important;
-        font-size: 0.5rem !important;
-    }
-}
-
-/* Višina 360px */
-@media (max-width: 933px) and (orientation: landscape) and (max-height: 360px) {
-    .map-embed-sidebar iframe {
-        min-height: 200px !important;
-    }
-
-    .map-buttons-sidebar {
-        gap: 5px !important;
-    }
-
-    .map-buttons-sidebar .map-button-group {
-        padding: 3px !important;
-    }
-
-    .map-buttons-sidebar .map-button-label {
-        font-size: 0.5rem !important;
-    }
-
-    .map-buttons-sidebar .map-btn {
         margin: 1px 0 !important;
-        padding: 1px 2px !important;
-        font-size: 0.45rem !important;
+        padding: 2px 4px !important;
+        font-size: 0.7rem !important;
     }
 }
 
-/* Višina 330px in manj */
-@media (max-width: 933px) and (orientation: landscape) and (max-height: 330px) {
-    .map-embed-sidebar iframe {
-        min-height: 160px !important;
-    }
-
+@media (max-width: 933px) and (max-height: 400px) {
     .map-buttons-sidebar {
-        width: 110px !important;
-        gap: 3px !important;
-    }
-
-    .map-buttons-sidebar .map-button-group {
-        padding: 2px !important;
-    }
-
-    .map-buttons-sidebar .map-button-label {
-        font-size: 0.45rem !important;
-        margin-bottom: 1px !important;
-    }
-
-    .map-buttons-sidebar .map-btn {
-        padding: 1px 1px !important;
-        font-size: 0.4rem !important;
+        flex: 0 0 140px;
     }
 
     .map-buttons-sidebar .map-btn-icon {
-        height: 10px !important;
+        height: 12px;
     }
-}
 
-/* ============================================ */
-/* MOBILNI (majhni) - portret */
-/* ============================================ */
-@media (max-width: 480px) and (orientation: portrait) {
-    .map-btn {
-        padding: 3px 6px;
+    .map-buttons-sidebar .map-btn {
         font-size: 0.65rem;
-        margin: 0 2px;
-    }
-
-    #map-iframe {
-        min-height: 300px;
-    }
-
-    #close-map-widget {
-        font-size: 1.6rem !important;
-        width: 28px !important;
-        height: 28px !important;
     }
 }

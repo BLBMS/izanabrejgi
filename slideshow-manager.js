@@ -1,4 +1,4 @@
-/* 049a */
+/* 050 */
 /* slideshow-manager.js - s podaljšanjem timera ob kliku na sliko */
 
 // Premeša array

@@ -1,5 +1,5 @@
-// 047
-// cookies.js
+/* 050 */
+/* cookies.js */
 
 const cookieTranslations = {
     sl: {

@@ -1,8 +1,11 @@
-/* 046a */
+/* 051 */
 /* responsive.css */
 
-/* DESKTOP (≥ 1024px) */
-@media (min-width: 775px) {
+/* ============================================
+   HEADER – 1. stopnja: > 1190px
+   (vse v eni vrstici, brez lomljenja, header ozek)
+   ============================================ */
+@media (min-width: 1191px) {
     nav {
         flex-wrap: nowrap;
     }
@@ -18,13 +21,16 @@
 
     .nav-links {
         justify-content: center;
+        flex-wrap: nowrap;
+        overflow: visible;
         gap: 0.3rem;
     }
 
     .nav-links a {
-        font-size: 1rem;
+        font-size: 0.95rem;
         padding: 0.25rem 0.5rem;
         letter-spacing: -0.3px;
+        white-space: nowrap;
     }
 
     .language-flags {
@@ -33,79 +39,78 @@
     }
 }
 
-/* TABLET (700px - 800px) - meni gre v NOVO VRSTICO 860! */
-@media (max-width: 860px) and (min-width: 651px) {
-    .logo-text {
-        font-size: 1.3rem;
+/* ============================================
+   HEADER – 2. stopnja: 801px – 1190px
+   (menu se lahko prelomi v 2 vrstici, ostane v isti vrstici kot logo/zastave)
+   ============================================ */
+@media (min-width: 701px) and (max-width: 1190px) {
+    nav {
+        flex-wrap: wrap;
+        row-gap: 4px;
     }
 
-    .logo-img {
-        height: 32px;
-    }
-
-    .language-flags .language-flag {
-        width: 26px;
-        height: 14px;
+    .logo-section {
+        order: 1;
+        flex: 0 0 auto;
     }
 
     .nav-main {
         order: 4;
-        width: 100%;
-        margin-top: 5px;
-        /* ZMANJŠANO - bilo 8px */
-        margin-bottom: 5px;
-        /* DODANO */
+        flex: 1 1 100%;
+        justify-content: center;
+        margin-top: 4px;
     }
 
     .nav-links {
-        justify-content: center !important;
-        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
         width: 100%;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 3px;
-        /* ZMANJŠANO - bilo 5px */
+        gap: 0.3rem;
     }
 
     .nav-links a {
-        font-size: 1rem;
+        font-size: 0.9rem;
         padding: 0.2rem 0.4rem;
-        /* ZMANJŠANO */
         white-space: nowrap;
-        flex-shrink: 0;
     }
 
     .language-flags {
-        position: absolute;
-        right: 20px;
-        top: 12px;
-        /* ZMANJŠANO - bilo 15px */
+        order: 3;
+        margin-left: auto;
+    }
+}
+
+/* ============================================
+   HEADER – 3. stopnja: 611px – 700px
+   (menu pod logo in zastavami, brez sliderja)
+   ============================================ */
+@media (min-width: 611px) and (max-width: 700px) {
+    nav {
+        position: relative;
+        flex-wrap: wrap;
+        padding-top: 50px;
+        padding-bottom: 6px;
     }
 
     .logo-section {
         position: absolute;
-        left: 20px;
-        top: 5px;
-    }
-
-    nav {
-        position: relative;
-        padding-top: 45px;
-        /* ZMANJŠANO - bilo 50px */
-        padding-bottom: 5px;
-        /* ZMANJŠANO - bilo 10px */
-    }
-}
-
-/* TABLET (600px - 700px) */
-@media (max-width: 650px) and (min-width: 601px) {
-    .logo-text {
-        font-size: 1.2rem;
+        left: 15px;
+        top: 8px;
     }
 
     .logo-img {
         height: 30px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .language-flags {
+        position: absolute;
+        right: 15px;
+        top: 10px;
     }
 
     .language-flags .language-flag {
@@ -116,50 +121,56 @@
     .nav-main {
         order: 4;
         width: 100%;
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin: 0;
     }
 
     .nav-links {
-        justify-content: center !important;
-        gap: 0.4rem;
-        width: 100%;
         flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        width: 100%;
+        padding: 0;
+        gap: 0.25rem;
     }
 
     .nav-links a {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 0.15rem 0.3rem;
+        letter-spacing: -0.3px;
         white-space: nowrap;
     }
+}
 
-    .language-flags {
-        position: absolute;
-        right: 15px;
-        top: 10px;
+/* ============================================
+   HEADER – 4. stopnja: 481px – 610px
+   (manjši fonti, menu se lahko prelomi v 3 vrstice)
+   ============================================ */
+@media (min-width: 481px) and (max-width: 610px) {
+    nav {
+        position: relative;
+        flex-wrap: wrap;
+        padding-top: 46px;
+        padding-bottom: 5px;
     }
 
     .logo-section {
         position: absolute;
-        left: 15px;
-        top: 5px;
-    }
-
-    nav {
-        position: relative;
-        padding-top: 42px;
-        padding-bottom: 5px;
-    }
-}
-
-/* LARGE MOBILE (390px - 600px) */
-@media (max-width: 600px) and (min-width: 330px) {
-    .logo-text {
-        font-size: 1rem;
+        left: 12px;
+        top: 6px;
     }
 
     .logo-img {
         height: 28px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .language-flags {
+        position: absolute;
+        right: 12px;
+        top: 8px;
     }
 
     .language-flags .language-flag {
@@ -170,57 +181,54 @@
     .nav-main {
         order: 4;
         width: 100%;
-        margin-top: 5px;
-        margin-bottom: 3px;
+        margin: 0;
     }
 
     .nav-links {
-        justify-content: center !important;
-        gap: 0.3rem;
-        width: 100%;
         flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        width: 100%;
+        gap: 0.15rem;
     }
 
     .nav-links a {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         padding: 0.1rem 0.25rem;
         letter-spacing: -0.3px;
         white-space: nowrap;
     }
+}
 
-    .language-flags {
-        position: absolute;
-        right: 12px;
-        top: 8px;
-        gap: 5px;
+/* ============================================
+   HEADER – 5. stopnja: 331px – 480px
+   ============================================ */
+@media (min-width: 331px) and (max-width: 480px) {
+    nav {
+        position: relative;
+        flex-wrap: wrap;
+        padding-top: 42px;
+        padding-bottom: 4px;
     }
 
     .logo-section {
         position: absolute;
-        left: 12px;
+        left: 10px;
         top: 5px;
     }
 
-    nav {
-        position: relative;
-        padding-top: 40px;
-        padding-bottom: 5px;
+    .logo-img {
+        height: 26px;
     }
-}
 
-/* MOBILE (do 330px) */
-@media (max-width: 330px) {
-    nav {
-        position: relative;
-        padding-top: 38px;
-        padding-bottom: 3px;
+    .logo-text {
+        font-size: 1rem;
     }
 
     .language-flags {
         position: absolute;
         right: 10px;
         top: 6px;
-        gap: 4px;
     }
 
     .language-flags .language-flag {
@@ -228,47 +236,94 @@
         height: 11px;
     }
 
-    .logo-section {
-        position: absolute;
-        left: 10px;
-        top: 5px;
-        gap: 8px;
-    }
-
-    .logo-text {
-        font-size: 0.9rem;
-        white-space: normal;
-        word-break: keep-all;
-        max-width: calc(100vw - 85px);
-    }
-
-    .logo-img {
-        height: 24px;
-    }
-
     .nav-main {
         order: 4;
         width: 100%;
-        margin-top: 3px;
-        margin-bottom: 3px;
+        margin: 0;
     }
 
     .nav-links {
-        justify-content: center !important;
-        gap: 0.2rem;
-        width: 100%;
         flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        width: 100%;
+        gap: 0.1rem;
     }
 
     .nav-links a {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         padding: 0.1rem 0.2rem;
         letter-spacing: -0.4px;
         white-space: nowrap;
     }
 }
 
-/* FOOTER */
+/* ============================================
+   HEADER – 6. stopnja: ≤ 330px
+   ============================================ */
+@media (max-width: 330px) {
+    nav {
+        position: relative;
+        flex-wrap: wrap;
+        padding-top: 40px;
+        padding-bottom: 3px;
+    }
+
+    .logo-section {
+        position: absolute;
+        left: 8px;
+        top: 4px;
+        gap: 6px;
+    }
+
+    .logo-img {
+        height: 22px;
+    }
+
+    .logo-text {
+        font-size: 0.85rem;
+        white-space: normal;
+        word-break: keep-all;
+        max-width: calc(100vw - 80px);
+    }
+
+    .language-flags {
+        position: absolute;
+        right: 8px;
+        top: 5px;
+        gap: 3px;
+    }
+
+    .language-flags .language-flag {
+        width: 18px;
+        height: 10px;
+    }
+
+    .nav-main {
+        order: 4;
+        width: 100%;
+        margin: 0;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow: visible;
+        width: 100%;
+        gap: 0.05rem;
+    }
+
+    .nav-links a {
+        font-size: 0.7rem;
+        padding: 0.05rem 0.15rem;
+        letter-spacing: -0.4px;
+        white-space: nowrap;
+    }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
 footer {
     display: flex;
     justify-content: center;
@@ -303,47 +358,4 @@ footer p {
     footer p {
         font-size: 0.7rem;
     }
-}
-
-/* Landscape - footer v eni vrstici */
-@media (max-width: 933px) and (orientation: landscape) {
-    footer {
-        flex-direction: row !important;
-        justify-content: center !important;
-        gap: 12px !important;
-        padding: 4px 10px !important;
-    }
-
-    footer p {
-        font-size: 0.7rem !important;
-        margin: 0 !important;
-    }
-
-    .footer-links {
-        gap: 8px !important;
-    }
-
-    .social-link {
-        transform: scale(0.9);
-    }
-}
-
-/* ==========================================
-   POPRAVEK HEADERJA ZA OZKE EKRANE (POD 440px)
-   ========================================== */
-@media (max-width: 440px) {
-
-    /* 1. Samo logotip in napis premaknemo navzdol */
-    .logo-section {
-        top: 22px !important;
-    }
-
-    /* 2. Povečamo padding na nav, da menu ostane pod logotipom */
-    nav {
-        padding-top: 58px !important;
-        /* Dovolj prostora za spuščen logotip */
-    }
-
-    /* Zastave PUSTIMO pri miru (brez !important za top), 
-       da ostanejo na svojem mestu (top: 8px iz pravil za 600px) */
 }

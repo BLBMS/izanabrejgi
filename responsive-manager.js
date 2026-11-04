@@ -1,4 +1,4 @@
-/* 049 */
+/* 050 */
 /* responsive-manager.js */
 // Responsivne funkcije
 

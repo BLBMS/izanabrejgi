@@ -1,33 +1,5 @@
-/* 046a */
+/* 050 */
 /* links-overlay.css */
-
-.links-overlay {
-    display: none;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: left;
-    color: var(--font-color);
-    text-shadow: var(--font-shadow);
-    font-size: var(--font-size-overlay);
-    padding: 2rem;
-    z-index: 100;
-    width: 90%;
-    max-width: 1100px;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(208, 255, 0, 0.2);
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
-}
-
-.links-overlay.active {
-    display: block;
-}
 
 #links-title {
     text-align: center;
@@ -42,8 +14,8 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 1.5rem;
-    padding: 0.5rem;
+    padding: 0;
+    margin-top: 0;
 }
 
 /* Kartica povezave */
@@ -93,7 +65,7 @@
 .link-title {
     font-size: 1.3rem;
     margin: 0 0 8px 0;
-    color: rgba(208, 255, 0, 0.9);
+    color: var(--hover-color);
     font-weight: 600;
 }
 
@@ -105,31 +77,18 @@
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--font-color);
 }
 
 /* NOTRANJI LINK (npr. kolesarske poti) */
 .link-description .link-link {
     color: rgba(208, 255, 0, 0.9);
     text-decoration: none;
-    /*
-    color: rgba(208, 255, 0, 0.95) !important;
-    text-decoration: underline !important;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    display: inline;
-    cursor: pointer;
-*/
 }
 
 .link-description .link-link:hover {
     color: var(--hover-color);
     text-decoration: underline;
-    /*
-    color: var(--hover-color) !important;
-    background: rgba(208, 255, 0, 0.1);
-    border-radius: 3px;
-    */
 }
 
 /* Puščica */
@@ -161,25 +120,6 @@
     text-decoration: underline;
 }
 
-/* SCROLLBAR */
-.links-overlay::-webkit-scrollbar {
-    width: 10px;
-}
-
-.links-overlay::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-}
-
-.links-overlay::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
-    border-radius: 5px;
-}
-
-.links-overlay {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
-}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

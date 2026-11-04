@@ -1,6 +1,6 @@
-/* 047 */
-// language-manager.js
-// Upravljanje jezikov
+/* 050 */
+/* language-manager.js */
+
 
 // JEZIKOVNI PODATKI - VGRADIMO JIH V JS
 const embeddedLanguageData = {

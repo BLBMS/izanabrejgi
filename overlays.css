@@ -1,7 +1,6 @@
-/* 046 */
+/* 050 */
 /* overlays.css */
 
-/*
 #overlay-background {
     display: none;
     position: fixed;
@@ -15,14 +14,16 @@
     z-index: 90;
     cursor: pointer;
 }
-*/
 
 #overlay-background.active {
     display: block;
 }
 
 .text-overlay,
-.contact-overlay {
+.contact-overlay,
+.links-overlay,
+.reviews-overlay,
+.map-overlay {
     display: none;
     position: fixed;
     left: 50%;
@@ -31,10 +32,10 @@
     color: var(--font-color);
     text-shadow: var(--font-shadow);
     font-size: var(--font-size-overlay);
-    padding: 2rem;
+    padding: 1.25rem 1.5rem;
     z-index: 100;
     width: 90%;
-    max-width: 1000px;
+    max-width: 1100px;
     max-height: calc(var(--app-height) - 120px);
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
@@ -43,16 +44,23 @@
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .text-overlay.active,
-.contact-overlay.active {
+.contact-overlay.active,
+.links-overlay.active,
+.reviews-overlay.active,
+.map-overlay.active {
     display: block;
 }
 
 /* NASLOVI - ENAKO ZA VSE */
 .text-overlay h2,
-.contact-overlay h2 {
+.contact-overlay h2,
+.links-overlay h2,
+.reviews-overlay h2,
+.map-overlay h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: var(--hover-color);
@@ -61,17 +69,7 @@
     padding-bottom: 0.5rem;
 }
 
-.contact-overlay h2 {
-    padding-top: 15px;
-}
-
 /* VSEBINA */
-.description-text,
-.about-text {
-    padding: 1rem;
-    padding-right: 0.5rem;
-}
-
 .description-text p,
 .about-text p {
     margin-bottom: 1.2rem;
@@ -88,21 +86,18 @@
     line-height: 1.5;
 }
 
-/* CONTACT - ENAKO KOT OSTALI OVERLAYI */
-.contact-section {
-    padding: 1rem;
-}
-
+/* CONTACT --------------------------------------------------------------------------------- */
 .contact-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-item:last-child {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
 .contact-label {
@@ -122,7 +117,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .address {
@@ -131,14 +126,17 @@
 }
 
 .address div {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
 }
 
-.contact-item.address-item {
+.contact-item,
+.address-item {
     align-items: flex-start;
 }
 
-.contact-item.address-item .contact-label {
+.contact-item,
+.address-item,
+.contact-label {
     margin-top: 0;
 }
 
@@ -163,11 +161,7 @@
     background: rgba(208, 255, 0, 0.1);
 }
 
-/* RESERVE */
-.reserve-text {
-    padding: 1rem;
-}
-
+/* RESERVE --------------------------------------------------------------------------------- */
 .reserve-text ul {
     margin: 1.5rem 0;
     padding-left: 2rem;
@@ -184,10 +178,11 @@
     max-width: 300px;
     margin: 25px auto 10px auto;
     padding: 12px 24px;
-    background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    border: none;
+    background: var(--header-bg);
+    /*linear-gradient(135deg, #4CAF50, #2E7D32);*/
+    border: 2px solid var(--hover-color);
     border-radius: 8px;
-    color: white;
+    color: var(--hover-color);
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
@@ -205,31 +200,43 @@
     transform: scale(0.98);
 }
 
-/* SCROLLBAR - VEDNO VIDEN NA MOBILNIH */
+/* SCROLLBAR --------------------------------------------------------------------------------- */
 .text-overlay,
 .contact-overlay,
-.links-overlay {
+.links-overlay,
+.reviews-overlay,
+.map-overlay,
+.map-buttons-sidebar {
     scrollbar-width: thin;
     scrollbar-color: rgba(208, 255, 0, 0.7) rgba(0, 0, 0, 0.2);
 }
 
 .text-overlay::-webkit-scrollbar,
 .contact-overlay::-webkit-scrollbar,
-.links-overlay::-webkit-scrollbar {
+.links-overlay::-webkit-scrollbar,
+.reviews-overlay::-webkit-scrollbar,
+.map-overlay::-webkit-scrollbar,
+.map-buttons-sidebar::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 .text-overlay::-webkit-scrollbar-track,
 .contact-overlay::-webkit-scrollbar-track,
-.links-overlay::-webkit-scrollbar-track {
+.links-overlay::-webkit-scrollbar-track,
+.reviews-overlay::-webkit-scrollbar-track,
+.map-overlay::-webkit-scrollbar-track,
+.map-buttons-sidebar::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
 
 .text-overlay::-webkit-scrollbar-thumb,
 .contact-overlay::-webkit-scrollbar-thumb,
-.links-overlay::-webkit-scrollbar-thumb {
+.links-overlay::-webkit-scrollbar-thumb,
+.reviews-overlay::-webkit-scrollbar-thumb,
+.map-overlay::-webkit-scrollbar-thumb,
+.map-buttons-sidebar::-webkit-scrollbar-thumb {
     background: linear-gradient(to bottom, rgba(208, 255, 0, 0.7), rgba(123, 155, 0, 0.9));
     border-radius: 4px;
 }
@@ -238,15 +245,22 @@
 @media (max-width: 768px) {
 
     .text-overlay,
-    .contact-overlay {
-        padding: 1rem 0.75rem;
+    .contact-overlay,
+    .links-overlay,
+    .reviews-overlay,
+    .map-overlay {
         width: 95%;
+        padding: 0.75rem 1.0rem;
+        font-size: 0.8rem;
     }
 
-    .description-text,
-    .about-text,
-    .links-content {
-        padding: 0.5rem 0.25rem;
+    .text-overlay h2,
+    .contact-overlay h2,
+    .links-overlay h2,
+    .reviews-overlay h2,
+    #links-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
     }
 
     .contact-item {
@@ -262,13 +276,19 @@
 @media (max-width: 480px) {
 
     .text-overlay,
-    .contact-overlay {
-        padding: 0.75rem 0.5rem;
+    .contact-overlay,
+    .links-overlay,
+    .reviews-overlay,
+    .map-overlay {
         width: 98%;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
     }
 
     .text-overlay h2,
     .contact-overlay h2,
+    .links-overlay h2,
+    .reviews-overlay h2,
     #links-title {
         font-size: 1.3rem;
         margin-bottom: 0.8rem;

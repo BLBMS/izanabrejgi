@@ -1,4 +1,4 @@
-/* 049b */
+/* 050 */
 /* reviews-overlay.js */
 
 const baseReviewsData = [
@@ -97,7 +97,20 @@ const baseReviewsData = [
             en: 'Peaceful, beautiful location, cleanliness, spacious, and a lovely surprise upon arrival. Everything was great.',
             de: 'Ruhe, wunderschöne Lage, Sauberkeit, viel Platz und eine schöne Überraschung bei der Ankunft. Alles war großartig.'
         }
+    },
+    {
+        id: 9,
+        platform: 'Google',
+        rating: 5,
+        ratingMax: 5,
+        reviewer: 'Juliana (BR)',
+        review: {
+            sl: 'Neverjetno mesto! Z vsem smo bili zelo zadovoljni!',
+            en: 'An amazing place! We were so happy with everything!',
+            de: 'Ein erstaunlicher Ort! Wir waren mit allem sehr zufrieden!'
+        }
     }
+
     /*,
 {
     id: 99,

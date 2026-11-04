@@ -1,11 +1,7 @@
-// 048
-// config.js
-// Konfiguracija
+/* 050 */
+/* config.js */
 
-// Seznam slik za slideshow.
-// Za vsako fotografijo sta izrecno navedeni namizna in mobilna različica.
-// Namizne slike: images_d/d_ime.webp
-// Mobilne slike:  images_m/m_ime.webp
+// Slike za slideshow - vsaka slika ima desktop in mobile različico
 window.imageFiles = [
     { desktop: "images_d/d_balkon1.webp", mobile: "images_m/m_balkon1.webp" },
     { desktop: "images_d/d_dnevna1.webp", mobile: "images_m/m_dnevna1.webp" },
