@@ -62,8 +62,8 @@
     height: 22px;
     width: auto;
     object-fit: contain;
-    filter: brightness(0.9);
-    opacity: 0.8;
+    /*filter: brightness(0.9);*/
+    /*opacity: 0.8;*/
 }
 
 .review-text {
