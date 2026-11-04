@@ -55,8 +55,8 @@
     object-fit: contain;
     background: var(--color-gray-dark-link);
     padding: 5px;
-    filter: brightness(0.9);
-    opacity: 0.8;
+    /*filter: brightness(0.9);*/
+    /*opacity: 0.8;*/
 }
 
 .link-text {
