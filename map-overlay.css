@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* map-overlay.css */
 
 /* ============================================
@@ -30,7 +30,7 @@
 }
 
 .map-buttons-sidebar .map-button-group {
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--overlay-background);
     border-radius: 6px;
     padding: 6px;
     width: 100%;
@@ -53,8 +53,8 @@
     padding: 4px 6px;
     font-size: 0.8rem;
     /* Enake barve kot ostali gumbi */
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(208, 255, 0, 0.3);
+    background: var(--color-gray-light);
+    border: 1px solid var(--border-medium);
     color: var(--font-color);
     border-radius: 6px;
     cursor: pointer;
@@ -63,7 +63,7 @@
 }
 
 .map-buttons-sidebar .map-btn:hover {
-    background: rgba(208, 255, 0, 0.2);
+    background: var(--color-border-soft);
     border-color: var(--hover-color);
 }
 
@@ -129,7 +129,7 @@
 
     .map-button-group {
         flex: 1 1 200px;
-        background: rgba(0, 0, 0, 0.5);
+        background: var(--overlay-background);
         border-radius: 6px;
         padding: 6px;
     }
@@ -149,8 +149,8 @@
         max-width: 100%;
         text-align: left;
         margin: 3px 0;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(208, 255, 0, 0.3);
+        background: var(--color-gray-light);
+        border: 1px solid var(--border-medium);
         color: var(--font-color);
         padding: 5px 10px;
         border-radius: 6px;
@@ -161,7 +161,7 @@
     }
 
     .map-btn:hover {
-        background: rgba(208, 255, 0, 0.2);
+        background: var(--color-border-soft);
         border-color: var(--hover-color);
     }
 

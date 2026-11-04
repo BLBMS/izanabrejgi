@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* language.css */
 
 .language-flags {
@@ -14,7 +14,7 @@
     width: 30px;
     height: 16px;
     border-radius: 2px;
-    border: 1px solid white;
+    border: 1px solid var(--color-white);
     transition: transform 0.3s;
     flex-shrink: 0;
     align-items: center;
@@ -38,12 +38,12 @@
 /* Aktivna zastava v črno-beli barvi */
 .language-flags .language-flag.active-flag .flag {
     filter: grayscale(100%) brightness(100%);
-    border-color: #cccccc1f;
+    border-color: var(--border-color-flag-active);
 }
 
 .language-flags .language-flag.active-flag:hover .flag {
     filter: grayscale(100%) brightness(100%);
-    border-color: #ffffff1f;
+    border-color: var(--border-color-flag-active-hover);
 }
 
 /* Zagotovi, da so zastave desno na mobilnih */

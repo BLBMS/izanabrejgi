@@ -1,6 +1,6 @@
 # robots.txt za Iža na brejgi
 # Spletna stran je statična in objavljena na ____________.
-# <!-- 047 -->
+# <!-- 050 -->
 
 User-agent: *
 Allow: /

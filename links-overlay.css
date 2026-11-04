@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* links-overlay.css */
 
 #links-title {
@@ -6,7 +6,7 @@
     margin-bottom: 1.5rem;
     color: var(--hover-color);
     font-size: 1.8rem;
-    border-bottom: 2px solid rgba(208, 255, 0, 0.3);
+    border-bottom: 2px solid var(--border-medium);
     padding-bottom: 0.5rem;
 }
 
@@ -24,21 +24,21 @@
     align-items: center;
     gap: 20px;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--color-gray-light-dim);
     border-radius: 8px;
-    border-left: 4px solid rgba(208, 255, 0, 0.5);
+    border-left: 4px solid var(--border-medium);
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none !important;
-    color: inherit;
+    color: var(--color-hover);
     position: relative;
 }
 
 .link-item:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-gray-light);
     transform: translateX(5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border-left-color: rgba(208, 255, 0, 0.8);
+    box-shadow: 0 5px 15px var(--color-gray-dark-shadow);
+    border-left-color: var(--border-very-strong);
 }
 
 .link-icon {
@@ -48,13 +48,15 @@
     object-position: center;
     border-radius: 6px;
     flex-shrink: 0;
-    border: 1px solid rgba(208, 255, 0, 0.3);
+    border: 1px solid var(--border-medium);
 }
 
 .link-icon.contain {
     object-fit: contain;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--color-gray-dark-link);
     padding: 5px;
+    filter: brightness(0.9);
+    opacity: 0.8;
 }
 
 .link-text {
@@ -70,7 +72,7 @@
 }
 
 .link-item:hover .link-title {
-    color: rgba(234, 255, 0, 1);
+    color: var(--hover-color);
 }
 
 .link-description {
@@ -82,7 +84,7 @@
 
 /* NOTRANJI LINK (npr. kolesarske poti) */
 .link-description .link-link {
-    color: rgba(208, 255, 0, 0.9);
+    color: var(--color-text-light);
     text-decoration: none;
 }
 
@@ -107,11 +109,11 @@
 
 .link-arrow:hover {
     opacity: 1 !important;
-    color: rgba(208, 255, 0, 0.9) !important;
+    color:var(--color-hover) !important;
 }
 
 .link-link {
-    color: rgba(208, 255, 0, 0.9);
+    color: var(--color-text-light);
     text-decoration: none;
 }
 

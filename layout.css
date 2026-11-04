@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* layout.css */
 
 /* HEADER -------------------------------------------------------------------------*/
@@ -83,6 +83,17 @@ footer p {
     width: 20px;
     height: 20px;
     fill: currentColor;
+}
+
+/* izpis verzije v footer*/
+#footer-version {
+    font-size: 0.65rem;
+    color: var(--font-color);
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+    white-space: nowrap;
+    pointer-events: none;
 }
 
 /* LANDSCAPE - footer v eni vrstici */

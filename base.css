@@ -1,4 +1,4 @@
-/* 050a */
+/* 051 */
 /* base.css */
 
 @font-face {
@@ -12,21 +12,106 @@
 }
 
 :root {
-    --background-color: #123415;
-    --overlay-background: #0000000d;
-    --text-color: #333333;
-    --header-bg: linear-gradient(135deg, #123415, #36844d);
+    /* =========================================================
+       1. OSNOVNA PALETA (samo tukaj so definirane surove barve)
+       ========================================================= */
+    --color-bg-dark: #0b220d;
+    --color-bg-medium: #256d3b;
+    --color-overlay-bg: rgba(0, 0, 0, 0.5);
+    --color-overlay-bg-text: rgba(0, 0, 0, 0.7);
+    --color-text-dark: #333333;
+    --color-text-light: #a2ff00; /*  #d0ff00; */
+    --color-text-light-dim: #d0ff00cf;
+    --color-hover: #eaff00;
+    --color-hover-soft: rgba(234, 255, 0, 0.8);
+    --color-border-soft: rgba(208, 255, 0, 0.2);
+    --color-border-medium: rgba(208, 255, 0, 0.3);
+    --color-border-strong: rgba(208, 255, 0, 0.5);
+    --color-border-very-strong: rgba(208, 255, 0, 0.7);
+    --color-border-very-strong2: rgba(208, 255, 0, 0.9);
+    --color-white: #ffffff;
+    --color-gray-light: rgba(255, 255, 255, 0.1);
+    --color-gray-light-dim: rgba(255, 255, 255, 0.05);
+    --color-black: #000000;
+    --color-gray-dark-link: rgba(0, 0, 0, 0.2);
+    --color-gray-dark-shadow: rgba(0, 0, 0, 0.3);
+    --color-gray-dark: rgba(0, 0, 0, 0.95);
+    --color-error: #f44336;
+    --color-success: #4caf50;
+    --color-warning: #ffc107;
+
+    /* =========================================================
+       2. SISTEMSKE SPREMENLJIVKE (kaj je kje uporabljeno)
+       ========================================================= */
+    /* Ozadja */
+    --background-color: var(--color-bg-dark);
+    --overlay-background: var(--color-overlay-bg-text);
+    --header-bg-from: var(--color-bg-dark);
+    --header-bg-to: var(--color-bg-medium);
+    --header-bg: linear-gradient(135deg, var(--header-bg-from), var(--header-bg-to));
     --header-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --font-color: #d0ff00; /* bilo #d0ff00cf */
-    --font-shadow: 3px 3px 4px rgba(0, 0, 0, 0.95);
-    --hover-color: rgba(234, 255, 0, 0.8);
+
+    /* Besedilo */
+    --logo-text-color: var(--color-border-very-strong2);
+    --text-color: var(--color-text-dark);
+    --font-color: var(--color-text-light);
+    --font-color-dim: var(--color-text-light-dim);
+    --font-shadow: 3px 3px 4px var(--color-gray-dark);
+    --hover-color: var(--color-hover-soft);
     --font-size-overlay: 1.0rem;
+
+    /* Robovi in sence */
+    --border-soft: 1px solid var(--color-border-soft);
+    --border-medium: 1px solid var(--color-border-medium);
+    --border-strong: 1px solid var(--color-border-strong);
+    --shadow-overlay: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    /* Drsniki (scrollbar) */
+    --scrollbar-color: var(--color-border-very-strong) var(--color-border-soft);
+    --scrollbar-track: var(--color-border-soft);
+    --scrollbar-thumb: var(--color-border-very-strong);
+    --scrollbar-thumb-horizontal: var(--color-border-very-strong);
+
+    /* Piškotki (cookies) */
+    --cookie-panel-bg: rgba(20, 20, 20, 0.98);
+    --cookie-accept-bg: rgba(76, 175, 80, 0.2);
+    --cookie-accept-border: rgba(76, 175, 80, 0.5);
+    --cookie-accept-text: #4caf50;
+    --cookie-accept-btn-bg: #4CAF50;
+    --cookie-accept-btn-hover: #45a049;
+    --cookie-decline-bg: rgba(244, 67, 54, 0.2);
+    --cookie-decline-border: #f44336; /* rgba(244, 67, 54, 0.5);*/
+    --cookie-decline-text: #f44336;
+    --cookie-decline-btn-bg: rgba(244, 67, 54, 0.1);
+    --cookie-decline-btn-hover: #f4433657;
+    --cookie-unknown-bg: rgba(255, 193, 7, 0.2);
+    --cookie-unknown-border: rgba(255, 193, 7, 0.5);
+    --cookie-unknown-text: #ffc107;
+    --cookie-info-text: rgba(208, 255, 0, 0.6);
+    --border-soft: rgba(208, 255, 0, 0.2);
+    --border-medium: rgba(208, 255, 0, 0.3);
+    --border-strong: rgba(208, 255, 0, 0.5);
+
+    /* Hostex (celozaslonski widget) */
+    --hostex-widget-bg: var(--color-gray-dark);
+    --hostex-widget-blur: 10px;
+
+    /* Language */
+    --border-color-flag-active: #cccccc1f;
+    --border-color-flag-active-hover: #ffffff1f;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -38,13 +123,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-html {
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -55,15 +135,17 @@ html {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 80px);
+    margin-top: 0;
+    padding-top: 0;
 }
 
-/* BLUR OVERLAY - PRAVILNO POZICIONIRAN BREZ PREKRIVANJA FOOTERJA */
+/* BLUR OVERLAY */
 #full-page-blur {
     display: none;
     position: fixed;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: var(--overlay-background);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 1999;

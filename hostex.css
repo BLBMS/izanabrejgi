@@ -1,9 +1,11 @@
-/* 050 */
+/* 051 */
 /* hostex.css */
 
 #global-hostex-close {
-    position: fixed;
-    z-index: 2001;
+    position: fixed !important;
+    top: 15px !important;
+    right: 15px !important;
+    z-index: 10001 !important;
     display: none;
     justify-content: center;
     align-items: center;
@@ -12,22 +14,56 @@
     background: transparent !important;
     border: none !important;
     color: var(--font-color) !important;
+    font-family: inherit;
     font-size: 2.2rem !important;
     cursor: pointer;
     text-shadow: var(--font-shadow);
     transition: all 0.2s ease;
 }
-#global-hostex-close:hover { transform: scale(1.2); color: var(--hover-color) !important; }
+
+#global-hostex-close:hover {
+    transform: scale(1.2);
+    color: var(--hover-color) !important;
+}
 
 hostex-booking-widget {
     display: none;
-    background: transparent !important;
 }
-hostex-booking-widget[style*="display: block"] { display: block !important; }
+
+hostex-booking-widget[style*="display: block"] {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 10000 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    background: var(--hostex-widget-bg) !important;
+    backdrop-filter: blur(var(--hostex-widget-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--hostex-widget-blur)) !important;
+}
+
+hostex-booking-widget::part(base) {
+    background: var(--hostex-widget-bg) !important;
+}
 
 @media (max-width: 768px) {
-    #global-hostex-close { font-size: 2rem !important; width: 32px !important; height: 32px !important; }
+    #global-hostex-close {
+        font-size: 2rem !important;
+        width: 32px !important;
+        height: 32px !important;
+    }
 }
+
 @media (max-width: 480px) {
-    #global-hostex-close { font-size: 1.8rem !important; width: 30px !important; height: 30px !important; }
+    #global-hostex-close {
+        font-size: 1.8rem !important;
+        width: 30px !important;
+        height: 30px !important;
+    }
 }

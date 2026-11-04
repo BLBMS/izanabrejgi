@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* cookies.css */
 
 .cookie-notice {
@@ -8,12 +8,12 @@
     transform: translateX(-50%);
     width: 90%;
     max-width: 800px;
-    background: rgba(20, 20, 20, 0.98);
+    background: var(--cookie-panel-bg);
     color: var(--font-color);
     padding: 15px 20px;
     z-index: 10000;
-    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 -2px 15px var(--shadow-overlay);
+    border: 1px solid var(--border-soft);
     border-radius: 8px;
     max-height: 80vh;
     overflow-y: auto;
@@ -63,7 +63,7 @@
     font-size: 14px;
     line-height: 1.5;
     padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-soft);
     color: var(--font-color);
 }
 
@@ -101,7 +101,7 @@
     gap: 15px;
     justify-content: flex-end;
     padding-top: 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--border-soft);
 }
 
 .cookie-btn {
@@ -111,40 +111,41 @@
     padding: 10px 24px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 15px;
+    font: inherit;
+    font-size: 18px;
     transition: all 0.2s ease;
     min-width: 120px;
 }
 
 .cookie-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--hover-color);
 }
 
 .cookie-btn.accept {
-    background: #4CAF50;
-    border-color: #4CAF50;
-    color: white;
+    background: var(--cookie-accept-bg);
+    border-color: var(--font-color);
+    color: var(--font-color);
 }
 
 .cookie-btn.accept:hover {
-    background: #45a049;
+    background: var(--cookie-accept-btn-hover);
 }
 
 .cookie-btn.decline {
     background: transparent;
-    border-color: #f44336;
-    color: #f44336;
+    border-color: var(--cookie-decline-text);
+    color: var(--cookie-decline-text);
 }
 
 .cookie-btn.decline:hover {
-    background: rgba(244, 67, 54, 0.1);
+    background: var(--cookie-decline-btn-hover);
 }
 
 .cookie-toast {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(20, 20, 20, 0.95);
+    background: var(--overlay-background);
     color: var(--font-color);
     padding: 15px 25px;
     border-radius: 6px;
@@ -152,7 +153,7 @@
     display: none;
     max-width: 300px;
     font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-soft);
     animation: slideIn 0.3s ease;
 }
 
@@ -176,7 +177,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: var(--overlay-background);
     backdrop-filter: blur(5px);
     z-index: 10050;
     align-items: flex-start;
@@ -188,7 +189,7 @@
 }
 
 .cookie-settings-content {
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--cookie-panel-bg);
     backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 25px;
@@ -196,8 +197,8 @@
     width: 90%;
     text-align: center;
     position: relative;
-    border: 1px solid rgba(208, 255, 0, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 10px 30px var(--shadow-overlay);
     margin-top: 100px;
 }
 
@@ -231,21 +232,21 @@
 }
 
 .cookie-status-accepted {
-    background: rgba(76, 175, 80, 0.2);
-    border: 1px solid rgba(76, 175, 80, 0.5);
-    color: #4caf50;
+    background: var(--cookie-accept-bg);
+    border: 1px solid var(--cookie-accept-border);
+    color: var(--cookie-accept-text);
 }
 
 .cookie-status-declined {
-    background: rgba(244, 67, 54, 0.2);
-    border: 1px solid rgba(244, 67, 54, 0.5);
-    color: #f44336;
+    background: var(--cookie-decline-bg);
+    border: 1px solid var(--cookie-decline-border);
+    color: var(--cookie-decline-text);
 }
 
 .cookie-status-unknown {
-    background: rgba(255, 193, 7, 0.2);
-    border: 1px solid rgba(255, 193, 7, 0.5);
-    color: #ffc107;
+    background: var(--cookie-unknown-bg);
+    border: 1px solid var(--cookie-unknown-border);
+    color: var(--cookie-unknown-text);
 }
 
 .cookie-settings-buttons {
@@ -257,7 +258,7 @@
 
 .cookie-settings-info {
     font-size: 0.75rem;
-    color: rgba(208, 255, 0, 0.6);
+    color: var(--cookie-info-text);
     margin-top: 15px;
 }
 

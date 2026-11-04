@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* language-manager.js */
 
 
@@ -108,7 +108,8 @@ const embeddedLanguageData = {
                     "addressLines": [
                         "Rumičev breg 71",
                         "9226 Moravske Toplice",
-                        "Goričko, Prekmurje, Slovenija"
+                        "Goričko, Prekmurje",
+                        "Slovenija"
                     ]
                 },
             },
@@ -133,7 +134,7 @@ const embeddedLanguageData = {
                 "button": "Odpri rezervacijski portal"
             },
             "footer": {
-                "copyright": "&copy; 2026 Iža na brejgi. Vse pravice pridržane."
+                "copyright": "&copy; " + window.APP_YEAR + " Iža na brejgi. Vse pravice pridržane."
             }
         },
         // ------------------------------------- EN ---------------------------------------------
@@ -240,7 +241,8 @@ const embeddedLanguageData = {
                     "addressLines": [
                         "Rumičev breg 71",
                         "9226 Moravske Toplice",
-                        "Goričko, Prekmurje, Slovenia"
+                        "Goričko, Prekmurje",
+                        "Slovenia"
                     ]
                 },
             },
@@ -265,7 +267,7 @@ const embeddedLanguageData = {
                 "button": "Open reservation portal"
             },
             "footer": {
-                "copyright": "&copy; 2026 Iža na brejgi. All rights reserved."
+                "copyright": "&copy; " + window.APP_YEAR + " Iža na brejgi. All rights reserved."
             }
         },
         // ------------------------------------- DE ---------------------------------------------
@@ -372,7 +374,8 @@ const embeddedLanguageData = {
                     "addressLines": [
                         "Rumičev breg 71",
                         "9226 Moravske Toplice",
-                        "Goričko, Prekmurje, Slowenien"
+                        "Goričko, Prekmurje",
+                        "Slowenien"
                     ]
                 },
             },
@@ -397,7 +400,7 @@ const embeddedLanguageData = {
                 "button": "Buchungsportal öffnen"
             },
             "footer": {
-                "copyright": "&copy; 2026 Iža na brejgi. Alle Rechte vorbehalten."
+                "copyright": "&copy; " + window.APP_YEAR + " Iža na brejgi. Alle Rechte vorbehalten."
             }
         }
     }

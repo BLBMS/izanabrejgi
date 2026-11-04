@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* config.js */
 
 // Slike za slideshow - vsaka slika ima desktop in mobile različico

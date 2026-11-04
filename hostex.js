@@ -1,4 +1,4 @@
-/* 050 */
+/* 051 */
 /* hostex.js */
 
 if (!window.activeOverlayType) window.activeOverlayType = null;
@@ -95,24 +95,7 @@ async function showHostexWidget() {
         return;
     }
 
-    // CELOZASLONSKI WIDGET - čez vse
-    widget.style.cssText = `
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        z-index: 10000 !important;
-        display: block !important;
-        background: rgba(0, 0, 0, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    `;
+    widget.style.display = 'block';
 
     // X GUMB - desno zgoraj
     let closeButton = document.getElementById('global-hostex-close');
@@ -124,13 +107,8 @@ async function showHostexWidget() {
         document.body.appendChild(closeButton);
         closeButton.onclick = hideHostexWidget;
     }
-    closeButton.style.cssText = `
-        position: fixed !important;
-        top: 15px !important;
-        right: 15px !important;
-        z-index: 10001 !important;
-        display: flex !important;
-    `;
+
+    closeButton.style.display = 'flex';
 
     // Blur ozadje (ne rabimo, ker je widget sam čez vse)
     const blurOverlay = document.getElementById('full-page-blur');

@@ -1,4 +1,4 @@
-/* 050a */
+/* 051 */
 /* slideshow-manager.js */
 
 // Premeša array
