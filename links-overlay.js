@@ -24,22 +24,22 @@ const baseLinksData = [
     },
     {
         id: 2,
-        icon: 'links/TIClogo.png',
-        logoBg: 'rgba(255, 255, 255, 1.00)',
+        icon: 'links/logo_visit_pomurje.png',
+        logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
-            sl: 'Turistično informacijski center, TIC Moravske Toplice',
-            en: 'Tourist Information Center, TIC Moravske Toplice',
-            de: 'Touristisches Informationszentrum, TIC Moravske Toplice'
+            sl: 'Visit Pomurje - dogajanja v naši regiji',
+            en: 'Visit Pomurje - events in our region',
+            de: 'Visit Pomurje - Veranstaltungen in unserer Region'
         },
         description: {
-            sl: 'Lokalne turistične informacije: dogodki, novice, doživetja, termalna voda, pohodne poti, gastronomija, informacije, ...',
-            en: 'Local tourist information: events, news, experiences, thermal water, hiking trails, gastronomy, information, ...',
-            de: 'Lokale Touristeninformationen: Veranstaltungen, Neuigkeiten, Erlebnisse, Thermalwasser, Wanderwege, Gastronomie, Informationen, ...'
+            sl: 'Turistični portal je namenjen odkrivanju Pomurja, njegovih naravnih in kulturnih znamenitosti, lokalnih doživetij ter kulinarične ponudbe. Na njem najdete ideje za izlete, kolesarske in pohodniške poti, zanimive kraje, lokalne ponudnike ter aktualne prireditve in dogodke. Je odlično izhodišče za načrtovanje izletov in spoznavanje vsega, kar ponujata Prekmurje in Prlekija.',
+            en: 'The tourist portal is dedicated to exploring Pomurje, its natural and cultural attractions, local experiences, and culinary offerings. You will find ideas for trips, cycling and hiking trails, interesting places, local providers, and current events and activities. It is an excellent starting point for planning trips and discovering everything that Prekmurje and Prlekija have to offer.',
+            de: 'Das Tourismusportal widmet sich der Erkundung von Pomurje, seinen natürlichen und kulturellen Sehenswürdigkeiten, lokalen Erlebnissen und kulinarischen Angeboten. Sie finden Ideen für Ausflüge, Rad- und Wanderwege, interessante Orte, lokale Anbieter sowie aktuelle Veranstaltungen und Aktivitäten. Es ist ein ausgezeichneter Ausgangspunkt für die Planung von Ausflügen und die Entdeckung all dessen, was Prekmurje und Prlekija zu bieten haben.'
         },
         url: {
-            sl: 'https://www.visitmoravsketoplice.com/si',
-            en: 'https://www.visitmoravsketoplice.com/en',
-            de: 'https://www.visitmoravsketoplice.com/de'
+            sl: 'https://visitpomurje.eu/',
+            en: 'https://visitpomurje.eu/en/',
+            de: 'https://visitpomurje.eu/de/'
         }
     },
     {
@@ -64,6 +64,46 @@ const baseLinksData = [
     },
     {
         id: 4,
+        icon: 'links/TIClogo.png',
+        logoBg: 'rgba(255, 255, 255, 1.00)',
+        title: {
+            sl: 'Turistično informacijski center, TIC Moravske Toplice',
+            en: 'Tourist Information Center, TIC Moravske Toplice',
+            de: 'Touristisches Informationszentrum, TIC Moravske Toplice'
+        },
+        description: {
+            sl: 'Lokalne turistične informacije: dogodki, novice, doživetja, termalna voda, pohodne poti, gastronomija, informacije, ...',
+            en: 'Local tourist information: events, news, experiences, thermal water, hiking trails, gastronomy, information, ...',
+            de: 'Lokale Touristeninformationen: Veranstaltungen, Neuigkeiten, Erlebnisse, Thermalwasser, Wanderwege, Gastronomie, Informationen, ...'
+        },
+        url: {
+            sl: 'https://www.visitmoravsketoplice.com/si',
+            en: 'https://www.visitmoravsketoplice.com/en',
+            de: 'https://www.visitmoravsketoplice.com/de'
+        }
+    },
+    {
+        id: 5,
+        icon: 'links/logo_EXPANO.png',
+        logoBg: 'rgba(255, 255, 255, 1.0)',
+        title: {
+            sl: 'EXPANO - Vrata v Pomurje',
+            en: 'EXPANO - Gates to Pomurje',
+            de: 'EXPANO - Tore in Pomurje'
+        },
+        description: {
+            sl: 'Expano – Vrata v Pomurje je sodoben turistični paviljon, kjer lahko na interaktiven in zabaven način spoznate Pomurje, njegovo naravo, zgodovino, kulturo in posebnosti. S pomočjo 3D-projekcij, virtualne resničnosti in interaktivnih vsebin ponuja edinstveno doživetje regije za vse generacije. V neposredni bližini lahko raziščete tudi Soboško jezero, ki ponuja številne možnosti za šport, rekreacijo in sprostitev.',
+            en: 'EXPANO - Gates to Pomurje is a modern tourist pavilion where you can discover Pomurje in an interactive and entertaining way, its nature, history, culture and specialties. With the help of 3D projections, virtual reality and interactive content, it offers a unique experience of the region for all generations. In the immediate vicinity you can also explore the Soboško jezero, which offers many options for sports, recreation and relaxation.',
+            de: 'EXPANO - Tore in Pomurje ist ein modernes touristisches Pavillon, in dem Sie Pomurje auf eine interaktive und unterhaltsame Art und Weise entdecken können, seine Natur, Geschichte, Kultur und Besonderheiten. Mit Hilfe von 3D-Projektionen, Virtual Reality und interaktiven Inhalten bietet es eine einzigartige Erfahrung der Region für alle Generationen. In unmittelbarer Nähe können Sie auch das Soboško jezero erkunden, das viele Möglichkeiten für Sport, Freizeit und Entspannung bietet.'
+        },
+        url: {
+            sl: 'https://www.expano.si/',
+            en: 'https://www.expano.si/en/',
+            de: 'https://www.expano.si/de/'
+        }
+    },
+    {
+        id: 6,
         icon: 'links/kolesarske.png',
         logoBg: 'rgba(255, 255, 255, 1.00)',
         title: {
@@ -83,7 +123,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 5,
+        id: 7,
         icon: 'links/logo_RIDE_Goricko.png',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -103,7 +143,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 6,
+        id: 8,
         icon: 'links/logo_murski_colnar.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -123,7 +163,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 7,
+        id: 9,
         icon: 'links/Aleksander_logotip.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -143,7 +183,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 8,
+        id: 10,
         icon: 'links/Terme_3000_logo.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -163,7 +203,7 @@ const baseLinksData = [
         }
     },
     {
-        id: 9,
+        id: 11,
         icon: 'links/Terme_Vivat_logo.jpg',
         logoBg: 'rgba(255, 255, 255, 1.0)',
         title: {
@@ -182,6 +222,7 @@ const baseLinksData = [
             de: 'https://vivat.si/de/schwimmbad-komplex'
         }
     }
+
     /*    ,
         {
             id: 99,
