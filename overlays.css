@@ -162,7 +162,7 @@
 .contact-link:hover {
     color: var(--hover-color) !important;
     text-decoration: underline;
-    background: var(--hover-color);
+    background: var(--color-gray-light);
 }
 
 /* RESERVE --------------------------------------------------------------------------------- */
