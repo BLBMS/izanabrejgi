@@ -35,6 +35,15 @@
     background: var(--color-gray-light-dim);
     border-radius: 8px;
     border-left: 4px solid var(--border-strong);
+    transition: all 0.3s ease;
+}
+
+.review-item:hover {
+    background: var(--color-gray-light);
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px var(--color-gray-dark-shadow);
+    border-left-color: var(--border-very-strong);
+    color: var(--color-hover);
 }
 
 .review-left {
@@ -62,8 +71,8 @@
     height: 22px;
     width: auto;
     object-fit: contain;
-    /*filter: brightness(0.9);*/
-    /*opacity: 0.8;*/
+    filter: brightness(0.9);
+    opacity: 0.8;
 }
 
 .review-text {

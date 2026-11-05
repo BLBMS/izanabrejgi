@@ -197,7 +197,7 @@
 
 .reserve-open-btn:hover {
     transform: scale(1.02);
-    background: var(--header-bg);
+    background: var( --color-bg-medium); /*--header-bg);*/
     box-shadow: 0 4px 15px var(--shadow-overlay);
 }
 
